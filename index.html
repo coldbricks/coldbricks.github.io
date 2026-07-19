@@ -3,28 +3,201 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Coldbricks — Finally VR player, sims, haptics, recovery tools, and RF projects.">
 <title>Coldbricks</title>
 <style>
-  body { background: #0A0610; color: #F4EAF0; font-family: "Segoe UI", Roboto, system-ui, sans-serif;
-         display: flex; min-height: 100vh; align-items: center; justify-content: center; margin: 0; }
-  main { text-align: center; padding: 2rem; }
-  h1 { font-weight: 700; letter-spacing: 0.18em; font-size: 1.6rem; margin-bottom: 2.5rem; }
-  a { color: #2EE6C5; text-decoration: none; }
-  a:hover { color: #FF1493; }
-  ul { list-style: none; padding: 0; line-height: 2.2; }
-  .muted { color: #9A7A8C; font-size: 0.85rem; margin-top: 3rem; }
+  :root {
+    --bg: #0A0610;
+    --fg: #F4EAF0;
+    --muted: #9A7A8C;
+    --line: #2A1A28;
+    --card: #120A16;
+    --cyan: #2EE6C5;
+    --pink: #FF1493;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "Segoe UI", Roboto, system-ui, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+  }
+  main {
+    max-width: 42rem;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+  }
+  header { text-align: center; margin-bottom: 2.75rem; }
+  h1 {
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    font-size: 1.6rem;
+    margin: 0 0 0.75rem;
+  }
+  .tagline {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin: 0;
+    line-height: 1.5;
+  }
+  section { margin-bottom: 2.25rem; }
+  h2 {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 0.9rem;
+    padding-bottom: 0.45rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1rem 1.15rem;
+    margin-bottom: 0.75rem;
+  }
+  .card h3 {
+    margin: 0 0 0.35rem;
+    font-size: 1.05rem;
+    font-weight: 650;
+  }
+  .card p {
+    margin: 0 0 0.7rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem 1rem;
+    font-size: 0.9rem;
+  }
+  a { color: var(--cyan); text-decoration: none; }
+  a:hover { color: var(--pink); }
+  .pill {
+    display: inline-block;
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    border: 1px solid rgba(46, 230, 197, 0.35);
+    border-radius: 999px;
+    padding: 0.12rem 0.5rem;
+    margin-left: 0.45rem;
+    vertical-align: middle;
+  }
+  .footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 2.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line);
+  }
+  .footer a { color: var(--muted); }
+  .footer a:hover { color: var(--pink); }
 </style>
 </head>
 <body>
 <main>
-  <h1>COLDBRICKS</h1>
-  <ul>
-    <li><strong>Finally</strong> — VR video player for Meta Quest &amp; Galaxy XR</li>
-    <li><a href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Get it on the Meta Horizon Store</a></li>
-    <li><a href="/finally/manual/">Finally field manual</a></li>
-    <li><a href="/finally/privacy/">Finally privacy policy</a></li>
-  </ul>
-  <p class="muted">contact: coldbricks@gmail.com</p>
+  <header>
+    <h1>COLDBRICKS</h1>
+    <p class="tagline">Production XR, deterministic sims, haptics, recovery tools, and RF.</p>
+  </header>
+
+  <section aria-labelledby="shipped">
+    <h2 id="shipped">Shipped product</h2>
+    <article class="card">
+      <h3>Finally <span class="pill">Meta Horizon</span></h3>
+      <p>VR video player for Meta Quest and Galaxy XR — local library, NAS path, field-manual polish.</p>
+      <div class="links">
+        <a href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Horizon Store</a>
+        <a href="/finally/manual/">Field manual</a>
+        <a href="/finally/privacy/">Privacy</a>
+      </div>
+    </article>
+  </section>
+
+  <section aria-labelledby="sims">
+    <h2 id="sims">Simulators</h2>
+    <article class="card">
+      <h3>SECTOR 305</h3>
+      <p>Doctrine-driven Miami PSAP dispatch sim — deterministic grading, adaptive mastery, GIS plate, 17-track score.</p>
+      <div class="links">
+        <a href="https://github.com/coldbricks/SECTOR-305">GitHub</a>
+        <a href="/SECTOR-305/ost/">Play the OST</a>
+      </div>
+    </article>
+    <article class="card">
+      <h3>Kaila</h3>
+      <p>The flight simulator for broadcast engineers — dual-mode UHF TV transmitter training.</p>
+      <div class="links">
+        <a href="https://github.com/coldbricks/kaila">GitHub</a>
+        <a href="/kaila/">Public teaser</a>
+      </div>
+    </article>
+  </section>
+
+  <section aria-labelledby="haptics">
+    <h2 id="haptics">Haptics</h2>
+    <article class="card">
+      <h3>Chloe Vibes</h3>
+      <p>Sound to calibrated haptic force in real time — deterministic, dual-client, parity-locked.</p>
+      <div class="links">
+        <a href="https://github.com/coldbricks/Chloe-Vibes">GitHub</a>
+      </div>
+    </article>
+  </section>
+
+  <section aria-labelledby="tools">
+    <h2 id="tools">Tools &amp; recovery</h2>
+    <article class="card">
+      <h3>Paisley Ponytail</h3>
+      <p>The Webshots Resurrector — search an old screen name, pull full-resolution photos back from the Internet Archive.</p>
+      <div class="links">
+        <a href="https://github.com/coldbricks/paisley-ponytail">GitHub</a>
+      </div>
+    </article>
+    <article class="card">
+      <h3>Flow Fixer</h3>
+      <p>Reliability toolkit for Google Flow — HAR forensics, fan-out analysis, eng brief. Not a bypass tool.</p>
+      <div class="links">
+        <a href="https://github.com/coldbricks/flow-fixer">GitHub</a>
+      </div>
+    </article>
+  </section>
+
+  <section aria-labelledby="rf">
+    <h2 id="rf">Radio &amp; RF</h2>
+    <article class="card">
+      <h3>Coldbricks ADS-B</h3>
+      <p>Live aircraft radar map powered by RTL-SDR + dump1090.</p>
+      <div class="links">
+        <a href="https://github.com/coldbricks/coldbricks-adsb">GitHub</a>
+      </div>
+    </article>
+  </section>
+
+  <section aria-labelledby="research">
+    <h2 id="research">Research</h2>
+    <article class="card">
+      <h3>charm13</h3>
+      <p>Notes on budgeted adaptive inspection in finite models — exact envelopes, certificates, habitat-cover corollary.</p>
+      <div class="links">
+        <a href="https://github.com/coldbricks/charm13">GitHub</a>
+      </div>
+    </article>
+  </section>
+
+  <p class="footer">
+    contact: <a href="mailto:coldbricks@gmail.com">coldbricks@gmail.com</a>
+    ·
+    <a href="https://github.com/coldbricks">github.com/coldbricks</a>
+  </p>
 </main>
 </body>
 </html>
