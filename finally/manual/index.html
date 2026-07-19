@@ -219,7 +219,7 @@
     <span class="eyebrow">Field Manual</span>
     <h1>FINALLY</h1>
     <p class="tag"><b>offline · local · yours</b> — the VR video player that respects your library, your network, and your hands.</p>
-    <p class="hero-meta">covers v0.3.4 · quest + galaxy xr · july 2026</p>
+    <p class="hero-meta">covers v0.3.5 · quest + galaxy xr · july 2026</p>
     <a class="store-cta" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Get Finally on the Meta Horizon Store →</a>
   </div>
 </header>
@@ -334,7 +334,7 @@
   <p>Brightness, contrast, saturation trims with a one-tap reset — and the entire passthrough keying suite: master passthrough toggle, packed-alpha matte, four-color chroma key with per-color edge controls. Detailed in <a href="#room">Your room</a>.</p>
 
   <h3>SETUP</h3>
-  <p>Seek step size, menu distance and size, theme, menu spawn (at gaze or fixed origin), default-SBS-for-180 toggle, skip intro, resume on/off, stick zoom direction (<em>pull = smaller</em> by default, flippable), wrist-roll dome tilt, and haptics.</p>
+  <p>Seek step size, menu distance and size, theme, menu spawn (at gaze or fixed origin), default-SBS-for-180 toggle, skip intro, resume on/off, stick zoom direction (<em>pull = smaller</em> by default, flippable), wrist-roll dome tilt, haptics — and the lying-down suite: <strong>tilt follow</strong> rolls the picture with your head so it stays upright to <em>your face</em> instead of the room (lie on your side; the movie comes with you — menus and laser stay world-anchored), and <strong>menu level</strong> makes the cockpit spawn gravity-level instead of matching your head tilt.</p>
 
   <h3>HELP</h3>
   <p>The in-headset version of this manual: subjects on the left, article on the right, stick ↕ scrolls. It also hides two extra chapters this page only summarizes — <em>THEORY</em> (teal) and <em>DEEPER</em> (green). See <a href="#theory">Theory</a>.</p>
@@ -440,7 +440,8 @@
     <li>Headset and PC on the same Wi-Fi / home network.</li>
     <li>Turn off any VPN on the PC if connect fails.</li>
   </ol>
-  <p>Then: 2D library → <span class="chip">＋ Add NAS share</span> → host, share name, Windows username + password, port 445. Hit <strong>Scan</strong> and the vault labels those titles <em>NAS · your-host</em>. Credentials are stored encrypted, on-device, keyed to that share — never in plain preferences, never in any cloud.</p>
+  <p>Then: 2D library → <span class="chip">＋ Add NAS share</span> → host, share name, an optional <strong>Folder</strong> (e.g. <code>media/vr</code> — scans just that subfolder instead of crawling a big share), Windows username + password, port 445. Hit <strong>Scan</strong> and the vault labels those titles <em>NAS · your-host</em>. Credentials are stored encrypted, on-device, keyed to that share — never in plain preferences, never in any cloud.</p>
+  <p>Network scans also skip music album art automatically (<code>cover.jpg</code>, <code>folder.jpg</code>, fanart, and any thumbnail-sized still) — a share with a music library won't flood your vault with sleeve scans. Folders you add directly keep every still you pointed at.</p>
   <div class="note warn"><p><strong>Share name, not path.</strong> The most common connect failure is typing <code>C:\Media</code> where the share name goes. Use the short name only. Second most common: a VPN on the PC eating local discovery.</p></div>
 
   <h3>What plays</h3>
