@@ -3,209 +3,680 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Coldbricks — Finally, ChloeVR, Chloe Vibes, Paisley Ponytail, Flow Fixer, SECTOR 305, Kaila, Charm13, and more.">
-<title>Coldbricks</title>
+<meta name="theme-color" content="#05030A">
+<meta name="description" content="Coldbricks — Finally, ChloeVR, Chloe Vibes, Paisley Ponytail, Flow Fixer, SECTOR 305, Kaila, Charm13.">
+<title>COLDBRICKS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0A0610;
-    --fg: #F4EAF0;
-    --muted: #9A7A8C;
-    --line: #2A1A28;
-    --card: #120A16;
+    --bg: #05030A;
+    --bg-elev: #0C0714;
+    --bg-card: rgba(14, 8, 22, 0.72);
+    --fg: #F7ECF2;
+    --muted: #A08496;
+    --dim: #5C3F52;
+    --line: rgba(255, 20, 147, 0.18);
+    --line-strong: rgba(46, 230, 197, 0.35);
     --cyan: #2EE6C5;
+    --cyan-dim: rgba(46, 230, 197, 0.12);
     --pink: #FF1493;
+    --pink-dim: rgba(255, 20, 147, 0.14);
+    --amber: #FFB020;
+    --violet: #8B5CFF;
+    --radius: 14px;
+    --shadow: 0 0 0 1px rgba(255, 20, 147, 0.08), 0 24px 60px rgba(0, 0, 0, 0.55);
   }
+
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
-    background: var(--bg);
-    color: var(--fg);
-    font-family: "Segoe UI", Roboto, system-ui, sans-serif;
     margin: 0;
     min-height: 100vh;
+    color: var(--fg);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    background: var(--bg);
+    overflow-x: hidden;
   }
-  main {
-    max-width: 42rem;
+
+  /* Atmosphere */
+  .bg {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background:
+      radial-gradient(ellipse 90% 55% at 15% -10%, rgba(255, 20, 147, 0.28), transparent 55%),
+      radial-gradient(ellipse 70% 50% at 95% 10%, rgba(46, 230, 197, 0.16), transparent 50%),
+      radial-gradient(ellipse 60% 40% at 50% 100%, rgba(139, 92, 255, 0.14), transparent 55%),
+      linear-gradient(180deg, #080412 0%, #05030A 40%, #0A0512 100%);
+  }
+  .bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(46, 230, 197, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 20, 147, 0.035) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 20%, transparent 75%);
+    pointer-events: none;
+  }
+  .bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.12) 2px,
+      rgba(0, 0, 0, 0.12) 4px
+    );
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  .noise {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.045;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .wrap {
+    width: min(1120px, calc(100% - 2rem));
     margin: 0 auto;
-    padding: 3rem 1.5rem 4rem;
+    padding: 1.25rem 0 4rem;
   }
-  header { text-align: center; margin-bottom: 2.75rem; }
-  h1 {
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    font-size: 1.6rem;
-    margin: 0 0 0.75rem;
-  }
-  .tagline {
-    color: var(--muted);
-    font-size: 0.95rem;
-    margin: 0;
-    line-height: 1.5;
-  }
-  section { margin-bottom: 2.25rem; }
-  h2 {
+
+  /* Top bar */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 0 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    margin-bottom: 2.5rem;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
     font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--muted);
-    margin: 0 0 0.9rem;
-    padding-bottom: 0.45rem;
-    border-bottom: 1px solid var(--line);
   }
-  .card {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 1rem 1.15rem;
-    margin-bottom: 0.75rem;
+  .topbar .live {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--cyan);
   }
-  .card h3 {
-    margin: 0 0 0.35rem;
-    font-size: 1.05rem;
-    font-weight: 650;
+  .topbar .live i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 12px var(--cyan);
+    animation: pulse 1.8s ease-in-out infinite;
   }
-  .card p {
-    margin: 0 0 0.7rem;
+  .topbar nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem 1.15rem;
+  }
+  .topbar a {
     color: var(--muted);
-    font-size: 0.9rem;
-    line-height: 1.45;
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+  .topbar a:hover { color: var(--pink); }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    padding: 2.5rem 0 3rem;
+    margin-bottom: 1rem;
+  }
+  .hero-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 1.1rem;
+  }
+  .hero-kicker::before {
+    content: "";
+    width: 28px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--pink), var(--cyan));
+    box-shadow: 0 0 12px var(--pink);
+  }
+  .hero h1 {
+    margin: 0;
+    font-family: Orbitron, system-ui, sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.6rem, 9vw, 5.4rem);
+    letter-spacing: 0.14em;
+    line-height: 0.95;
+    text-transform: uppercase;
+    background: linear-gradient(180deg, #fff 0%, #F4EAF0 35%, #2EE6C5 70%, #FF1493 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 28px rgba(255, 20, 147, 0.35));
+  }
+  .hero-sub {
+    max-width: 38rem;
+    margin: 1.35rem 0 0;
+    font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+    line-height: 1.55;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .hero-sub strong {
+    color: var(--fg);
+    font-weight: 600;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: 1.75rem;
+  }
+  .chip {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.45rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.35);
+    color: var(--muted);
+  }
+  .chip.hot {
+    border-color: rgba(255, 20, 147, 0.45);
+    color: #ff8ec8;
+    background: var(--pink-dim);
+    box-shadow: 0 0 20px rgba(255, 20, 147, 0.15);
+  }
+  .chip.cool {
+    border-color: rgba(46, 230, 197, 0.4);
+    color: var(--cyan);
+    background: var(--cyan-dim);
+  }
+
+  .hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0.7rem 1.2rem;
+    border-radius: 999px;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary {
+    color: #05030A;
+    background: linear-gradient(135deg, var(--cyan) 0%, #1ad4b5 45%, #ff4fb0 130%);
+    box-shadow: 0 0 0 1px rgba(46, 230, 197, 0.4), 0 10px 40px rgba(46, 230, 197, 0.25);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 0 0 1px rgba(255, 20, 147, 0.5), 0 12px 48px rgba(255, 20, 147, 0.35);
+  }
+  .btn-ghost {
+    color: var(--fg);
+    border-color: rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.03);
+  }
+  .btn-ghost:hover {
+    border-color: var(--pink);
+    color: #ff8ec8;
+    box-shadow: 0 0 24px rgba(255, 20, 147, 0.2);
+  }
+
+  /* Sections */
+  section {
+    margin: 3.25rem 0 0;
+  }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.1rem;
+  }
+  .section-head h2 {
+    margin: 0;
+    font-family: Orbitron, system-ui, sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--fg);
+  }
+  .section-head .idx {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    color: var(--dim);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+  }
+
+  /* Cards */
+  .card {
+    position: relative;
+    grid-column: span 12;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    padding: 1.25rem 1.3rem 1.15rem;
+    border-radius: var(--radius);
+    background:
+      linear-gradient(145deg, rgba(255, 20, 147, 0.07), transparent 40%),
+      linear-gradient(180deg, rgba(20, 12, 32, 0.92), rgba(8, 5, 14, 0.95));
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent, var(--pink)), var(--accent-2, var(--cyan)), transparent);
+    opacity: 0.85;
+  }
+  .card::after {
+    content: "";
+    position: absolute;
+    inset: auto -20% -40% auto;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--glow, rgba(255, 20, 147, 0.18)), transparent 70%);
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: var(--line-strong);
+    box-shadow:
+      0 0 0 1px rgba(46, 230, 197, 0.12),
+      0 28px 70px rgba(0, 0, 0, 0.65),
+      0 0 40px rgba(255, 20, 147, 0.12);
+  }
+  .card:hover::after { opacity: 1.4; }
+
+  .card.feature {
+    padding: 1.55rem 1.5rem 1.35rem;
+  }
+  .card.feature .title {
+    font-size: clamp(1.45rem, 3vw, 1.85rem);
+  }
+
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.65rem;
+  }
+  .code {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent, var(--cyan));
+  }
+  .pill {
+    flex-shrink: 0;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.28rem 0.55rem;
+    border-radius: 999px;
+    border: 1px solid currentColor;
+    color: var(--accent, var(--cyan));
+    background: rgba(0, 0, 0, 0.35);
+  }
+  .title {
+    margin: 0 0 0.5rem;
+    font-family: Orbitron, system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: 0.06em;
+    line-height: 1.15;
+  }
+  .blurb {
+    margin: 0 0 1.1rem;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.55;
+    flex: 1;
   }
   .links {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.55rem 1rem;
-    font-size: 0.9rem;
+    gap: 0.5rem;
+    margin-top: auto;
   }
-  a { color: var(--cyan); text-decoration: none; }
-  a:hover { color: var(--pink); }
-  .pill {
-    display: inline-block;
-    font-size: 0.68rem;
-    letter-spacing: 0.06em;
+  .link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--cyan);
-    border: 1px solid rgba(46, 230, 197, 0.35);
+    text-decoration: none;
+    color: var(--fg);
+    padding: 0.48rem 0.75rem;
     border-radius: 999px;
-    padding: 0.12rem 0.5rem;
-    margin-left: 0.45rem;
-    vertical-align: middle;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+    transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
   }
+  .link:hover {
+    color: var(--cyan);
+    border-color: rgba(46, 230, 197, 0.45);
+    background: var(--cyan-dim);
+    box-shadow: 0 0 18px rgba(46, 230, 197, 0.15);
+  }
+  .link.hot:hover {
+    color: #ff8ec8;
+    border-color: rgba(255, 20, 147, 0.5);
+    background: var(--pink-dim);
+    box-shadow: 0 0 18px rgba(255, 20, 147, 0.18);
+  }
+  .link::after {
+    content: "↗";
+    font-size: 0.85em;
+    opacity: 0.7;
+  }
+
+  /* Accent themes per card */
+  .a-pink  { --accent: #FF1493; --accent-2: #2EE6C5; --glow: rgba(255, 20, 147, 0.22); }
+  .a-cyan  { --accent: #2EE6C5; --accent-2: #8B5CFF; --glow: rgba(46, 230, 197, 0.2); }
+  .a-violet{ --accent: #8B5CFF; --accent-2: #FF1493; --glow: rgba(139, 92, 255, 0.22); }
+  .a-amber { --accent: #FFB020; --accent-2: #2EE6C5; --glow: rgba(255, 176, 32, 0.18); }
+  .a-mint  { --accent: #5DFFB0; --accent-2: #2EE6C5; --glow: rgba(93, 255, 176, 0.16); }
+
+  @media (min-width: 700px) {
+    .card.half { grid-column: span 6; }
+    .card.feature { grid-column: span 12; }
+  }
+  @media (min-width: 960px) {
+    .card.third { grid-column: span 4; }
+    .card.wide { grid-column: span 8; }
+  }
+
   .footer {
-    text-align: center;
-    color: var(--muted);
-    font-size: 0.85rem;
-    margin-top: 2.5rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid var(--line);
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--dim);
   }
-  .footer a { color: var(--muted); }
+  .footer a {
+    color: var(--muted);
+    text-decoration: none;
+  }
   .footer a:hover { color: var(--pink); }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.45; transform: scale(0.85); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .topbar .live i { animation: none; }
+    .card, .btn, .link { transition: none; }
+    .card:hover { transform: none; }
+  }
 </style>
 </head>
 <body>
-<main>
-  <header>
+<div class="bg" aria-hidden="true"></div>
+<div class="noise" aria-hidden="true"></div>
+
+<div class="wrap">
+  <div class="topbar">
+    <span class="live"><i></i> Systems online</span>
+    <nav>
+      <a href="#shipped">Finally</a>
+      <a href="#xr">XR</a>
+      <a href="#tools">Tools</a>
+      <a href="#sims">Sims</a>
+      <a href="#rf">RF</a>
+      <a href="#research">Research</a>
+      <a href="https://github.com/coldbricks">GitHub</a>
+    </nav>
+  </div>
+
+  <header class="hero">
+    <div class="hero-kicker">Ash Airfoil · Independent lab</div>
     <h1>COLDBRICKS</h1>
-    <p class="tagline">Production XR, haptics, recovery tools, sims, RF, and research.</p>
+    <p class="hero-sub">
+      Instruments, not toys. <strong>Native XR</strong>, <strong>deterministic sims</strong>,
+      <strong>haptic force</strong>, archive resurrection, and RF radar —
+      built to hold under pressure.
+    </p>
+    <div class="hero-meta">
+      <span class="chip hot">Shipped · Meta Horizon</span>
+      <span class="chip cool">OpenXR · Quest · Galaxy XR</span>
+      <span class="chip">Deterministic cores</span>
+      <span class="chip">Sideload + public tools</span>
+    </div>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Get Finally</a>
+      <a class="btn btn-ghost" href="https://github.com/coldbricks">All repositories</a>
+    </div>
   </header>
 
-  <section aria-labelledby="shipped">
-    <h2 id="shipped">Shipped product</h2>
-    <article class="card">
-      <h3>Finally <span class="pill">Meta Horizon</span></h3>
-      <p>VR video player for Meta Quest and Galaxy XR — local library, NAS path, field-manual polish.</p>
-      <div class="links">
-        <a href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Horizon Store</a>
-        <a href="/finally/manual/">Field manual</a>
-        <a href="/finally/privacy/">Privacy</a>
-      </div>
-    </article>
+  <section id="shipped" aria-labelledby="shipped-h">
+    <div class="section-head">
+      <h2 id="shipped-h">Shipped product</h2>
+      <span class="idx">01 // PRODUCTION</span>
+    </div>
+    <div class="grid">
+      <article class="card feature a-pink">
+        <div class="card-top">
+          <span class="code">CBX-FINALLY</span>
+          <span class="pill">Meta Horizon</span>
+        </div>
+        <h3 class="title">Finally</h3>
+        <p class="blurb">VR video player for Meta Quest and Galaxy XR — local library, NAS path, field-manual polish. The store-facing flagship.</p>
+        <div class="links">
+          <a class="link hot" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Horizon Store</a>
+          <a class="link" href="/finally/manual/">Field manual</a>
+          <a class="link" href="/finally/privacy/">Privacy</a>
+        </div>
+      </article>
+    </div>
   </section>
 
-  <section aria-labelledby="xr">
-    <h2 id="xr">XR &amp; haptics</h2>
-    <article class="card">
-      <h3>ChloeVR <span class="pill">Sideload</span></h3>
-      <p>Native OpenXR for Galaxy XR and Quest — VR180/360 cinema plus a full 6DOF dancer stage (BeatReactor, ClipDrive, intimate suite). Sister stack to Chloe Vibes and Finally.</p>
-      <div class="links">
-        <a href="https://github.com/coldbricks/ChloeVR">GitHub</a>
-        <a href="https://github.com/coldbricks/ChloeVR/releases/latest">Latest release</a>
-      </div>
-    </article>
-    <article class="card">
-      <h3>Chloe Vibes</h3>
-      <p>Sound into calibrated haptic force in real time — deterministic, dual-client, parity-locked companion for the Chloe stack.</p>
-      <div class="links">
-        <a href="https://github.com/coldbricks/Chloe-Vibes">GitHub</a>
-      </div>
-    </article>
+  <section id="xr" aria-labelledby="xr-h">
+    <div class="section-head">
+      <h2 id="xr-h">XR &amp; haptics</h2>
+      <span class="idx">02 // PRESENCE STACK</span>
+    </div>
+    <div class="grid">
+      <article class="card half a-violet">
+        <div class="card-top">
+          <span class="code">CBX-CHLOEVR</span>
+          <span class="pill">Sideload</span>
+        </div>
+        <h3 class="title">ChloeVR</h3>
+        <p class="blurb">Native OpenXR for Galaxy XR and Quest — VR180/360 cinema plus a full 6DOF dancer stage. BeatReactor, ClipDrive, intimate suite. Not a Unity port.</p>
+        <div class="links">
+          <a class="link" href="https://github.com/coldbricks/ChloeVR">GitHub</a>
+          <a class="link hot" href="https://github.com/coldbricks/ChloeVR/releases/latest">Latest release</a>
+        </div>
+      </article>
+      <article class="card half a-cyan">
+        <div class="card-top">
+          <span class="code">CBX-VIBES</span>
+          <span class="pill">Public</span>
+        </div>
+        <h3 class="title">Chloe Vibes</h3>
+        <p class="blurb">Sound into calibrated haptic force in real time — deterministic, dual-client, parity-locked companion for the Chloe stack.</p>
+        <div class="links">
+          <a class="link" href="https://github.com/coldbricks/Chloe-Vibes">GitHub</a>
+        </div>
+      </article>
+    </div>
   </section>
 
-  <section aria-labelledby="tools">
-    <h2 id="tools">Tools &amp; recovery</h2>
-    <article class="card">
-      <h3>Paisley Ponytail</h3>
-      <p>The Webshots Resurrector — search an old screen name, pull full-resolution photos back from the Internet Archive.</p>
-      <div class="links">
-        <a href="https://github.com/coldbricks/paisley-ponytail">GitHub</a>
-      </div>
-    </article>
-    <article class="card">
-      <h3>Flow Fixer</h3>
-      <p>Reliability toolkit for Google Flow — HAR forensics, fan-out analysis, eng brief. Not a bypass tool.</p>
-      <div class="links">
-        <a href="https://github.com/coldbricks/flow-fixer">GitHub</a>
-      </div>
-    </article>
+  <section id="tools" aria-labelledby="tools-h">
+    <div class="section-head">
+      <h2 id="tools-h">Tools &amp; recovery</h2>
+      <span class="idx">03 // FORENSICS</span>
+    </div>
+    <div class="grid">
+      <article class="card half a-amber">
+        <div class="card-top">
+          <span class="code">CBX-PAISLEY</span>
+          <span class="pill">Archive</span>
+        </div>
+        <h3 class="title">Paisley Ponytail</h3>
+        <p class="blurb">The Webshots Resurrector. Search an old screen name — pull full-resolution photos back from the Internet Archive.</p>
+        <div class="links">
+          <a class="link" href="https://github.com/coldbricks/paisley-ponytail">GitHub</a>
+        </div>
+      </article>
+      <article class="card half a-pink">
+        <div class="card-top">
+          <span class="code">CBX-FLOW</span>
+          <span class="pill">Reliability</span>
+        </div>
+        <h3 class="title">Flow Fixer</h3>
+        <p class="blurb">Reliability toolkit for Google Flow — HAR forensics, fan-out analysis, eng brief. Not a bypass tool.</p>
+        <div class="links">
+          <a class="link" href="https://github.com/coldbricks/flow-fixer">GitHub</a>
+        </div>
+      </article>
+    </div>
   </section>
 
-  <section aria-labelledby="sims">
-    <h2 id="sims">Simulators</h2>
-    <article class="card">
-      <h3>SECTOR 305</h3>
-      <p>Doctrine-driven Miami PSAP dispatch sim — deterministic grading, adaptive mastery, GIS plate, 17-track score.</p>
-      <div class="links">
-        <a href="https://github.com/coldbricks/SECTOR-305">GitHub</a>
-        <a href="/SECTOR-305/ost/">Play the OST</a>
-      </div>
-    </article>
-    <article class="card">
-      <h3>Kaila</h3>
-      <p>The flight simulator for broadcast engineers — dual-mode UHF TV transmitter training.</p>
-      <div class="links">
-        <a href="https://github.com/coldbricks/kaila">GitHub</a>
-        <a href="/kaila/">Public teaser</a>
-      </div>
-    </article>
+  <section id="sims" aria-labelledby="sims-h">
+    <div class="section-head">
+      <h2 id="sims-h">Simulators</h2>
+      <span class="idx">04 // DOCTRINE</span>
+    </div>
+    <div class="grid">
+      <article class="card half a-cyan">
+        <div class="card-top">
+          <span class="code">CBX-305</span>
+          <span class="pill">Miami</span>
+        </div>
+        <h3 class="title">SECTOR 305</h3>
+        <p class="blurb">Doctrine-driven PSAP dispatch sim — deterministic grading, adaptive mastery, GIS plate, 17-track score. Process over spectacle.</p>
+        <div class="links">
+          <a class="link" href="https://github.com/coldbricks/SECTOR-305">GitHub</a>
+          <a class="link hot" href="/SECTOR-305/ost/">Play the OST</a>
+        </div>
+      </article>
+      <article class="card half a-amber">
+        <div class="card-top">
+          <span class="code">CBX-KAILA</span>
+          <span class="pill">UHF / TV</span>
+        </div>
+        <h3 class="title">Kaila</h3>
+        <p class="blurb">The flight simulator for broadcast engineers — dual-mode UHF TV transmitter training. Physics authority under the glass.</p>
+        <div class="links">
+          <a class="link" href="https://github.com/coldbricks/kaila">GitHub</a>
+          <a class="link" href="/kaila/">Public teaser</a>
+        </div>
+      </article>
+    </div>
   </section>
 
-  <section aria-labelledby="rf">
-    <h2 id="rf">Radio &amp; RF</h2>
-    <article class="card">
-      <h3>Coldbricks ADS-B</h3>
-      <p>Live aircraft radar map powered by RTL-SDR + dump1090.</p>
-      <div class="links">
-        <a href="https://github.com/coldbricks/coldbricks-adsb">GitHub</a>
-      </div>
-    </article>
+  <section id="rf" aria-labelledby="rf-h">
+    <div class="section-head">
+      <h2 id="rf-h">Radio &amp; RF</h2>
+      <span class="idx">05 // SPECTRUM</span>
+    </div>
+    <div class="grid">
+      <article class="card half a-mint">
+        <div class="card-top">
+          <span class="code">CBX-ADSB</span>
+          <span class="pill">RTL-SDR</span>
+        </div>
+        <h3 class="title">Coldbricks ADS-B</h3>
+        <p class="blurb">Live aircraft radar map powered by RTL-SDR + dump1090. Local glass for the sky.</p>
+        <div class="links">
+          <a class="link" href="https://github.com/coldbricks/coldbricks-adsb">GitHub</a>
+        </div>
+      </article>
+    </div>
   </section>
 
-  <section aria-labelledby="research">
-    <h2 id="research">Research</h2>
-    <article class="card">
-      <h3>Charm13</h3>
-      <p>Budgeted adaptive inspection in finite models — exact envelopes G₂(K)=1−1/K, certificates, habitat-cover engineering corollary.</p>
-      <div class="links">
-        <a href="https://github.com/coldbricks/charm13">GitHub</a>
-      </div>
-    </article>
+  <section id="research" aria-labelledby="research-h">
+    <div class="section-head">
+      <h2 id="research-h">Research</h2>
+      <span class="idx">06 // THEORY</span>
+    </div>
+    <div class="grid">
+      <article class="card half a-violet">
+        <div class="card-top">
+          <span class="code">CBX-CHARM13</span>
+          <span class="pill">Math</span>
+        </div>
+        <h3 class="title">Charm13</h3>
+        <p class="blurb">Budgeted adaptive inspection in finite models — exact envelopes G₂(K)=1−1/K, certificates, habitat-cover engineering corollary.</p>
+        <div class="links">
+          <a class="link" href="https://github.com/coldbricks/charm13">GitHub</a>
+        </div>
+      </article>
+    </div>
   </section>
 
-  <p class="footer">
-    contact: <a href="mailto:coldbricks@gmail.com">coldbricks@gmail.com</a>
-    ·
-    <a href="https://github.com/coldbricks">github.com/coldbricks</a>
-  </p>
-</main>
+  <footer class="footer">
+    <span>COLDBRICKS · NO SPECTACLE WITHOUT INSTRUMENT</span>
+    <span>
+      <a href="mailto:coldbricks@gmail.com">coldbricks@gmail.com</a>
+      ·
+      <a href="https://github.com/coldbricks">github.com/coldbricks</a>
+    </span>
+  </footer>
+</div>
 </body>
 </html>
