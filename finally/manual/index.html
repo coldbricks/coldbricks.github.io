@@ -219,7 +219,7 @@
     <span class="eyebrow">Field Manual</span>
     <h1>FINALLY</h1>
     <p class="tag"><b>offline · local · yours</b> — the VR video player that respects your library, your network, and your hands.</p>
-    <p class="hero-meta">covers v0.3.5 · quest + galaxy xr · july 2026</p>
+    <p class="hero-meta">covers v0.3.9 · quest + galaxy xr · july 2026</p>
     <a class="store-cta" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Get Finally on the Meta Horizon Store →</a>
   </div>
 </header>
@@ -257,8 +257,8 @@
   <div class="tbl-wrap"><table>
     <thead><tr><th>Input</th><th>What it does</th></tr></thead>
     <tbody>
-      <tr><td><span class="key">B</span></td><td>Menu on / off — <strong>never exits the app</strong></td></tr>
-      <tr><td><span class="key">Trigger</span></td><td>Click what you point at · open the quick HUD while playing</td></tr>
+      <tr><td><span class="key">B</span></td><td>In a video: quick strip → full cockpit → hidden — <strong>never exits the app</strong></td></tr>
+      <tr><td><span class="key">Trigger</span></td><td>Click what you point at · summon the quick strip while playing</td></tr>
       <tr><td><span class="key">A</span></td><td>Play / pause</td></tr>
       <tr><td><span class="key">Stick ← →</span></td><td>Seek</td></tr>
     </tbody>
@@ -273,7 +273,7 @@
   <div class="tbl-wrap"><table>
     <thead><tr><th>Action</th><th>Input</th></tr></thead>
     <tbody>
-      <tr><td>Menu on/off</td><td><span class="key">B</span> only. Lobby = vault UI; playing = video cockpit</td></tr>
+      <tr><td>Menu on/off</td><td><span class="key">B</span> only. Lobby = vault UI · video = strip → cockpit → hidden · photo = full cockpit (see <a href="#cockpit">The Cockpit</a>)</td></tr>
       <tr><td>Click / confirm</td><td><span class="key">Trigger</span> (when the menu is open)</td></tr>
       <tr><td>Play / pause</td><td><span class="key">A</span> — or <span class="key">Trigger</span> when the menu is closed</td></tr>
       <tr><td>Mute</td><td><span class="key">Grip</span> + <span class="key">A</span></td></tr>
@@ -306,14 +306,14 @@
     <thead><tr><th>Chip</th><th>What it does</th></tr></thead>
     <tbody>
       <tr><td><span class="chip">▲ UP</span> <span class="chip">▼ DN</span></td><td>Scroll the vault</td></tr>
-      <tr><td><span class="chip">↻ SCAN</span></td><td>Rescan your sources for new files</td></tr>
+      <tr><td><span class="chip">↻ SCAN</span></td><td>Rescan your sources for new files — <strong>including your saved NAS share</strong>, so server-side additions land without leaving VR</td></tr>
       <tr><td><span class="chip">◎ ROOM</span></td><td>Passthrough — the vault floats in your real room. Saved as your default</td></tr>
       <tr><td><span class="chip">✦ WORLD</span></td><td>Cycle the lobby environment — bundled worlds plus your own (see <a href="#worlds">Worlds</a>)</td></tr>
       <tr><td><span class="chip">★ FAV</span></td><td>Pin the selected title to favorites</td></tr>
     </tbody>
   </table></div>
   <h3>Setup without leaving VR</h3>
-  <p><span class="chip">⚙ SETUP</span> opens the sources panel <em>in the same room</em> — no screen switch, no splash. It shows every source Finally knows (auto folder + scans + NAS shares).</p>
+  <p><span class="chip">⚙ SOURCES</span> opens the sources panel <em>in the same room</em> — no screen switch, no splash. It shows every source Finally knows (auto folder + scans + NAS shares). Beside it, <span class="chip">🎛 SET</span> holds the lobby settings — menu level, resume, seek step, and the cockpit <em>Menu style</em> (SIMPLE ⇄ PRO, see <a href="#cockpit">The Cockpit</a>) — and <span class="chip">📖 HELP</span> is this manual, in-headset, no title required.</p>
   <p>Only one door leads out of VR: <span class="chip">FOLDERS</span>, which intentionally drops to the 2D library for the Android folder and NAS pickers (those dialogs are system UI and can't render in-headset). Everything else keeps you inside.</p>
   <p><span class="chip">LEAVE</span> exits to your headset home — labeled <span class="chip">LEAVE → QUEST</span> on Quest and <span class="chip">LEAVE → HOME</span> on Galaxy XR. On the empty first run the vault says so: <em>"Vault is empty — tap ⚙ SETUP for sources, or drop files in Movies/Finally and ↻ SCAN."</em></p>
 </section>
@@ -321,11 +321,23 @@
 <section id="cockpit">
   <p class="kicker">04 · while playing</p>
   <h2>The Cockpit</h2>
-  <p class="lede">Press <span class="key">B</span> during playback: five pages of controls on one floating panel.</p>
+  <p class="lede">Press <span class="key">B</span> during playback: quick strip first, full cockpit second, gone third.</p>
+
+  <h3>The B cycle</h3>
+  <p>While a video plays, <span class="key">B</span> walks a three-step cycle: <strong>nothing open → quick strip → full cockpit → hidden</strong>. The strip spawns low, below your eyeline — a glance down, not a wall of controls in your face. A second press grows it into the full cockpit <em>in place</em>; a third puts everything away. A bare <span class="key">Trigger</span> pull summons the strip too, so the common moves are always one squeeze away.</p>
+  <p>Photos skip the strip — <span class="key">B</span> opens the full cockpit directly, because transport means nothing to a still. In the lobby, <span class="key">B</span> is the vault, same as always.</p>
+
+  <h3>The quick strip</h3>
+  <p>The strip carries the moves you actually make mid-video: the timeline scrubber, <span class="chip">-30s</span> / <span class="chip">-5s</span> / <span class="chip">PLAY</span> / <span class="chip">+5s</span> / <span class="chip">+30s</span> (the small step is adjustable in SETUP), <span class="chip">■ STOP</span>, speed, volume, mute, <span class="chip">PREV</span> / <span class="chip">◆ CLUB</span> / <span class="chip">NEXT</span>, <span class="chip">◀ CLOSER</span> / <span class="chip">FARTHER ▶</span>, and <span class="chip">◎ ROOM</span>. In PRO mode it adds the A·B·C·D loop chips and a <span class="chip">◎ STATS</span> chip (see <em>Stats for nerds</em> below). If a network stream stalls, the strip raises itself with a <strong>REBUFFERING</strong> banner and stands back down when the flow recovers — details in <a href="#sources">Sources &amp; NAS</a>.</p>
+
+  <h3>SIMPLE and PRO</h3>
+  <p>The full cockpit ships in <strong>SIMPLE</strong> mode: three tabs — <span class="chip">PLAY</span> · <span class="chip">VIEW</span> · <span class="chip">HELP</span> — with the essentials. PLAY keeps the transport, speed, volume, mute, <span class="chip">Eyes</span>, passthrough, <span class="chip">PREV</span>/<span class="chip">NEXT</span>, and the core lens row (AUTO · VR180 · VR360 · Flat · SBS · OU). VIEW keeps scene height, distance, zoom, and screen curve, plus the resets and the <span class="chip">AUTO</span> escape hatch.</p>
+  <p>Tap the <span class="chip">PRO</span> chip in the tab row and the exact five-tab cockpit below unlocks; <span class="chip">BASIC</span> brings SIMPLE back. Your choice is saved, and it's also flippable from the lobby — <span class="chip">🎛 SET</span> → <em>Menu style</em> — no title required. SIMPLE <em>hides</em> the pro tools — A–B loops, the MKX/FE190/VRCA lens profiles, the chroma/alpha keying suite, the fine placement sliders — it never removes them. Everything is one chip away.</p>
+
+  <p>The five PRO pages:</p>
 
   <h3>PLAY</h3>
-  <p>The transport. Timeline scrubber, <span class="chip">-30s</span> / <span class="chip">-5s</span> / <span class="chip">PLAY</span> / <span class="chip">+5s</span> / <span class="chip">+30s</span> (the small step is adjustable in SETUP), <span class="chip">■ STOP</span>, <span class="chip">◆ CLUB</span> to return to the lobby, speed, volume, mute, <span class="chip">Eyes</span> (L·R ⇄ R·L), the preset AUTO/MANUAL toggle, passthrough, A·B·C·D loop marks, <span class="chip">PREV</span>/<span class="chip">NEXT</span>, and the quick lens row (VR180 · VR360 · Flat · SBS · OU · AUTO).</p>
-  <p>A lighter version of this strip — <span class="chip">◀ CLOSER</span>, <span class="chip">FARTHER ▶</span>, <span class="chip">◎ ROOM</span>, speed, volume, loops — summons on a bare <span class="key">Trigger</span> pull, so the common moves never need the full panel.</p>
+  <p>The transport. Timeline scrubber, <span class="chip">-30s</span> / <span class="chip">-5s</span> / <span class="chip">PLAY</span> / <span class="chip">+5s</span> / <span class="chip">+30s</span>, <span class="chip">■ STOP</span>, <span class="chip">◆ CLUB</span> to return to the lobby, speed, volume, mute, <span class="chip">Eyes</span> (L·R ⇄ R·L), the preset AUTO/MANUAL toggle, passthrough, A·B·C·D loop marks, <span class="chip">PREV</span>/<span class="chip">NEXT</span>, and the quick lens row (VR180 · VR360 · Flat · SBS · OU · AUTO).</p>
 
   <h3>PLACE / EYES</h3>
   <p>Where the scene sits and how your eyes meet it. Sliders for <strong>scene height</strong>, <strong>move scene</strong> (left/right), <strong>distance</strong>, <strong>zoom</strong>, <strong>depth position</strong> (stereo convergence), <strong>eye height align</strong>, <strong>scene tilt</strong>, and <strong>screen curve</strong> (flat titles only — 0 to ~100° of cylindrical wrap, saved per title). Plus flip left/right, flip up/down, <span class="chip">Reset place + eyes</span>, and the full manual lens row — see <a href="#lenses">Lenses</a>.</p>
@@ -334,10 +346,13 @@
   <p>Brightness, contrast, saturation trims with a one-tap reset — and the entire passthrough keying suite: master passthrough toggle, packed-alpha matte, four-color chroma key with per-color edge controls. Detailed in <a href="#room">Your room</a>.</p>
 
   <h3>SETUP</h3>
-  <p>Seek step size, menu distance and size, theme, menu spawn (at gaze or fixed origin), default-SBS-for-180 toggle, skip intro, resume on/off, stick zoom direction (<em>pull = smaller</em> by default, flippable), wrist-roll dome tilt, haptics — and the lying-down suite: <strong>tilt follow</strong> rolls the picture with your head so it stays upright to <em>your face</em> instead of the room (lie on your side; the movie comes with you — menus and laser stay world-anchored), and <strong>menu level</strong> makes the cockpit spawn gravity-level instead of matching your head tilt.</p>
+  <p>Seek step size, menu distance and size, theme, menu spawn (at gaze or fixed origin), default-SBS-for-180 toggle, skip intro, resume on/off, stick zoom direction (<em>pull = smaller</em> by default, flippable), wrist-roll dome tilt, haptics, the <span class="chip">Stats HUD</span> toggle — and the lying-down suite: <strong>tilt follow</strong> rolls the picture with your head so it stays upright to <em>your face</em> instead of the room (lie on your side; the movie comes with you — menus and laser stay world-anchored), and <strong>menu level</strong> makes the cockpit spawn gravity-level instead of matching your head tilt.</p>
 
   <h3>HELP</h3>
   <p>The in-headset version of this manual: subjects on the left, article on the right, stick ↕ scrolls. It also hides two extra chapters this page only summarizes — <em>THEORY</em> (teal) and <em>DEEPER</em> (green). See <a href="#theory">Theory</a>.</p>
+
+  <h3>Stats for nerds</h3>
+  <p>PRO only. Tap <span class="chip">◎ STATS</span> on the quick strip's header (or the <span class="chip">Stats HUD</span> cell on SETUP) and the strip's lower half becomes a live readout: file and source, video codec with resolution @ fps, decoder and dropped frames, audio codec, color info, buffer seconds against target, NAS fill % with live MB/s, position / speed / state, and the active lens + stereo. It refreshes once a second while open, the scrubber and transport stay live above it, and it never appears on photos — a still has no stats worth nerding over.</p>
 
   <div class="note"><p><strong>Nothing decorative.</strong> A cockpit toggle must never be a placebo — if a switch is visible, it does something real. That's a design law, not a promise.</p></div>
 </section>
@@ -440,12 +455,24 @@
     <li>Headset and PC on the same Wi-Fi / home network.</li>
     <li>Turn off any VPN on the PC if connect fails.</li>
   </ol>
-  <p>Then: 2D library → <span class="chip">＋ Add NAS share</span> → host, share name, an optional <strong>Folder</strong> (e.g. <code>media/vr</code> — scans just that subfolder instead of crawling a big share), Windows username + password, port 445. Hit <strong>Scan</strong> and the vault labels those titles <em>NAS · your-host</em>. Credentials are stored encrypted, on-device, keyed to that share — never in plain preferences, never in any cloud.</p>
-  <p>Network scans also skip music album art automatically (<code>cover.jpg</code>, <code>folder.jpg</code>, fanart, and any thumbnail-sized still) — a share with a music library won't flood your vault with sleeve scans. Folders you add directly keep every still you pointed at.</p>
+  <p>Then: 2D library → <span class="chip">＋ Add NAS share</span> → host, share name, an optional <strong>Folder</strong> (e.g. <code>media/vr</code> — scans just that subfolder instead of crawling a big share), Windows username + password, port 445. Hit <strong>Test</strong> first — it signs in <em>and</em> lists the share, and the verdict lands right in the form: teal with an entry count when it works, amber plain language when it doesn't. The form never closes on a mistake, and everything you typed survives a failure — <strong>password included</strong>. Fix the one wrong field and go again. A <em>how-to</em> row opens the full setup guide right over the form.</p>
+  <p>Then hit <strong>Scan</strong> and the vault labels those titles <em>NAS · your-host</em>. Credentials are stored encrypted, on-device, keyed to that share — never in plain preferences, never in any cloud.</p>
   <div class="note warn"><p><strong>Share name, not path.</strong> The most common connect failure is typing <code>C:\Media</code> where the share name goes. Use the short name only. Second most common: a VPN on the PC eating local discovery.</p></div>
+  <div class="note"><p><strong>Big files welcome.</strong> Multi-GB videos — 2, 3, 4 GB and up, which is most real VR files — stream reliably over SMB. That was <em>the</em> 0.3.9 bug fix: if huge titles used to die partway in, they don't anymore.</p></div>
+
+  <h3>What the scan tells you</h3>
+  <p>Scans report what they skipped instead of silently dropping it. The result card names folders that couldn't be opened (permissions), counts files skipped for unsupported types and album-art-sized stills, and says so if the scan hit its cap and stopped early — point the <strong>Folder</strong> field at a subfolder to go deeper. NAS housekeeping folders (<code>@eaDir</code>, <code>#recycle</code>, dot-folders and their cousins) are pruned by design. And one locked folder no longer kills the whole scan — you get everything else, plus its name in the report.</p>
+  <p>Network scans also skip music album art automatically (<code>cover.jpg</code>, <code>folder.jpg</code>, fanart, and any thumbnail-sized still) — a share with a music library won't flood your vault with sleeve scans. Folders you add directly keep every still you pointed at.</p>
+
+  <h3>Rescan without leaving VR</h3>
+  <p>The vault's <span class="chip">↻ SCAN</span> re-walks your saved NAS share along with the local sources. Dropped new files on the server mid-session? One chip, headset stays on, and they're in the vault.</p>
+
+  <h3>When the stream stalls</h3>
+  <p>NAS playback narrates itself. While a network title loads, the vault shows a <strong>real buffering percentage</strong> — the actual readahead fill, not a spinner. If the stream stalls mid-play, the quick strip raises itself with a <strong>REBUFFERING</strong> banner and hides again once the flow recovers.</p>
+  <p>If a video can't play at all, the reason lands on the vault panel as a bold amber alert band, in plain language: corrupt file, unsupported codec, no permission, file missing, or <em>"NAS stopped responding."</em> A server that's connected but frozen is declared dead in about 20 seconds — no eternal hourglass. A network that drops out entirely gets a ~45-second self-heal window: Finally keeps reconnecting, and if the network comes back in that window, playback resumes by itself.</p>
 
   <h3>What plays</h3>
-  <p><strong>Video:</strong> <code>mp4</code> <code>mkv</code> <code>mov</code> <code>webm</code> <code>avi</code> <code>wmv</code> <code>m2ts</code> <code>ts</code> <code>mpg</code> <code>vob</code> <code>3gp</code> and friends. <strong>Stills:</strong> <code>jpg</code> <code>png</code> <code>webp</code> <code>heic</code> <code>avif</code> <code>bmp</code> and friends.</p>
+  <p><strong>Video:</strong> <code>mp4</code> <code>mkv</code> <code>mov</code> <code>webm</code> <code>avi</code> <code>m2ts</code> <code>ts</code> <code>mpg</code> <code>vob</code> <code>3gp</code> and friends. <strong>Stills:</strong> <code>jpg</code> <code>png</code> <code>webp</code> <code>heic</code> <code>avif</code> <code>bmp</code> and friends. <code>wmv</code> / <code>asf</code> are deliberately <em>not</em> listed — the headset ships no decoder for them, so they could never play; a library row that can't play is a lie. Dead entries from older versions clean themselves up on first launch.</p>
   <p>Hardware decode up to 8K where the headset allows. Audio decodes in hardware when possible and falls back to FFmpeg software for AC-3, E-AC-3, and DTS — so MKV rips are not silent. Sidecar notes (<span class="path">*.finally.json</span>) carry projection, prefs, and resume position with the title itself, matched by content hash — your fixes travel with the file, not with an account.</p>
 </section>
 
@@ -473,7 +500,7 @@
   <p class="kicker">10 · stills</p>
   <h2>Photos</h2>
   <p class="lede">Same vault, same lenses, same dome — full resolution.</p>
-  <p>Stills live in the library beside videos and project through the identical lens system: a VR180 photo wraps the half-dome, a flat photo is a panel you can place and curve. The transport row politely dims (<span class="chip">◆ PHOTO</span>) since speed and seek mean nothing to a photograph. Camera originals render at full sensor resolution on the dome — up to 8192px wide.</p>
+  <p>Stills live in the library beside videos and project through the identical lens system: a VR180 photo wraps the half-dome, a flat photo is a panel you can place and curve. The transport row politely dims (<span class="chip">◆ PHOTO</span>) since speed and seek mean nothing to a photograph. On a photo, <span class="key">B</span> opens the full cockpit directly — the quick strip is transport, and a still doesn't need one. Camera originals render at full sensor resolution on the dome — up to 8192px wide.</p>
 </section>
 
 <section id="loops">
@@ -481,10 +508,11 @@
   <h2>Loops, speed &amp; sound</h2>
   <h3>A–B loops, and then some</h3>
   <p>Set <span class="chip">A</span>, then <span class="chip">B</span> — hard loop. Add <span class="chip">C</span> and <span class="chip">D</span> — <strong>cascade</strong>: A→B jumps to C, C→D jumps back to A, forever. Seek far past an end marker to escape; <span class="chip">Clear</span> wipes the marks; loops reset when you change titles.</p>
+  <p>Loop chips are a PRO tool — they live on the PRO cockpit and the PRO quick strip. If you don't see them, tap <span class="chip">PRO</span> in the tab row (see <a href="#cockpit">The Cockpit</a>).</p>
   <h3>Speed</h3>
-  <p>0.25× to 3×, pitch-corrected, from the PLAY page or the quick HUD.</p>
+  <p>0.25× to 3×, pitch-corrected, from the PLAY page or the quick strip.</p>
   <h3>Sound</h3>
-  <p>Volume rides the quick HUD and the PLAY page; <span class="key">Grip</span>+<span class="key">A</span> mutes. Multichannel tracks that the headset can't decode in hardware (AC-3, E-AC-3, DTS) fall back to software so they play anyway. Silent MKV is a bug, not a feature.</p>
+  <p>Volume rides the quick strip and the PLAY page; <span class="key">Grip</span>+<span class="key">A</span> mutes. Multichannel tracks that the headset can't decode in hardware (AC-3, E-AC-3, DTS) fall back to software so they play anyway. Silent MKV is a bug, not a feature.</p>
 </section>
 
 <section id="themes">
@@ -533,8 +561,11 @@
       <tr><td>Eye strain</td><td>PLACE / EYES → depth position and eye height · <span class="chip">Reset place + eyes</span></td></tr>
       <tr><td>Ends instantly</td><td>Resume was at the last frame — the next open starts clean</td></tr>
       <tr><td>Silent MKV</td><td>Shouldn't happen — software decode covers AC-3 / DTS. Check mute and volume, then report it</td></tr>
-      <tr><td>NAS won't connect</td><td>Share <em>name</em> not path · same network · VPN off on the PC · check share permissions</td></tr>
-      <tr><td>File won't open</td><td>Finally names the reason in plain language — a truncated download is the usual culprit</td></tr>
+      <tr><td>NAS won't connect</td><td>Share <em>name</em> not path · same network · VPN off on the PC · check share permissions — and use the form's <strong>Test</strong> button, it tells you exactly what's wrong</td></tr>
+      <tr><td>REBUFFERING banner</td><td>The stream stalled — wait. Finally reconnects for ~45 s and resumes by itself; if the NAS is truly gone, the reason lands on the vault panel</td></tr>
+      <tr><td>Files missing after a scan</td><td>Read the scan report — it names locked folders and counts skipped types. <code>wmv</code>/<code>asf</code> are never listed (no decoder)</td></tr>
+      <tr><td>File won't open</td><td>Finally names the reason in plain language on the vault panel — a truncated download is the usual culprit</td></tr>
+      <tr><td>Missing controls</td><td>You're in SIMPLE mode — tap <span class="chip">PRO</span> in the cockpit tab row, or lobby <span class="chip">🎛 SET</span> → <em>Menu style</em></td></tr>
     </tbody>
   </table></div>
   <p>Still stuck? <a href="mailto:coldbricks@gmail.com">coldbricks@gmail.com</a> — reports go to a person, not a queue.</p>
