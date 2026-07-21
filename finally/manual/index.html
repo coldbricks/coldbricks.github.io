@@ -219,7 +219,7 @@
     <span class="eyebrow">Field Manual</span>
     <h1>FINALLY</h1>
     <p class="tag"><b>offline · local · yours</b> — the VR video player that respects your library, your network, and your hands.</p>
-    <p class="hero-meta">covers v0.3.9 · quest + galaxy xr · july 2026</p>
+    <p class="hero-meta">covers v0.3.13-m3 · quest + galaxy xr · july 2026</p>
     <a class="store-cta" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Get Finally on the Meta Horizon Store →</a>
   </div>
 </header>
@@ -234,10 +234,11 @@
   <a href="#lenses">Lenses &amp; projection</a>
   <a href="#tags">Filename tags</a>
   <a href="#sources">Sources &amp; NAS</a>
+  <a href="#iso">Blu-ray ISO</a>
   <a href="#room">Your room</a>
   <a href="#worlds">Worlds</a>
   <a href="#photos">Photos</a>
-  <a href="#loops">Loops &amp; speed</a>
+  <a href="#loops">Loops &amp; seeking</a>
   <a href="#themes">Themes</a>
   <a href="#platforms">Quest vs Galaxy</a>
   <a href="#fixit">Fix it</a>
@@ -312,8 +313,12 @@
       <tr><td><span class="chip">★ FAV</span></td><td>Pin the selected title to favorites</td></tr>
     </tbody>
   </table></div>
+  <h3>Posters on the rows</h3>
+  <p>Every local title wears a <strong>poster</strong> — one real frame pulled from ~10% into the video, past the black leaders and intro cards, cached so the vault paints instantly next time. Stereo-packed files are cropped to a single eye first, so a poster is never a double image. Rows still loading show a quiet glyph — and <strong>NAS and Blu-ray ISO rows keep the glyph on purpose</strong>: pulling megabytes over the network (or spinning up the whole disc stack) just to decorate a list is how library screens start stuttering. The 2D library rows wear the same posters.</p>
+  <h3>Who gets hidden</h3>
+  <p>Files that auto-detect as plain mono — a whole-word <code>mono</code> tag in the filename — are tucked out of the vault and the 2D library, with an honest count in the vault footer: <em>N MONO hidden</em>. Two rules keep this safe: the detector matches whole tags only (<em>Kimono</em> and <em>Monolith</em> never vanish), and <strong>a title with your saved settings is never auto-hidden</strong> — your choices always beat the detector's. The tag is the switch: rename the file and it's back.</p>
   <h3>Setup without leaving VR</h3>
-  <p><span class="chip">⚙ SOURCES</span> opens the sources panel <em>in the same room</em> — no screen switch, no splash. It shows every source Finally knows (auto folder + scans + NAS shares). Beside it, <span class="chip">🎛 SET</span> holds the lobby settings — menu level, resume, seek step, and the cockpit <em>Menu style</em> (SIMPLE ⇄ PRO, see <a href="#cockpit">The Cockpit</a>) — and <span class="chip">📖 HELP</span> is this manual, in-headset, no title required.</p>
+  <p><span class="chip">⚙ SOURCES</span> opens the sources panel <em>in the same room</em> — no screen switch, no splash. It shows every source Finally knows (auto folder + scans + NAS shares). Beside it, <span class="chip">🎛 SET</span> holds the lobby settings — menu level, resume, skip intro, tilt follow, stick zoom direction, seek step, <em>Seek landing</em> (FAST ⇄ EXACT, see <a href="#loops">Seeking</a>), and the cockpit <em>Menu style</em> (SIMPLE ⇄ PRO, see <a href="#cockpit">The Cockpit</a>) — and <span class="chip">📖 HELP</span> is this manual, in-headset, no title required.</p>
   <p>Only one door leads out of VR: <span class="chip">FOLDERS</span>, which intentionally drops to the 2D library for the Android folder and NAS pickers (those dialogs are system UI and can't render in-headset). Everything else keeps you inside.</p>
   <p><span class="chip">LEAVE</span> exits to your headset home — labeled <span class="chip">LEAVE → QUEST</span> on Quest and <span class="chip">LEAVE → HOME</span> on Galaxy XR. On the empty first run the vault says so: <em>"Vault is empty — tap ⚙ SETUP for sources, or drop files in Movies/Finally and ↻ SCAN."</em></p>
 </section>
@@ -338,12 +343,14 @@
 
   <h3>PLAY</h3>
   <p>The transport. Timeline scrubber, <span class="chip">-30s</span> / <span class="chip">-5s</span> / <span class="chip">PLAY</span> / <span class="chip">+5s</span> / <span class="chip">+30s</span>, <span class="chip">■ STOP</span>, <span class="chip">◆ CLUB</span> to return to the lobby, speed, volume, mute, <span class="chip">Eyes</span> (L·R ⇄ R·L), the preset AUTO/MANUAL toggle, passthrough, A·B·C·D loop marks, <span class="chip">PREV</span>/<span class="chip">NEXT</span>, and the quick lens row (VR180 · VR360 · Flat · SBS · OU · AUTO).</p>
+  <p><span class="chip">SBS</span> and <span class="chip">OU</span> are <strong>toggles</strong>: press the lit one and the title drops back to 2D — the lit cell even says so: <em>again = 2D</em>. Stereo always has a one-press exit, in SIMPLE and PRO alike.</p>
 
   <h3>PLACE / EYES</h3>
-  <p>Where the scene sits and how your eyes meet it. Sliders for <strong>scene height</strong>, <strong>move scene</strong> (left/right), <strong>distance</strong>, <strong>zoom</strong>, <strong>depth position</strong> (stereo convergence), <strong>eye height align</strong>, <strong>scene tilt</strong>, and <strong>screen curve</strong> (flat titles only — 0 to ~100° of cylindrical wrap, saved per title). Plus flip left/right, flip up/down, <span class="chip">Reset place + eyes</span>, and the full manual lens row — see <a href="#lenses">Lenses</a>.</p>
+  <p>Where the scene sits and how your eyes meet it. Sliders for <strong>scene height</strong>, <strong>move scene</strong> (left/right), <strong>distance</strong>, <strong>zoom</strong>, <strong>depth position</strong> (stereo convergence), <strong>eye height align</strong>, <strong>scene tilt</strong>, <strong>scene roll</strong>, and <strong>screen curve</strong> (flat titles only — 0 to ~100° of cylindrical wrap, saved per title). Plus flip left/right, flip up/down, <span class="chip">Reset place + eyes</span>, and the full manual lens row — see <a href="#lenses">Lenses</a>.</p>
+  <p>These sliders are <strong>live</strong> twice over: every cockpit slider repaints while your trigger drags it, and tilt, roll, zoom, and distance also follow the grip and stick gestures in real time — roll the dome with your wrist and SCENE ROLL moves with you, instead of showing a stale value that later snaps the scene back.</p>
 
   <h3>COLOR / KEY</h3>
-  <p>Brightness, contrast, saturation trims with a one-tap reset — and the entire passthrough keying suite: master passthrough toggle, packed-alpha matte, four-color chroma key with per-color edge controls. Detailed in <a href="#room">Your room</a>.</p>
+  <p>A full color grade: <strong>brightness</strong>, <strong>contrast</strong>, <strong>gamma</strong>, <strong>saturation</strong>, <strong>hue</strong>, and <strong>warmth</strong> — six proper sliders with a one-tap <span class="chip">Reset</span>. The grade touches the video only (the menu panel stays neutral) and starts clean each session. Below them, the entire passthrough keying suite: master passthrough toggle, packed-alpha matte, four-color chroma key with per-color edge controls. Detailed in <a href="#room">Your room</a>.</p>
 
   <h3>SETUP</h3>
   <p>Seek step size, menu distance and size, theme, menu spawn (at gaze or fixed origin), default-SBS-for-180 toggle, skip intro, resume on/off, stick zoom direction (<em>pull = smaller</em> by default, flippable), wrist-roll dome tilt, haptics, the <span class="chip">Stats HUD</span> toggle — and the lying-down suite: <strong>tilt follow</strong> rolls the picture with your head so it stays upright to <em>your face</em> instead of the room (lie on your side; the movie comes with you — menus and laser stay world-anchored), and <strong>menu level</strong> makes the cockpit spawn gravity-level instead of matching your head tilt.</p>
@@ -378,6 +385,9 @@
     </tbody>
   </table></div>
   <div class="note"><p><strong>180 vs 190 — yes, they're different.</strong> Same fisheye disk, different lens coverage. A 190° file played on a 180° mesh looks subtly zoomed-in with warped edges; the reverse looks shrunken. When something's off but you can't name it, audition the lens row.</p><p><strong>Canon RF 5.2mm dual-fisheye</strong> (<code>rf52</code>) exports are treated as stitched VR180 — Canon's EOS VR Utility outputs equirect, so that's where those files belong.</p></div>
+
+  <h3>When there's no tag at all</h3>
+  <p>A filename tag is a promise, and Finally keeps it — tagged <code>180</code> files keep the ecosystem's SBS convention. An <strong>untagged</strong> file gets a much more careful guess: the frame is only eye-split when halving it actually yields two roughly square eyes (the classic 2:1 full-SBS dome). Portrait video is never VR. An ultra-wide frame (32:9-class) resolves to a <strong>flat 3D SBS screen</strong> — that shape is a movie pack or a monitor capture, never a hemisphere. And an odd, non-standard aspect plays mono instead of being torn in half — a wrong mono is watchable; a wrong eye-split is soup. Your manual override still beats everything.</p>
 
   <h3>AUTO, MANUAL, and the consent card</h3>
   <p>Finally's override system exists to kill a disease other players have: silently forgetting your fixes, or silently fighting the filename. The rules:</p>
@@ -443,8 +453,8 @@
   <h3>The zero-setup path</h3>
   <p>Drop files into <span class="path">Movies/Finally</span> on the headset and hit <span class="chip">↻ SCAN</span>. Done.</p>
 
-  <h3>Folders and single files</h3>
-  <p>The 2D library (reached via <span class="chip">FOLDERS</span>) adds any folder through the system picker, single files, and sidecar import/export. <span class="chip">Clear vault</span> removes library rows only — it never deletes files on disk or NAS.</p>
+  <h3>Folders and files</h3>
+  <p>The 2D library (reached via <span class="chip">FOLDERS</span>) adds any folder with <span class="chip">＋ Add videos folder</span> — and it chains: Android's picker grants one folder per round, so after each scan lands Finally asks <em>"add another?"</em> and relaunches the picker until you're done. Two taps per extra folder, not a hunt for the pill. <span class="chip">＋ Add files</span> is <strong>multi-select</strong> — long-press or tap several in the system picker and they land together, each checked for compatibility, with one summary at the end. Sidecar import/export lives here too. <span class="chip">Clear vault</span> removes library rows only — it never deletes files on disk or NAS.</p>
 
   <h3>NAS / PC share (SMB)</h3>
   <p>Finally treats SMB2/3 as a first-class library source — stream straight off your PC or NAS over Wi-Fi, no copying.</p>
@@ -472,12 +482,23 @@
   <p>If a video can't play at all, the reason lands on the vault panel as a bold amber alert band, in plain language: corrupt file, unsupported codec, no permission, file missing, or <em>"NAS stopped responding."</em> A server that's connected but frozen is declared dead in about 20 seconds — no eternal hourglass. A network that drops out entirely gets a ~45-second self-heal window: Finally keeps reconnecting, and if the network comes back in that window, playback resumes by itself.</p>
 
   <h3>What plays</h3>
-  <p><strong>Video:</strong> <code>mp4</code> <code>mkv</code> <code>mov</code> <code>webm</code> <code>avi</code> <code>m2ts</code> <code>ts</code> <code>mpg</code> <code>vob</code> <code>3gp</code> and friends. <strong>Stills:</strong> <code>jpg</code> <code>png</code> <code>webp</code> <code>heic</code> <code>avif</code> <code>bmp</code> and friends. <code>wmv</code> / <code>asf</code> are deliberately <em>not</em> listed — the headset ships no decoder for them, so they could never play; a library row that can't play is a lie. Dead entries from older versions clean themselves up on first launch.</p>
+  <p><strong>Video:</strong> <code>mp4</code> <code>mkv</code> <code>mov</code> <code>webm</code> <code>avi</code> <code>m2ts</code> <code>ts</code> <code>mpg</code> <code>vob</code> <code>3gp</code> and friends — plus decrypted Blu-ray <code>iso</code> images, which play as discs (see <a href="#iso">Blu-ray ISO</a>). <strong>Stills:</strong> <code>jpg</code> <code>png</code> <code>webp</code> <code>heic</code> <code>avif</code> <code>bmp</code> and friends. <code>wmv</code> / <code>asf</code> are deliberately <em>not</em> listed — the headset ships no decoder for them, so they could never play; a library row that can't play is a lie. Dead entries from older versions clean themselves up on first launch.</p>
   <p>Hardware decode up to 8K where the headset allows. Audio decodes in hardware when possible and falls back to FFmpeg software for AC-3, E-AC-3, and DTS — so MKV rips are not silent. Sidecar notes (<span class="path">*.finally.json</span>) carry projection, prefs, and resume position with the title itself, matched by content hash — your fixes travel with the file, not with an account.</p>
 </section>
 
+<section id="iso">
+  <p class="kicker">08 · discs</p>
+  <h2>Blu-ray ISO</h2>
+  <p class="lede">Your decrypted Blu-ray backups play as discs — from local storage or straight off the NAS.</p>
+  <p>Drop a decrypted Blu-ray ISO into any source — a local folder or your SMB share — and it's a title in the vault like everything else. Finally walks the disc's UDF filesystem itself, reads the playlists, and <strong>picks the main movie automatically</strong>: the feature-length playlist, not a menu loop or a trailer. Scrubbing and the full cockpit work as usual. NAS ISOs stream in place — the disc never gets copied to the headset. Big images take a moment to open; the vault says so (<em>⏳ opening ISO…</em>) instead of freezing.</p>
+  <h3>The honest part</h3>
+  <p><strong>AACS-encrypted discs do not play.</strong> Finally ships no decryption — an encrypted image gets a plain amber card: <em>"This ISO is still AACS-encrypted — rip it with MakeMKV first."</em> That's the whole workflow: MakeMKV makes the decrypted backup, Finally plays it. And if you'd rather skip ISOs entirely, MakeMKV-remuxed MKV files still play great too.</p>
+  <p>DVD ISOs aren't supported yet — they get the same honest treatment, in plain language. So does an incomplete image (BDMV folder present, STREAM clips missing): the card says exactly that instead of a mystery error code.</p>
+  <div class="note"><p><strong>Posters:</strong> ISO rows keep the glyph placeholder on purpose — spinning up the whole disc stack just to paint a list row isn't worth the stutter (see <a href="#club">The Club</a>).</p></div>
+</section>
+
 <section id="room">
-  <p class="kicker">08 · mixed reality</p>
+  <p class="kicker">09 · mixed reality</p>
   <h2>Your room</h2>
   <p class="lede">Passthrough puts the video in your actual space. The keying suite makes it belong there.</p>
   <p>Toggle <span class="chip">◎ ROOM</span> in the lobby (persisted as your default) or <span class="chip">PASSTHRU</span> while playing. Then, on COLOR / KEY:</p>
@@ -489,7 +510,7 @@
 </section>
 
 <section id="worlds">
-  <p class="kicker">09 · environments</p>
+  <p class="kicker">10 · environments</p>
   <h2>Worlds</h2>
   <p class="lede">The lobby dome is an 8K 360 photo — and it's a drop-in slot.</p>
   <p>The <span class="chip">✦ WORLD</span> chip cycles the lobby environment through the bundled worlds <em>plus anything you put in</em> <span class="path">Movies/Finally/environments</span> — any equirect 360 image (<code>jpg</code> / <code>png</code> / <code>webp</code>, up to 8192×4096). Drop a skybox in the folder and it's a world. Your selection persists across sessions.</p>
@@ -497,18 +518,21 @@
 </section>
 
 <section id="photos">
-  <p class="kicker">10 · stills</p>
+  <p class="kicker">11 · stills</p>
   <h2>Photos</h2>
   <p class="lede">Same vault, same lenses, same dome — full resolution.</p>
   <p>Stills live in the library beside videos and project through the identical lens system: a VR180 photo wraps the half-dome, a flat photo is a panel you can place and curve. The transport row politely dims (<span class="chip">◆ PHOTO</span>) since speed and seek mean nothing to a photograph. On a photo, <span class="key">B</span> opens the full cockpit directly — the quick strip is transport, and a still doesn't need one. Camera originals render at full sensor resolution on the dome — up to 8192px wide.</p>
 </section>
 
 <section id="loops">
-  <p class="kicker">11 · playback</p>
-  <h2>Loops, speed &amp; sound</h2>
+  <p class="kicker">12 · playback</p>
+  <h2>Loops, seeking &amp; sound</h2>
   <h3>A–B loops, and then some</h3>
   <p>Set <span class="chip">A</span>, then <span class="chip">B</span> — hard loop. Add <span class="chip">C</span> and <span class="chip">D</span> — <strong>cascade</strong>: A→B jumps to C, C→D jumps back to A, forever. Seek far past an end marker to escape; <span class="chip">Clear</span> wipes the marks; loops reset when you change titles.</p>
   <p>Loop chips are a PRO tool — they live on the PRO cockpit and the PRO quick strip. If you don't see them, tap <span class="chip">PRO</span> in the tab row (see <a href="#cockpit">The Cockpit</a>).</p>
+  <h3>Seeking</h3>
+  <p>Seeks land <strong>FAST</strong> by default: on the nearest keyframe, so the picture is there the instant you let go — an exact seek into a long 8K GOP silently decodes seconds of video before showing you anything. FAST also makes A–B loop jumps and resume instant. Need frame-perfect landings? Flip the lobby setting: <span class="chip">🎛 SET</span> → <em>Seek landing</em> → EXACT.</p>
+  <p>Loading is quieter after a seek, too: the brief catch-up buffer after a jump gets several seconds of grace before the REBUFFERING strip would appear. Genuine stalls still raise it immediately.</p>
   <h3>Speed</h3>
   <p>0.25× to 3×, pitch-corrected, from the PLAY page or the quick strip.</p>
   <h3>Sound</h3>
@@ -516,7 +540,7 @@
 </section>
 
 <section id="themes">
-  <p class="kicker">12 · skins</p>
+  <p class="kicker">13 · skins</p>
   <h2>Themes</h2>
   <p class="lede">Eight cockpit skins. Two of them are love letters to air traffic control.</p>
   <div class="tbl-wrap"><table>
@@ -535,7 +559,7 @@
 </section>
 
 <section id="platforms">
-  <p class="kicker">13 · devices</p>
+  <p class="kicker">14 · devices</p>
   <h2>Quest vs Galaxy XR</h2>
   <div class="tbl-wrap"><table>
     <thead><tr><th></th><th>Meta Quest</th><th>Samsung Galaxy XR</th></tr></thead>
@@ -551,7 +575,7 @@
 </section>
 
 <section id="fixit">
-  <p class="kicker">14 · troubleshooting</p>
+  <p class="kicker">15 · troubleshooting</p>
   <h2>Fix it</h2>
   <div class="tbl-wrap"><table>
     <thead><tr><th>Symptom</th><th>Fix</th></tr></thead>
@@ -564,6 +588,9 @@
       <tr><td>NAS won't connect</td><td>Share <em>name</em> not path · same network · VPN off on the PC · check share permissions — and use the form's <strong>Test</strong> button, it tells you exactly what's wrong</td></tr>
       <tr><td>REBUFFERING banner</td><td>The stream stalled — wait. Finally reconnects for ~45 s and resumes by itself; if the NAS is truly gone, the reason lands on the vault panel</td></tr>
       <tr><td>Files missing after a scan</td><td>Read the scan report — it names locked folders and counts skipped types. <code>wmv</code>/<code>asf</code> are never listed (no decoder)</td></tr>
+      <tr><td>A video vanished from the lists</td><td>It auto-detected as mono (a whole-word <code>mono</code> filename tag) — the vault footer counts it as <em>MONO hidden</em>. Rename the file to bring it back; titles with your saved settings are never hidden</td></tr>
+      <tr><td>ISO won't play</td><td>Read the amber card — an AACS-encrypted image needs a MakeMKV rip first, and DVD ISOs aren't supported yet (see <a href="#iso">Blu-ray ISO</a>)</td></tr>
+      <tr><td>Seek lands off a beat</td><td>FAST landing snaps to keyframes for speed — lobby <span class="chip">🎛 SET</span> → <em>Seek landing</em> → EXACT for frame-perfect</td></tr>
       <tr><td>File won't open</td><td>Finally names the reason in plain language on the vault panel — a truncated download is the usual culprit</td></tr>
       <tr><td>Missing controls</td><td>You're in SIMPLE mode — tap <span class="chip">PRO</span> in the cockpit tab row, or lobby <span class="chip">🎛 SET</span> → <em>Menu style</em></td></tr>
     </tbody>
@@ -599,7 +626,7 @@
 </section>
 
 <section id="privacy">
-  <p class="kicker">15 · the promise</p>
+  <p class="kicker">16 · the promise</p>
   <h2>Privacy &amp; about</h2>
   <p class="lede">No account. No cloud. No analytics. Airplane mode is fine.</p>
   <p>Your vault, your settings, your NAS credentials — all of it stays on your hardware. The network is used exactly once: to stream from sources <em>you</em> configure, on <em>your</em> network. Full policy: <a href="https://coldbricks.github.io/finally/privacy/">coldbricks.github.io/finally/privacy</a>.</p>
