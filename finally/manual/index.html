@@ -219,7 +219,7 @@
     <span class="eyebrow">Field Manual</span>
     <h1>FINALLY</h1>
     <p class="tag"><b>offline · local · yours</b> — the VR video player that respects your library, your network, and your hands.</p>
-    <p class="hero-meta">covers v0.3.13-m3 · quest + galaxy xr · july 2026</p>
+    <p class="hero-meta">covers v0.3.14-m3 · quest + galaxy xr · july 2026</p>
     <a class="store-cta" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Get Finally on the Meta Horizon Store →</a>
   </div>
 </header>
@@ -261,7 +261,7 @@
       <tr><td><span class="key">B</span></td><td>In a video: quick strip → full cockpit → hidden — <strong>never exits the app</strong></td></tr>
       <tr><td><span class="key">Trigger</span></td><td>Click what you point at · summon the quick strip while playing</td></tr>
       <tr><td><span class="key">A</span></td><td>Play / pause</td></tr>
-      <tr><td><span class="key">Stick ← →</span></td><td>Seek</td></tr>
+      <tr><td><span class="key">Stick ← →</span></td><td>Seek a video · step through photos</td></tr>
     </tbody>
   </table></div>
   <div class="note love"><p><strong>One-controller law.</strong> Everything critical in Finally works with a single hand. Left-hand buttons are conveniences, never requirements.</p></div>
@@ -278,11 +278,12 @@
       <tr><td>Click / confirm</td><td><span class="key">Trigger</span> (when the menu is open)</td></tr>
       <tr><td>Play / pause</td><td><span class="key">A</span> — or <span class="key">Trigger</span> when the menu is closed</td></tr>
       <tr><td>Mute</td><td><span class="key">Grip</span> + <span class="key">A</span></td></tr>
-      <tr><td>Seek</td><td><span class="key">Stick ← →</span> (either hand)</td></tr>
+      <tr><td>Seek</td><td><span class="key">Stick ← →</span> (either hand) · on a photo: previous / next file</td></tr>
       <tr><td>Zoom (immersive)</td><td><span class="key">Stick ↕</span> with the menu closed · range 0.5×–2.6×</td></tr>
       <tr><td>Flat: distance</td><td><span class="key">Stick ↕</span> — a physical dolly. Flat video is an object in your room, never a FOV trick</td></tr>
       <tr><td>Flat: window size</td><td><span class="key">Grip</span> + <span class="key">Stick ← →</span> — shrink / enlarge in place</td></tr>
       <tr><td>List navigation</td><td><span class="key">Stick ↕</span> with the menu open</td></tr>
+      <tr><td>Grab-scroll the vault</td><td>Hold <span class="key">Trigger</span> on the list and drag — release with speed to coast (see <a href="#club">The Club</a>)</td></tr>
       <tr><td>Prev / next title</td><td><span class="key">Grip</span> + <span class="key">Stick ↓ / ↑</span></td></tr>
       <tr><td>Drag the world (dome)</td><td><span class="key">Trigger</span> + <span class="key">Grip</span> — grab-the-world</td></tr>
       <tr><td>Dome dolly (VR180 / fisheye)</td><td><span class="key">Stick ↕</span> — push forward leans the scene closer. True translation, not optical zoom</td></tr>
@@ -306,19 +307,23 @@
   <div class="tbl-wrap"><table>
     <thead><tr><th>Chip</th><th>What it does</th></tr></thead>
     <tbody>
-      <tr><td><span class="chip">▲ UP</span> <span class="chip">▼ DN</span></td><td>Scroll the vault</td></tr>
+      <tr><td><span class="chip">▲ UP</span> <span class="chip">▼ DN</span></td><td>Page the vault — or just grab the list itself (see below)</td></tr>
       <tr><td><span class="chip">↻ SCAN</span></td><td>Rescan your sources for new files — <strong>including your saved NAS share</strong>, so server-side additions land without leaving VR</td></tr>
       <tr><td><span class="chip">◎ ROOM</span></td><td>Passthrough — the vault floats in your real room. Saved as your default</td></tr>
       <tr><td><span class="chip">✦ WORLD</span></td><td>Cycle the lobby environment — bundled worlds plus your own (see <a href="#worlds">Worlds</a>)</td></tr>
       <tr><td><span class="chip">★ FAV</span></td><td>Pin the selected title to favorites</td></tr>
     </tbody>
   </table></div>
+  <h3>Grab the list</h3>
+  <p>The vault scrolls like a phone list. Grab it with <span class="key">Trigger</span> and drag — past a small threshold of travel the press becomes a scroll instead of a click, so aiming at a row and squeezing still just opens it. Release while moving and the list <strong>coasts</strong>, bleeding off speed like a flick on glass, with a hard stop at each end — no bounce. A press while it's coasting catches the list: it stops under your laser, and releasing never fires the row it happened to land on.</p>
+  <p>When the vault overflows, a slim <strong>scroll bar</strong> rides the right edge — a dim neon thumb sized by how much of the list you're seeing. Point at it and drag for an absolute jump, or tap anywhere on the track and the thumb lands under your laser. The <span class="chip">▲ UP</span> / <span class="chip">▼ DN</span> chips and stick ↕ still work; they're just no longer the only way.</p>
+  <p>One honest line while we're here: every list now reaches its final entries — earlier builds carried a capacity bug that hid the last two rows of any overflowing list. 0.3.14 fixed the math.</p>
   <h3>Posters on the rows</h3>
   <p>Every local title wears a <strong>poster</strong> — one real frame pulled from ~10% into the video, past the black leaders and intro cards, cached so the vault paints instantly next time. Stereo-packed files are cropped to a single eye first, so a poster is never a double image. Rows still loading show a quiet glyph — and <strong>NAS and Blu-ray ISO rows keep the glyph on purpose</strong>: pulling megabytes over the network (or spinning up the whole disc stack) just to decorate a list is how library screens start stuttering. The 2D library rows wear the same posters.</p>
   <h3>Who gets hidden</h3>
   <p>Files that auto-detect as plain mono — a whole-word <code>mono</code> tag in the filename — are tucked out of the vault and the 2D library, with an honest count in the vault footer: <em>N MONO hidden</em>. Two rules keep this safe: the detector matches whole tags only (<em>Kimono</em> and <em>Monolith</em> never vanish), and <strong>a title with your saved settings is never auto-hidden</strong> — your choices always beat the detector's. The tag is the switch: rename the file and it's back.</p>
   <h3>Setup without leaving VR</h3>
-  <p><span class="chip">⚙ SOURCES</span> opens the sources panel <em>in the same room</em> — no screen switch, no splash. It shows every source Finally knows (auto folder + scans + NAS shares). Beside it, <span class="chip">🎛 SET</span> holds the lobby settings — menu level, resume, skip intro, tilt follow, stick zoom direction, seek step, <em>Seek landing</em> (FAST ⇄ EXACT, see <a href="#loops">Seeking</a>), and the cockpit <em>Menu style</em> (SIMPLE ⇄ PRO, see <a href="#cockpit">The Cockpit</a>) — and <span class="chip">📖 HELP</span> is this manual, in-headset, no title required.</p>
+  <p><span class="chip">⚙ SOURCES</span> opens the sources panel <em>in the same room</em> — no screen switch, no splash. It shows every source Finally knows (auto folder + scans + NAS shares). Beside it, <span class="chip">🎛 SET</span> holds the lobby settings — menu level, resume, skip intro, tilt follow, stick zoom direction, seek step, <em>Seek landing</em> (FAST ⇄ EXACT, see <a href="#loops">Seeking</a>), <em>NAS buffer</em> (LEAN · DEFAULT · BIG · MAX, see <a href="#sources">Sources &amp; NAS</a>), and the cockpit <em>Menu style</em> (SIMPLE ⇄ PRO, see <a href="#cockpit">The Cockpit</a>) — and <span class="chip">📖 HELP</span> is this manual, in-headset, no title required.</p>
   <p>Only one door leads out of VR: <span class="chip">FOLDERS</span>, which intentionally drops to the 2D library for the Android folder and NAS pickers (those dialogs are system UI and can't render in-headset). Everything else keeps you inside.</p>
   <p><span class="chip">LEAVE</span> exits to your headset home — labeled <span class="chip">LEAVE → QUEST</span> on Quest and <span class="chip">LEAVE → HOME</span> on Galaxy XR. On the empty first run the vault says so: <em>"Vault is empty — tap ⚙ SETUP for sources, or drop files in Movies/Finally and ↻ SCAN."</em></p>
 </section>
@@ -471,12 +476,14 @@
   <div class="note"><p><strong>Big files welcome.</strong> Multi-GB videos — 2, 3, 4 GB and up, which is most real VR files — stream reliably over SMB. That was <em>the</em> 0.3.9 bug fix: if huge titles used to die partway in, they don't anymore.</p></div>
 
   <h3>What the scan tells you</h3>
-  <p>Scans report what they skipped instead of silently dropping it. The result card names folders that couldn't be opened (permissions), counts files skipped for unsupported types and album-art-sized stills, and says so if the scan hit its cap and stopped early — point the <strong>Folder</strong> field at a subfolder to go deeper. NAS housekeeping folders (<code>@eaDir</code>, <code>#recycle</code>, dot-folders and their cousins) are pruned by design. And one locked folder no longer kills the whole scan — you get everything else, plus its name in the report.</p>
-  <p>Network scans also skip music album art automatically (<code>cover.jpg</code>, <code>folder.jpg</code>, fanart, and any thumbnail-sized still) — a share with a music library won't flood your vault with sleeve scans. Folders you add directly keep every still you pointed at.</p>
+  <p>Scans report what they skipped instead of silently dropping it. The result card names folders that couldn't be opened (permissions), counts files skipped for unsupported types and album-art-sized stills — and when a big share hits the scan cap (25,000 files), it stops early and <strong>names the folders it never scanned</strong>, so you know exactly where to point the <strong>Folder</strong> field next. The in-VR <span class="chip">↻ SCAN</span> surfaces the same warning on the amber band. NAS housekeeping folders (<code>@eaDir</code>, <code>#recycle</code>, dot-folders and their cousins) are pruned by design. And one locked folder no longer kills the whole scan — you get everything else, plus its name in the report.</p>
+  <p>Network scans also skip music album art automatically (<code>cover.jpg</code>, <code>folder.jpg</code>, fanart, and any thumbnail-sized still) — a share with a music library won't flood your vault with sleeve scans. Folders and files you pick directly keep <strong>every image you chose</strong> — even one named <code>poster.jpg</code>: locally, only thumbnail-sized files (under 256 KB) are skipped, a file whose size can't be read is never filtered, and the name-based art net stays NAS-only.</p>
 
   <h3>Rescan without leaving VR</h3>
   <p>The vault's <span class="chip">↻ SCAN</span> re-walks your saved NAS share along with the local sources. Dropped new files on the server mid-session? One chip, headset stays on, and they're in the vault.</p>
 
+  <h3>The NAS buffer</h3>
+  <p>Lobby <span class="chip">🎛 SET</span> → <em>NAS buffer</em> cycles <strong>LEAN · DEFAULT · BIG · MAX</strong> — how far a network stream reads ahead of playback. Bigger rides out longer Wi-Fi dips before the REBUFFERING banner would ever appear; the cost is more memory and cache space on the headset. DEFAULT is the shipped profile. The setting applies from the <strong>next title you open</strong> — a title already playing keeps the buffer it started with.</p>
   <h3>When the stream stalls</h3>
   <p>NAS playback narrates itself. While a network title loads, the vault shows a <strong>real buffering percentage</strong> — the actual readahead fill, not a spinner. If the stream stalls mid-play, the quick strip raises itself with a <strong>REBUFFERING</strong> banner and hides again once the flow recovers.</p>
   <p>If a video can't play at all, the reason lands on the vault panel as a bold amber alert band, in plain language: corrupt file, unsupported codec, no permission, file missing, or <em>"NAS stopped responding."</em> A server that's connected but frozen is declared dead in about 20 seconds — no eternal hourglass. A network that drops out entirely gets a ~45-second self-heal window: Finally keeps reconnecting, and if the network comes back in that window, playback resumes by itself.</p>
@@ -522,6 +529,8 @@
   <h2>Photos</h2>
   <p class="lede">Same vault, same lenses, same dome — full resolution.</p>
   <p>Stills live in the library beside videos and project through the identical lens system: a VR180 photo wraps the half-dome, a flat photo is a panel you can place and curve. The transport row politely dims (<span class="chip">◆ PHOTO</span>) since speed and seek mean nothing to a photograph. On a photo, <span class="key">B</span> opens the full cockpit directly — the quick strip is transport, and a still doesn't need one. Camera originals render at full sensor resolution on the dome — up to 8192px wide.</p>
+  <p>Stills navigate by stick: <span class="key">Stick ← →</span> steps to the <strong>previous / next file</strong> — a photo has no timeline, so the seek stick pages the album instead. The hint under the title says so: <em>stick ◀ PREV · NEXT ▶</em>. Video seeking is unchanged.</p>
+  <p>And a still that can't be decoded gets a plain amber card — <em>"Couldn't decode this image — it may be corrupt or not really a photo"</em> — never a raw codec string.</p>
 </section>
 
 <section id="loops">
@@ -587,11 +596,12 @@
       <tr><td>Silent MKV</td><td>Shouldn't happen — software decode covers AC-3 / DTS. Check mute and volume, then report it</td></tr>
       <tr><td>NAS won't connect</td><td>Share <em>name</em> not path · same network · VPN off on the PC · check share permissions — and use the form's <strong>Test</strong> button, it tells you exactly what's wrong</td></tr>
       <tr><td>REBUFFERING banner</td><td>The stream stalled — wait. Finally reconnects for ~45 s and resumes by itself; if the NAS is truly gone, the reason lands on the vault panel</td></tr>
-      <tr><td>Files missing after a scan</td><td>Read the scan report — it names locked folders and counts skipped types. <code>wmv</code>/<code>asf</code> are never listed (no decoder)</td></tr>
+      <tr><td>Files missing after a scan</td><td>Read the scan report — it names locked folders and counts skipped types. If the scan stopped at the 25,000-file cap, it names the folders it never reached — aim the <strong>Folder</strong> field there. <code>wmv</code>/<code>asf</code> are never listed (no decoder)</td></tr>
       <tr><td>A video vanished from the lists</td><td>It auto-detected as mono (a whole-word <code>mono</code> filename tag) — the vault footer counts it as <em>MONO hidden</em>. Rename the file to bring it back; titles with your saved settings are never hidden</td></tr>
       <tr><td>ISO won't play</td><td>Read the amber card — an AACS-encrypted image needs a MakeMKV rip first, and DVD ISOs aren't supported yet (see <a href="#iso">Blu-ray ISO</a>)</td></tr>
       <tr><td>Seek lands off a beat</td><td>FAST landing snaps to keyframes for speed — lobby <span class="chip">🎛 SET</span> → <em>Seek landing</em> → EXACT for frame-perfect</td></tr>
       <tr><td>File won't open</td><td>Finally names the reason in plain language on the vault panel — a truncated download is the usual culprit</td></tr>
+      <tr><td>A photo won't open</td><td>The amber card says it plainly — <em>"Couldn't decode this image — it may be corrupt or not really a photo."</em> Usually a truncated copy or a file that isn't really an image; re-copy or re-export it</td></tr>
       <tr><td>Missing controls</td><td>You're in SIMPLE mode — tap <span class="chip">PRO</span> in the cockpit tab row, or lobby <span class="chip">🎛 SET</span> → <em>Menu style</em></td></tr>
     </tbody>
   </table></div>
@@ -639,6 +649,7 @@
 
 <footer>
   <div>Finally — VR video player · <a href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Meta Horizon Store</a> · <a href="https://coldbricks.github.io/finally/privacy/">Privacy</a> · <a href="mailto:coldbricks@gmail.com">Support</a></div>
+  <div>Still stuck? Email <a href="mailto:coldbricks@gmail.com">coldbricks@gmail.com</a> — a human reads it.</div>
   <div class="credits">© Coldbricks · Long Island, New York</div>
 </footer>
 
