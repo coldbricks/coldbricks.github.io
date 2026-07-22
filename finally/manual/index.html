@@ -496,11 +496,11 @@
 <section id="iso">
   <p class="kicker">08 · discs</p>
   <h2>Blu-ray ISO</h2>
-  <p class="lede">Your decrypted Blu-ray backups play as discs — from local storage or straight off the NAS.</p>
-  <p>Drop a decrypted Blu-ray ISO into any source — a local folder or your SMB share — and it's a title in the vault like everything else. Finally walks the disc's UDF filesystem itself, reads the playlists, and <strong>picks the main movie automatically</strong>: the feature-length playlist, not a menu loop or a trailer. Scrubbing and the full cockpit work as usual. NAS ISOs stream in place — the disc never gets copied to the headset. Big images take a moment to open; the vault says so (<em>⏳ opening ISO…</em>) instead of freezing.</p>
+  <p class="lede">Experimental playback for decrypted 2D Blu-ray BDMV images — from local storage or straight off the NAS.</p>
+  <p>Drop a decrypted Blu-ray BDMV ISO into any source — a local folder or your SMB share — and it appears in the vault like any other title. Finally walks the disc's UDF filesystem, reads its playlists, and automatically chooses the longest parseable playlist. Basic timeline controls and the video cockpit are available on compatible single-clip titles. NAS ISOs stream in place; the disc image is never copied to the headset. Big images take a moment to open, so the vault says <em>⏳ opening ISO…</em> instead of pretending nothing is happening.</p>
   <h3>The honest part</h3>
-  <p><strong>AACS-encrypted discs do not play.</strong> Finally ships no decryption — an encrypted image gets a plain amber card: <em>"This ISO is still AACS-encrypted — rip it with MakeMKV first."</em> That's the whole workflow: MakeMKV makes the decrypted backup, Finally plays it. And if you'd rather skip ISOs entirely, MakeMKV-remuxed MKV files still play great too.</p>
-  <p>DVD ISOs aren't supported yet — they get the same honest treatment, in plain language. So does an incomplete image (BDMV folder present, STREAM clips missing): the card says exactly that instead of a mystery error code.</p>
+  <p><strong>AACS-encrypted discs do not play.</strong> Finally contains no decryption keys or AACS implementation. Use MakeMKV to make a decrypted backup first; its remuxed MKV output is the simplest and most compatible path. If you keep an ISO, the BDMV content inside it must already be plaintext/decrypted before Finally opens it.</p>
+  <p>This is not disc-menu emulation. There is currently no Blu-ray menu or title chooser, DVD support, MVC/3D disc decoding, chapter-jump interface, audio-track selector, or subtitle rendering on the ISO path. Branched or multi-clip playlists are still experimental and may not reproduce the authored cut correctly. An incomplete image (BDMV present but STREAM clips missing) is refused with a plain-language card instead of a mystery code.</p>
   <div class="note"><p><strong>Posters:</strong> ISO rows keep the glyph placeholder on purpose — spinning up the whole disc stack just to paint a list row isn't worth the stutter (see <a href="#club">The Club</a>).</p></div>
 </section>
 
@@ -639,7 +639,7 @@
   <p class="kicker">16 · the promise</p>
   <h2>Privacy &amp; about</h2>
   <p class="lede">No account. No cloud. No analytics. Airplane mode is fine.</p>
-  <p>Your vault, your settings, your NAS credentials — all of it stays on your hardware. The network is used exactly once: to stream from sources <em>you</em> configure, on <em>your</em> network. Full policy: <a href="https://coldbricks.github.io/finally/privacy/">coldbricks.github.io/finally/privacy</a>.</p>
+  <p>Your vault, your settings, your NAS credentials — all of it stays on your hardware. The network is used exactly once: to stream from sources <em>you</em> configure, on <em>your</em> network. Full policy: <a href="https://finallyvr.com/finally/privacy/">finallyvr.com/finally/privacy</a>.</p>
   <p><strong>Decode:</strong> MediaCodec hardware path with decoder fallback; FFmpeg software audio where hardware can't. <strong>Sisters:</strong> Finally is built alongside ChloeVibes and ChloeVR in the same shop.</p>
   <div class="note love"><p>DEVELOPED AND BUILT IN NEW YORK<br>BY THE PERSON WHO NEEDED A BETTER APP</p></div>
 </section>
@@ -648,7 +648,7 @@
 </div>
 
 <footer>
-  <div>Finally — VR video player · <a href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Meta Horizon Store</a> · <a href="https://coldbricks.github.io/finally/privacy/">Privacy</a> · <a href="mailto:coldbricks@gmail.com">Support</a></div>
+  <div>Finally — VR video player · <a href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Meta Horizon Store</a> · <a href="https://finallyvr.com/finally/privacy/">Privacy</a> · <a href="mailto:coldbricks@gmail.com">Support</a></div>
   <div>Still stuck? Email <a href="mailto:coldbricks@gmail.com">coldbricks@gmail.com</a> — a human reads it.</div>
   <div class="credits">© Coldbricks · Long Island, New York</div>
 </footer>
