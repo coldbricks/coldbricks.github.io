@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Finally — Field Manual</title>
-<meta name="description" content="The complete field manual for Finally, the offline-first VR video player. Controls, lenses, filename tags, NAS setup, passthrough, and theory.">
+<meta name="description" content="The 0.3.21-m3 field manual and measured technical appendix for Finally: Quest code 27, Galaxy code 10027, rooms, sources, Watch Together, AV1, DVD, and local Quest/Galaxy MVC.">
 <style>
   :root {
     color-scheme: dark;
@@ -41,6 +41,12 @@
   a { color: var(--teal); text-decoration: none; }
   a:hover, a:focus-visible { text-decoration: underline; text-underline-offset: 3px; }
   :focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 2px; }
+  .skip-link {
+    position: absolute; left: 1rem; top: -5rem; z-index: 100;
+    padding: 0.65rem 1rem; border-radius: 0 0 6px 6px;
+    background: var(--teal); color: var(--ink-deep); font-weight: 700;
+  }
+  .skip-link:focus { top: 0; }
 
   /* ---------- Hero ---------- */
   header.hero {
@@ -68,6 +74,7 @@
     letter-spacing: 0.42em; color: var(--teal); text-transform: uppercase;
   }
   .hero-text .tag { margin: 0.9rem 0 0; color: var(--dim); font-size: 1.02rem; letter-spacing: 0.04em; }
+  .hero-text { min-width: 0; flex: 1 1 320px; }
   .hero-text .tag b { color: var(--pink-soft); font-weight: 600; }
   .hero-meta { margin-top: 1.1rem; font-family: var(--mono); font-size: 0.78rem; color: var(--dim); letter-spacing: 0.06em; }
   .store-cta {
@@ -75,6 +82,7 @@
     border: 1px solid rgba(46,230,197,0.5); border-radius: 999px;
     color: var(--teal-pale); letter-spacing: 0.08em; font-size: 0.95rem; font-weight: 600;
     background: rgba(46,230,197,0.06);
+    max-width: 100%; text-align: center; white-space: normal;
   }
   .store-cta:hover, .store-cta:focus-visible {
     text-decoration: none; background: rgba(46,230,197,0.13);
@@ -101,6 +109,11 @@
   nav.rail a.t-theory.on { color: var(--teal-pale); border-left-color: var(--teal); background: rgba(46,230,197,0.07); }
   nav.rail .rail-gap { height: 0.9rem; }
   @media (max-width: 780px) {
+    header.hero { padding-top: 2.5rem; }
+    .hero-text { flex-basis: 100%; width: 100%; }
+    .hero-text h1 { font-size: clamp(2rem, 12vw, 3rem); letter-spacing: 0.22em; text-indent: 0.22em; }
+    .hero-text .tag { overflow-wrap: anywhere; }
+    .store-cta { display: block; width: 100%; padding-inline: 0.75rem; }
     .shell { grid-template-columns: 1fr; gap: 0; }
     nav.rail {
       position: sticky; top: 0; z-index: 40; max-height: none;
@@ -179,6 +192,27 @@
   .note.love { border-color: rgba(255,72,173,0.35); border-left-color: var(--pink); background: rgba(255,72,173,0.05); }
   .note p { margin: 0.2rem 0; }
 
+  /* measured figures */
+  .figure-grid {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem; margin: 1.3rem 0;
+  }
+  figure.bench {
+    margin: 0; min-width: 0; border: 1px solid var(--line); border-radius: 12px;
+    background: rgba(18,10,30,0.62); overflow: hidden;
+  }
+  figure.bench img { display: block; width: 100%; height: auto; padding: 0.65rem; }
+  figure.bench figcaption {
+    border-top: 1px solid var(--line); padding: 0.7rem 0.9rem;
+    color: var(--mut); font-size: 0.84rem; line-height: 1.5;
+  }
+  .download {
+    display: inline-block; margin: 0.25rem 0 1rem; padding: 0.32rem 0.75rem;
+    border: 1px solid rgba(46,230,197,0.35); border-radius: 999px;
+    font-family: var(--mono); font-size: 0.78rem;
+  }
+  @media (max-width: 900px) { .figure-grid { grid-template-columns: 1fr; } }
+
   /* steps */
   ol.steps { counter-reset: step; list-style: none; padding-left: 0; max-width: 66ch; }
   ol.steps li {
@@ -213,13 +247,14 @@
 
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to manual</a>
 <header class="hero">
   <img class="hero-f" src="f_mark.png" alt="The Finally neon F" width="168" height="168">
   <div class="hero-text">
     <span class="eyebrow">Field Manual</span>
     <h1>FINALLY</h1>
     <p class="tag"><b>offline · local · yours</b> — the VR video player that respects your library, your network, and your hands.</p>
-    <p class="hero-meta">covers v0.3.14-m3 · quest + galaxy xr · july 2026</p>
+    <p class="hero-meta">covers v0.3.21-m3 · quest code 27 · galaxy code 10027 · july 28, 2026</p>
     <a class="store-cta" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Get Finally on the Meta Horizon Store →</a>
   </div>
 </header>
@@ -228,32 +263,37 @@
 <nav class="rail" aria-label="Manual sections">
   <p class="rail-title">Manual</p>
   <a href="#start">Start here</a>
+  <a href="#tutorial">Guided tutorial</a>
   <a href="#controls">Controls</a>
   <a href="#club">The Club</a>
   <a href="#cockpit">The Cockpit</a>
   <a href="#lenses">Lenses &amp; projection</a>
   <a href="#tags">Filename tags</a>
   <a href="#sources">Sources &amp; NAS</a>
-  <a href="#iso">Blu-ray ISO</a>
+  <a href="#iso">ISO, MVC &amp; DVD</a>
+  <a href="#watch">Watch Together</a>
   <a href="#room">Your room</a>
   <a href="#worlds">Worlds</a>
   <a href="#photos">Photos</a>
   <a href="#loops">Loops &amp; seeking</a>
   <a href="#themes">Themes</a>
   <a href="#platforms">Quest vs Galaxy</a>
+  <a href="#specs">Tests &amp; metrics</a>
   <a href="#fixit">Fix it</a>
+  <a href="#diagnostics">Bug reports</a>
   <div class="rail-gap"></div>
   <a href="#theory" class="t-theory">Theory</a>
   <div class="rail-gap"></div>
   <a href="#privacy">Privacy &amp; about</a>
 </nav>
 
-<main>
+<main id="main-content">
 
 <section id="start">
   <p class="kicker">01 · basics</p>
   <h2>Start here</h2>
   <p class="lede">Point the laser. Pull the trigger. That's most of Finally.</p>
+  <div class="note warn"><p><strong>Read the installed version.</strong> This page documents the <strong>0.3.21-m3 internal candidate — Quest code 27 / Galaxy code 10027</strong>. The public store build can be older until a separately signed update is uploaded and released. The version shown in the Club is the authority for the build on your headset.</p></div>
   <p>The <strong>vault</strong> is your library. Open a folder to dig in. Open a title to play. Everything happens inside VR — you only ever drop to a flat screen when you explicitly ask for the 2D file pickers.</p>
   <div class="tbl-wrap"><table>
     <thead><tr><th>Input</th><th>What it does</th></tr></thead>
@@ -267,8 +307,24 @@
   <div class="note love"><p><strong>One-controller law.</strong> Everything critical in Finally works with a single hand. Left-hand buttons are conveniences, never requirements.</p></div>
 </section>
 
+<section id="tutorial">
+  <p class="kicker">02 · first run</p>
+  <h2>Guided tutorial</h2>
+  <p class="lede">Six skippable cards get you from first launch to a correctly placed picture.</p>
+  <ol class="steps">
+    <li>Practice pointing and pulling the trigger on the real target.</li>
+    <li>Learn where local folders and SMB shares enter the vault.</li>
+    <li>Move flat content with the physical scene dolly.</li>
+    <li>Repair projection, stereo packing, and eye order.</li>
+    <li>Find Dark room, subtitles, and automatic frame-rate matching.</li>
+    <li>Choose SIMPLE or PRO and start using Finally.</li>
+  </ol>
+  <p><span class="chip">SKIP TUTORIAL</span> and <span class="chip">START USING FINALLY</span> both record completion. System Back leaves it incomplete, so it can return after a cold start. Replay it whenever you want from <span class="chip">SOURCES</span> → <strong>Quick-start tutorial</strong>.</p>
+  <div class="note"><p><strong>Private by construction.</strong> The tour is local, needs no account, and sends no completion telemetry. Quest 3 and Galaxy XR physically rendered all six steps and passed practice/forward/back assertions; those tests deliberately did not press Finish, so a complete human walkthrough remains a separate check.</p></div>
+</section>
+
 <section id="controls">
-  <p class="kicker">02 · muscle memory</p>
+  <p class="kicker">03 · muscle memory</p>
   <h2>Controls</h2>
   <p class="lede">The full map. <span class="key">B</span> is sacred — it only ever toggles the menu.</p>
   <div class="tbl-wrap"><table>
@@ -294,12 +350,12 @@
       <tr><td>Resize the menu</td><td>While grip-holding: <span class="key">Stick ← →</span></td></tr>
     </tbody>
   </table></div>
-  <p><strong>Haptics:</strong> a hover tick and a click pulse on the pointing hand, with a VIBE toggle on SETUP. <strong>Hard rule:</strong> grip away from the panel does nothing — no accidental grabs.</p>
+  <p><strong>Haptics:</strong> a hover tick and click pulse on the pointing hand. The SETUP master toggle remains, and a saved <strong>HAPTIC STRENGTH</strong> slider scales later pulses from <span class="chip">OFF</span> to <span class="chip">100%</span>. Quest defaults to 100%; Galaxy XR defaults to 55%. <strong>Hard rule:</strong> grip away from the panel does nothing — no accidental grabs.</p>
   <div class="note"><p><strong>Galaxy XR note.</strong> Quest binds the full Touch controller profile. Galaxy XR runs the same map through the standard controller profile — laser, trigger, menu, and transport all behave identically.</p></div>
 </section>
 
 <section id="club">
-  <p class="kicker">03 · the lobby</p>
+  <p class="kicker">04 · the lobby</p>
   <h2>The Club</h2>
   <p class="lede">♡ FINALLY CLUB — your vault, floating in a neon room (or your real one).</p>
   <p>The Club is where you land. Titles list in the center; favorites wear a <span class="chip">★</span>; folders glow gold. Aim and trigger to open anything.</p>
@@ -309,8 +365,13 @@
     <tbody>
       <tr><td><span class="chip">▲ UP</span> <span class="chip">▼ DN</span></td><td>Page the vault — or just grab the list itself (see below)</td></tr>
       <tr><td><span class="chip">↻ SCAN</span></td><td>Rescan your sources for new files — <strong>including your saved NAS share</strong>, so server-side additions land without leaving VR</td></tr>
+      <tr><td><span class="chip">RANDOM</span></td><td>Play a no-repeat random local video. Network, still, audio, missing, and unavailable rows stay out of the deck</td></tr>
+      <tr><td><span class="chip">SORT</span></td><td>Cycle the eight saved folder orders: A-Z, Z-A, NEW, OLD, BIG, SMALL, LONG, SHORT</td></tr>
+      <tr><td><span class="chip">DELETE</span></td><td>Permanently delete the selected validated local video after an exact-file confirmation; network, folder, disc, ISO, and cloud targets are refused</td></tr>
+      <tr><td><span class="chip">WATCH</span></td><td>Open private-LAN Host / Join pairing (see <a href="#watch">Watch Together</a>)</td></tr>
       <tr><td><span class="chip">◎ ROOM</span></td><td>Passthrough — the vault floats in your real room. Saved as your default</td></tr>
-      <tr><td><span class="chip">✦ WORLD</span></td><td>Cycle the lobby environment — bundled worlds plus your own (see <a href="#worlds">Worlds</a>)</td></tr>
+      <tr><td><span class="chip">✦ WORLD</span></td><td>Open the responsive <strong>ROOMS</strong> grid and select a bundled or user room directly (see <a href="#worlds">Worlds</a>)</td></tr>
+      <tr><td><span class="chip">ROOM DIM</span></td><td>Cycle saved background brightness through 100 / 75 / 50 / 25 / 0%; media, subtitles, and UI remain unchanged</td></tr>
       <tr><td><span class="chip">★ FAV</span></td><td>Pin the selected title to favorites</td></tr>
     </tbody>
   </table></div>
@@ -322,14 +383,34 @@
   <p>Every local title wears a <strong>poster</strong> — one real frame pulled from ~10% into the video, past the black leaders and intro cards, cached so the vault paints instantly next time. Stereo-packed files are cropped to a single eye first, so a poster is never a double image. Rows still loading show a quiet glyph — and <strong>NAS and Blu-ray ISO rows keep the glyph on purpose</strong>: pulling megabytes over the network (or spinning up the whole disc stack) just to decorate a list is how library screens start stuttering. The 2D library rows wear the same posters.</p>
   <h3>Who gets hidden</h3>
   <p>Files that auto-detect as plain mono — a whole-word <code>mono</code> tag in the filename — are tucked out of the vault and the 2D library, with an honest count in the vault footer: <em>N MONO hidden</em>. Two rules keep this safe: the detector matches whole tags only (<em>Kimono</em> and <em>Monolith</em> never vanish), and <strong>a title with your saved settings is never auto-hidden</strong> — your choices always beat the detector's. The tag is the switch: rename the file and it's back.</p>
+  <h3>Sort a folder</h3>
+  <p>The flat Library has a Sort picker; each Club press of <span class="chip">SORT</span> advances the same saved choice. Favorites remain pinned and folders remain above videos. Missing size, duration, or date values sort last in either direction, and stable tie-breakers prevent rows from jumping during refresh.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th scope="col">Club chip</th><th scope="col">Order</th><th scope="col">Club chip</th><th scope="col">Order</th></tr></thead>
+    <tbody>
+      <tr><td><span class="chip">A-Z</span></td><td>Name, ascending</td><td><span class="chip">Z-A</span></td><td>Name, descending</td></tr>
+      <tr><td><span class="chip">NEW</span></td><td>Date added, newest</td><td><span class="chip">OLD</span></td><td>Date added, oldest</td></tr>
+      <tr><td><span class="chip">BIG</span></td><td>Size, largest</td><td><span class="chip">SMALL</span></td><td>Size, smallest</td></tr>
+      <tr><td><span class="chip">LONG</span></td><td>Duration, longest</td><td><span class="chip">SHORT</span></td><td>Duration, shortest</td></tr>
+    </tbody>
+  </table></div>
+  <p>“Date added” means when the item entered the Finally vault, not necessarily its filesystem modification date.</p>
+
+  <h3>Delete one local video</h3>
+  <ol class="steps">
+    <li>Focus one local video and choose <span class="chip">DELETE</span>.</li>
+    <li>Read the exact-file confirmation.</li>
+    <li>Choose <strong>Delete file</strong>; Android may show its own final consent surface.</li>
+  </ol>
+  <p>Finally reloads the vault row and root before deletion so a stale selection cannot redirect the action. It fails closed for SMB, FTP, WebDAV, Plex, Stash, folders, DVD, ISO, cloud/server rows, traversal paths, missing roots, or a target that no longer matches the selection. A successful delete is permanent. <strong>Clear vault</strong> only removes Finally's records and never deletes the media.</p>
   <h3>Setup without leaving VR</h3>
-  <p><span class="chip">⚙ SOURCES</span> opens the sources panel <em>in the same room</em> — no screen switch, no splash. It shows every source Finally knows (auto folder + scans + NAS shares). Beside it, <span class="chip">🎛 SET</span> holds the lobby settings — menu level, resume, skip intro, tilt follow, stick zoom direction, seek step, <em>Seek landing</em> (FAST ⇄ EXACT, see <a href="#loops">Seeking</a>), <em>NAS buffer</em> (LEAN · DEFAULT · BIG · MAX, see <a href="#sources">Sources &amp; NAS</a>), and the cockpit <em>Menu style</em> (SIMPLE ⇄ PRO, see <a href="#cockpit">The Cockpit</a>) — and <span class="chip">📖 HELP</span> is this manual, in-headset, no title required.</p>
+  <p><span class="chip">⚙ SOURCES</span> opens the sources panel <em>in the same room</em> — no screen switch, no splash. It shows every source Finally knows and includes <strong>Quick-start tutorial</strong> for replaying the guided tour. Beside it, <span class="chip">🎛 SET</span> holds the lobby settings — menu level, resume, skip intro, tilt follow, stick zoom direction, seek step, <em>Seek landing</em> (FAST ⇄ EXACT, see <a href="#loops">Seeking</a>), <em>NAS buffer</em> (LEAN · DEFAULT · BIG · MAX, see <a href="#sources">Sources &amp; NAS</a>), and the cockpit <em>Menu style</em> (SIMPLE ⇄ PRO, see <a href="#cockpit">The Cockpit</a>) — and <span class="chip">📖 HELP</span> is this manual, in-headset, no title required.</p>
   <p>Only one door leads out of VR: <span class="chip">FOLDERS</span>, which intentionally drops to the 2D library for the Android folder and NAS pickers (those dialogs are system UI and can't render in-headset). Everything else keeps you inside.</p>
   <p><span class="chip">LEAVE</span> exits to your headset home — labeled <span class="chip">LEAVE → QUEST</span> on Quest and <span class="chip">LEAVE → HOME</span> on Galaxy XR. On the empty first run the vault says so: <em>"Vault is empty — tap ⚙ SETUP for sources, or drop files in Movies/Finally and ↻ SCAN."</em></p>
 </section>
 
 <section id="cockpit">
-  <p class="kicker">04 · while playing</p>
+  <p class="kicker">05 · while playing</p>
   <h2>The Cockpit</h2>
   <p class="lede">Press <span class="key">B</span> during playback: quick strip first, full cockpit second, gone third.</p>
 
@@ -338,7 +419,7 @@
   <p>Photos skip the strip — <span class="key">B</span> opens the full cockpit directly, because transport means nothing to a still. In the lobby, <span class="key">B</span> is the vault, same as always.</p>
 
   <h3>The quick strip</h3>
-  <p>The strip carries the moves you actually make mid-video: the timeline scrubber, <span class="chip">-30s</span> / <span class="chip">-5s</span> / <span class="chip">PLAY</span> / <span class="chip">+5s</span> / <span class="chip">+30s</span> (the small step is adjustable in SETUP), <span class="chip">■ STOP</span>, speed, volume, mute, <span class="chip">PREV</span> / <span class="chip">◆ CLUB</span> / <span class="chip">NEXT</span>, <span class="chip">◀ CLOSER</span> / <span class="chip">FARTHER ▶</span>, and <span class="chip">◎ ROOM</span>. In PRO mode it adds the A·B·C·D loop chips and a <span class="chip">◎ STATS</span> chip (see <em>Stats for nerds</em> below). If a network stream stalls, the strip raises itself with a <strong>REBUFFERING</strong> banner and stands back down when the flow recovers — details in <a href="#sources">Sources &amp; NAS</a>.</p>
+  <p>The strip carries the moves you actually make mid-video: the timeline scrubber, <span class="chip">-30s</span> / <span class="chip">-5s</span> / <span class="chip">PLAY</span> / <span class="chip">+5s</span> / <span class="chip">+30s</span> (the small step is adjustable in SETUP), <span class="chip">■ STOP</span>, speed, volume, mute, <span class="chip">PREV</span> / <span class="chip">◆ CLUB</span> / <span class="chip">NEXT</span>, <span class="chip">◀ CLOSER</span> / <span class="chip">FARTHER ▶</span>, and <span class="chip">◎ ROOM</span>. In SIMPLE mode, hand users can pinch the always-visible <span class="chip">PRO CONTROLS</span> target to promote the strip into the full cockpit without a controller <span class="key">B</span> button. In PRO mode the strip adds A·B·C·D loop chips and <span class="chip">◎ STATS</span>. If a network stream stalls, it raises itself with a <strong>REBUFFERING</strong> banner and stands back down when the flow recovers — details in <a href="#sources">Sources &amp; NAS</a>.</p>
 
   <h3>SIMPLE and PRO</h3>
   <p>The full cockpit ships in <strong>SIMPLE</strong> mode: three tabs — <span class="chip">PLAY</span> · <span class="chip">VIEW</span> · <span class="chip">HELP</span> — with the essentials. PLAY keeps the transport, speed, volume, mute, <span class="chip">Eyes</span>, passthrough, <span class="chip">PREV</span>/<span class="chip">NEXT</span>, and the core lens row (AUTO · VR180 · VR360 · Flat · SBS · OU). VIEW keeps scene height, distance, zoom, and screen curve, plus the resets and the <span class="chip">AUTO</span> escape hatch.</p>
@@ -358,19 +439,37 @@
   <p>A full color grade: <strong>brightness</strong>, <strong>contrast</strong>, <strong>gamma</strong>, <strong>saturation</strong>, <strong>hue</strong>, and <strong>warmth</strong> — six proper sliders with a one-tap <span class="chip">Reset</span>. The grade touches the video only (the menu panel stays neutral) and starts clean each session. Below them, the entire passthrough keying suite: master passthrough toggle, packed-alpha matte, four-color chroma key with per-color edge controls. Detailed in <a href="#room">Your room</a>.</p>
 
   <h3>SETUP</h3>
-  <p>Seek step size, menu distance and size, theme, menu spawn (at gaze or fixed origin), default-SBS-for-180 toggle, skip intro, resume on/off, stick zoom direction (<em>pull = smaller</em> by default, flippable), wrist-roll dome tilt, haptics, the <span class="chip">Stats HUD</span> toggle — and the lying-down suite: <strong>tilt follow</strong> rolls the picture with your head so it stays upright to <em>your face</em> instead of the room (lie on your side; the movie comes with you — menus and laser stay world-anchored), and <strong>menu level</strong> makes the cockpit spawn gravity-level instead of matching your head tilt.</p>
+  <p>Seek step size, menu distance and size, theme, menu spawn (at gaze or fixed origin), default-SBS-for-180 toggle, skip intro, resume on/off, stick zoom direction (<em>pull = smaller</em> by default, flippable), wrist-roll dome tilt, the haptics master plus saved OFF–100% strength, subtitle delay and size, and the <span class="chip">Stats HUD</span> toggle — plus the lying-down suite: <strong>tilt follow</strong> rolls the picture with your head so it stays upright to <em>your face</em> instead of the room (lie on your side; the movie comes with you — menus and laser stay world-anchored), and <strong>menu level</strong> makes the cockpit spawn gravity-level instead of matching your head tilt.</p>
+
+  <h3>Subtitles</h3>
+  <p><span class="chip">SUBS</span> cycles OFF and the embedded tracks exposed by the container. Ordinary local and SMB videos can also discover sibling <code>.srt</code>, <code>.vtt</code>, <code>.ass</code>, and <code>.ssa</code> files that share the complete video stem, optionally followed by a language label. Sidecars are bounded to 4 MiB and cached before playback. FTP, WebDAV, Plex, Stash, DVD, and ISO sidecar discovery is not part of this candidate.</p>
+  <p>In PRO → SET, <strong>Sub delay</strong> spans −10 to +10 seconds and <strong>Sub size</strong> spans 60% to 180%. There is no independent subtitle-depth control in code 27. The ISO route reports <span class="chip">SUBS · ISO N/A</span> because text and PGS rendering are deliberately disabled there.</p>
+
+  <h3>Dark room, ROOM DIM and AFR</h3>
+  <p><span class="chip">DARK ROOM</span> gives flat movies a plain black surround; <span class="chip">ROOM VISIBLE</span> restores passthrough. <span class="chip">ROOM DIM</span> is a saved 0–100% background-luminance slider in 5% steps. It dims bundled/procedural rooms, the flat-video background, and passthrough—including what shows through chroma/packed-alpha holes—without dimming the movie, still, subtitles, or cockpit UI. Automatic frame-rate matching sends Android a seamless display-rate hint based on normalized source cadence and playback speed. The headset still chooses the final display mode. <strong>AFR is not frame interpolation</strong>: it never invents motion or converts a low-frame-rate file to 60 or 90 fps.</p>
 
   <h3>HELP</h3>
   <p>The in-headset version of this manual: subjects on the left, article on the right, stick ↕ scrolls. It also hides two extra chapters this page only summarizes — <em>THEORY</em> (teal) and <em>DEEPER</em> (green). See <a href="#theory">Theory</a>.</p>
 
   <h3>Stats for nerds</h3>
-  <p>PRO only. Tap <span class="chip">◎ STATS</span> on the quick strip's header (or the <span class="chip">Stats HUD</span> cell on SETUP) and the strip's lower half becomes a live readout: file and source, video codec with resolution @ fps, decoder and dropped frames, audio codec, color info, buffer seconds against target, NAS fill % with live MB/s, position / speed / state, and the active lens + stereo. It refreshes once a second while open, the scrubber and transport stay live above it, and it never appears on photos — a still has no stats worth nerding over.</p>
+  <p>PRO only. Tap <span class="chip">◎ STATS</span> on the quick strip's header (or the <span class="chip">Stats HUD</span> cell on SETUP) and the strip's lower half becomes a live readout: source class, video codec with resolution @ fps, decoder and dropped frames, audio codec, color info, buffer seconds against target, NAS fill % with live MB/s, position / speed / state, active lens + stereo, current Android display mode, source cadence, target refresh, and cadence multiple. It refreshes once a second while open, the scrubber and transport stay live above it, and it never appears on photos.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th scope="col">Readout</th><th scope="col">Exact meaning</th></tr></thead>
+    <tbody>
+      <tr><td><code>72.0 Hz LOCKED</code></td><td>Android currently reports 72.0 Hz and it is an integer multiple of effective content cadence within 0.5%</td></tr>
+      <tr><td><code>72.0 Hz · TARGET 90.0 Hz · NOT LOCKED</code></td><td>90 Hz is a compatible requested/supported target, but Android still reports 72 Hz</td></tr>
+      <tr><td><code>CADENCE 3:3</code></td><td>Each content frame can occupy three display refreshes</td></tr>
+      <tr><td><code>CADENCE MISMATCH</code></td><td>The reported display rate is not an integer multiple</td></tr>
+      <tr><td><code>CADENCE UNKNOWN</code></td><td>The stream did not provide a usable frame rate</td></tr>
+    </tbody>
+  </table></div>
+  <p>For example, 23.976-fps cinema at a reported 72 Hz qualifies as a 3:3 lock. <strong>LOCKED never means “requested” or merely “supported.”</strong></p>
 
   <div class="note"><p><strong>Nothing decorative.</strong> A cockpit toggle must never be a placebo — if a switch is visible, it does something real. That's a design law, not a promise.</p></div>
 </section>
 
 <section id="lenses">
-  <p class="kicker">05 · the projection brain</p>
+  <p class="kicker">06 · the projection brain</p>
   <h2>Lenses &amp; projection</h2>
   <p class="lede">Filenames hint the shape. Untagged files use the real frame geometry. Your fixes stick per title — forever.</p>
   <p>Every VR video is a flat rectangle of pixels that has to be <em>wrapped</em> back into a world. Get the wrap wrong and the scale, depth, and edges all lie to you. Finally reads the filename, checks the frame, picks a projection — and when it can't know, gives you manual overrides that persist.</p>
@@ -391,6 +490,21 @@
   </table></div>
   <div class="note"><p><strong>180 vs 190 — yes, they're different.</strong> Same fisheye disk, different lens coverage. A 190° file played on a 180° mesh looks subtly zoomed-in with warped edges; the reverse looks shrunken. When something's off but you can't name it, audition the lens row.</p><p><strong>Canon RF 5.2mm dual-fisheye</strong> (<code>rf52</code>) exports are treated as stitched VR180 — Canon's EOS VR Utility outputs equirect, so that's where those files belong.</p></div>
 
+  <h3>FULL versus HALF stereo packing</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th scope="col">Choice</th><th scope="col">Use it for</th></tr></thead>
+    <tbody>
+      <tr><td>FULL SBS</td><td>A wide frame containing two full-width eye images side by side</td></tr>
+      <tr><td>HALF SBS</td><td>A normal 16:9-style 3D movie frame with the two eyes squeezed side by side</td></tr>
+      <tr><td>FULL OU</td><td>A tall frame containing two full-height eye images top/bottom</td></tr>
+      <tr><td>HALF OU</td><td>A normal-height 3D movie frame with the eyes squeezed top/bottom</td></tr>
+    </tbody>
+  </table></div>
+  <p>Choose the packing that matches the file. Tap an active stereo choice again for mono/2D; <span class="chip">AUTO</span> returns control to detection. If depth looks inverted, swap eyes instead of changing FULL to HALF.</p>
+
+  <h3>Flat-screen aspect repair</h3>
+  <p>For a <strong>FLAT</strong> title, use <span class="chip">ASPECT</span> only after stereo packing is correct. It cycles <code>AUTO → 16:9 → 4:3 → 2:1 → 2.40:1 → 1:1 → 9:16</code>. AUTO uses decoded geometry, pixel-aspect ratio, and packing. A fixed value changes screen shape after eye unpacking; it does not change eye order, lens, projection, or AUTO/MANUAL detection. ASPECT is intentionally disabled for VR180, VR360, and fisheye projections.</p>
+
   <h3>When there's no tag at all</h3>
   <p>A filename tag is a promise, and Finally keeps it — tagged <code>180</code> files keep the ecosystem's SBS convention. An <strong>untagged</strong> file gets a much more careful guess: the frame is only eye-split when halving it actually yields two roughly square eyes (the classic 2:1 full-SBS dome). Portrait video is never VR. An ultra-wide frame (32:9-class) resolves to a <strong>flat 3D SBS screen</strong> — that shape is a movie pack or a monitor capture, never a hemisphere. And an odd, non-standard aspect plays mono instead of being torn in half — a wrong mono is watchable; a wrong eye-split is soup. Your manual override still beats everything.</p>
 
@@ -405,7 +519,7 @@
 </section>
 
 <section id="tags">
-  <p class="kicker">06 · reference</p>
+  <p class="kicker">07 · reference</p>
   <h2>Filename tags</h2>
   <p class="lede">Deo-compatible and then some. Tags are case-insensitive; separators are <code>_ - . space ( ) [ ]</code>.</p>
 
@@ -451,9 +565,9 @@
 </section>
 
 <section id="sources">
-  <p class="kicker">07 · your library</p>
+  <p class="kicker">08 · your library</p>
   <h2>Sources &amp; NAS</h2>
-  <p class="lede">Three ways in: the auto folder, any folder you pick, and your NAS over SMB.</p>
+  <p class="lede">Local folders and SMB are first-class. Code 27 also adds bounded FTP, WebDAV, Plex, Stash, and direct-link paths.</p>
 
   <h3>The zero-setup path</h3>
   <p>Drop files into <span class="path">Movies/Finally</span> on the headset and hit <span class="chip">↻ SCAN</span>. Done.</p>
@@ -466,17 +580,17 @@
   <ol class="steps">
     <li>On your computer, share a folder (Windows: Properties → Sharing).</li>
     <li>Put some videos in that folder.</li>
-    <li>Note the PC's IP (e.g. <code>192.168.1.151</code>) and the <strong>share name</strong> (e.g. <code>Media</code>) — not the full path.</li>
+    <li>Note the PC's local address (shown here as <code>NAS_IP</code>) and the <strong>share name</strong> (for example <code>Media</code>) — not the full path.</li>
     <li>Headset and PC on the same Wi-Fi / home network.</li>
     <li>Turn off any VPN on the PC if connect fails.</li>
   </ol>
-  <p>Then: 2D library → <span class="chip">＋ Add NAS share</span> → host, share name, an optional <strong>Folder</strong> (e.g. <code>media/vr</code> — scans just that subfolder instead of crawling a big share), Windows username + password, port 445. Hit <strong>Test</strong> first — it signs in <em>and</em> lists the share, and the verdict lands right in the form: teal with an entry count when it works, amber plain language when it doesn't. The form never closes on a mistake, and everything you typed survives a failure — <strong>password included</strong>. Fix the one wrong field and go again. A <em>how-to</em> row opens the full setup guide right over the form.</p>
-  <p>Then hit <strong>Scan</strong> and the vault labels those titles <em>NAS · your-host</em>. Credentials are stored encrypted, on-device, keyed to that share — never in plain preferences, never in any cloud.</p>
+  <p>Then: 2D library → <span class="chip">＋ Add NAS share</span> → host, share name, optional <strong>Folder</strong> (for example <code>media/vr</code>), username + password, and normally port 445. Accepted address forms include a hostname, local IPv4, UNC path, or <code>smb://</code> address. Put the Synology Shared Folder name in <strong>Shared folder</strong> and any File Station subfolder in <strong>Folder</strong>.</p>
+  <p>Press <strong>Test</strong> first. It signs in and lists one folder without recursively walking the source. Then choose <strong>Browse instantly</strong> for an immediate folder snapshot or <strong>Index entire source</strong> for resumable background discovery. Browsing does not wait for a 45-TB share to finish indexing. Credentials stay on the device in source-specific protected storage and are never exported in library metadata.</p>
   <div class="note warn"><p><strong>Share name, not path.</strong> The most common connect failure is typing <code>C:\Media</code> where the share name goes. Use the short name only. Second most common: a VPN on the PC eating local discovery.</p></div>
   <div class="note"><p><strong>Big files welcome.</strong> Multi-GB videos — 2, 3, 4 GB and up, which is most real VR files — stream reliably over SMB. That was <em>the</em> 0.3.9 bug fix: if huge titles used to die partway in, they don't anymore.</p></div>
 
   <h3>What the scan tells you</h3>
-  <p>Scans report what they skipped instead of silently dropping it. The result card names folders that couldn't be opened (permissions), counts files skipped for unsupported types and album-art-sized stills — and when a big share hits the scan cap (25,000 files), it stops early and <strong>names the folders it never scanned</strong>, so you know exactly where to point the <strong>Folder</strong> field next. The in-VR <span class="chip">↻ SCAN</span> surfaces the same warning on the amber band. NAS housekeeping folders (<code>@eaDir</code>, <code>#recycle</code>, dot-folders and their cousins) are pruned by design. And one locked folder no longer kills the whole scan — you get everything else, plus its name in the report.</p>
+  <p>Scans report what they skipped instead of silently dropping it. Large recursive scans run in deterministic bounded pages and retain a continuation token, so interruption or retry does not force a restart. If a page, depth, or budget boundary is reached, the report says the index is incomplete and names the remaining/blocked areas rather than pretending the source is complete. The code-27 deterministic regression covers 54,321 files in 3,400 folders across three resumable pages; that is a host-test boundary, not a promise about every NAS or router. NAS housekeeping folders (<code>@eaDir</code>, <code>#recycle</code>, dot-folders and their cousins) are pruned by design, and one locked folder does not kill the rest of a scan.</p>
   <p>Network scans also skip music album art automatically (<code>cover.jpg</code>, <code>folder.jpg</code>, fanart, and any thumbnail-sized still) — a share with a music library won't flood your vault with sleeve scans. Folders and files you pick directly keep <strong>every image you chose</strong> — even one named <code>poster.jpg</code>: locally, only thumbnail-sized files (under 256 KB) are skipped, a file whose size can't be read is never filtered, and the name-based art net stays NAS-only.</p>
 
   <h3>Rescan without leaving VR</h3>
@@ -484,28 +598,100 @@
 
   <h3>The NAS buffer</h3>
   <p>Lobby <span class="chip">🎛 SET</span> → <em>NAS buffer</em> cycles <strong>LEAN · DEFAULT · BIG · MAX</strong> — how far a network stream reads ahead of playback. Bigger rides out longer Wi-Fi dips before the REBUFFERING banner would ever appear; the cost is more memory and cache space on the headset. DEFAULT is the shipped profile. The setting applies from the <strong>next title you open</strong> — a title already playing keeps the buffer it started with.</p>
+  <p>The code-27 reservoir pipelines bounded read-ahead, coalesces short server reads, cancels in-flight work on close, and handles far seeks without unbounded hot memory. Its deterministic jitter gate consumes one second at 150 Mbps and then performs a far seek inside the configured caps. That proves the buffer logic, not that a particular Wi-Fi link or spinning disk can sustain 150 Mbps.</p>
   <h3>When the stream stalls</h3>
-  <p>NAS playback narrates itself. While a network title loads, the vault shows a <strong>real buffering percentage</strong> — the actual readahead fill, not a spinner. If the stream stalls mid-play, the quick strip raises itself with a <strong>REBUFFERING</strong> banner and hides again once the flow recovers.</p>
+  <p>NAS playback narrates itself. While a network title loads, the vault shows a <strong>real buffering percentage</strong> — the actual readahead fill, not a spinner. If the stream stalls mid-play, the quick strip raises itself with a <strong>REBUFFERING</strong> banner and hides again once the flow recovers. In Stats HUD, compare sustained live MB/s against content bitrate: a negative margin predicts repeated buffering even when a short speed test looks fast.</p>
   <p>If a video can't play at all, the reason lands on the vault panel as a bold amber alert band, in plain language: corrupt file, unsupported codec, no permission, file missing, or <em>"NAS stopped responding."</em> A server that's connected but frozen is declared dead in about 20 seconds — no eternal hourglass. A network that drops out entirely gets a ~45-second self-heal window: Finally keeps reconnecting, and if the network comes back in that window, playback resumes by itself.</p>
+
+  <h3>FTP, WebDAV, Plex, Stash &amp; direct links</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th scope="col">Source</th><th scope="col">Code-27 boundary</th></tr></thead>
+    <tbody>
+      <tr><td>FTP</td><td>Passive binary FTP on a trusted LAN. Plain FTP is unencrypted; no FTPS/SFTP, ISO, thumbnails, or sidecar subtitles</td></tr>
+      <tr><td>WebDAV</td><td>Configure, validate, browse, index, and range-read a user-supplied collection; no complete server-extension or sidecar-parity claim</td></tr>
+      <tr><td>Plex</td><td>Direct Play the original Part from a user-supplied local server and token; no transcoding request, cloud login, or hosted relay</td></tr>
+      <tr><td>Stash</td><td>Page scenes and open native stream identities from a server/API key you supply; Finally supplies no catalog</td></tr>
+      <tr><td>Play link</td><td>Compatible direct HLS, DASH, SmoothStreaming, or RTSP media; not a general browser and does not bypass login, DRM, cookies, or blob-only page logic</td></tr>
+    </tbody>
+  </table></div>
+  <p>WebDAV, Plex, and Stash default to HTTPS. Using acknowledged HTTP or plain FTP exposes credentials and media to the local network, so keep those modes on a private LAN you control. Removing a source deletes Finally's record and vault rows, never the server's files.</p>
 
   <h3>What plays</h3>
   <p><strong>Video:</strong> <code>mp4</code> <code>mkv</code> <code>mov</code> <code>webm</code> <code>avi</code> <code>m2ts</code> <code>ts</code> <code>mpg</code> <code>vob</code> <code>3gp</code> and friends — plus decrypted Blu-ray <code>iso</code> images, which play as discs (see <a href="#iso">Blu-ray ISO</a>). <strong>Stills:</strong> <code>jpg</code> <code>png</code> <code>webp</code> <code>heic</code> <code>avif</code> <code>bmp</code> and friends. <code>wmv</code> / <code>asf</code> are deliberately <em>not</em> listed — the headset ships no decoder for them, so they could never play; a library row that can't play is a lie. Dead entries from older versions clean themselves up on first launch.</p>
-  <p>Hardware decode up to 8K where the headset allows. Audio decodes in hardware when possible and falls back to FFmpeg software for AC-3, E-AC-3, and DTS — so MKV rips are not silent. Sidecar notes (<span class="path">*.finally.json</span>) carry projection, prefs, and resume position with the title itself, matched by content hash — your fixes travel with the file, not with an account.</p>
+  <p>Hardware decode up to 8K where the headset and exact stream allow. A focused Quest 3 gate opened an 8192×4096/30-fps HEVC Main 10 MKV at about 156.7 Mbps with AAC, embedded PGS, chapters, and deliberately conflicting stereo metadata; it proved first frame, track exposure, seek, another rendered-frame callback, and resumed clock advance—not a long thermal soak or blanket subtitle/stereo approval.</p>
+  <p>Code-27 physical first-frame and seek-recovery proof also covers 1080p60 AV1 Main 8 and Main 10 HDR10 on Quest 3 and Galaxy XR using the exposed hardware decoder; it is not an 8K AV1, HDR-accuracy, network, or long-soak claim. Audio decodes in hardware when possible and falls back to FFmpeg software for AC-3, E-AC-3, and DTS. Sidecar notes (<span class="path">*.finally.json</span>) carry projection, prefs, and resume position with the title itself, matched by content hash.</p>
 </section>
 
 <section id="iso">
-  <p class="kicker">08 · discs</p>
-  <h2>Blu-ray ISO</h2>
-  <p class="lede">Your decrypted Blu-ray backups play as discs — from local storage or straight off the NAS.</p>
-  <p>Drop a decrypted Blu-ray ISO into any source — a local folder or your SMB share — and it's a title in the vault like everything else. Finally walks the disc's UDF filesystem itself, reads the playlists, and <strong>picks the main movie automatically</strong>: the feature-length playlist, not a menu loop or a trailer. Scrubbing and the full cockpit work as usual. NAS ISOs stream in place — the disc never gets copied to the headset. Big images take a moment to open; the vault says so (<em>⏳ opening ISO…</em>) instead of freezing.</p>
-  <h3>The honest part</h3>
-  <p><strong>AACS-encrypted discs do not play.</strong> Finally ships no decryption — an encrypted image gets a plain amber card: <em>"This ISO is still AACS-encrypted — rip it with MakeMKV first."</em> That's the whole workflow: MakeMKV makes the decrypted backup, Finally plays it. And if you'd rather skip ISOs entirely, MakeMKV-remuxed MKV files still play great too.</p>
-  <p>DVD ISOs aren't supported yet — they get the same honest treatment, in plain language. So does an incomplete image (BDMV folder present, STREAM clips missing): the card says exactly that instead of a mystery error code.</p>
-  <div class="note"><p><strong>Posters:</strong> ISO rows keep the glyph placeholder on purpose — spinning up the whole disc stack just to paint a list row isn't worth the stutter (see <a href="#club">The Club</a>).</p></div>
+  <p class="kicker">09 · discs</p>
+  <h2>Blu-ray ISO, MVC &amp; physical DVD</h2>
+  <p class="lede">Decrypted Blu-ray images can stream locally or from SMB. Quest code 27 and Galaxy code 10027 carry the narrow, fail-closed local 3D MVC path; Quest also has exact SMB MVC and USB DVD device proof.</p>
+
+  <h3>Decrypted Blu-ray ISO</h3>
+  <p>Drop a decrypted BDMV ISO into a local folder or SMB share and it appears in the vault like any other title. Finally walks UDF, resolves a playlist, and presents compatible base video/audio through the normal player. NAS ISOs stream in place; the image is not copied to the headset. An incomplete image is refused with a plain-language card.</p>
+  <div class="note warn"><p><strong>No decryption bypass.</strong> AACS-protected Blu-rays do not play. Finally contains no AACS keys or implementation. The ISO must already contain plaintext media you are authorized to use.</p></div>
+
+  <h3>Quest and Galaxy XR 3D Blu-ray H.264/MVC</h3>
+  <p>The narrow path is named <strong>Chloe MVC Engine 1</strong>. It reads an eligible SSIF title from a complete Blu-ray ISO, decodes MVC video through <code>edge264</code> (BSD), uses FFmpeg 8.1.1 (LGPL) for BDAV/audio support, and submits separate decoded eye views through OpenXR. Local playback has physical proof on Quest 3 and Galaxy XR; Quest also has exact SMB proof.</p>
+  <ol class="steps">
+    <li>Open a complete, decrypted 3D Blu-ray MVC/SSIF ISO locally on Quest or Galaxy XR. Quest may also use a configured SMB source.</li>
+    <li>Start at <code>0:00</code>; disable Resume or restart if a nonzero position is saved.</li>
+    <li>Keep speed at <code>1.0×</code>.</li>
+    <li>Do not seek if you need MVC stereo to remain active in this candidate.</li>
+  </ol>
+  <p>A seek, non-1.0× speed, nonzero start, incomplete SSIF layout, unsupported target, or runtime health failure ends MVC promotion and leaves the AVC base view instead of displaying stale or unpaired eyes. Direct MVC MKV and standalone SSIF opening are not included. ISO subtitle rendering is disabled.</p>
+  <p>The exact 270,008,320-byte technical ISO selected <code>00000.mpls</code>, traversed one 268,234,752-byte SSIF, and delivered 252,359,216 Annex-B bytes / 1,440 authored stereo pairs. Quest's A4b run advanced 60.018291 seconds of media in 60.032 seconds wall time (0.999772×) and averaged 72.45 OpenXR FPS at a 72 Hz target. Final local OpenXR regressions completed in 61.032 seconds on Quest and 60.766 seconds on Galaxy XR.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th scope="col">Local Club A/V</th><th scope="col">Quest 3</th><th scope="col">Galaxy XR</th></tr></thead>
+    <tbody>
+      <tr><td>Samples</td><td>217</td><td>213</td></tr>
+      <tr><td>Median MVC − Media3</td><td>+1.666 ms</td><td>+61.375 ms</td></tr>
+      <tr><td>p95 absolute offset</td><td>24.875 ms</td><td>83.125 ms</td></tr>
+      <tr><td>Start-to-end drift</td><td>−11.333 ms</td><td>−7.291 ms</td></tr>
+      <tr><td>Faults / underflows / late pairs</td><td>0 / 0 / 0</td><td>0 / 0 / 0</td></tr>
+      <tr><td>Intentional startup catch-up</td><td>0 pairs</td><td>13 pairs, separately classified</td></tr>
+    </tbody>
+  </table></div>
+  <p>Both used AC-3 5.1 (six channels, 48 kHz) through <code>c2.dolby.eac3.decoder</code>. The one-shot anchor uses the real Media3 position plus the live monotonic clock; startup catch-up is not mislabeled as runtime lateness.</p>
+  <p>Quest's exact SMB gate matched all 270,008,320 remote bytes, measured 109.047 Mbps payload over wall time, resolved the title in 465 ms, produced first stereo in 1,097 ms, and delivered all 1,440 pairs at 0.9999× / 72.0355 submitted FPS with zero late pairs, underflow, or faults. A repeat attempt completed 16 consecutive runs before one final-snapshot classification race; that run's finalized manifest was clean at 1,440/1,440. After the classifier fix, another exact Quest SMB run completed cleanly at 1,440/1,440.</p>
+  <div class="note warn"><p><strong>Exact boundary.</strong> These receipts cover one short technical ISO. They do not claim feature-length endurance, seeking/resume, reconnect, every authored disc, protected media, broad NAS compatibility, or universal stereo comfort. Galaxy SMB was not physically rerun and is not claimed; skipped long soaks are not presented as release blockers.</p></div>
+
+  <h3>USB DVD-Video on Quest</h3>
+  <ol class="steps">
+    <li>Connect a compatible mobile optical drive to Quest through a data-capable USB-C/OTG path; provide external power if spin-up is unreliable.</li>
+    <li>Insert a DVD-Video disc.</li>
+    <li>Open <strong>Sources → Open DVD / VIDEO_TS → USB DVD drive · direct from disc</strong> and grant Android USB permission.</li>
+    <li>Choose a discovered title set. Finally validates clear sectors before playback.</li>
+    <li>Play, pause, and seek normally on an admitted title.</li>
+  </ol>
+  <p>One Quest 3/mobile-drive/clear-disc route physically traversed USB mass storage and SCSI, found ISO9660 <code>VIDEO_TS</code>, rendered MPEG-2 720×480 with AC-3 stereo, sought, rendered again, and resumed. This does <strong>not</strong> claim CSS decryption, menus, complete chapter/title navigation, every UDF-only layout, long endurance, or Galaxy XR optical playback.</p>
+  <div class="note"><p><strong>Posters:</strong> ISO rows keep the glyph placeholder so the vault never spins up the entire disc stack just to decorate a list row.</p></div>
+</section>
+
+<section id="watch">
+  <p class="kicker">10 · two headsets</p>
+  <h2>Watch Together</h2>
+  <p class="lede">Synchronize two supported headsets on one private LAN. Each headset plays the exact same local media bytes.</p>
+  <h3>Host</h3>
+  <ol class="steps">
+    <li>Open the title, choose <span class="chip">WATCH</span>, then <strong>HOST A ROOM</strong>.</li>
+    <li>Give the follower the displayed room code. If discovery is blocked, also give them the displayed private <code>IP:port</code>.</li>
+    <li>Compare the complete pairing code aloud and choose <strong>CODES MATCH</strong> only when both headsets agree.</li>
+    <li>The host owns play, pause, and seek while the room is active.</li>
+  </ol>
+  <h3>Join</h3>
+  <ol class="steps">
+    <li>Make the byte-identical file available on the second headset.</li>
+    <li>Choose <strong>JOIN ROOM</strong>, enter the room code, and use the direct <code>IP:port</code> fallback when multicast discovery is unavailable.</li>
+    <li>Compare and confirm the same pairing code on both devices.</li>
+    <li>If <code>MEDIA_MISMATCH</code> appears, select the exact matching file; a matching filename is not enough.</li>
+  </ol>
+  <p>The follower's transport controls remain locked until it leaves the room. Pairing uses TLS 1.3 mutual authentication, exact peer-certificate pinning, and a bilateral short authentication string. A physical production-UI run passed with Quest 3 hosting and Galaxy XR following, including explicit-IP fallback, wrong-media rejection, and play/pause/seek propagation.</p>
+  <div class="note warn"><p><strong>Boundary:</strong> Watch Together is two-device, same-LAN, exact-media synchronization. It does not relay the movie, stream over the Internet, synchronize different files, or create a large party room.</p></div>
 </section>
 
 <section id="room">
-  <p class="kicker">09 · mixed reality</p>
+  <p class="kicker">11 · mixed reality</p>
   <h2>Your room</h2>
   <p class="lede">Passthrough puts the video in your actual space. The keying suite makes it belong there.</p>
   <p>Toggle <span class="chip">◎ ROOM</span> in the lobby (persisted as your default) or <span class="chip">PASSTHRU</span> while playing. Then, on COLOR / KEY:</p>
@@ -517,15 +703,24 @@
 </section>
 
 <section id="worlds">
-  <p class="kicker">10 · environments</p>
+  <p class="kicker">12 · environments</p>
   <h2>Worlds</h2>
-  <p class="lede">The lobby dome is an 8K 360 photo — and it's a drop-in slot.</p>
-  <p>The <span class="chip">✦ WORLD</span> chip cycles the lobby environment through the bundled worlds <em>plus anything you put in</em> <span class="path">Movies/Finally/environments</span> — any equirect 360 image (<code>jpg</code> / <code>png</code> / <code>webp</code>, up to 8192×4096). Drop a skybox in the folder and it's a world. Your selection persists across sessions.</p>
-  <p>AI skybox generators, panorama apps, and 360 cameras all output exactly this format — your lobby can be anywhere.</p>
+  <p class="lede">The lobby dome is an 8K 360 photo, selected directly from a responsive ROOMS grid.</p>
+  <p>Press <span class="chip">✦ WORLD</span> to open <strong>ROOMS</strong>. The current seven-choice layout wraps four-by-two at the production panel size and reflows to three columns on narrower panels, with no horizontal paging. Each room is a separate large pinch/controller target; the exact selection persists across sessions.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th scope="col">Room</th><th scope="col">What it is</th></tr></thead>
+    <tbody>
+      <tr><td>ASH AIRFOIL LOFT</td><td><strong>SMITHTOWN, NY · 180° PHOTO STAGE</strong> — the real studio photograph staged across the front 180° × 90° on an 8192×4096 dark-neutral canvas</td></tr>
+      <tr><td>LOFT NIGHT</td><td><strong>NEON PENTHOUSE</strong> — the generated high-end night environment</td></tr>
+      <tr><td>REFERENCE DARK</td><td>A low-distraction dark theater reference</td></tr>
+    </tbody>
+  </table></div>
+  <p>Add your own equirectangular <code>jpg</code>, <code>png</code>, or <code>webp</code> images under <span class="path">Movies/Finally/environments</span>; user rooms follow the bundled catalog. The measured responsive layout covers seven visible choices, not an unlimited user-room overflow promise.</p>
+  <p><span class="chip">ROOM DIM</span> is saved separately from the room. The lobby shortcut cycles 100 / 75 / 50 / 25 / 0%; the playback picture slider exposes 0–100% in 5% steps. It dims the environment/passthrough layer only—not the media, subtitles, or UI.</p>
 </section>
 
 <section id="photos">
-  <p class="kicker">11 · stills</p>
+  <p class="kicker">13 · stills</p>
   <h2>Photos</h2>
   <p class="lede">Same vault, same lenses, same dome — full resolution.</p>
   <p>Stills live in the library beside videos and project through the identical lens system: a VR180 photo wraps the half-dome, a flat photo is a panel you can place and curve. The transport row politely dims (<span class="chip">◆ PHOTO</span>) since speed and seek mean nothing to a photograph. On a photo, <span class="key">B</span> opens the full cockpit directly — the quick strip is transport, and a still doesn't need one. Camera originals render at full sensor resolution on the dome — up to 8192px wide.</p>
@@ -534,7 +729,7 @@
 </section>
 
 <section id="loops">
-  <p class="kicker">12 · playback</p>
+  <p class="kicker">14 · playback</p>
   <h2>Loops, seeking &amp; sound</h2>
   <h3>A–B loops, and then some</h3>
   <p>Set <span class="chip">A</span>, then <span class="chip">B</span> — hard loop. Add <span class="chip">C</span> and <span class="chip">D</span> — <strong>cascade</strong>: A→B jumps to C, C→D jumps back to A, forever. Seek far past an end marker to escape; <span class="chip">Clear</span> wipes the marks; loops reset when you change titles.</p>
@@ -549,7 +744,7 @@
 </section>
 
 <section id="themes">
-  <p class="kicker">13 · skins</p>
+  <p class="kicker">15 · skins</p>
   <h2>Themes</h2>
   <p class="lede">Eight cockpit skins. Two of them are love letters to air traffic control.</p>
   <div class="tbl-wrap"><table>
@@ -568,44 +763,176 @@
 </section>
 
 <section id="platforms">
-  <p class="kicker">14 · devices</p>
+  <p class="kicker">16 · devices</p>
   <h2>Quest vs Galaxy XR</h2>
+  <p class="lede">Shared product core, separate artifacts and separate proof boundaries.</p>
   <div class="tbl-wrap"><table>
-    <thead><tr><th></th><th>Meta Quest</th><th>Samsung Galaxy XR</th></tr></thead>
+    <thead><tr><th scope="col">Capability</th><th scope="col">Meta Quest</th><th scope="col">Samsung Galaxy XR</th></tr></thead>
     <tbody>
+      <tr><td>Code-27 identity</td><td><code>0.3.21-m3</code>, version code 27</td><td><code>0.3.21-m3</code>, version code 10027</td></tr>
+      <tr><td>Distribution</td><td>Meta Horizon Store is the public product path; its live build may be older until code 27 is signed and published</td><td>Developer / bring-up target until a separate listing or tester channel is published</td></tr>
       <tr><td>Launch</td><td>Straight into the Club (when your vault has titles)</td><td>Library first — tap <span class="chip">ENTER THE CLUB</span></td></tr>
       <tr><td>Passthrough</td><td>Meta passthrough layer</td><td>System blend-through — same controls, same keying</td></tr>
-      <tr><td>Refresh</td><td>Matched to content: 24 fps → 72 Hz, 30 → 90, 60 → 120</td><td>Same matching with a 72 Hz floor (the micro-OLED panel flickers at 60)</td></tr>
+      <tr><td>AFR</td><td colspan="2">Finally sends a cadence-aware hint; Android/runtime chooses the actual mode. Trust the Stats HUD's current reported display rate, not the requested target</td></tr>
+      <tr><td>Hardware AV1</td><td>Physical Main 8 and Main 10 HDR10 first-frame/seek gate passed</td><td>Physical Main 8 and Main 10 HDR10 first-frame/seek gate passed</td></tr>
+      <tr><td>Watch Together</td><td>Physical production UI passed as host</td><td>Physical production UI passed as follower</td></tr>
+      <tr><td>3D Blu-ray MVC ISO</td><td>Exact local and SMB Quest 3 gates passed; narrow restrictions apply</td><td>Exact local OpenXR and Club A/V gates passed; Galaxy SMB was not physically rerun and is not claimed</td></tr>
+      <tr><td>USB DVD-Video</td><td>Exact clear-disc Quest 3 candidate gate passed</td><td><strong>Not claimed in this manual</strong></td></tr>
       <tr><td>Exit label</td><td><span class="chip">LEAVE → QUEST</span></td><td><span class="chip">LEAVE → HOME</span></td></tr>
       <tr><td>Controllers</td><td>Touch — full map incl. <span class="key">Y</span> eye-swap</td><td>Standard profile — every control still reachable via menu</td></tr>
     </tbody>
   </table></div>
-  <p>One vault, one brain, one manual — the app is the same on both. NTSC rates (23.976 / 29.97 / 59.94) count as their round siblings for refresh matching.</p>
+  <p>The daily-use and source work shares one codebase, but a device claim changes only after that target has its own physical evidence. Galaxy local MVC is listed because its OpenXR and Club A/V paths were physically run—not because Quest passed. NTSC cadences such as 23.976, 29.97, and 59.94 are normalized for refresh matching.</p>
+</section>
+
+<section id="specs">
+  <p class="kicker">17 · measured appendix</p>
+  <h2>Testing &amp; technical specifications</h2>
+  <p class="lede">Measured receipts, real parameters, and explicit limits—the part of the manual that reads like the sheet packed with a serious lens or microphone.</p>
+  <div class="note"><p><strong>Evidence language.</strong> <em>Device</em> means the named physical headset executed the path. <em>Device + observer</em> adds a human inspection of that exact run. <em>Host</em> means deterministic workstation/JVM/native coverage. One fixture proves that fixture and path; it does not silently become universal codec, NAS, disc, thermal, or comfort support.</p></div>
+
+  <h3>Recorded lab</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th scope="col">Field</th><th scope="col">Recorded condition</th></tr></thead>
+    <tbody>
+      <tr><td>Facility / date</td><td>Ash Airfoil Tailstrike Studio Loft, Smithtown, New York, USA · 2026-07-28</td></tr>
+      <tr><td>Primary headset</td><td>Meta Quest 3 (<code>eureka</code>), Android API 34</td></tr>
+      <tr><td>Second headset</td><td>Samsung Galaxy XR / SM-I610 (<code>xrvst2</code>), Android 14</td></tr>
+      <tr><td>Optical path</td><td>PLDS DVD-RW DS8A8SH mobile USB drive · clear-sector <code>STEVE_LUKATHER</code> DVD-Video</td></tr>
+      <tr><td>Lab host</td><td>ASUS G835LX · Intel Core Ultra 9 275HX (24 cores / 24 logical processors) · NVIDIA GeForce RTX 5090 Laptop GPU · 32 GiB · Windows 11 Pro build 26200</td></tr>
+      <tr><td>Host boundary</td><td>The 5090 generates fixtures, hashes, builds, and decoder-oracle results. It is not in the standalone-headset playback path and is never equated with Quest/Galaxy performance.</td></tr>
+      <tr><td>Power / ambient</td><td>Headsets were externally powered during bench work. Controlled battery-drain and ambient-temperature series were not recorded.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Playback and transport parameters</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th scope="col">Subsystem</th><th scope="col">Code-27 parameter</th></tr></thead>
+    <tbody>
+      <tr><td>Chloe MVC Engine 1</td><td><code>edge264</code> MVC video (BSD) · FFmpeg 8.1.1 BDAV/audio support (LGPL) · four measured workers · bounded 16-pair queue · hardened 15-pair startup prebuffer</td></tr>
+      <tr><td>SMB segment / hot RAM</td><td>1 MiB segments · eight hot segments (about 8 MiB) · 32 MiB RAM-only window ceiling</td></tr>
+      <tr><td>SMB spool / read-ahead</td><td>64–128 MiB spool window · at most two parallel read-ahead requests · 10-second target horizon</td></tr>
+      <tr><td>SMB no-progress policy</td><td>20-second no-progress deadline · 60-second trickle deadline · in-flight reads cancel on close</td></tr>
+      <tr><td>Large-library gate</td><td>54,321 files / 3,400 folders / three resumable pages · 2,000-entry immediate browse cap · 25,000-file and 10,000-directory recursive page caps</td></tr>
+      <tr><td>ROOM DIM</td><td>Persisted 0–100%, snapped to 5-point steps; lobby presets 100 / 75 / 50 / 25 / 0; media/subtitle/UI grade remains independent</td></tr>
+      <tr><td>Haptic strength</td><td>Persisted OFF–100% pulse scale independent of the master toggle · Quest default 100% · Galaxy XR default 55%</td></tr>
+      <tr><td>Support ZIP</td><td>Typed UTF-8 archive capped at 1,572,864 bytes · email → generic share sheet → manual saved-file fallback · no silent send/upload</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Measurement register</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th scope="col">Program</th><th scope="col">Tier</th><th scope="col">Exact result</th><th scope="col">Boundary</th></tr></thead>
+    <tbody>
+      <tr><td>Quest 8K HEVC torture fixture</td><td>Device</td><td>8192×4096/30 HEVC Main 10 at ~156.7 Mbps; first frame, PGS exposure, seek, second frame, clock recovery</td><td>Short local gate; not thermal/endurance or blanket subtitle approval</td></tr>
+      <tr><td>Quest clear USB DVD</td><td>Device</td><td>MPEG-2 720×480 + AC-3 stereo; first Surface frame, seek to 1,883,538 ms, second frame, clock recovery</td><td>One clear disc/title set; no CSS, menus, authored navigation, UDF-only breadth, or Galaxy optical claim</td></tr>
+      <tr><td>Quest local MVC A4b</td><td>Device + observer</td><td>1,440/1,440 pairs; 0.999772× media/wall; 72.45 average FPS at 72 Hz; exact short title accepted on head</td><td>One short ISO, not feature-length comfort</td></tr>
+      <tr><td>Quest local MVC Club A/V</td><td>Device</td><td>217 samples; +1.666 ms median; 24.875 ms p95 absolute; −11.333 ms drift; zero faults/underflows/late pairs</td><td>One local AC-3 5.1 fixture</td></tr>
+      <tr><td>Galaxy local MVC OpenXR</td><td>Device + observer</td><td><code>OK (1 test)</code> in 60.766 s; exact fixture inspected on head</td><td>Local short title; Galaxy SMB not rerun</td></tr>
+      <tr><td>Galaxy local MVC Club A/V</td><td>Device</td><td>213 samples; +61.375 ms median; 83.125 ms p95 absolute; −7.291 ms drift; zero faults/underflows/late pairs</td><td>13 intentional startup catch-up pairs classified separately</td></tr>
+      <tr><td>Quest exact SMB MVC</td><td>Device</td><td>270,008,320-byte identity match; 109.047 Mbps wall payload; first stereo 1,097 ms; 1,440/1,440 at 0.9999× / 72.0355 FPS</td><td>Exact fixture and one private NAS path; no broad-NAS claim</td></tr>
+      <tr><td>Quest SMB repeat attempt</td><td>Device</td><td>16 consecutive passes; run 17 classification race but finalized 1,440/1,440 clean; later exact post-fix run 1,440/1,440 clean</td><td>Not represented as a 22-run or endurance result</td></tr>
+      <tr><td>Watch Together</td><td>Device, both</td><td>Quest host / Galaxy follower; mutual TLS, exact pinning/SAS, mismatch rejection, play/pause/seek; 13–33 ms focused LAN round trips</td><td>Two peers, same LAN, same bytes; no relay/Internet room</td></tr>
+      <tr><td>Hardware AV1</td><td>Device, both</td><td>Main 8 and Main 10 HDR10 1080p60; Qualcomm hardware decoder; first frame, 4,000-ms seek, second frame, clock recovery</td><td>No 4K/8K, HDR-output accuracy, network, or long soak claim</td></tr>
+      <tr><td>First-run tutorial</td><td>Device, both</td><td>Six cards, practice target, Next and Back passed</td><td>Finish/Skip and complete human walkthrough not exercised</td></tr>
+      <tr><td>Late controls</td><td>Host + source</td><td>17/17: haptics 5, bug fallback 5, quick-PRO 4, room grid 3</td><td>Final device smoke remains separate</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Real benchmark plots</h3>
+  <div class="figure-grid">
+    <figure class="bench">
+      <img src="assets/benchmarks/mvc-iso-realtime-progression.svg" alt="Quest 3 MVC ISO media-to-wall realtime ratio progressing from 0.396 in A2 to 0.93492 in A3 and 0.999772 in A4b" loading="lazy" decoding="async">
+      <figcaption>Same exact Quest ISO across three engineering runs. The straight lines connect discrete tests; they do not imply unmeasured intermediate performance.</figcaption>
+    </figure>
+    <figure class="bench">
+      <img src="assets/benchmarks/mvc-headless-worker-throughput.svg" alt="Quest 3 headless MVC throughput comparison for automatic, six-worker, and four-worker decoder policies" loading="lazy" decoding="async">
+      <figcaption>Four workers retained essentially the same decode throughput while reserving headset compute for OpenXR and audio.</figcaption>
+    </figure>
+    <figure class="bench">
+      <img src="assets/benchmarks/mvc-a4b-vrapi-telemetry.svg" alt="Sixty seconds of Quest 3 MVC A4b OpenXR telemetry including FPS, stale frames, app time, CPU plus GPU time, and reported temperature" loading="lazy" decoding="async">
+      <figcaption>All 60 one-second A4b samples: 72–73 FPS against 72 Hz, 35 stale frames total, 1.120 ms average app time, and 4.60 ms maximum CPU+GPU. The short 48 °C trace is not a thermal soak.</figcaption>
+    </figure>
+    <figure class="bench">
+      <img src="assets/benchmarks/watch-together-lan-round-trip.svg" alt="Focused private-LAN Watch Together control round trips between Quest 3 and Galaxy XR ranging from 13 to 33 milliseconds" loading="lazy" decoding="async">
+      <figcaption>Quest 3 ↔ Galaxy XR focused control acknowledgements on one private LAN. These are control round trips, not media-relay latency.</figcaption>
+    </figure>
+  </div>
+  <a class="download" href="assets/benchmarks/mvc-a4b-vrapi-60s.csv" download>Download A4b 60-second telemetry CSV</a>
+
+  <h3>Authored room asset identities</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th scope="col">Room</th><th scope="col">Image</th><th scope="col">SHA-256</th><th scope="col">Orientation note</th></tr></thead>
+    <tbody>
+      <tr><td>ASH AIRFOIL LOFT</td><td>8192×4096 sRGB JPEG · 908,303 bytes</td><td><code>975CC2B3F539F58920C232E362A121BC6DE13400C2F64265169D0793E35E6482</code></td><td>Front 180° × 90° photo stage on a dark-neutral canvas; pre-flipped once for the native environment mirror</td></tr>
+      <tr><td>LOFT NIGHT</td><td>8192×4096 JPEG · 4,268,007 bytes</td><td><code>580A8F880F3E6BC1316401B59AD39B5EBB328680AD194FF1C7C55E0E300C7D62</code></td><td>Authored orientation</td></tr>
+      <tr><td>REFERENCE DARK</td><td>8192×4096 JPEG · 3,640,704 bytes</td><td><code>D88B7EBA4C86AD378932FF1F8A9114DCD7F91FBD103246F03302AF59334E12AD</code></td><td>Authored orientation</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="note warn"><p><strong>What is not inferred.</strong> No plot is fabricated for an unmeasured long soak. Galaxy SMB, broad NAS/title compatibility, feature-length MVC comfort, protected discs, Internet watch rooms, 4K/8K AV1, and full DVD navigation remain outside the evidence. Those are claim boundaries—not hidden prerequisites added to the signed-artifact and storefront process.</p></div>
 </section>
 
 <section id="fixit">
-  <p class="kicker">15 · troubleshooting</p>
+  <p class="kicker">18 · troubleshooting</p>
   <h2>Fix it</h2>
   <div class="tbl-wrap"><table>
-    <thead><tr><th>Symptom</th><th>Fix</th></tr></thead>
+    <thead><tr><th scope="col">Symptom</th><th scope="col">Fix</th></tr></thead>
     <tbody>
       <tr><td>Warped shape</td><td>PLAY → <span class="chip">AUTO</span> to re-detect — or audition the lens row (a "slightly zoomed" fisheye is usually 180 vs 190)</td></tr>
       <tr><td>Double vision</td><td>PLAY → <span class="chip">Eyes</span> · or <span class="chip">AUTO</span></td></tr>
       <tr><td>Eye strain</td><td>PLACE / EYES → depth position and eye height · <span class="chip">Reset place + eyes</span></td></tr>
       <tr><td>Ends instantly</td><td>Resume was at the last frame — the next open starts clean</td></tr>
       <tr><td>Silent MKV</td><td>Shouldn't happen — software decode covers AC-3 / DTS. Check mute and volume, then report it</td></tr>
-      <tr><td>NAS won't connect</td><td>Share <em>name</em> not path · same network · VPN off on the PC · check share permissions — and use the form's <strong>Test</strong> button, it tells you exactly what's wrong</td></tr>
+      <tr><td>NAS won't connect</td><td>Use the SMB share <em>name</em>, with any subfolder in <strong>Folder</strong>; keep the headset on the same LAN, check permissions/SMB2-3, disable network isolation or VPN interference, then use <strong>Test</strong></td></tr>
       <tr><td>REBUFFERING banner</td><td>The stream stalled — wait. Finally reconnects for ~45 s and resumes by itself; if the NAS is truly gone, the reason lands on the vault panel</td></tr>
-      <tr><td>Files missing after a scan</td><td>Read the scan report — it names locked folders and counts skipped types. If the scan stopped at the 25,000-file cap, it names the folders it never reached — aim the <strong>Folder</strong> field there. <code>wmv</code>/<code>asf</code> are never listed (no decoder)</td></tr>
+      <tr><td>NAS connects but folders are missing</td><td>Confirm <strong>Shared folder</strong> versus <strong>Folder</strong>, use <strong>Browse instantly</strong>, then resume indexing if the report names a continuation or inaccessible directory</td></tr>
+      <tr><td>Whole-share scan takes minutes</td><td>Browse the required folder immediately; recursive indexing is optional and resumable</td></tr>
+      <tr><td>SMB buffers every few seconds</td><td>Open Stats HUD, compare sustained throughput with content bitrate, choose a larger NAS buffer for the next open, check Wi-Fi interference/disk sleep, then test the same file locally</td></tr>
+      <tr><td><code>TARGET … · NOT LOCKED</code></td><td>Android has not reported the requested mode as current. AFR does not interpolate frames, and Finally does not call a requested rate “locked”</td></tr>
       <tr><td>A video vanished from the lists</td><td>It auto-detected as mono (a whole-word <code>mono</code> filename tag) — the vault footer counts it as <em>MONO hidden</em>. Rename the file to bring it back; titles with your saved settings are never hidden</td></tr>
-      <tr><td>ISO won't play</td><td>Read the amber card — an AACS-encrypted image needs a MakeMKV rip first, and DVD ISOs aren't supported yet (see <a href="#iso">Blu-ray ISO</a>)</td></tr>
+      <tr><td>Subtitle track is absent</td><td>For a local/SMB sidecar, match the complete video stem, use SRT/VTT/ASS/SSA, keep it under 4 MiB, and place it beside the title; ISO and other network sources do not discover sidecars here</td></tr>
+      <tr><td><code>SUBS · ISO N/A</code></td><td>Expected in code 27: ISO text/PGS rendering is intentionally disabled</td></tr>
+      <tr><td>3D Blu-ray ISO opens in 2D</td><td>For Quest/Galaxy local playback, use a complete decrypted MVC/SSIF ISO, begin at 0, disable Resume, and keep speed at 1.0×. Galaxy SMB was not physically rerun</td></tr>
+      <tr><td>MVC becomes 2D after seek/speed change</td><td>Expected fail-closed behavior; reopen from 0 at 1.0× to re-enter MVC</td></tr>
+      <tr><td>USB DVD drive is not listed</td><td>Confirm a data-capable USB-C/OTG connection, adequate power, Android USB permission, and a ready disc</td></tr>
+      <tr><td>DVD is refused after discovery</td><td>The current path needs clear readable sectors and an ISO9660 <code>VIDEO_TS</code> bridge; CSS/encrypted and some UDF-only discs are outside it</td></tr>
+      <tr><td>Watch Together cannot discover host</td><td>Keep both devices on the same private LAN and use the displayed direct <code>IP:port</code> fallback</td></tr>
+      <tr><td><code>MEDIA_MISMATCH</code></td><td>Select the byte-identical file on both headsets; matching names are insufficient</td></tr>
+      <tr><td>DELETE is unavailable/refused</td><td>Only a validated local video can be permanently deleted. Server, folder, disc, ISO, cloud, traversal, and mismatched-root targets fail closed</td></tr>
+      <tr><td>AV1 decoder error</td><td>The exact profile, level, resolution, or bit depth may exceed the hardware path exposed by that headset; attach a bounded report and test a smaller known-good AV1 file</td></tr>
       <tr><td>Seek lands off a beat</td><td>FAST landing snaps to keyframes for speed — lobby <span class="chip">🎛 SET</span> → <em>Seek landing</em> → EXACT for frame-perfect</td></tr>
       <tr><td>File won't open</td><td>Finally names the reason in plain language on the vault panel — a truncated download is the usual culprit</td></tr>
       <tr><td>A photo won't open</td><td>The amber card says it plainly — <em>"Couldn't decode this image — it may be corrupt or not really a photo."</em> Usually a truncated copy or a file that isn't really an image; re-copy or re-export it</td></tr>
       <tr><td>Missing controls</td><td>You're in SIMPLE mode — tap <span class="chip">PRO</span> in the cockpit tab row, or lobby <span class="chip">🎛 SET</span> → <em>Menu style</em></td></tr>
     </tbody>
   </table></div>
-  <p>Still stuck? <a href="mailto:coldbricks@gmail.com">coldbricks@gmail.com</a> — reports go to a person, not a queue.</p>
+  <p>Still stuck? Use the privacy-bounded report below or email <a href="mailto:coldbricks@gmail.com">coldbricks@gmail.com</a> — reports go to a person, not a queue.</p>
+</section>
+
+<section id="diagnostics">
+  <p class="kicker">19 · support</p>
+  <h2>Submit a bug report</h2>
+  <p class="lede">One explicit action creates a small privacy-bounded ZIP. Nothing is silently sent or uploaded.</p>
+  <ol class="steps">
+    <li>Reproduce the problem if it is safe.</li>
+    <li>Choose <strong>PRO → SET → SUBMIT BUG REPORT</strong>. The same action appears beneath Stats HUD.</li>
+    <li>Finally writes the ZIP under <span class="path">Downloads/Finally Support</span>.</li>
+    <li>If an email composer is installed, Finally opens it for <a href="mailto:coldbricks@gmail.com">coldbricks@gmail.com</a>. Otherwise it tries the generic Android share sheet with the ZIP attached.</li>
+    <li>Describe what happened, verify the attachment, choose the destination, and press Send yourself.</li>
+  </ol>
+  <p>The fixed-format archive is capped at 1,572,864 bytes. It can contain build/device/library counts, allowlisted settings, bounded app events, current playback scalar facts, and bounded playback-truth receipts such as codec family, dimensions, cadence, bitrate, buffer, dropped-frame, or rebuffer counters.</p>
+  <p>It excludes raw paths, URIs, filenames, NAS/server/share names, usernames, credentials, IP addresses, media bytes, arbitrary logcat, exception messages, DRM data, and decoder initialization blobs. Needed correlations become bundle-local opaque identifiers, not stable exported IDs.</p>
+  <div class="note"><p><strong>You remain in control.</strong> Creating the ZIP does not email it. Handoff order is email composer → generic Android share sheet → manual. If neither app path is available, the ZIP remains under <span class="path">Downloads/Finally Support</span> and the Club shows its filename, folder, and <a href="mailto:coldbricks@gmail.com">coldbricks@gmail.com</a> for manual attachment. The bundle path has physical Quest MediaStore evidence; the fallback policy is host-tested and still needs final Galaxy device smoke.</p></div>
+  <h3>Useful context to add</h3>
+  <ul>
+    <li>Finally version/target shown in the Club, headset model, and OS version.</li>
+    <li>Source class: local, SMB, FTP, WebDAV, Plex, Stash, link, ISO, or DVD.</li>
+    <li>Container/codec and approximate resolution or bitrate when known.</li>
+    <li>The exact actions immediately before failure and whether the same file works locally.</li>
+    <li>For picture issues: projection, stereo packing, eye order, and Stats HUD DISPLAY/CONTENT rows.</li>
+    <li>For NAS issues: whether Test, Browse instantly, or Index entire source failed. Never include a password.</li>
+  </ul>
 </section>
 
 <hr class="sep">
@@ -636,10 +963,11 @@
 </section>
 
 <section id="privacy">
-  <p class="kicker">16 · the promise</p>
+  <p class="kicker">20 · the promise</p>
   <h2>Privacy &amp; about</h2>
   <p class="lede">No account. No cloud. No analytics. Airplane mode is fine.</p>
-  <p>Your vault, your settings, your NAS credentials — all of it stays on your hardware. The network is used exactly once: to stream from sources <em>you</em> configure, on <em>your</em> network. Full policy: <a href="https://coldbricks.github.io/finally/privacy/">coldbricks.github.io/finally/privacy</a>.</p>
+  <p>Your vault, settings, and source credentials stay on your hardware. Finally uses the network only for sources you configure and private-LAN features you explicitly start, such as SMB playback or Watch Together. There is no Finally account, catalog funnel, silent telemetry, or automatic diagnostic upload. Full policy: <a href="https://finallyvr.com/finally/privacy/">finallyvr.com/finally/privacy</a>.</p>
+  <p>Do not use plain FTP or acknowledged plain HTTP outside a private network you control. Never accept a Watch Together pairing code that differs between headsets. Finally provides no CSS or Blu-ray decryption; use only media you are authorized to access.</p>
   <p><strong>Decode:</strong> MediaCodec hardware path with decoder fallback; FFmpeg software audio where hardware can't. <strong>Sisters:</strong> Finally is built alongside ChloeVibes and ChloeVR in the same shop.</p>
   <div class="note love"><p>DEVELOPED AND BUILT IN NEW YORK<br>BY THE PERSON WHO NEEDED A BETTER APP</p></div>
 </section>
@@ -648,7 +976,7 @@
 </div>
 
 <footer>
-  <div>Finally — VR video player · <a href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Meta Horizon Store</a> · <a href="https://coldbricks.github.io/finally/privacy/">Privacy</a> · <a href="mailto:coldbricks@gmail.com">Support</a></div>
+  <div>Finally — VR video player · <a href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Meta Horizon Store</a> · <a href="https://finallyvr.com/finally/privacy/">Privacy</a> · <a href="mailto:coldbricks@gmail.com">Support</a></div>
   <div>Still stuck? Email <a href="mailto:coldbricks@gmail.com">coldbricks@gmail.com</a> — a human reads it.</div>
   <div class="credits">© Coldbricks · Long Island, New York</div>
 </footer>

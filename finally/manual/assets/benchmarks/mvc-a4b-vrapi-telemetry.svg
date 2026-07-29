@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 930" role="img" aria-labelledby="title desc">
+  <title id="title">Quest 3 MVC A4b 60-second VrApi telemetry</title>
+  <desc id="desc">Sixty one-second samples show 72 to 73 frames per second against a 72 hertz target, 35 stale frames total with a maximum of 4 in one sample, app time averaging 1.120 milliseconds with a maximum of 3.64, CPU plus GPU time no higher than 4.60 milliseconds, and a constant reported 48 degrees Celsius. This short run is not a thermal soak.</desc>
+  <style>
+    svg { color: CanvasText; }
+    text { fill: currentColor; font-family: system-ui, sans-serif; font-weight: 400; }
+    .title { font-size: 28px; font-weight: 500; }
+    .subtitle, .caption, .tick, .legend { font-size: 16px; }
+    .panel-label, .axis-label { font-size: 18px; font-weight: 500; }
+    .grid { stroke: currentColor; stroke-width: 1; opacity: 0.14; }
+    .axis { stroke: currentColor; stroke-width: 1.5; opacity: 0.68; }
+    .reference { stroke: currentColor; stroke-width: 2; stroke-dasharray: 9 7; opacity: 0.48; }
+    .series { fill: none; stroke: currentColor; stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+    .secondary { fill: none; stroke: currentColor; stroke-width: 3; stroke-dasharray: 8 6; stroke-linejoin: round; stroke-linecap: round; opacity: 0.72; }
+  </style>
+
+  <text class="title" x="60" y="45">MVC A4b runtime measurement sheet</text>
+  <text class="subtitle" x="60" y="74">Quest 3 · 60 steady one-second VrApi samples · 2026-07-28 18:38:40–18:39:39 local</text>
+  <text class="subtitle" x="60" y="98">Official MVC ISO SHA-256 e1478208…edd87d71 · code 27 debug · four-worker product policy</text>
+
+  <line class="grid" x1="115" y1="130" x2="115" y2="840"/>
+  <line class="grid" x1="290.4" y1="130" x2="290.4" y2="840"/>
+  <line class="grid" x1="465.8" y1="130" x2="465.8" y2="840"/>
+  <line class="grid" x1="641.3" y1="130" x2="641.3" y2="840"/>
+  <line class="grid" x1="816.7" y1="130" x2="816.7" y2="840"/>
+  <line class="grid" x1="992.1" y1="130" x2="992.1" y2="840"/>
+  <line class="grid" x1="1150" y1="130" x2="1150" y2="840"/>
+
+  <!-- Panel 1: submitted FPS -->
+  <text class="panel-label" x="115" y="123">Submitted OpenXR cadence</text>
+  <line class="axis" x1="115" y1="130" x2="115" y2="260"/>
+  <line class="axis" x1="115" y1="260" x2="1150" y2="260"/>
+  <line class="grid" x1="115" y1="162.5" x2="1150" y2="162.5"/>
+  <line class="reference" x1="115" y1="227.5" x2="1150" y2="227.5"/>
+  <text class="tick" x="98" y="168" text-anchor="end">73</text>
+  <text class="tick" x="98" y="233" text-anchor="end">72</text>
+  <text class="tick" x="1142" y="220" text-anchor="end">72 Hz target</text>
+  <text class="axis-label" x="37" y="195" text-anchor="middle" transform="rotate(-90 37 195)">frames/s</text>
+  <path class="series" d="M115.0,227.5 L132.5,162.5 L150.1,227.5 L167.6,227.5 L185.2,227.5 L202.7,227.5 L220.3,227.5 L237.8,162.5 L255.3,227.5 L272.9,162.5 L290.4,227.5 L308.0,227.5 L325.5,162.5 L343.1,227.5 L360.6,227.5 L378.1,227.5 L395.7,162.5 L413.2,162.5 L430.8,162.5 L448.3,162.5 L465.8,227.5 L483.4,227.5 L500.9,162.5 L518.5,227.5 L536.0,162.5 L553.6,227.5 L571.1,227.5 L588.6,162.5 L606.2,227.5 L623.7,227.5 L641.3,162.5 L658.8,227.5 L676.4,227.5 L693.9,162.5 L711.4,162.5 L729.0,162.5 L746.5,227.5 L764.1,227.5 L781.6,162.5 L799.2,162.5 L816.7,227.5 L834.2,162.5 L851.8,227.5 L869.3,162.5 L886.9,162.5 L904.4,162.5 L921.9,162.5 L939.5,227.5 L957.0,162.5 L974.6,227.5 L992.1,162.5 L1009.7,227.5 L1027.2,227.5 L1044.7,227.5 L1062.3,162.5 L1079.8,162.5 L1097.4,227.5 L1114.9,227.5 L1132.5,227.5 L1150.0,162.5"/>
+  <text class="legend" x="1138" y="146" text-anchor="end">min 72 · max 73 · mean 72.45</text>
+
+  <!-- Panel 2: stale frames -->
+  <text class="panel-label" x="115" y="315">Stale frames per one-second sample</text>
+  <line class="axis" x1="115" y1="330" x2="115" y2="460"/>
+  <line class="axis" x1="115" y1="460" x2="1150" y2="460"/>
+  <line class="grid" x1="115" y1="395" x2="1150" y2="395"/>
+  <line class="grid" x1="115" y1="330" x2="1150" y2="330"/>
+  <text class="tick" x="98" y="466" text-anchor="end">0</text>
+  <text class="tick" x="98" y="401" text-anchor="end">2</text>
+  <text class="tick" x="98" y="336" text-anchor="end">4</text>
+  <text class="axis-label" x="37" y="395" text-anchor="middle" transform="rotate(-90 37 395)">frames</text>
+  <path class="series" d="M115.0,330.0 L132.5,460.0 L150.1,460.0 L167.6,460.0 L185.2,362.5 L202.7,460.0 L220.3,427.5 L237.8,427.5 L255.3,460.0 L272.9,460.0 L290.4,460.0 L308.0,427.5 L325.5,427.5 L343.1,427.5 L360.6,460.0 L378.1,427.5 L395.7,460.0 L413.2,460.0 L430.8,427.5 L448.3,460.0 L465.8,460.0 L483.4,427.5 L500.9,460.0 L518.5,427.5 L536.0,427.5 L553.6,427.5 L571.1,427.5 L588.6,460.0 L606.2,427.5 L623.7,460.0 L641.3,460.0 L658.8,460.0 L676.4,460.0 L693.9,460.0 L711.4,460.0 L729.0,460.0 L746.5,460.0 L764.1,460.0 L781.6,427.5 L799.2,460.0 L816.7,427.5 L834.2,362.5 L851.8,460.0 L869.3,427.5 L886.9,460.0 L904.4,460.0 L921.9,460.0 L939.5,427.5 L957.0,460.0 L974.6,395.0 L992.1,427.5 L1009.7,427.5 L1027.2,460.0 L1044.7,395.0 L1062.3,460.0 L1079.8,427.5 L1097.4,460.0 L1114.9,460.0 L1132.5,460.0 L1150.0,427.5"/>
+  <text class="legend" x="1138" y="349" text-anchor="end">35 total · max 4 in one sample · ≈0.805%</text>
+
+  <!-- Panel 3: frame processing time -->
+  <text class="panel-label" x="115" y="515">Frame processing time</text>
+  <line class="axis" x1="115" y1="530" x2="115" y2="690"/>
+  <line class="axis" x1="115" y1="690" x2="1150" y2="690"/>
+  <line class="grid" x1="115" y1="632.9" x2="1150" y2="632.9"/>
+  <line class="grid" x1="115" y1="575.7" x2="1150" y2="575.7"/>
+  <line class="reference" x1="115" y1="531.3" x2="1150" y2="531.3"/>
+  <text class="tick" x="98" y="696" text-anchor="end">0</text>
+  <text class="tick" x="98" y="639" text-anchor="end">5</text>
+  <text class="tick" x="98" y="582" text-anchor="end">10</text>
+  <text class="tick" x="98" y="537" text-anchor="end">13.889</text>
+  <text class="axis-label" x="37" y="610" text-anchor="middle" transform="rotate(-90 37 610)">milliseconds</text>
+  <path class="series" d="M115.0,648.4 L132.5,652.3 L150.1,678.9 L167.6,678.9 L185.2,678.8 L202.7,677.4 L220.3,679.0 L237.8,677.4 L255.3,677.5 L272.9,677.7 L290.4,677.5 L308.0,678.1 L325.5,677.8 L343.1,677.4 L360.6,678.0 L378.1,677.5 L395.7,677.0 L413.2,681.8 L430.8,680.9 L448.3,681.5 L465.8,681.5 L483.4,681.8 L500.9,681.7 L518.5,681.7 L536.0,676.6 L553.6,678.2 L571.1,677.4 L588.6,677.2 L606.2,678.1 L623.7,678.0 L641.3,677.5 L658.8,678.5 L676.4,678.6 L693.9,677.9 L711.4,678.0 L729.0,678.8 L746.5,677.8 L764.1,678.0 L781.6,677.1 L799.2,676.7 L816.7,677.7 L834.2,677.4 L851.8,676.4 L869.3,677.7 L886.9,677.5 L904.4,678.3 L921.9,677.9 L939.5,677.9 L957.0,677.4 L974.6,675.9 L992.1,677.4 L1009.7,677.2 L1027.2,677.7 L1044.7,678.1 L1062.3,676.3 L1079.8,678.1 L1097.4,679.1 L1114.9,677.4 L1132.5,675.7 L1150.0,675.4"/>
+  <path class="secondary" d="M115.0,660.4 L132.5,637.4 L150.1,640.5 L167.6,670.0 L185.2,650.2 L202.7,660.4 L220.3,657.1 L237.8,667.8 L255.3,669.2 L272.9,668.7 L290.4,667.6 L308.0,669.2 L325.5,656.3 L343.1,669.0 L360.6,665.3 L378.1,668.4 L395.7,658.9 L413.2,673.5 L430.8,671.0 L448.3,663.6 L465.8,660.3 L483.4,660.7 L500.9,669.8 L518.5,662.3 L536.0,667.0 L553.6,666.1 L571.1,667.7 L588.6,656.4 L606.2,667.7 L623.7,668.2 L641.3,657.9 L658.8,659.5 L676.4,658.8 L693.9,661.5 L711.4,668.9 L729.0,661.0 L746.5,658.2 L764.1,668.4 L781.6,666.2 L799.2,667.3 L816.7,669.0 L834.2,658.5 L851.8,669.1 L869.3,668.9 L886.9,668.9 L904.4,668.2 L921.9,666.7 L939.5,668.1 L957.0,660.3 L974.6,668.7 L992.1,666.1 L1009.7,657.9 L1027.2,666.1 L1044.7,665.0 L1062.3,667.3 L1079.8,655.4 L1097.4,669.0 L1114.9,669.1 L1132.5,664.9 L1150.0,653.0"/>
+  <line class="series" x1="560" y1="506" x2="595" y2="506"/>
+  <text class="legend" x="605" y="512">App · mean 1.120 · max 3.64 ms</text>
+  <line class="secondary" x1="875" y1="506" x2="910" y2="506"/>
+  <text class="legend" x="920" y="512">CPU+GPU · max 4.60 ms</text>
+  <text class="tick" x="1142" y="551" text-anchor="end">72 Hz frame interval (derived)</text>
+
+  <!-- Panel 4: reported temperature -->
+  <text class="panel-label" x="115" y="745">Reported temperature</text>
+  <line class="axis" x1="115" y1="760" x2="115" y2="840"/>
+  <line class="axis" x1="115" y1="840" x2="1150" y2="840"/>
+  <line class="grid" x1="115" y1="800" x2="1150" y2="800"/>
+  <text class="tick" x="98" y="846" text-anchor="end">46</text>
+  <text class="tick" x="98" y="806" text-anchor="end">48</text>
+  <text class="tick" x="98" y="766" text-anchor="end">50</text>
+  <text class="axis-label" x="37" y="800" text-anchor="middle" transform="rotate(-90 37 800)">°C</text>
+  <path class="series" d="M115.0,800.0 L132.5,800.0 L150.1,800.0 L167.6,800.0 L185.2,800.0 L202.7,800.0 L220.3,800.0 L237.8,800.0 L255.3,800.0 L272.9,800.0 L290.4,800.0 L308.0,800.0 L325.5,800.0 L343.1,800.0 L360.6,800.0 L378.1,800.0 L395.7,800.0 L413.2,800.0 L430.8,800.0 L448.3,800.0 L465.8,800.0 L483.4,800.0 L500.9,800.0 L518.5,800.0 L536.0,800.0 L553.6,800.0 L571.1,800.0 L588.6,800.0 L606.2,800.0 L623.7,800.0 L641.3,800.0 L658.8,800.0 L676.4,800.0 L693.9,800.0 L711.4,800.0 L729.0,800.0 L746.5,800.0 L764.1,800.0 L781.6,800.0 L799.2,800.0 L816.7,800.0 L834.2,800.0 L851.8,800.0 L869.3,800.0 L886.9,800.0 L904.4,800.0 L921.9,800.0 L939.5,800.0 L957.0,800.0 L974.6,800.0 L992.1,800.0 L1009.7,800.0 L1027.2,800.0 L1044.7,800.0 L1062.3,800.0 L1079.8,800.0 L1097.4,800.0 L1114.9,800.0 L1132.5,800.0 L1150.0,800.0"/>
+  <text class="legend" x="1138" y="786" text-anchor="end">48 °C in every recorded sample · not a long thermal soak</text>
+
+  <text class="tick" x="115" y="868" text-anchor="middle">0</text>
+  <text class="tick" x="290.4" y="868" text-anchor="middle">10</text>
+  <text class="tick" x="465.8" y="868" text-anchor="middle">20</text>
+  <text class="tick" x="641.3" y="868" text-anchor="middle">30</text>
+  <text class="tick" x="816.7" y="868" text-anchor="middle">40</text>
+  <text class="tick" x="992.1" y="868" text-anchor="middle">50</text>
+  <text class="tick" x="1150" y="868" text-anchor="middle">59</text>
+  <text class="axis-label" x="632" y="896" text-anchor="middle">elapsed sample time (s)</text>
+  <text class="caption" x="60" y="922">Source: artifacts/mvc-iso/official_iso_quest3_20260728_a4b/logcat-full.txt. No smoothing or synthetic samples.</text>
+</svg>
