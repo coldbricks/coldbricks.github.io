@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">Watch Together focused LAN round-trip measurements</title>
+  <desc id="desc">Five recorded round trips in one Quest 3 to Galaxy XR room were 33 milliseconds for clock, 16 for play, 13 for pause, 15 for seek, and 28 for drift. The median was 16 milliseconds. This is an event sequence, not a latency distribution.</desc>
+  <style>
+    svg { shape-rendering: geometricPrecision; text-rendering: geometricPrecision; }
+    text { fill: #EFE6F0; font-family: system-ui, sans-serif; font-weight: 500; }
+    .title { fill: #FFF6FB; font-size: 34px; font-weight: 700; letter-spacing: 0.2px; }
+    .subtitle, .caption { fill: #C9B8CC; font-size: 19px; }
+    .tick { fill: #E0D2E2; font-size: 20px; }
+    .axis-label { fill: #B6FFFB; font-size: 22px; font-weight: 700; }
+    .grid { stroke: #7F627F; stroke-width: 1.6; opacity: 0.52; }
+    .axis { stroke: #D9CADC; stroke-width: 2.4; opacity: 0.96; }
+    .median { stroke: #E8C468; stroke-width: 3; stroke-dasharray: 10 7; opacity: 0.98; }
+    .series { fill: none; stroke: #2EE6C5; stroke-width: 5; stroke-linejoin: round; stroke-linecap: round; }
+    .point { fill: #0A0610; stroke: #2EE6C5; stroke-width: 5; }
+  </style>
+
+  <text class="title" x="70" y="48">Private-LAN control round trips</text>
+  <text class="subtitle" x="70" y="78">Quest 3 ↔ Galaxy XR · run LAN20260728Q3GX05 · direct-IP authenticated fallback</text>
+
+  <line class="grid" x1="150" y1="430" x2="1080" y2="430"/>
+  <line class="grid" x1="150" y1="352.5" x2="1080" y2="352.5"/>
+  <line class="grid" x1="150" y1="275.0" x2="1080" y2="275.0"/>
+  <line class="grid" x1="150" y1="197.5" x2="1080" y2="197.5"/>
+  <line class="grid" x1="150" y1="120.0" x2="1080" y2="120.0"/>
+  <line class="axis" x1="150" y1="120" x2="150" y2="430"/>
+  <line class="axis" x1="150" y1="430" x2="1080" y2="430"/>
+  <line class="median" x1="150" y1="306" x2="1080" y2="306"/>
+
+  <text class="tick" x="132" y="436" text-anchor="end">0</text>
+  <text class="tick" x="132" y="359" text-anchor="end">10</text>
+  <text class="tick" x="132" y="281" text-anchor="end">20</text>
+  <text class="tick" x="132" y="204" text-anchor="end">30</text>
+  <text class="tick" x="132" y="126" text-anchor="end">40</text>
+  <text class="axis-label" x="58" y="275" text-anchor="middle" transform="rotate(-90 58 275)">round trip (ms)</text>
+  <text class="tick" x="1070" y="298" text-anchor="end">median 16 ms</text>
+
+  <path class="series" d="M250 174.3 L425 306.0 L600 329.3 L775 313.8 L950 213.0"/>
+  <circle class="point" cx="250" cy="174.3" r="8"/>
+  <circle class="point" cx="425" cy="306.0" r="8"/>
+  <circle class="point" cx="600" cy="329.3" r="8"/>
+  <circle class="point" cx="775" cy="313.8" r="8"/>
+  <circle class="point" cx="950" cy="213.0" r="8"/>
+
+  <text class="axis-label" x="250" y="151" text-anchor="middle">33 ms</text>
+  <text class="axis-label" x="425" y="283" text-anchor="middle">16 ms</text>
+  <text class="axis-label" x="600" y="306" text-anchor="middle">13 ms</text>
+  <text class="axis-label" x="775" y="291" text-anchor="middle">15 ms</text>
+  <text class="axis-label" x="950" y="190" text-anchor="middle">28 ms</text>
+  <text class="tick" x="250" y="462" text-anchor="middle">clock</text>
+  <text class="tick" x="425" y="462" text-anchor="middle">play</text>
+  <text class="tick" x="600" y="462" text-anchor="middle">pause</text>
+  <text class="tick" x="775" y="462" text-anchor="middle">seek</text>
+  <text class="tick" x="950" y="462" text-anchor="middle">drift</text>
+
+  <text class="caption" x="70" y="525">Five operations in one focused room session; straight segments preserve event order and are not a distribution fit.</text>
+</svg>

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">MVC ISO realtime delivery progression on Quest 3</title>
+  <desc id="desc">Measured media time divided by wall time was 0.396 in A2, 0.93492 in A3, and 0.999772 in A4b. One is the realtime target. Lines connect discrete engineering runs and are not interpolated performance data.</desc>
+  <style>
+    svg { shape-rendering: geometricPrecision; text-rendering: geometricPrecision; }
+    text { fill: #EFE6F0; font-family: system-ui, sans-serif; font-weight: 500; }
+    .title { fill: #FFF6FB; font-size: 34px; font-weight: 700; letter-spacing: 0.2px; }
+    .subtitle, .caption { fill: #C9B8CC; font-size: 19px; }
+    .tick { fill: #E0D2E2; font-size: 20px; }
+    .axis-label { fill: #B6FFFB; font-size: 22px; font-weight: 700; }
+    .grid { stroke: #7F627F; stroke-width: 1.6; opacity: 0.52; }
+    .axis { stroke: #D9CADC; stroke-width: 2.4; opacity: 0.96; }
+    .target { stroke: #E8C468; stroke-width: 3; stroke-dasharray: 10 7; opacity: 0.98; }
+    .series { fill: none; stroke: #2EE6C5; stroke-width: 5; stroke-linejoin: round; stroke-linecap: round; }
+    .point { fill: #0A0610; stroke: #2EE6C5; stroke-width: 5; }
+  </style>
+
+  <text class="title" x="70" y="48">MVC ISO realtime delivery progression</text>
+  <text class="subtitle" x="70" y="78">Quest 3 · code 27 debug · official 60.018291 s MVC fixture</text>
+
+  <line class="grid" x1="150" y1="440" x2="1080" y2="440"/>
+  <line class="grid" x1="150" y1="367.3" x2="1080" y2="367.3"/>
+  <line class="grid" x1="150" y1="294.5" x2="1080" y2="294.5"/>
+  <line class="grid" x1="150" y1="221.8" x2="1080" y2="221.8"/>
+  <line class="grid" x1="150" y1="149.1" x2="1080" y2="149.1"/>
+  <line class="axis" x1="150" y1="120" x2="150" y2="440"/>
+  <line class="axis" x1="150" y1="440" x2="1080" y2="440"/>
+  <line class="target" x1="150" y1="149.1" x2="1080" y2="149.1"/>
+
+  <text class="tick" x="132" y="446" text-anchor="end">0.00</text>
+  <text class="tick" x="132" y="373" text-anchor="end">0.25</text>
+  <text class="tick" x="132" y="300" text-anchor="end">0.50</text>
+  <text class="tick" x="132" y="228" text-anchor="end">0.75</text>
+  <text class="tick" x="132" y="155" text-anchor="end">1.00</text>
+  <text class="axis-label" x="58" y="285" text-anchor="middle" transform="rotate(-90 58 285)">media time / wall time</text>
+  <text class="tick" x="1070" y="181" text-anchor="end">1.0× realtime target</text>
+
+  <path class="series" d="M250 324.8 L600 168.0 L950 149.2"/>
+  <circle class="point" cx="250" cy="324.8" r="8"/>
+  <circle class="point" cx="600" cy="168.0" r="8"/>
+  <circle class="point" cx="950" cy="149.2" r="8"/>
+
+  <text class="axis-label" x="250" y="302" text-anchor="middle">0.396000×</text>
+  <text class="axis-label" x="600" y="132" text-anchor="middle">0.934920×</text>
+  <text class="axis-label" x="950" y="126" text-anchor="middle">0.999772×</text>
+  <text class="tick" x="250" y="470" text-anchor="middle">A2 visual</text>
+  <text class="tick" x="250" y="494" text-anchor="middle">presentation fail</text>
+  <text class="tick" x="600" y="470" text-anchor="middle">A3</text>
+  <text class="tick" x="600" y="494" text-anchor="middle">compositor cadence fail</text>
+  <text class="tick" x="950" y="470" text-anchor="middle">A4b</text>
+  <text class="tick" x="950" y="494" text-anchor="middle">strict realtime pass</text>
+
+  <text class="caption" x="70" y="535">Observed run points only; straight segments show engineering progression, not interpolation.</text>
+</svg>
