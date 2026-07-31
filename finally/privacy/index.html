@@ -20,7 +20,7 @@
 <body>
 <main>
   <h1>Privacy Policy — Finally VR Video Player</h1>
-  <p class="meta">Effective date: July 14, 2026<br>
+  <p class="meta">Effective date: July 31, 2026<br>
   Publisher: Coldbricks<br>
   Contact: <a href="mailto:coldbricks@gmail.com">coldbricks@gmail.com</a></p>
 
@@ -38,18 +38,37 @@
     <li><strong>Your media library.</strong> Finally indexes videos and images you point it at.
     That index (titles, file paths, playback positions, projection settings) is stored in a local
     database on your headset and never leaves it.</li>
-    <li><strong>Network share credentials.</strong> If you connect Finally to a network drive
-    (SMB), the address and credentials you enter are stored locally on your device solely so the
-    app can reconnect. They are transmitted only to the server you specify, on your own network,
-    and to no one else.</li>
+    <li><strong>Network-source credentials.</strong> If you configure SMB, FTP, WebDAV, Plex, or
+    Stash, the address and credentials or access token you enter are stored locally on your device
+    solely so the app can reconnect. They are transmitted only to the server you specify and never
+    to Coldbricks.</li>
+    <li><strong>Nearby-source discovery.</strong> When you choose <em>Find nearby sources</em>,
+    Finally listens for SMB hosts and DLNA/UPnP media servers on your local network. Device names,
+    service names, and local addresses are used on your headset to show the picker and are not sent
+    to Coldbricks.</li>
+    <li><strong>Watch Together.</strong> When you explicitly host or join a room, Finally advertises
+    or discovers a service on your private LAN and creates a direct encrypted connection between
+    the two headsets. The peers exchange pairing and playback-session data plus an identity for the
+    selected media. Finally does not upload or relay the media, and Coldbricks receives no room data.</li>
+    <li><strong>Optional haptic accessories.</strong> If you open the Haptic Control Panel and enable
+    accessory support, Finally can scan for and connect directly to a nearby Bluetooth accessory.
+    Scan results, device identifiers, connection state, and matching <code>.funscript</code> timing
+    remain on your headset and are not sent to Coldbricks. The controls require explicit arming and
+    provide an immediate stop action.</li>
     <li><strong>Settings.</strong> Playback and display preferences are stored locally.</li>
   </ul>
   <p>Uninstalling the app deletes all of the above.</p>
 
   <h2>Network access</h2>
-  <p>Finally uses the network only to do what you ask it to: stream media from network sources you
-  configure yourself. The app makes no other network requests &mdash; no telemetry, no update
-  pings, no content downloads.</p>
+  <p>Finally uses the network only to do what you ask it to: discover local media servers, stream
+  media from sources you configure, verify Meta entitlement in a Meta store build, or connect two
+  headsets for Watch Together. It does not connect to a Coldbricks telemetry, advertising, account,
+  update, or content service.</p>
+  <p>Some source protocols can be unencrypted if you choose them, such as plain FTP or an HTTP
+  server on a trusted LAN. Finally labels those choices and does not turn them into Internet-facing
+  services. Watch Together uses TLS.</p>
+  <p>Optional Bluetooth accessory discovery and control are direct, local device operations. They
+  do not use a Coldbricks service or transmit accessory data to us.</p>
 
   <h2>Platform services</h2>
   <p>On Meta Quest, store builds perform a one-time entitlement verification at launch through the

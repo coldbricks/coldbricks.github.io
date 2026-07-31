@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Finally — Field Manual</title>
-<meta name="description" content="The 0.3.27-m3 candidate field manual for Finally: daily use, external subtitles, search, local and network sources, rooms, Watch Together, MVC, and measured engineering receipts.">
+<meta name="description" content="The 0.3.31-m3 candidate field manual for Finally: daily use, integrated ChloeVibes haptic control, local and network sources, rooms, Watch Together, MVC, and measured engineering receipts.">
 <style>
   :root {
     color-scheme: dark;
@@ -89,6 +89,13 @@
     text-decoration: none; background: rgba(46,230,197,0.13);
     box-shadow: 0 0 26px rgba(46,230,197,0.28);
   }
+  .haptics-brand {
+    display: flex; align-items: center; gap: 1.25rem; margin: 1.25rem 0;
+    padding: 1rem 1.2rem; border: 1px solid rgba(255,72,173,0.38);
+    border-radius: 14px; background: linear-gradient(120deg, rgba(255,72,173,0.09), rgba(46,230,197,0.06));
+  }
+  .haptics-logo { width: 150px; height: auto; max-height: 84px; object-fit: contain; flex: 0 0 auto; }
+  .haptics-brand p { margin: 0.35rem 0; }
 
   /* ---------- Shell: rail + article ---------- */
   .shell {
@@ -115,6 +122,8 @@
     .hero-text h1 { font-size: clamp(2rem, 12vw, 3rem); letter-spacing: 0.22em; text-indent: 0.22em; }
     .hero-text .tag { overflow-wrap: anywhere; }
     .store-cta { display: block; width: 100%; padding-inline: 0.75rem; }
+    .haptics-brand { align-items: flex-start; flex-direction: column; }
+    .haptics-logo { width: 132px; }
     .shell { grid-template-columns: 1fr; gap: 0; }
     nav.rail {
       position: sticky; top: 0; z-index: 40; max-height: none;
@@ -280,7 +289,7 @@
     <span class="eyebrow">Field Manual</span>
     <h1>FINALLY</h1>
     <p class="tag"><b>offline · local · yours</b> — the VR video player that respects your library, your network, and your controls.</p>
-    <p class="hero-meta">covers v0.3.27-m3 candidate · quest code 33 · galaxy code 10033 · july 30, 2026</p>
+    <p class="hero-meta">covers v0.3.31-m3 candidate · quest code 37 · galaxy code 10037 · july 31, 2026</p>
     <a class="store-cta" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Get Finally on the Meta Horizon Store →</a>
   </div>
 </header>
@@ -294,6 +303,7 @@
   <a href="#controls">Controls</a>
   <a href="#club">The Club</a>
   <a href="#cockpit">The Cockpit</a>
+  <a href="#haptics">ChloeVibes haptics</a>
   <a href="#lenses">Lenses &amp; projection</a>
   <a href="#tags">Filename tags</a>
   <a href="#sources">Sources &amp; NAS</a>
@@ -323,13 +333,13 @@
   <p class="kicker">01 · basics</p>
   <h2>Start here</h2>
   <p class="lede">Point the laser. Pull the trigger. That's most of Finally.</p>
-  <div class="note warn"><p><strong>Read the installed version in the Club.</strong> This page documents the signed internal <strong>0.3.27-m3 candidate — Quest code 33 / Galaxy code 10033</strong>. It does not claim that either store has delivered that build. Store releases can lag this manual, so the version shown inside your headset remains the authority.</p></div>
+  <div class="note warn"><p><strong>Read the installed version in the Club.</strong> This page documents the signed internal <strong>0.3.31-m3 candidate &mdash; Quest code 37 / Galaxy code 10037</strong>. It does not claim that either store has delivered that build. Store releases can lag this manual, so the version shown inside your headset remains the authority.</p></div>
   <div class="tbl-wrap"><table>
     <thead><tr><th scope="col">Installed identity</th><th scope="col">How this manual applies</th></tr></thead>
     <tbody>
-      <tr><td>Quest · 0.3.27-m3 · code 33</td><td>Current candidate behavior. The signed artifact and local validation gates passed; the new WebDAV, Stash, search, subtitle-picker, Plex-sort, and MVC-shutdown changes still need exact-build on-head acceptance.</td></tr>
-      <tr><td>Galaxy XR · 0.3.27-m3 · code 10033</td><td>Current shared controls and source behavior. The signed artifacts and local validation gates passed; this exact candidate was not physically rerun on Galaxy XR.</td></tr>
-      <tr><td>Any build below 0.3.27-m3</td><td>Use only controls present in that installed build. The Engineering Receipts appendix retains older device measurements as historical evidence, not as proof of code 33.</td></tr>
+      <tr><td>Quest · 0.3.31-m3 · code 37</td><td>Current candidate behavior. The signed artifact, unit/lint/build gates, exact direct-build install, and launch passed. Final on-head acceptance of every code-37 change remains separate.</td></tr>
+      <tr><td>Galaxy XR · 0.3.31-m3 · code 10037</td><td>Current shared controls and source behavior. The signed APK/AAB and local validation gates passed; this exact candidate was not physically rerun on Galaxy XR.</td></tr>
+      <tr><td>Any build below 0.3.31-m3</td><td>Use only controls present in that installed build. The Engineering Receipts appendix retains older device measurements as historical evidence, not as proof of code 37.</td></tr>
       <tr><td>Any other version</td><td>Use this as orientation, then follow that build's in-headset HELP and release notes. A control described here may be absent or changed.</td></tr>
     </tbody>
   </table></div>
@@ -376,6 +386,7 @@
       <tr><td>What happens if I remove the headset or switch apps?</td><td>Playback pauses so audio does not keep leaking through the speakers, and Finally checkpoints the current resume position. Return to the app and press Play when you are ready.</td></tr>
       <tr><td>Can I choose another audio track?</td><td>For ordinary ExoPlayer-backed containers, <span class="chip">AUDIO</span> cycles supported embedded tracks. The shared AUDIO cycle is disabled for prepared ISO/SSIF playback. Finally does not invent a missing dub or ask Plex to transcode one.</td></tr>
       <tr><td>Can I load an external subtitle file?</td><td>Yes. Start an ordinary video, open the quick strip or PLAY page, and choose <span class="chip">LOAD SUBTITLE</span>. Pick an SRT, VTT, ASS, or SSA file up to 4 MiB. This works with local, SMB, Plex, WebDAV, FTP, Stash, and DLNA video routes; stills and the special ISO/MVC path are excluded.</td></tr>
+      <tr><td>Does Finally support ChloeVibes or <code>.funscript</code> files?</td><td>Yes in code 37 / 10037. ChloeVibes is integrated into Finally, so no second app is required. Open <span class="chip">GLOBAL SETTINGS</span> &rarr; <span class="chip">CHLOEVIBES</span>, connect and explicitly ARM a compatible Bluetooth accessory, then use a readable sidecar with the same complete basename as the video. See <a href="#haptics">ChloeVibes haptics</a>.</td></tr>
       <tr><td>What happens to surround audio?</td><td>Finally keeps up to eight-channel tracks eligible, uses headset hardware when available, and falls back to its bundled FFmpeg audio path for AC-3, E-AC-3, and DTS when needed. Android's audio system performs the headset downmix.</td></tr>
       <tr><td>Are chapters supported?</td><td>Authored Blu-ray playlist marks expose <span class="chip">◀ CHAPTER</span> / <span class="chip">CHAPTER ▶</span> when present. The code-28 resume-plus-authored-seek route physically passed on Quest and remains a historical receipt; regular-container chapter UI and DVD menu navigation are not broad claims for code 33.</td></tr>
       <tr><td>Does HDR work?</td><td>A focused 1080p60 AV1 Main 10 HDR10 file reached the hardware decoder and recovered after seek on Quest 3 and Galaxy XR. That is decode-path proof, not a blanket HDR tone-map, output-accuracy, 4K/8K, or every-profile guarantee.</td></tr>
@@ -414,7 +425,7 @@
       <tr><td>Resize the menu</td><td>While grip-holding: <span class="key">Stick ← →</span></td></tr>
     </tbody>
   </table></div>
-  <div class="note"><p><strong>Controllers, precisely:</strong> bare-hand tracking is not enabled. One tracked controller can point and trigger every critical visible Club and cockpit target, including <span class="chip">PRO CONTROLS</span> on the quick strip. <span class="key">A</span>, the Menu / Back face button, grip/stick gestures, and haptics remain controller inputs. The saved B/Y swap moves Menu / Back to left-hand <span class="key">Y</span> and stereo packing to <span class="key">B</span>; eye swap also has a visible menu control.</p></div>
+  <div class="note"><p><strong>Controllers, precisely:</strong> bare-hand tracking is not enabled. One tracked controller can point and trigger every critical visible Club and cockpit target, including <span class="chip">PRO CONTROLS</span> on the quick strip. <span class="key">A</span>, the Menu / Back face button, grip/stick gestures, and controller hover/click haptics remain controller inputs. Optional ChloeVibes accessory motion is a separate explicitly armed system described under <a href="#haptics">ChloeVibes haptics</a>. The saved B/Y swap moves Menu / Back to left-hand <span class="key">Y</span> and stereo packing to <span class="key">B</span>; eye swap also has a visible menu control.</p></div>
   <h3>What the stick means right now</h3>
   <div class="tbl-wrap"><table>
     <thead><tr><th scope="col">Current mode</th><th scope="col">Stick input</th><th scope="col">Result</th></tr></thead>
@@ -487,7 +498,7 @@
   </ol>
   <p>Finally reloads the vault row and root before deletion so a stale selection cannot redirect the action. It fails closed for SMB, FTP, WebDAV, Plex, Stash, folders, DVD, ISO, cloud/server rows, traversal paths, missing roots, or a target that no longer matches the selection. A successful delete is permanent. <strong>Clear vault</strong> only removes Finally's records and never deletes the media.</p>
   <h3>Setup from the Club</h3>
-  <p><span class="chip">⚙ SOURCES</span> opens the in-room source status and rescan panel. Choose <strong>MANAGE</strong> when you need the flat Library setup screen, Android pickers, or server forms; <strong>Quick-start tutorial</strong> replays the guided tour. Beside it, lobby <span class="chip">🎛 SET</span> holds menu level, resume, skip intro, tilt follow, stick zoom direction, seek step, <em>Seek landing</em> (FAST ⇄ EXACT, see <a href="#loops">Seeking</a>), <em>NAS buffer</em> (LEAN · DEFAULT · BIG · MAX, see <a href="#sources">Sources &amp; NAS</a>), and cockpit <em>Menu style</em> (SIMPLE ⇄ PRO, see <a href="#cockpit">The Cockpit</a>). During playback, <strong>SETUP</strong> is the PRO cockpit tab. <span class="chip">📖 HELP</span> opens help in-headset with no title required.</p>
+  <p><span class="chip">⚙ SOURCES</span> opens the in-room source status and rescan panel. Choose <strong>MANAGE</strong> when you need the flat Library setup screen, Android pickers, or server forms; <strong>Quick-start tutorial</strong> replays the guided tour. Lobby <span class="chip">GLOBAL SETTINGS</span> holds menu level, resume, skip intro, tilt follow, stick direction, seek step, <em>Seek landing</em> (FAST ⇄ EXACT, see <a href="#loops">Seeking</a>), <em>NAS buffer</em> (LEAN · DEFAULT · BIG · MAX, see <a href="#sources">Sources &amp; NAS</a>), cockpit <em>Menu style</em> (SIMPLE ⇄ PRO), and the dedicated <span class="chip">CHLOEVIBES</span> control entry. The same GLOBAL SETTINGS tab is reachable during playback, where it exposes the <span class="chip">HAPTIC CONTROL PANEL</span>. <span class="chip">📖 HELP</span> opens help in-headset with no title required.</p>
   <p>Android's flat or system UI appears only for tasks that need it: source management and folder/document pickers, the external-subtitle picker, local-file delete confirmation, and Watch Together setup. Return to the Club when that task finishes.</p>
   <p><span class="chip">LEAVE</span> exits to your headset home — labeled <span class="chip">LEAVE → QUEST</span> on Quest and <span class="chip">LEAVE → HOME</span> on Galaxy XR. On the empty first run, open <span class="chip">⚙ SOURCES</span>, or drop files in <span class="path">Movies/Finally</span> and use <span class="chip">↻ SCAN</span>.</p>
 </section>
@@ -505,12 +516,12 @@
   <p>The strip carries the moves you actually make mid-video: the timeline scrubber, <span class="chip">-30s</span> / <span class="chip">-5s</span> / <span class="chip">PLAY</span> / <span class="chip">+5s</span> / <span class="chip">+30s</span> (the small step is adjustable in SETUP), <span class="chip">■ STOP</span>, speed, volume, mute, <span class="chip">PREV</span> / <span class="chip">◆ CLUB</span> / <span class="chip">NEXT</span>, <span class="chip">◀ CLOSER</span> / <span class="chip">FARTHER ▶</span>, and <span class="chip">◎ ROOM</span>. In SIMPLE mode, point and trigger the always-visible <span class="chip">PRO CONTROLS</span> target to promote the strip into the full cockpit without another Menu / Back press. In PRO mode the strip adds A·B·C·D loop chips and <span class="chip">◎ STATS</span>. If a network stream stalls, it raises itself with a <strong>REBUFFERING</strong> banner and stands back down when the flow recovers — details in <a href="#sources">Sources &amp; NAS</a>.</p>
 
   <h3>SIMPLE and PRO</h3>
-  <p>The full cockpit ships in <strong>SIMPLE</strong> mode: three tabs — <span class="chip">PLAY</span> · <span class="chip">VIEW</span> · <span class="chip">HELP</span> — with the essentials. PLAY keeps the transport, speed, volume, mute, <span class="chip">Eyes</span>, passthrough, <span class="chip">PREV</span>/<span class="chip">NEXT</span>, and the core lens row (AUTO · VR180 · VR360 · Flat · SBS · OU). VIEW keeps scene height, distance, zoom, and screen curve, plus the resets and the <span class="chip">AUTO</span> escape hatch.</p>
-  <p>Tap the <span class="chip">PRO</span> chip in the tab row and the exact five-tab cockpit below unlocks; <span class="chip">BASIC</span> brings SIMPLE back. Your choice is saved, and it's also flippable from the lobby — <span class="chip">🎛 SET</span> → <em>Menu style</em> — no title required. SIMPLE <em>hides</em> the pro tools — A–B loops, the MKX/FE190/VRCA lens profiles, the chroma/alpha keying suite, the fine placement sliders — it never removes them. Everything is one chip away.</p>
+  <p>The full cockpit ships in <strong>SIMPLE</strong> mode: four tabs — <span class="chip">PLAY</span> · <span class="chip">VIEW</span> · <span class="chip">GLOBAL SETTINGS</span> · <span class="chip">HELP</span> — with the essentials. PLAY keeps the transport, speed, volume, mute, <span class="chip">Eyes</span>, passthrough, <span class="chip">PREV</span>/<span class="chip">NEXT</span>, and the core lens row (AUTO · VR180 · VR360 · Flat · SBS · OU). VIEW keeps scene height, distance, zoom, and screen curve, plus the resets and the <span class="chip">AUTO</span> escape hatch.</p>
+  <p>Tap the <span class="chip">PRO</span> chip in the tab row and the full six-tab cockpit unlocks; <span class="chip">BASIC</span> brings SIMPLE back. Your choice is saved, and it is also flippable from lobby <span class="chip">GLOBAL SETTINGS</span> &rarr; <em>Menu style</em>. SIMPLE <em>hides</em> the pro tools — A–B loops, the MKX/FE190/VRCA lens profiles, the chroma/alpha keying suite, and fine placement sliders — but GLOBAL SETTINGS and HELP stay reachable in both modes.</p>
   <div class="tbl-wrap"><table>
     <thead><tr><th scope="col">Area</th><th scope="col">SIMPLE</th><th scope="col">PRO</th></tr></thead>
     <tbody>
-      <tr><td>Tabs</td><td>PLAY · VIEW · HELP</td><td>PLAY · PLACE/EYES · COLOR/KEY · SETUP · HELP</td></tr>
+      <tr><td>Tabs</td><td>PLAY · VIEW · GLOBAL SETTINGS · HELP</td><td>PLAY · PLACE/EYES · COLOR/KEY · SETUP · GLOBAL SETTINGS · HELP</td></tr>
       <tr><td>Everyday playback</td><td>Transport, speed, volume, mute, eye swap, passthrough, previous/next</td><td>The same controls</td></tr>
       <tr><td>Projection</td><td>AUTO, VR180, VR360, Flat, SBS, OU</td><td>The same core row plus MKX, FE190, VRCA, and fine placement</td></tr>
       <tr><td>Loops and live stats</td><td>Hidden</td><td>A–B–C–D loop controls and Stats HUD</td></tr>
@@ -519,7 +530,7 @@
     </tbody>
   </table></div>
 
-  <p>The five PRO pages:</p>
+  <p>The six PRO pages:</p>
 
   <h3>PLAY</h3>
   <p>The transport. Timeline scrubber, <span class="chip">-30s</span> / <span class="chip">-5s</span> / <span class="chip">PLAY</span> / <span class="chip">+5s</span> / <span class="chip">+30s</span>, <span class="chip">■ STOP</span>, <span class="chip">◆ CLUB</span> to return to the lobby, speed, volume, mute, <span class="chip">Eyes</span> (L·R ⇄ R·L), the preset AUTO/MANUAL toggle, passthrough, A·B·C·D loop marks, <span class="chip">PREV</span>/<span class="chip">NEXT</span>, and the quick lens row (VR180 · VR360 · Flat · SBS · OU · AUTO).</p>
@@ -561,6 +572,38 @@
   <p>For example, 23.976-fps cinema at a reported 72 Hz qualifies as a 3:3 lock. <strong>LOCKED never means “requested” or merely “supported.”</strong></p>
 
   <div class="note"><p><strong>Nothing decorative.</strong> A cockpit toggle must never be a placebo — if a switch is visible, it does something real. That's a design law, not a promise.</p></div>
+</section>
+
+<section id="haptics">
+  <p class="kicker">05A · optional accessory control</p>
+  <h2>ChloeVibes Haptic Control Panel</h2>
+  <p class="lede">ChloeVibes is built directly into Finally. There is no second app to install or keep running.</p>
+  <div class="haptics-brand">
+    <img class="haptics-logo" src="chloevibes-logo.png" alt="ChloeVibes heel logo" width="150" height="84">
+    <div>
+      <p><strong>Local media timing, local Bluetooth control.</strong> Finally reads a matching <code>.funscript</code> and talks directly to the compatible accessory you choose.</p>
+      <p><a href="https://github.com/coldbricks/Chloe-Vibes">Visit the ChloeVibes project on GitHub &rarr;</a></p>
+    </div>
+  </div>
+  <div class="note love"><p><strong>Research lineage.</strong> The broader ChloeVibes program was developed by David Lombardo with particular emphasis on ADSR (Attack, Decay, Sustain, Release) haptic envelopes: shaping tactile response over time instead of treating a motor as a blunt on/off switch. See the <a href="https://github.com/coldbricks/Chloe-Vibes/blob/main/docs/TECHNICAL_REFERENCE.md#24-adsr-envelope-processor">ChloeVibes ADSR technical reference</a>. Finally's current sidecar path follows the authored <code>.funscript</code> plus the safety gates below; it does not claim to run ChloeVibes' complete live-audio ADSR engine.</p></div>
+
+  <h3>Connect and arm</h3>
+  <ol>
+    <li>In the Club, open <span class="chip">GLOBAL SETTINGS</span> &rarr; <span class="chip">CHLOEVIBES</span>.</li>
+    <li>Choose <span class="chip">SCAN</span>. Android may ask for Nearby Devices / Bluetooth permission the first time.</li>
+    <li>Select and connect the intended accessory, confirm its displayed name, and set <strong>TOY STRENGTH</strong>.</li>
+    <li>Choose <span class="chip">ARM</span> only when you are ready for accessory output.</li>
+    <li>Play a video with a readable sidecar that shares its complete basename: <code>Movie.mp4</code> matches <code>Movie.funscript</code>.</li>
+  </ol>
+  <p>During playback, open <span class="chip">GLOBAL SETTINGS</span> &rarr; <span class="chip">HAPTIC CONTROL PANEL</span> for connection/script status, <span class="chip">STOP</span>, ARM / DISARM, TEST, and strength. <strong>TOY STRENGTH</strong> controls the accessory; controller <strong>HAPTIC STRENGTH</strong> remains a separate setting for menu hover/click pulses.</p>
+
+  <h3>STOP and bounded TEST</h3>
+  <div class="note warn"><p><strong>STOP is immediate and does not require the panel to be armed.</strong> Use it whenever output is unexpected, then physically disconnect the accessory before troubleshooting.</p></div>
+  <p><span class="chip">TEST</span> requires an already connected and armed accessory. It emits exactly one 300 ms pulse, then automatically sends STOP and DISARMS. Repeated presses cannot stack pulses or extend the safety window, and TEST is unavailable while ordinary playback owns accessory output.</p>
+  <p>Pause, buffering or lost playback ownership, leaving the player, disconnecting the accessory, or closing the session invalidates motion and follows the stop/disarm safety path.</p>
+
+  <h3>Private by design</h3>
+  <p>Bluetooth scan results, accessory identifiers, connection state, and <code>.funscript</code> timing stay on the headset. Finally does not send that information to Coldbricks and uses no ChloeVibes cloud backend.</p>
 </section>
 
 <section id="lenses">
@@ -890,8 +933,8 @@
   <div class="tbl-wrap"><table>
     <thead><tr><th scope="col">Capability</th><th scope="col">Meta Quest</th><th scope="col">Samsung Galaxy XR</th></tr></thead>
     <tbody>
-      <tr><td>Current manual identity</td><td><code>0.3.27-m3</code>, version code 33</td><td><code>0.3.27-m3</code>, version code 10033</td></tr>
-      <tr><td>Distribution</td><td>Meta Horizon Store is the public path; code 33 is a signed internal candidate and this page does not claim the store has delivered it</td><td>Google Play is the Galaxy XR path; code 10033 is a signed internal candidate and this page does not claim the store has delivered it</td></tr>
+      <tr><td>Current manual identity</td><td><code>0.3.31-m3</code>, version code 37</td><td><code>0.3.31-m3</code>, version code 10037</td></tr>
+      <tr><td>Distribution</td><td>Meta Horizon Store is the public path; code 37 is a signed internal candidate and this page does not claim the store has delivered it</td><td>Google Play is the Galaxy XR path; code 10037 is a signed internal candidate and this page does not claim the store has delivered it</td></tr>
       <tr><td>Launch</td><td>Straight into the Club (when your vault has titles)</td><td>Library first — tap <span class="chip">ENTER THE CLUB</span></td></tr>
       <tr><td>Passthrough</td><td>Meta passthrough layer</td><td>System blend-through — same controls, same keying</td></tr>
       <tr><td>AFR</td><td>Cadence-aware Android hint; Quest/runtime chooses the actual mode. Verify the current rate in Stats HUD</td><td>Cadence-aware Android hint, with requested modes below 71 Hz excluded to avoid the visibly flickering 60 Hz micro-OLED mode. A 60-fps source may therefore remain at runtime-reported 72 Hz with a cadence mismatch; verify Stats HUD</td></tr>
@@ -905,7 +948,7 @@
       <tr><td>Controllers</td><td>Touch — full map; B/Y menu and stereo roles can swap</td><td>Standard profile — every control still reachable via menu</td></tr>
     </tbody>
   </table></div>
-  <p>The daily-use and source work shares one codebase, but a device claim changes only after that target/build has its own physical evidence. Galaxy's older local MVC receipt remains useful history; it is not relabeled as a code-10033 pass. AFR uses normalized cadences such as 23.976, 29.97, and 59.94 on both targets and lets the runtime choose the actual mode. Galaxy requests no mode below 71 Hz, so Finally does not request its flickering 60 Hz mode; a 60-fps title may remain at 72 Hz with a visible cadence mismatch. Stats HUD is the current readout.</p>
+  <p>The daily-use and source work shares one codebase, but a device claim changes only after that target/build has its own physical evidence. Galaxy's older local MVC receipt remains useful history; it is not relabeled as a code-10037 pass. AFR uses normalized cadences such as 23.976, 29.97, and 59.94 on both targets and lets the runtime choose the actual mode. Galaxy requests no mode below 71 Hz, so Finally does not request its flickering 60 Hz mode; a 60-fps title may remain at 72 Hz with a visible cadence mismatch. Stats HUD is the current readout.</p>
 </section>
 
 <section id="fixit">
@@ -939,12 +982,15 @@
       <tr><td>DVD is refused after discovery</td><td>The current path needs clear readable sectors and an ISO9660 <code>VIDEO_TS</code> bridge; CSS/encrypted and some UDF-only discs are outside it</td></tr>
       <tr><td>Watch Together cannot discover host</td><td>Keep both devices on the same private LAN and use the displayed direct <code>IP:port</code> fallback</td></tr>
       <tr><td><code>MEDIA_MISMATCH</code></td><td>Select the byte-identical file on both headsets; matching names are insufficient</td></tr>
+      <tr><td>ChloeVibes accessory does not appear</td><td>Open <span class="chip">GLOBAL SETTINGS</span> &rarr; <span class="chip">CHLOEVIBES</span>, grant Nearby Devices / Bluetooth permission, wake the intended accessory, keep it nearby, and scan again. Connect only after confirming the displayed device name</td></tr>
+      <tr><td><code>.funscript</code> is not active</td><td>Use a readable sidecar beside or otherwise accessible with the video and match the complete basename exactly: <code>Movie.mp4</code> with <code>Movie.funscript</code>. Confirm the panel reports the script, then ARM explicitly</td></tr>
+      <tr><td>Accessory output is unexpected</td><td>Press <span class="chip">STOP</span> immediately, DISARM, and physically disconnect the accessory before troubleshooting. Pause/ownership loss and player exit also follow the stop/disarm path</td></tr>
       <tr><td>DELETE is unavailable/refused</td><td>Only a validated local video can be permanently deleted. Server, folder, disc, ISO, cloud, traversal, and mismatched-root targets fail closed</td></tr>
       <tr><td>AV1 decoder error</td><td>The exact profile, level, resolution, or bit depth may exceed the hardware path exposed by that headset; attach a bounded report and test a smaller known-good AV1 file</td></tr>
-      <tr><td>Seek lands off a beat</td><td>FAST landing snaps to keyframes for speed — lobby <span class="chip">🎛 SET</span> → <em>Seek landing</em> → EXACT for frame-perfect</td></tr>
+      <tr><td>Seek lands off a beat</td><td>FAST landing snaps to keyframes for speed — lobby <span class="chip">GLOBAL SETTINGS</span> &rarr; <em>Seek landing</em> &rarr; EXACT for frame-perfect</td></tr>
       <tr><td>File won't open</td><td>Read the reason on the vault panel. Check source availability and permission, WebDAV/DLNA range compatibility, the container/codec/profile, and whether the copy is complete; then compare the same title from a known-good local source</td></tr>
       <tr><td>A photo won't open</td><td>The amber card says it plainly — <em>"Couldn't decode this image — it may be corrupt or not really a photo."</em> Usually a truncated copy or a file that isn't really an image; re-copy or re-export it</td></tr>
-      <tr><td>Missing controls</td><td>You're in SIMPLE mode — tap <span class="chip">PRO</span> in the cockpit tab row, or lobby <span class="chip">🎛 SET</span> → <em>Menu style</em></td></tr>
+      <tr><td>Missing controls</td><td>You're in SIMPLE mode — tap <span class="chip">PRO</span> in the cockpit tab row, or lobby <span class="chip">GLOBAL SETTINGS</span> &rarr; <em>Menu style</em></td></tr>
     </tbody>
   </table></div>
   <p>Still stuck? Use the privacy-bounded report below or email <a href="mailto:coldbricks@gmail.com">coldbricks@gmail.com</a> — reports go to a person, not a queue.</p>
@@ -982,7 +1028,7 @@
   <h2>Testing &amp; technical specifications</h2>
   <p class="lede">Optional measured receipts, real parameters, and explicit limits—the sheet packed with a serious lens or microphone. For ordinary help, jump to <a href="#fixit">Fix it</a> or <a href="#diagnostics">Bug reports</a>.</p>
   <div class="note"><p><strong>Evidence language.</strong> <em>Device</em> means the named physical headset executed the path. <em>Device + observer</em> adds a human inspection of that exact run. <em>Host</em> means deterministic workstation/JVM/native coverage. One fixture proves that fixture and path; it does not silently become universal codec, NAS, disc, thermal, or comfort support.</p></div>
-  <div class="note warn"><p><strong>Build applicability.</strong> <strong>Code 33 / 10033</strong> is the current signed internal candidate and has source, host-test, lint, and artifact evidence—not current on-head or live third-party-server acceptance. Rows named <strong>code 28</strong> and <strong>code 27 / 10027</strong> are retained historical device measurements. No older Quest or Galaxy row is relabeled as proof of code 33.</p></div>
+  <div class="note warn"><p><strong>Build applicability.</strong> <strong>Code 37 / 10037</strong> is the current signed internal candidate and has source, host-test, lint, and artifact evidence. The exact code-37 direct Quest build installed and launched; that is not the same as final on-head acceptance, Galaxy device proof, or store delivery. Older rows remain historical measurements and are not relabeled as proof of code 37.</p></div>
 
   <h3>Recorded lab</h3>
   <div class="tbl-wrap"><table>
@@ -1009,6 +1055,7 @@
       <tr><td>Large-library gate</td><td>54,321 files / 3,400 folders / three resumable pages · 2,000-entry immediate browse cap · 25,000-file and 10,000-directory recursive page caps</td></tr>
       <tr><td>ROOM DIM</td><td>Persisted 0–100%, snapped to 5-point steps; lobby presets 100 / 75 / 50 / 25 / 0; media/subtitle/UI grade remains independent</td></tr>
       <tr><td>Haptic strength</td><td>Persisted OFF–100% pulse scale independent of the master toggle · Quest default 100% · Galaxy XR default 55%</td></tr>
+      <tr><td>ChloeVibes TEST fence</td><td>Explicit connection + ARM required · one 300 ms pulse · automatic STOP + DISARM · repeated TEST cannot extend the window</td></tr>
       <tr><td>Support ZIP</td><td>Typed UTF-8 archive capped at 1,572,864 bytes · email → generic share sheet → manual saved-file fallback · no silent send/upload</td></tr>
     </tbody>
   </table></div>
@@ -1017,6 +1064,7 @@
   <div class="tbl-wrap"><table>
     <thead><tr><th scope="col">Program</th><th scope="col">Tier</th><th scope="col">Exact result</th><th scope="col">Boundary</th></tr></thead>
     <tbody>
+      <tr><td>Code 37 / 10037 · ChloeVibes, source, playback, and UI gate</td><td>Host + artifact; Quest install/launch</td><td>Quest/Galaxy unit suites, focused ChloeVibes and menu-contract tests, lint, forced release builds, APK signing/alignment, and Galaxy Bundletool validation passed; exact code-37 direct package installed and launched on Quest 3</td><td>No accessory hardware matrix, final code-37 on-head visual acceptance, Galaxy device run, or store-delivery claim</td></tr>
       <tr><td>Code 33 / 10033 · full unit and lint gate</td><td>Host</td><td>Mobile 894, Quest 1,016, Galaxy 1,009 tests; zero failures/errors, three intentional skips per variant; all three debug lint tasks completed</td><td>No headset, store-delivery, visual, live-server, or thermal claim</td></tr>
       <tr><td>Code 33 · WebDAV compatibility matrix</td><td>Host</td><td>26 focused tests: direct and redirected ranges, same/cross-origin credentials, chunked 206, proven EOF, malformed/ignored ranges, unsafe schemes, downgrade, loops, and hop limits</td><td>Local protocol fixtures; no named provider or live redirected playback acceptance</td></tr>
       <tr><td>Code 33 · Stash filename fallback</td><td>Host</td><td>12 transport/repository tests across title precedence, blank titles, path-like and Unicode basenames, controls, bounds, stable identity, and privacy</td><td>No live 4,000-scene server or on-head catalog acceptance</td></tr>
@@ -1111,7 +1159,7 @@
   <p class="kicker">19 · the promise</p>
   <h2>Privacy &amp; about</h2>
   <p class="lede">No account. No cloud. No analytics. Airplane mode is fine.</p>
-  <p>Your vault, settings, and source credentials stay on your hardware. Finally uses the network only for sources you configure and private-LAN features you explicitly start, such as SMB playback or Watch Together. There is no Finally account, catalog funnel, silent telemetry, or automatic diagnostic upload. Full policy: <a href="https://finallyvr.com/finally/privacy/">finallyvr.com/finally/privacy</a>.</p>
+  <p>Your vault, settings, source credentials, Bluetooth accessory state, and <code>.funscript</code> timing stay on your hardware. Finally uses the network only for sources you configure and private-LAN features you explicitly start, such as SMB playback or Watch Together. Optional ChloeVibes control is a direct local Bluetooth connection, not a Coldbricks service. There is no Finally account, catalog funnel, silent telemetry, or automatic diagnostic upload. Full policy: <a href="https://finallyvr.com/finally/privacy/">finallyvr.com/finally/privacy</a>.</p>
   <p>Do not use plain FTP or acknowledged plain HTTP outside a private network you control. Never accept a Watch Together pairing code that differs between headsets. Finally provides no CSS or Blu-ray decryption; use only media you are authorized to access.</p>
   <p><strong>Decode:</strong> MediaCodec hardware path with decoder fallback; FFmpeg software audio where hardware can't. <strong>Sisters:</strong> Finally is built alongside ChloeVibes and ChloeVR in the same shop.</p>
   <div class="note love"><p>DEVELOPED AND BUILT IN NEW YORK<br>BY THE PERSON WHO NEEDED A BETTER APP</p></div>
