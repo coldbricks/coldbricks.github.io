@@ -115,6 +115,7 @@
   nav.rail a:hover { color: var(--teal-pale); text-decoration: none; background: rgba(46,230,197,0.05); }
   nav.rail a.on { color: var(--pink-soft); border-left-color: var(--pink); background: rgba(255,72,173,0.06); }
   nav.rail a.t-theory.on { color: var(--teal-pale); border-left-color: var(--teal); background: rgba(46,230,197,0.07); }
+  nav.rail a.t-deeper.on { color: var(--green); border-left-color: var(--green); background: rgba(124,255,178,0.07); }
   nav.rail .rail-gap { height: 0.9rem; }
   @media (max-width: 780px) {
     header.hero { padding-top: 2.5rem; }
@@ -134,6 +135,8 @@
     nav.rail .rail-title, nav.rail .rail-gap { display: none; }
     nav.rail a { border-left: none; border-bottom: 2px solid transparent; border-radius: 6px 6px 0 0; white-space: nowrap; font-size: 0.85rem; }
     nav.rail a.on { border-bottom-color: var(--pink); }
+    nav.rail a.t-theory.on { border-bottom-color: var(--teal); }
+    nav.rail a.t-deeper.on { border-bottom-color: var(--green); }
   }
 
   /* ---------- Article ---------- */
@@ -260,7 +263,169 @@
     font-family: var(--mono); font-size: 0.85rem; display: flex; align-items: center; justify-content: center;
   }
 
-  /* theory essay */
+  /* theory chapters */
+  .theory-map {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.65rem;
+    max-width: 70ch; margin: 1.3rem 0;
+  }
+  .theory-map a {
+    display: block; min-width: 0; padding: 0.7rem 0.8rem;
+    border: 1px solid rgba(46,230,197,0.24); border-radius: 9px;
+    color: var(--teal-pale); background: rgba(46,230,197,0.045);
+    font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.04em;
+  }
+  .theory-map a:hover, .theory-map a:focus-visible {
+    text-decoration: none; border-color: rgba(46,230,197,0.65);
+    background: rgba(46,230,197,0.11);
+  }
+  .theory-topic {
+    max-width: 74ch; margin: 2.3rem 0; padding: 1.2rem 1.35rem 1.35rem;
+    border: 1px solid rgba(46,230,197,0.24); border-radius: 14px;
+    background:
+      radial-gradient(700px 260px at 100% 0%, rgba(46,230,197,0.07), transparent 62%),
+      rgba(18,10,30,0.5);
+    box-shadow: inset 0 1px rgba(255,255,255,0.025);
+    scroll-margin-top: 5rem;
+  }
+  .theory-topic h3 { margin-top: 0.1rem; font-size: 1.28rem; }
+  .theory-topic h4 {
+    margin: 1.45rem 0 0.35rem; color: #D9FFF8; font-size: 0.96rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .theory-topic p { max-width: none; }
+  .topic-label {
+    margin: 0 0 0.3rem; color: var(--teal); font-family: var(--mono);
+    font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
+  }
+  .eli5 {
+    border-left: 3px solid var(--teal); padding: 0.7rem 0.9rem;
+    color: #E7FFFB; background: rgba(46,230,197,0.055); border-radius: 0 8px 8px 0;
+  }
+  .theory-keys {
+    display: grid; grid-template-columns: minmax(7.5rem, 0.36fr) minmax(0, 1fr);
+    margin: 0.8rem 0 1.1rem; border: 1px solid rgba(46,230,197,0.18);
+    border-radius: 9px; overflow: hidden;
+  }
+  .theory-keys dt, .theory-keys dd { margin: 0; padding: 0.58rem 0.75rem; border-bottom: 1px solid rgba(46,230,197,0.13); }
+  .theory-keys dt { color: var(--teal-pale); font-family: var(--mono); font-size: 0.82rem; background: rgba(46,230,197,0.055); }
+  .theory-keys dd { color: var(--mut); }
+  .theory-keys dt:last-of-type, .theory-keys dd:last-of-type { border-bottom: 0; }
+  .theory-figure {
+    margin: 1.1rem 0 1.25rem; padding: 1rem;
+    border: 1px solid rgba(46,230,197,0.24); border-radius: 11px;
+    background: linear-gradient(145deg, rgba(46,230,197,0.075), rgba(8,4,12,0.5));
+  }
+  .concept-flow {
+    display: flex; align-items: stretch; justify-content: center; gap: 0.45rem;
+    flex-wrap: wrap;
+  }
+  .concept-node {
+    min-width: 6.4rem; flex: 1 1 6.4rem; padding: 0.65rem 0.6rem;
+    border: 1px solid rgba(46,230,197,0.34); border-radius: 8px;
+    color: var(--teal-pale); background: rgba(8,4,12,0.55);
+    text-align: center; font-family: var(--mono); font-size: 0.76rem;
+  }
+  .concept-node small { display: block; margin-top: 0.25rem; color: var(--dim); font-family: "Segoe UI", Roboto, system-ui, sans-serif; line-height: 1.35; }
+  .concept-arrow { align-self: center; color: var(--teal); font-size: 1.15rem; }
+  .theory-figure figcaption { margin-top: 0.75rem; color: var(--dim); font-size: 0.82rem; text-align: center; }
+  .equation {
+    margin: 0.9rem 0; padding: 0.85rem; border: 1px solid rgba(46,230,197,0.25);
+    border-radius: 9px; color: var(--teal-pale); background: rgba(8,4,12,0.58);
+    font-family: var(--mono); font-size: clamp(0.9rem, 2.5vw, 1.08rem); text-align: center;
+    overflow-wrap: anywhere;
+  }
+  section.deeper { border-top-color: rgba(124,255,178,0.45); }
+  section.deeper > .kicker { color: var(--green); }
+  section.deeper h2, section.deeper h3 { color: var(--green); text-shadow: 0 0 26px rgba(124,255,178,0.18); }
+  section.deeper .theory-topic {
+    border-color: rgba(124,255,178,0.25);
+    background:
+      radial-gradient(700px 260px at 100% 0%, rgba(124,255,178,0.08), transparent 62%),
+      rgba(10,22,18,0.42);
+  }
+  section.deeper .topic-label { color: var(--green); }
+  section.deeper .eli5 { border-left-color: var(--green); background: rgba(124,255,178,0.055); }
+  section.deeper .theory-map a { border-color: rgba(124,255,178,0.25); color: var(--green); background: rgba(124,255,178,0.045); }
+  section.deeper .theory-map a:hover, section.deeper .theory-map a:focus-visible { border-color: rgba(124,255,178,0.7); background: rgba(124,255,178,0.11); }
+  section.deeper .theory-keys { border-color: rgba(124,255,178,0.19); }
+  section.deeper .theory-keys dt, section.deeper .theory-keys dd { border-bottom-color: rgba(124,255,178,0.13); }
+  section.deeper .theory-keys dt { color: var(--green); background: rgba(124,255,178,0.05); }
+  section.deeper .theory-figure { border-color: rgba(124,255,178,0.25); background: linear-gradient(145deg, rgba(124,255,178,0.075), rgba(8,4,12,0.5)); }
+  section.deeper .concept-node { border-color: rgba(124,255,178,0.36); color: var(--green); }
+  section.deeper .concept-arrow { color: var(--green); }
+  section.deeper .equation { border-color: rgba(124,255,178,0.28); color: var(--green); }
+  .essay-full { border-color: rgba(232,196,104,0.32); }
+  section.theory .essay-full h3, section.theory .essay-full h4 { color: var(--gold); text-shadow: 0 0 24px rgba(232,196,104,0.16); }
+  .chapter-mark {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    max-width: 74ch; margin: 0 0 1.2rem; padding: 0.85rem 1rem;
+    border: 1px solid rgba(46,230,197,0.48); border-left: 7px solid var(--teal);
+    border-radius: 4px 12px 12px 4px;
+    background: linear-gradient(100deg, rgba(46,230,197,0.15), rgba(46,230,197,0.025));
+    box-shadow: 0 0 34px rgba(46,230,197,0.09), inset 0 1px rgba(255,255,255,0.04);
+  }
+  .chapter-mark strong {
+    color: var(--teal-pale); font-family: var(--mono); font-size: clamp(1.1rem, 4vw, 1.55rem);
+    letter-spacing: 0.18em;
+  }
+  .chapter-mark span { color: var(--teal); font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-align: right; }
+  section.deeper .chapter-mark {
+    border-color: rgba(124,255,178,0.5); border-left-color: var(--green);
+    background: linear-gradient(100deg, rgba(124,255,178,0.16), rgba(124,255,178,0.025));
+    box-shadow: 0 0 38px rgba(124,255,178,0.1), inset 0 1px rgba(255,255,255,0.04);
+  }
+  section.deeper .chapter-mark strong, section.deeper .chapter-mark span { color: var(--green); }
+
+  .support-cta {
+    display: inline-flex; align-items: center; gap: 0.55rem; margin: 1rem 0 0.35rem;
+    padding: 0.62rem 1rem; border: 1px solid rgba(255,72,173,0.52); border-radius: 999px;
+    color: #FFE6F4; background: linear-gradient(100deg, rgba(255,72,173,0.13), rgba(46,230,197,0.07));
+    font-weight: 650; letter-spacing: 0.04em;
+  }
+  .support-cta:hover, .support-cta:focus-visible {
+    text-decoration: none; border-color: var(--pink-soft); box-shadow: 0 0 25px rgba(255,72,173,0.2);
+  }
+  .support-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; align-items: center; }
+  .support-cta.cashapp { border-color: rgba(124,255,178,0.5); background: rgba(124,255,178,0.09); }
+  .support-cta.cashapp:hover, .support-cta.cashapp:focus-visible { border-color: var(--green); box-shadow: 0 0 25px rgba(124,255,178,0.18); }
+  .support-cta.venmo { border-color: rgba(61,149,206,0.62); background: rgba(61,149,206,0.11); }
+  .support-cta.venmo:hover, .support-cta.venmo:focus-visible { border-color: #79C9FF; box-shadow: 0 0 25px rgba(61,149,206,0.2); }
+  .support-block {
+    max-width: 70ch; margin: 1.3rem 0; padding: 1rem 1.15rem;
+    border: 1px solid rgba(255,72,173,0.32); border-radius: 12px;
+    background: radial-gradient(500px 180px at 100% 0%, rgba(255,72,173,0.1), transparent 65%), rgba(18,10,30,0.5);
+    scroll-margin-top: 5rem; transition: border-color 0.35s ease, box-shadow 0.35s ease;
+  }
+  .support-block:target { border-color: var(--pink-soft); box-shadow: 0 0 34px rgba(255,72,173,0.22); }
+  .support-block p { margin: 0.35rem 0; }
+
+  /* Slow web counterparts to the in-headset phase-clock figures. */
+  @keyframes concept-pulse {
+    0%, 72%, 100% { transform: translateY(0) scale(1); border-color: rgba(46,230,197,0.28); box-shadow: none; }
+    12%, 25% { transform: translateY(-3px) scale(1.025); border-color: rgba(46,230,197,0.78); box-shadow: 0 0 22px rgba(46,230,197,0.18); }
+  }
+  @keyframes deep-concept-pulse {
+    0%, 72%, 100% { transform: translateY(0) scale(1); border-color: rgba(124,255,178,0.28); box-shadow: none; }
+    12%, 25% { transform: translateY(-3px) scale(1.025); border-color: rgba(124,255,178,0.8); box-shadow: 0 0 22px rgba(124,255,178,0.18); }
+  }
+  @keyframes arrow-flow { 0%, 100% { opacity: 0.38; transform: translateX(-2px); } 45% { opacity: 1; transform: translateX(3px); } }
+  @keyframes pitch-nod { 0%,100% { transform: rotate(0); } 30% { transform: rotate(-3deg); } 70% { transform: rotate(3deg); } }
+  @keyframes roll-bank { 0%,100% { transform: rotate(0); } 30% { transform: rotate(3deg); } 70% { transform: rotate(-3deg); } }
+  @keyframes yaw-turn { 0%,100% { transform: perspective(240px) rotateY(0); } 35% { transform: perspective(240px) rotateY(8deg); } 70% { transform: perspective(240px) rotateY(-8deg); } }
+  @keyframes eye-fuse { 0%,100% { filter: none; } 45% { filter: brightness(1.45) drop-shadow(0 0 7px rgba(46,230,197,0.45)); } }
+  @keyframes equation-glow { 0%,100% { text-shadow: 0 0 0 transparent; } 50% { text-shadow: 0 0 17px currentColor; } }
+  @keyframes gimbal-rock { 0%,100% { transform: rotate(0); } 35% { transform: rotate(2.2deg); } 70% { transform: rotate(-2.2deg); } }
+  .theory-figure .concept-node { animation: concept-pulse 7.5s ease-in-out infinite; animation-delay: calc(var(--step, 0) * -1.25s); }
+  section.deeper .theory-figure .concept-node { animation-name: deep-concept-pulse; }
+  .theory-figure .concept-arrow { animation: arrow-flow 2.6s ease-in-out infinite; }
+  .anim-axes .concept-node:nth-child(1) { animation: pitch-nod 5.8s ease-in-out infinite; }
+  .anim-axes .concept-node:nth-child(2) { animation: roll-bank 5.8s ease-in-out infinite; }
+  .anim-axes .concept-node:nth-child(3) { animation: yaw-turn 5.8s ease-in-out infinite; }
+  .anim-vision .concept-node:last-child { animation: eye-fuse 4.5s ease-in-out infinite; }
+  .anim-euler .equation, .anim-quat .equation { animation: equation-glow 6s ease-in-out infinite; }
+  .anim-gimbal .concept-flow { animation: gimbal-rock 7s ease-in-out infinite; transform-origin: center; }
+  .motion-ready .theory-topic { opacity: 0.68; transform: translateY(18px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .motion-ready .theory-topic.in-view, .motion-ready .theory-topic:target { opacity: 1; transform: translateY(0); }
   details.essay {
     border: 1px solid rgba(46,230,197,0.25); border-radius: 12px;
     background: rgba(18,10,30,0.5); padding: 0.4rem 1.2rem; margin: 1.4rem 0; max-width: 70ch;
@@ -272,6 +437,22 @@
   details.essay summary:hover { color: #FFFFFF; }
   details.essay p { color: var(--mut); }
   .sig { font-family: var(--mono); color: var(--teal); margin-top: 1rem; }
+
+  @media (max-width: 620px) {
+    .theory-map { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .theory-topic { padding: 1rem; }
+    .theory-keys { grid-template-columns: 1fr; }
+    .theory-keys dt { border-bottom: 0; padding-bottom: 0.15rem; }
+    .theory-keys dd { padding-top: 0.2rem; }
+    .concept-arrow { display: none; }
+    .chapter-mark { align-items: flex-start; flex-direction: column; }
+    .chapter-mark span { text-align: left; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .theory-figure .concept-node, .theory-figure .concept-arrow, .anim-euler .equation,
+    .anim-quat .equation, .anim-gimbal .concept-flow { animation: none !important; }
+    .motion-ready .theory-topic { opacity: 1; transform: none; transition: none; }
+  }
 
   footer {
     max-width: 1060px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem;
@@ -321,7 +502,8 @@
   <div class="rail-gap"></div>
   <p class="rail-title">Optional appendices</p>
   <a href="#specs">Tests &amp; metrics</a>
-  <a href="#theory" class="t-theory">Theory</a>
+  <a href="#theory" class="t-theory">Theory of operation</a>
+  <a href="#deeper" class="t-deeper">Deeper</a>
   <div class="rail-gap"></div>
   <p class="rail-title">About</p>
   <a href="#privacy">Privacy &amp; about</a>
@@ -343,7 +525,7 @@
       <tr><td>Any other version</td><td>Use this as orientation, then follow that build's in-headset HELP and release notes. A control described here may be absent or changed.</td></tr>
     </tbody>
   </table></div>
-  <p><strong>Two reading lanes:</strong> Start here through Bug reports is <strong>Daily Use</strong>. <a href="#specs">Engineering Receipts</a> and <a href="#theory">Theory</a> are optional appendices; you do not need them to set up a source or watch a title.</p>
+  <p><strong>Two reading lanes:</strong> Start here through Bug reports is <strong>Daily Use</strong>. <a href="#specs">Engineering Receipts</a>, <a href="#theory">Theory of Operation</a>, and <a href="#deeper">Deeper</a> are optional appendices; you do not need them to set up a source or watch a title.</p>
   <p>The <strong>vault</strong> is your library. Open a folder to dig in. Open a title to play. Daily browsing and playback stay in VR; source management, document pickers, delete confirmation, and Watch Together can intentionally open Android's flat or system UI.</p>
   <div class="note"><p><strong>Your first hour.</strong> Finally ships no catalog, so an empty vault is normal. The fastest first frame is one known-good file in <span class="path">Movies/Finally</span>, followed by <span class="chip">↻ SCAN</span>. Add one Android folder or one SMB share next; use <strong>Browse instantly</strong> on a large NAS instead of waiting for a whole-library index. Posters and metadata can continue filling in after playable rows appear.</p></div>
   <div class="tbl-wrap"><table>
@@ -555,7 +737,7 @@
   <p><span class="chip">DARK ROOM</span> gives flat movies a plain black surround; <span class="chip">ROOM VISIBLE</span> restores passthrough. <span class="chip">ROOM DIM</span> is a saved 0–100% background-luminance slider in 5% steps. It dims bundled/procedural rooms, the flat-video background, and passthrough—including what shows through chroma/packed-alpha holes—without dimming the movie, still, subtitles, or cockpit UI. Automatic frame-rate matching sends Android a seamless display-rate hint based on normalized source cadence and playback speed. The headset still chooses the final display mode. <strong>AFR is not frame interpolation</strong>: it never invents motion or converts a low-frame-rate file to 60 or 90 fps.</p>
 
   <h3>HELP</h3>
-  <p>The in-headset version of this manual: subjects on the left, article on the right, stick ↕ scrolls. It also hides two extra chapters this page only summarizes — <em>THEORY</em> (teal) and <em>DEEPER</em> (green). See <a href="#theory">Theory</a>.</p>
+  <p>The in-headset version of this manual: subjects on the left, article on the right, stick ↕ scrolls. It also includes two extra chapters — <em>THEORY</em> (teal) and <em>DEEPER</em> (green). Both are reproduced below in full: start with <a href="#theory">Theory of Operation</a>, then enter <a href="#deeper">Deeper</a>.</p>
 
   <h3>Stats for nerds</h3>
   <p>PRO only. Tap <span class="chip">◎ STATS</span> on the quick strip's header (or PRO → SETUP → <span class="chip">Stats HUD</span>) and the strip's lower half becomes a live readout: source class, video codec with resolution @ fps, decoder and dropped frames, audio codec, color info, buffer seconds against target, NAS fill % with live MB/s, position / speed / state, active lens + stereo, current Android display mode, source cadence, target refresh, and cadence multiple. It refreshes once a second while open, the scrubber and transport stay live above it, and it never appears on photos.</p>
@@ -1092,25 +1274,25 @@
   <div class="figure-grid">
     <figure class="bench">
       <div class="bench-plot">
-        <img src="assets/benchmarks/mvc-iso-realtime-progression.svg" alt="Quest 3 MVC ISO media-to-wall realtime ratio progressing from 0.396 in A2 to 0.93492 in A3 and 0.999772 in A4b" loading="lazy" decoding="async">
+        <img src="assets/benchmarks/mvc-iso-realtime-progression.svg" alt="Quest 3 MVC ISO media-to-wall realtime ratio progressing from 0.396 in A2 to 0.93492 in A3 and 0.999772 in A4b" width="1200" height="560" loading="lazy" decoding="async">
       </div>
       <figcaption>Same exact Quest ISO across three engineering runs. The straight lines connect discrete tests; they do not imply unmeasured intermediate performance.</figcaption>
     </figure>
     <figure class="bench">
       <div class="bench-plot">
-        <img src="assets/benchmarks/mvc-headless-worker-throughput.svg" alt="Quest 3 headless MVC throughput comparison for automatic, six-worker, and four-worker decoder policies" loading="lazy" decoding="async">
+        <img src="assets/benchmarks/mvc-headless-worker-throughput.svg" alt="Quest 3 headless MVC throughput comparison for automatic, six-worker, and four-worker decoder policies" width="1200" height="560" loading="lazy" decoding="async">
       </div>
       <figcaption>Four workers retained essentially the same decode throughput while reserving headset compute for OpenXR and audio.</figcaption>
     </figure>
     <figure class="bench">
       <div class="bench-plot">
-        <img src="assets/benchmarks/mvc-a4b-vrapi-telemetry.svg" alt="Sixty seconds of Quest 3 MVC A4b OpenXR telemetry including FPS, stale frames, app time, CPU plus GPU time, and reported temperature" loading="lazy" decoding="async">
+        <img src="assets/benchmarks/mvc-a4b-vrapi-telemetry.svg" alt="Sixty seconds of Quest 3 MVC A4b OpenXR telemetry including FPS, stale frames, app time, CPU plus GPU time, and reported temperature" width="1200" height="930" loading="lazy" decoding="async">
       </div>
       <figcaption>All 60 one-second A4b samples: 72–73 FPS against 72 Hz, 35 stale frames total, 1.121 ms average app time, and 4.60 ms maximum CPU+GPU. The short 48 °C trace is not a thermal soak.</figcaption>
     </figure>
     <figure class="bench">
       <div class="bench-plot">
-        <img src="assets/benchmarks/watch-together-lan-round-trip.svg" alt="Focused private-LAN Watch Together control round trips between Quest 3 and Galaxy XR ranging from 13 to 33 milliseconds" loading="lazy" decoding="async">
+        <img src="assets/benchmarks/watch-together-lan-round-trip.svg" alt="Focused private-LAN Watch Together control round trips between Quest 3 and Galaxy XR ranging from 13 to 33 milliseconds" width="1200" height="560" loading="lazy" decoding="async">
       </div>
       <figcaption>Quest 3 ↔ Galaxy XR focused control acknowledgements on one private LAN. These are control round trips, not media-relay latency.</figcaption>
     </figure>
@@ -1132,27 +1314,336 @@
 
 <section id="theory" class="theory appendix">
   <p class="kicker">optional appendix · the teal chapter</p>
+  <div class="chapter-mark"><strong>THEORY</strong><span>ENGINEERING NOTES · WHY THE PICTURE WORKS</span></div>
   <h2>Theory of Operation</h2>
   <p class="lede">HELP tells you which button to press. Theory tells you why the picture looks the way it does.</p>
-  <p>Inside the headset, the HELP page hides two extra chapters: <strong>THEORY</strong> (teal) and <strong>DEEPER</strong> (green). They're engineering notes, not marketing — a guided walk from "what is pitch, roll, yaw" all the way down to why the runtime stores your head's orientation as four floats on a 3-sphere. This page keeps the map; the full articles live in the app.</p>
-  <div class="tbl-wrap"><table>
-    <thead><tr><th>Subject</th><th>The idea</th></tr></thead>
-    <tbody>
-      <tr><td>Axes</td><td>Pitch · roll · yaw — aviation named the triad; your headset reports it every frame</td></tr>
-      <tr><td>6DoF</td><td>You move six ways; a video file captured light from <em>one</em> point. Finally locks the projection to your head and refuses to invent rays that were never recorded — honest 6DoF</td></tr>
-      <tr><td>Vision</td><td>Two eyes ~63 mm apart; SBS/OU routes each half-frame to the right one. Swapped eyes = inverted depth = nausea — hence the Eyes control</td></tr>
-      <tr><td>Mapping</td><td>Flat panel vs equirect dome vs fisheye disk. When shape looks wrong, the map is wrong — not your eyes</td></tr>
-      <tr><td>Pipeline</td><td>Source → detect → decode → project → compose. Finally operates no cloud relay; a remote source can still use infrastructure chosen by its owner or provider</td></tr>
-      <tr><td class="sub-deeper">DEEPER</td><td>Unit quaternions, coordinate frames, gimbal lock, and the linear algebra your neck already believes</td></tr>
-    </tbody>
-  </table></div>
-  <details class="essay">
-    <summary>“A quick word…” — the essay hiding in the THEORY chapter</summary>
-    <p>Somewhere past the pipeline diagrams sits a personal essay: on loving math, on what school did to it, on why SOHCAHTOA was a door and not the house, why JPEG is trigonometry being polite, and why Euler's identity is the reason the dome doesn't jitter when you nod.</p>
-    <p>It ends like this: <em>"Beauty is not decoration on top of rigor. Beauty is the rigor when you finally see it whole. And please… don't blame SOHCAHTOA for your hatred of math. It was an unfair story. Lol."</em></p>
-    <p class="sig">— Dave</p>
-    <p>Read the whole thing in the headset: HELP → THEORY → <em>A word…</em></p>
-  </details>
+  <p>Skip it if you just want to watch. Stay if you want to know why a file looks right or wrong, and what Finally is actually doing with every frame.</p>
+  <div class="note"><p><strong>Web note.</strong> References to “on the left” preserve the in-headset HELP wording. On narrow browser screens, the same chapter navigation scrolls horizontally above the articles.</p></div>
+
+  <nav class="theory-map" aria-label="Theory of Operation subjects">
+    <a href="#theory-overview">Overview</a>
+    <a href="#theory-axes">Axes</a>
+    <a href="#theory-6dof">6DoF</a>
+    <a href="#theory-vision">Vision</a>
+    <a href="#theory-mapping">Mapping</a>
+    <a href="#theory-pipeline">Pipeline</a>
+    <a href="#theory-word">A quick word…</a>
+  </nav>
+
+  <article id="theory-overview" class="theory-topic">
+    <p class="topic-label">Theory · overview</p>
+    <h3>Theory of Operation</h3>
+    <p class="eli5"><strong>ELI5:</strong> HELP tells you which button to press. Theory tells you why the picture looks the way it does.</p>
+    <p>Skip it if you just want to watch. Stay if you want to know why a file looks right or wrong, and what Finally is actually doing with every frame.</p>
+    <figure class="theory-figure anim-sequence">
+      <div class="concept-flow" aria-hidden="true">
+        <span class="concept-node">FILE<small>local bytes</small></span><span class="concept-arrow">→</span>
+        <span class="concept-node">DETECT<small>lens + stereo</small></span><span class="concept-arrow">→</span>
+        <span class="concept-node">DECODE<small>frame on GPU</small></span><span class="concept-arrow">→</span>
+        <span class="concept-node">PROJECT<small>mesh + UV</small></span><span class="concept-arrow">→</span>
+        <span class="concept-node">EYES<small>OpenXR layers</small></span>
+      </div>
+      <figcaption>Local signal path — no cloud hop.</figcaption>
+    </figure>
+    <h4>What this chapter covers</h4>
+    <dl class="theory-keys">
+      <dt>Axes</dt><dd>pitch · roll · yaw — how a rigid body turns</dd>
+      <dt>6DoF</dt><dd>translation + rotation, and what video cannot invent</dd>
+      <dt>Vision</dt><dd>two eyes, stereo fusion, why depth feels real</dd>
+      <dt>Mapping</dt><dd>flat panel vs equirect dome vs fisheye UV</dd>
+      <dt>Pipeline</dt><dd>decode → project → eye buffers → compositor</dd>
+      <dt>A word…</dt><dd>a personal note on Euler, trig, and why math is beautiful</dd>
+    </dl>
+    <p>When you want the linear algebra under the hood (quaternions, frames, gimbal lock), open <a href="#deeper">DEEPER</a> on the left. Green means go further.</p>
+    <p>Tone: engineering notes, not marketing. No cloud, no account. Just local signal path.</p>
+  </article>
+
+  <article id="theory-axes" class="theory-topic">
+    <p class="topic-label">Theory · axes</p>
+    <h3>Rotational axes</h3>
+    <p class="eli5"><strong>ELI5:</strong> your head can nod, tilt, and turn. Those three spins are pitch, roll, and yaw.</p>
+    <p>Aviation named them; headsets report the same triad every frame. Defined by the axis you spin about:</p>
+    <figure class="theory-figure anim-axes">
+      <div class="concept-flow" aria-hidden="true">
+        <span class="concept-node">PITCH<small>nod · rotate around X</small></span>
+        <span class="concept-node">ROLL<small>tilt · rotate around Z</small></span>
+        <span class="concept-node">YAW<small>turn · rotate around Y</small></span>
+      </div>
+      <figcaption>Three human-readable views of one orientation.</figcaption>
+    </figure>
+    <p>OpenXR delivers a pose quaternion each frame → view matrix. Pitch / roll / yaw here are the human readout, not the storage format (see <a href="#deeper-quat">DEEPER → Quat</a>).</p>
+  </article>
+
+  <article id="theory-6dof" class="theory-topic">
+    <p class="topic-label">Theory · 6DoF</p>
+    <h3>Six degrees of freedom</h3>
+    <p class="eli5"><strong>ELI5:</strong> you can slide in three directions and spin in three ways. That is six degrees of freedom. Your headset tracks all six. A video file only captured light from one camera center.</p>
+    <figure class="theory-figure anim-6dof">
+      <div class="concept-flow" aria-hidden="true">
+        <span class="concept-node">X<small>left ↔ right</small></span>
+        <span class="concept-node">Y<small>down ↕ up</small></span>
+        <span class="concept-node">Z<small>back ↔ forward</small></span>
+        <span class="concept-node">P · R · Y<small>three rotations</small></span>
+      </div>
+      <figcaption>HEADSET = full 6DoF · VIDEO = capture center only. Translation cannot reveal rays the camera never recorded.</figcaption>
+    </figure>
+    <h4>What the headset tracks</h4>
+    <dl class="theory-keys">
+      <dt>X / Y / Z</dt><dd>slide left-right · up-down · forward-back in room space</dd>
+      <dt>Pitch / Roll / Yaw</dt><dd>the rotational triad from Axes</dd>
+    </dl>
+    <h4>What the file contains</h4>
+    <p>A VR180 or 360 title is a photograph of light from one capture center. Move your body sideways and the real world reveals new geometry. The file cannot. Those rays were never recorded.</p>
+    <p>Finally’s job is honest: lock the projection to your head so the captured view stays fused and stable. It will not invent the side of a room that is not in the bitstream.</p>
+    <p>Flat titles are different: they are objects in room space. You can walk toward a panel, pull it closer, curve it. Six degrees apply to you and to the panel pose, not to inventing missing pixels inside the frame.</p>
+  </article>
+
+  <article id="theory-vision" class="theory-topic">
+    <p class="topic-label">Theory · vision</p>
+    <h3>Human visual system</h3>
+    <p class="eli5"><strong>ELI5:</strong> two eyes see slightly different pictures. Your brain smushes them into depth. VR fakes that with left and right images.</p>
+    <figure class="theory-figure anim-vision">
+      <div class="concept-flow" aria-hidden="true">
+        <span class="concept-node">LEFT EYE<small>left half-frame</small></span>
+        <span class="concept-arrow">+</span>
+        <span class="concept-node">RIGHT EYE<small>right half-frame</small></span>
+        <span class="concept-arrow">→</span>
+        <span class="concept-node">STEREO FUSION<small>disparity becomes depth</small></span>
+      </div>
+      <figcaption>Two correctly routed views become one stable 3D percept.</figcaption>
+    </figure>
+    <h4>Stereo pair</h4>
+    <p>Average adult interpupillary distance is about 63 mm. Side-by-side (SBS) and over-under packs put left and right half-frames in one container. Finally routes each half to the correct eye buffer.</p>
+    <h4>Vergence &amp; accommodation</h4>
+    <p>In the real world, eyes cross (vergence) and lenses focus (accommodation) on the same distance. In a headset the display is fixed; only vergence changes. Large mismatches feel like eye strain. PLACE / EYES depth and height exist so you can settle that bargain.</p>
+    <h4>Why AUTO eyes matter</h4>
+    <p>Swap left and right and the world goes anti-stereo: depth inverts, nausea follows. Eyes L·R / R·L and the AUTO escape hatch exist for that exact failure mode.</p>
+    <p>Monoscopic content is not broken stereo. It is one image to both eyes: flat depth, zero rivalry. Prefer mono when the file was never shot as a pair.</p>
+  </article>
+
+  <article id="theory-mapping" class="theory-topic">
+    <p class="topic-label">Theory · mapping</p>
+    <h3>How video becomes a world</h3>
+    <p class="eli5"><strong>ELI5:</strong> pixels have to land somewhere. Flat sticks them on a panel. 180/360 wraps them on a dome. Fisheye remaps a circle. Wrong map looks wrong.</p>
+    <figure class="theory-figure anim-mapping">
+      <div class="concept-flow" aria-hidden="true">
+        <span class="concept-node">FLAT ▭<small>rectangle in room space</small></span>
+        <span class="concept-node">180 / 360 ◯<small>equirectangular dome</small></span>
+        <span class="concept-node">FISHEYE ◉<small>circle through lens UV</small></span>
+      </div>
+      <figcaption>Pixels → surface geometry · never fake FOV zoom.</figcaption>
+    </figure>
+    <h4>Flat</h4>
+    <p>A rectangle (optionally curved) at a real distance. Stick ↕ and CLOSER / FARTHER move the object. No sphere warp.</p>
+    <h4>180° / 360°</h4>
+    <p>Equirectangular frames unwrap onto a dome. Longitude → yaw, latitude → pitch. You turn; the dome stays world-locked to your pose.</p>
+    <h4>Fisheye family</h4>
+    <p>Circular or dual-circle captures remapped through UV scale / FOV. Labels like MKX200, FE190, VRCA are lens profiles: different circles, same idea.</p>
+    <p>When shape looks wrong, the map is wrong, not your eyes. PLAY → AUTO re-runs detection; manual lens/stereo overrides stick per title.</p>
+  </article>
+
+  <article id="theory-pipeline" class="theory-topic">
+    <p class="topic-label">Theory · pipeline</p>
+    <h3>Signal path</h3>
+    <p class="eli5"><strong>ELI5:</strong> file on disk → figure out the shape → decode frames → wrap them for each eye → headset shows them. No cloud hop.</p>
+    <figure class="theory-figure anim-sequence">
+      <div class="concept-flow" aria-hidden="true">
+        <span class="concept-node">DISK<small>bytes</small></span><span class="concept-arrow">→</span>
+        <span class="concept-node">DETECT<small>lens / stereo</small></span><span class="concept-arrow">→</span>
+        <span class="concept-node">DECODE<small>Exo → GPU</small></span><span class="concept-arrow">→</span>
+        <span class="concept-node">PROJECT<small>mesh / UV</small></span><span class="concept-arrow">→</span>
+        <span class="concept-node">XR<small>layers</small></span>
+      </div>
+      <figcaption>offline · local · yours</figcaption>
+    </figure>
+    <h4>Stages</h4>
+    <dl class="theory-keys">
+      <dt>1 · Source</dt><dd>local file, NAS, or vault scan — your hardware</dd>
+      <dt>2 · Detect</dt><dd>filename tags + frame geometry → lens / stereo guess</dd>
+      <dt>3 · Decode</dt><dd>ExoPlayer → SurfaceTexture (GPU-backed frames)</dd>
+      <dt>4 · Project</dt><dd>equirect / SBS / flat mesh + eye split</dd>
+      <dt>5 · Compose</dt><dd>OpenXR projection layers → compositor → displays</dd>
+    </dl>
+    <p>Sidecar notes (<code>*.finally.json</code>) remember projection, prefs, and resume. Matched by content hash or path. Your fixes travel with the title, not with a cloud profile.</p>
+  </article>
+
+  <article id="theory-word" class="theory-topic essay-full">
+    <p class="topic-label">Theory · a word…</p>
+    <h3>A quick word…</h3>
+    <p class="eli5"><strong>ELI5:</strong> a short rant about why math is beautiful, why SOHCAHTOA was a bad first date, and why Euler shows up in your headset.</p>
+    <p>This one is personal. Not a textbook. Me going off.</p>
+    <figure class="theory-figure anim-euler">
+      <div class="equation">e<sup>iθ</sup> = cos θ + i sin θ &nbsp; → &nbsp; e<sup>iπ</sup> + 1 = 0</div>
+      <figcaption>The circle, rotation, and five famous constants in one line.</figcaption>
+    </figure>
+    <h4>I love math</h4>
+    <p>I love math. I think our public education system has done mathematics a huge disservice, because math, like true mathematics, is actually absolutely beautiful. Almost spiritual. Not worksheets. Not panic before a test. The real thing is the universe talking in a language that happens to fit in your skull.</p>
+    <p>School sold most of us a fake. Timed drills. Red ink. Math as a gate you fail at instead of something you can walk into. That is a crime against curiosity. The people who built the world you are standing in right now (engines, radios, GPS, this headset) were not memorizing SOHCAHTOA for a scantron. They were listening.</p>
+    <h4>SOHCAHTOA is a door, not the house</h4>
+    <p>SOHCAHTOA is a thing you learn to pass some exam, and then hope to God you never see it again. Opposite over hypotenuse. Adjacent over hypotenuse. A stupid little chant so you survive Friday. Then they slam the door and call it geometry.</p>
+    <p>But trig is so much more. It is harmony. It is music. It is electronics. It is the purest description of anything that goes around and comes back: a wheel, a planet, a sound wave, an AC voltage, the phase of a signal in a cable, the way your head turns while a VR dome stays locked. Same two functions. Everywhere.</p>
+    <p>And here is the kicker. There is so much trig going on right now. How you are reading this. The encoding. The controller in your hand. The light itself. Sines in the radio, sines in the display drive, sines in the tracking filter that keeps this panel glued to your gaze. You were told it was a triangle worksheet. It was always the machinery of the world.</p>
+    <p>Little joke for free: the reason your headset does not fill up after two PNG screenshots and can hold thousands of JPEGs is cosine transforms. JPEG is literally “throw away the high-frequency sines the eye is lazy about.” Same circle. Same functions. One format is polite. The other is a pack rat.</p>
+    <p><small><strong>Technical footnote:</strong> JPEG’s DCT basis functions are cosines; “sines” is the original essay’s loose family shorthand.</small></p>
+    <h4>Music and electronics</h4>
+    <p>Music is trig with a pulse. An octave is a doubling of frequency. A fifth sits near 3/2. Harmony is ratios the ear hears as rest or tension. Fourier said any messy waveform is a stack of pure sines. Speakers, mics, every equalizer: that idea again.</p>
+    <p>Electronics is the same circle spinning in the complex plane. Impedance. Phase shift. Resonance. Filters that pass a band and kill the rest. The imaginary unit is not imaginary in a circuit lab. It is how you keep track of lead and lag without losing your mind.</p>
+    <h4>Euler’s identity</h4>
+    <p>Leonhard Euler (1707 to 1783) was a monster of insight. Blind late in life and still publishing. His formula e^(i θ) = cos θ + i sin θ is not a parlor stunt. Exponential growth (e), rotation (i and θ), and the two faces of the unit circle (cos and sin) are one object. Spin the angle, you walk the circle. At θ = π you get e^(i π) + 1 = 0. Five of the most important constants in one line: e, i, π, 1, 0.</p>
+    <p>Why does that matter for a headset? Orientation is rotation. Rotation is the circle. The circle is Euler. Quaternions are that idea grown up into 3D (Hamilton, 1843), half-angles and all, so your view matrix does not tear itself apart the way Euler angles can. History is not trivia here. History is why the dome does not jitter when you nod.</p>
+    <h4>What school should have said</h4>
+    <p>They should have said: math is noticing that two different stories are the same story. A swing and a tide and a voltage share a shape. Beauty is not decoration on top of rigor. Beauty is the rigor when you finally see it whole.</p>
+    <p>Remember what pitch, roll, and yaw are. And please… don’t blame SOHCAHTOA for your hatred of math. It was an unfair story. Lol.</p>
+    <p>When you are ready for the machinery under the hood, open <a href="#deeper">DEEPER</a> on the left.</p>
+    <p class="sig">Dave</p>
+  </article>
+</section>
+
+<section id="deeper" class="theory deeper appendix">
+  <p class="kicker">optional appendix · the green engine bay</p>
+  <div class="chapter-mark"><strong>DEEPER</strong><span>QUAT · FRAMES · GIMBAL · LINEAR ALGEBRA</span></div>
+  <h2>Theory (Deeper)</h2>
+  <p class="lede">Theory was the map. This room is the engine bay. Optional. A little meaner. Green means go further.</p>
+
+  <nav class="theory-map" aria-label="Deeper theory subjects">
+    <a href="#deeper-intro">Intro</a>
+    <a href="#deeper-quat">Quat</a>
+    <a href="#deeper-frames">Frames</a>
+    <a href="#deeper-gimbal">Gimbal</a>
+    <a href="#deeper-math">Math</a>
+  </nav>
+
+  <article id="deeper-intro" class="theory-topic">
+    <p class="topic-label">Deeper · intro</p>
+    <h3>Theory (Deeper)</h3>
+    <p class="eli5"><strong>ELI5:</strong> Theory was the map. This room is the engine bay. Optional. A little meaner. Green on the left.</p>
+    <p>You finished Theory. You know axes, stereo, mapping. You may have read A quick word. No shame if you bounce. If you stay: how orientation is stored, how frames chain, why Euler angles lie, and the linear algebra your neck already believes.</p>
+    <figure class="theory-figure anim-sequence">
+      <div class="concept-flow" aria-hidden="true">
+        <span class="concept-node">THEORY<small>the map</small></span><span class="concept-arrow">→</span>
+        <span class="concept-node">DEEPER<small>the engine bay</small></span><span class="concept-arrow">→</span>
+        <span class="concept-node">QUAT · FRAMES · MATH<small>the machinery</small></span>
+      </div>
+      <figcaption>Past the controls, into the representation underneath them.</figcaption>
+    </figure>
+    <h4>What’s in here</h4>
+    <dl class="theory-keys">
+      <dt>Quat</dt><dd>unit quaternions: OpenXR’s real orientation</dd>
+      <dt>Frames</dt><dd>world · head · eye · clip</dd>
+      <dt>Gimbal</dt><dd>why pitch/roll/yaw are a readout, not the truth</dd>
+      <dt>Math</dt><dd>vectors, matrices, the multiplies you feel</dd>
+    </dl>
+    <p>Curious civilian welcome. Not a textbook.</p>
+  </article>
+
+  <article id="deeper-quat" class="theory-topic">
+    <p class="topic-label">Deeper · quat</p>
+    <h3>Unit quaternions</h3>
+    <p class="eli5"><strong>ELI5:</strong> the headset does not store “look left a bit.” It stores four numbers that mean “spin this much around this direction.” That package is a quaternion. Pitch/roll/yaw are just how we read it out loud.</p>
+    <figure class="theory-figure anim-quat">
+      <div class="equation">q = (w, x, y, z) &nbsp; · &nbsp; ‖q‖ = 1 &nbsp; · &nbsp; q and −q = same attitude</div>
+      <div class="concept-flow" aria-hidden="true">
+        <span class="concept-node">AXIS û<small>direction to spin around</small></span>
+        <span class="concept-arrow">×</span>
+        <span class="concept-node">HALF-ANGLE θ/2<small>amount of rotation</small></span>
+        <span class="concept-arrow">→</span>
+        <span class="concept-node">ORIENTATION q</span>
+      </div>
+      <figcaption>A compact, continuous representation of 3D orientation.</figcaption>
+    </figure>
+    <h4>What it is</h4>
+    <p>A quaternion is q = (w, x, y, z), or w + xi + yj + zk. For orientation we use unit quaternions: ‖q‖ = 1. That lives on a 3-sphere S³, which double-covers the rotation group SO(3). q and −q are the same attitude.</p>
+    <dl class="theory-keys">
+      <dt>w</dt><dd>real / scalar part: cos(θ/2) for a pure axis-angle spin</dd>
+      <dt>x y z</dt><dd>vector part: sin(θ/2) · û (axis of rotation)</dd>
+    </dl>
+    <h4>Why headsets use them</h4>
+    <p>Compose two rotations with one multiply: q₂q₁. No matrix rebuild, no axis order fights, no gimbal lock. Slerp blends orientations along the short arc on S³: smooth recenters, smooth prediction.</p>
+    <p>Finally takes the pose quaternion from OpenXR each frame and builds the view matrix that aims the projection mesh at your eyes. You never see the four floats; you feel them when the dome stays glued to your head.</p>
+    <h4>Axis-angle link</h4>
+    <p>Any 3D rotation is “spin θ about unit axis û.” The quaternion is exactly that, half-angled: w = cos(θ/2), (x,y,z) = û sin(θ/2). Pitch/roll/yaw in Theory are a human readout of the same attitude, not how the runtime stores it.</p>
+  </article>
+
+  <article id="deeper-frames" class="theory-topic">
+    <p class="topic-label">Deeper · frames</p>
+    <h3>Coordinate frames</h3>
+    <p class="eli5"><strong>ELI5:</strong> “where is this point?” only makes sense if you say relative to what. Room, head, eye, screen. Matrices are the translators between those answers.</p>
+    <figure class="theory-figure anim-sequence">
+      <div class="concept-flow" aria-hidden="true">
+        <span class="concept-node">MODEL<small>content → world</small></span><span class="concept-arrow">→</span>
+        <span class="concept-node">VIEW<small>world → eye</small></span><span class="concept-arrow">→</span>
+        <span class="concept-node">PROJECTION<small>eye → clip</small></span>
+      </div>
+      <div class="equation">clip = P · V · M · vertex</div>
+      <figcaption>Order matters. Reverse the chain and the world spins wrong.</figcaption>
+    </figure>
+    <h4>The chain</h4>
+    <dl class="theory-keys">
+      <dt>World</dt><dd>room / stage space: meters, gravity down, origin near you at session start</dd>
+      <dt>Head / View</dt><dd>between your eyes: OpenXR pose puts this in world</dd>
+      <dt>Eye</dt><dd>left or right: offset by IPD/2 along the head X axis</dd>
+      <dt>Clip</dt><dd>post-projection cube the GPU clips against (−1…1)</dd>
+    </dl>
+    <h4>What Finally multiplies</h4>
+    <p>Mesh vertex (dome or flat panel) lives in a content frame. Model matrix parks that content in world. View matrix is the inverse of the head (or eye) pose. Projection matrix maps eye-space into clip using the headset FOV.</p>
+    <p>Written left-to-right as column vectors: <code>clip = P · V · M · vertex</code>. Order matters. Reverse it and the world spins wrong.</p>
+    <h4>Why this matters for video</h4>
+    <p>Equirect UV is a function of the world-space ray from the capture center. Flat panels are ordinary quads with a model matrix (distance, height, curve). Same frame chain. Different M.</p>
+  </article>
+
+  <article id="deeper-gimbal" class="theory-topic">
+    <p class="topic-label">Deeper · gimbal</p>
+    <h3>Gimbal lock &amp; Euler</h3>
+    <p class="eli5"><strong>ELI5:</strong> describing a turn as three dials in a row can jam. When two dials line up, you lose a way to turn. That jam is gimbal lock. Headsets avoid it by not living on those dials.</p>
+    <figure class="theory-figure anim-gimbal">
+      <div class="concept-flow" aria-hidden="true">
+        <span class="concept-node">YAW RING</span>
+        <span class="concept-node">PITCH ±90°<small>two axes align</small></span>
+        <span class="concept-node">ROLL RING<small>one degree is lost</small></span>
+        <span class="concept-arrow">→</span>
+        <span class="concept-node">QUATERNION<small>no sequential dial state</small></span>
+      </div>
+      <figcaption>Euler is a useful readout. It is a fragile place to live.</figcaption>
+    </figure>
+    <h4>The failure</h4>
+    <p>Euler angles (pitch, roll, yaw as three sequential turns) are great for cockpits and terrible as a continuous orientation state.</p>
+    <p>Three nested gimbals: when the middle ring hits ±90°, the outer and inner axes line up. You lose a degree of freedom. Two angles fight over the same rotation. That is gimbal lock.</p>
+    <p>Near lock, tiny pose noise becomes huge angle jumps. Filtering, prediction, and smooth look all explode if you integrate Euler.</p>
+    <h4>What we do instead</h4>
+    <dl class="theory-keys">
+      <dt>Store</dt><dd>unit quaternion (or rotation matrix): full SO(3), no lock</dd>
+      <dt>Display</dt><dd>Euler for humans: READOUT only, never the source of truth</dd>
+      <dt>Blend</dt><dd>slerp on quaternions, not lerp on angles</dd>
+    </dl>
+    <p>If Theory shows pitch / roll / yaw, that is a projection of the quaternion for your brain. The headset and Finally keep the four-float form under the hood.</p>
+  </article>
+
+  <article id="deeper-math" class="theory-topic">
+    <p class="topic-label">Deeper · math</p>
+    <h3>Linear algebra you feel</h3>
+    <p class="eli5"><strong>ELI5:</strong> vectors point. Matrices move things between spaces. Quaternions are a compact way to spin. You already feel this when tracking is honest.</p>
+    <figure class="theory-figure anim-sequence">
+      <div class="concept-flow" aria-hidden="true">
+        <span class="concept-node">VECTOR<small>direction or offset</small></span>
+        <span class="concept-node">MATRIX 4×4<small>move between spaces</small></span>
+        <span class="concept-node">QUATERNION<small>spin without lock</small></span>
+        <span class="concept-arrow">→</span>
+        <span class="concept-node">STABLE VIEW<small>the result you feel</small></span>
+      </div>
+      <figcaption>Your neck is already doing the acceptance test.</figcaption>
+    </figure>
+    <h4>Objects</h4>
+    <dl class="theory-keys">
+      <dt>Vector</dt><dd>direction or offset in a frame: (x, y, z)</dd>
+      <dt>Matrix 4×4</dt><dd>affine transform: rotate + translate (+ project) in one multiply</dd>
+      <dt>Quaternion</dt><dd>compact rotation; converts to the upper-left 3×3 of a matrix</dd>
+    </dl>
+    <h4>Operations that matter here</h4>
+    <p>Rotate a vector by a quaternion: v' = q v q⁻¹ (pure vector as a quat with w=0). Compose orientations: multiply quats. Change frame: multiply by the right 4×4.</p>
+    <p>Stereo: left and right eyes are two view matrices that differ mostly by a translation of ±IPD/2. Disparity in the image is the footprint of that geometry.</p>
+    <h4>Finally’s contract</h4>
+    <p>We do not invent rays the camera never captured (honest 6DoF). We do keep the view matrix locked to your live pose so the rays you have stay fused. Linear algebra plus restraint.</p>
+  </article>
 </section>
 
 <section id="privacy">
@@ -1162,6 +1653,16 @@
   <p>Your vault, settings, source credentials, Bluetooth accessory state, and <code>.funscript</code> timing stay on your hardware. Finally uses the network only for sources you configure and private-LAN features you explicitly start, such as SMB playback or Watch Together. Optional ChloeVibes control is a direct local Bluetooth connection, not a Coldbricks service. There is no Finally account, catalog funnel, silent telemetry, or automatic diagnostic upload. Full policy: <a href="https://finallyvr.com/finally/privacy/">finallyvr.com/finally/privacy</a>.</p>
   <p>Do not use plain FTP or acknowledged plain HTTP outside a private network you control. Never accept a Watch Together pairing code that differs between headsets. Finally provides no CSS or Blu-ray decryption; use only media you are authorized to access.</p>
   <p><strong>Decode:</strong> MediaCodec hardware path with decoder fallback; FFmpeg software audio where hardware can't. <strong>Sisters:</strong> Finally is built alongside ChloeVibes and ChloeVR in the same shop.</p>
+  <div id="support" class="support-block">
+    <p><strong>Thank you for supporting independent development.</strong></p>
+    <p>Finally exists because one person kept building the player he wanted to use. If you want to help keep that work moving, use the support link below.</p>
+    <div class="support-actions">
+      <a class="support-cta" href="https://www.paypal.com/ncp/payment/BANJQ2TMHJVF8" target="_blank" rel="noopener noreferrer">♡ Support Finally VR Video Player with PayPal</a>
+      <a class="support-cta cashapp" href="https://cash.app/$DavidLombardo518" target="_blank" rel="noopener noreferrer">$ Support via Cash App · $DavidLombardo518</a>
+      <a class="support-cta venmo" href="https://venmo.com/u/ClementineCake" target="_blank" rel="noopener noreferrer">V Support via Venmo · @ClementineCake</a>
+    </div>
+    <p><small>Support is optional and completed on PayPal, Cash App, or Venmo. Those services—not the Finally app—process the payment; their terms and privacy practices apply.</small></p>
+  </div>
   <div class="note love"><p>DEVELOPED AND BUILT IN NEW YORK<br>BY THE PERSON WHO NEEDED A BETTER APP</p></div>
 </section>
 
@@ -1193,6 +1694,44 @@
       var el = document.getElementById(id);
       if (el) obs.observe(el);
     });
+
+    var topics = Array.prototype.slice.call(document.querySelectorAll(".theory-topic"));
+    Array.prototype.slice.call(document.querySelectorAll(".concept-flow")).forEach(function (flow) {
+      Array.prototype.slice.call(flow.querySelectorAll(".concept-node")).forEach(function (node, index) {
+        node.style.setProperty("--step", index);
+      });
+    });
+    var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!reduceMotion && "IntersectionObserver" in window) {
+      document.documentElement.classList.add("motion-ready");
+      var topicObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) entry.target.classList.add("in-view");
+        });
+      }, { rootMargin: "0px 0px -12% 0px", threshold: 0.08 });
+      topics.forEach(function (topic) { topicObserver.observe(topic); });
+    } else {
+      topics.forEach(function (topic) { topic.classList.add("in-view"); });
+    }
+
+    function exposeFragment(snap) {
+      if (!window.location.hash) return;
+      var id;
+      try { id = decodeURIComponent(window.location.hash.slice(1)); }
+      catch (_) { id = window.location.hash.slice(1); }
+      var target = document.getElementById(id);
+      if (!target) return;
+      if (target.classList.contains("theory-topic")) target.classList.add("in-view");
+      if (snap) {
+        var root = document.documentElement;
+        var previous = root.style.scrollBehavior;
+        root.style.scrollBehavior = "auto";
+        target.scrollIntoView({ block: "start" });
+        requestAnimationFrame(function () { root.style.scrollBehavior = previous; });
+      }
+    }
+    exposeFragment(true);
+    window.addEventListener("hashchange", function () { exposeFragment(false); });
   })();
 </script>
 
