@@ -89,6 +89,23 @@
     text-decoration: none; background: rgba(46,230,197,0.13);
     box-shadow: 0 0 26px rgba(46,230,197,0.28);
   }
+  .hero-actions {
+    display: flex; align-items: stretch; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.3rem;
+  }
+  .hero-actions .store-cta { margin-top: 0; }
+  .support-top-cta {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 0.68rem 1.55rem; border: 1px solid rgba(255,72,173,0.72); border-radius: 999px;
+    color: #FFF6FB; background: linear-gradient(110deg, rgba(255,72,173,0.22), rgba(232,196,104,0.12));
+    box-shadow: 0 0 24px rgba(255,72,173,0.15), inset 0 1px rgba(255,255,255,0.05);
+    font-family: var(--mono); font-size: 0.98rem; font-weight: 750; letter-spacing: 0.12em;
+    text-align: center;
+  }
+  .support-top-cta:hover, .support-top-cta:focus-visible {
+    color: #FFFFFF; text-decoration: none; border-color: var(--pink-soft);
+    background: linear-gradient(110deg, rgba(255,72,173,0.34), rgba(232,196,104,0.18));
+    box-shadow: 0 0 34px rgba(255,72,173,0.28);
+  }
   .haptics-brand {
     display: flex; align-items: center; gap: 1.25rem; margin: 1.25rem 0;
     padding: 1rem 1.2rem; border: 1px solid rgba(255,72,173,0.38);
@@ -122,7 +139,8 @@
     .hero-text { flex-basis: 100%; width: 100%; }
     .hero-text h1 { font-size: clamp(2rem, 12vw, 3rem); letter-spacing: 0.22em; text-indent: 0.22em; }
     .hero-text .tag { overflow-wrap: anywhere; }
-    .store-cta { display: block; width: 100%; padding-inline: 0.75rem; }
+    .hero-actions { display: grid; grid-template-columns: 1fr; }
+    .store-cta, .support-top-cta { display: flex; width: 100%; padding-inline: 0.75rem; }
     .haptics-brand { align-items: flex-start; flex-direction: column; }
     .haptics-logo { width: 132px; }
     .shell { grid-template-columns: 1fr; gap: 0; }
@@ -315,6 +333,21 @@
     border: 1px solid rgba(46,230,197,0.24); border-radius: 11px;
     background: linear-gradient(145deg, rgba(46,230,197,0.075), rgba(8,4,12,0.5));
   }
+  .theory-visual {
+    display: grid; width: 100%; min-width: 0; aspect-ratio: var(--diagram-ratio, 16 / 5);
+  }
+  .theory-canvas, .theory-fallback {
+    grid-area: 1 / 1; width: 100%; height: 100%; min-width: 0;
+  }
+  .theory-canvas {
+    display: block; visibility: hidden; border-radius: 8px;
+    background: radial-gradient(700px 260px at 50% 35%, rgba(46,230,197,0.045), transparent 70%), rgba(8,4,12,0.34);
+  }
+  .theory-fallback {
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .theory-figure.diagram-live .theory-canvas { visibility: visible; }
+  .theory-figure.diagram-live .theory-fallback { display: none; }
   .concept-flow {
     display: flex; align-items: stretch; justify-content: center; gap: 0.45rem;
     flex-wrap: wrap;
@@ -448,6 +481,14 @@
     .chapter-mark { align-items: flex-start; flex-direction: column; }
     .chapter-mark span { text-align: left; }
   }
+  @media (max-width: 1100px) {
+    .theory-visual {
+      grid-template-columns: 720px; aspect-ratio: auto;
+      height: var(--diagram-mobile-height, 210px); overflow-x: auto; overflow-y: hidden;
+      overscroll-behavior-x: contain; scrollbar-width: thin; scrollbar-color: var(--teal) rgba(8,4,12,0.45);
+    }
+    section.deeper .theory-visual { scrollbar-color: var(--green) rgba(8,4,12,0.45); }
+  }
   @media (prefers-reduced-motion: reduce) {
     .theory-figure .concept-node, .theory-figure .concept-arrow, .anim-euler .equation,
     .anim-quat .equation, .anim-gimbal .concept-flow { animation: none !important; }
@@ -471,7 +512,10 @@
     <h1>FINALLY</h1>
     <p class="tag"><b>offline · local · yours</b> — the VR video player that respects your library, your network, and your controls.</p>
     <p class="hero-meta">covers v0.3.31-m3 candidate · quest code 37 · galaxy code 10037 · july 31, 2026</p>
-    <a class="store-cta" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Get Finally on the Meta Horizon Store →</a>
+    <div class="hero-actions">
+      <a class="support-top-cta" href="#support">SUPPORT FINALLY</a>
+      <a class="store-cta" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Get Finally on the Meta Horizon Store →</a>
+    </div>
   </div>
 </header>
 
@@ -1336,12 +1380,15 @@
     <p class="eli5"><strong>ELI5:</strong> HELP tells you which button to press. Theory tells you why the picture looks the way it does.</p>
     <p>Skip it if you just want to watch. Stay if you want to know why a file looks right or wrong, and what Finally is actually doing with every frame.</p>
     <figure class="theory-figure anim-sequence">
-      <div class="concept-flow" aria-hidden="true">
-        <span class="concept-node">FILE<small>local bytes</small></span><span class="concept-arrow">→</span>
-        <span class="concept-node">DETECT<small>lens + stereo</small></span><span class="concept-arrow">→</span>
-        <span class="concept-node">DECODE<small>frame on GPU</small></span><span class="concept-arrow">→</span>
-        <span class="concept-node">PROJECT<small>mesh + UV</small></span><span class="concept-arrow">→</span>
-        <span class="concept-node">EYES<small>OpenXR layers</small></span>
+      <div class="theory-visual" style="--diagram-ratio: 960 / 180; --diagram-mobile-height: 135px">
+        <canvas class="theory-canvas" data-theory-diagram="theory_overview" width="960" height="180" aria-hidden="true"></canvas>
+        <div class="theory-fallback"><div class="concept-flow" aria-hidden="true">
+          <span class="concept-node">FILE<small>local bytes</small></span><span class="concept-arrow">→</span>
+          <span class="concept-node">DETECT<small>lens + stereo</small></span><span class="concept-arrow">→</span>
+          <span class="concept-node">DECODE<small>frame on GPU</small></span><span class="concept-arrow">→</span>
+          <span class="concept-node">PROJECT<small>mesh + UV</small></span><span class="concept-arrow">→</span>
+          <span class="concept-node">EYES<small>OpenXR layers</small></span>
+        </div></div>
       </div>
       <figcaption>Local signal path — no cloud hop.</figcaption>
     </figure>
@@ -1364,10 +1411,13 @@
     <p class="eli5"><strong>ELI5:</strong> your head can nod, tilt, and turn. Those three spins are pitch, roll, and yaw.</p>
     <p>Aviation named them; headsets report the same triad every frame. Defined by the axis you spin about:</p>
     <figure class="theory-figure anim-axes">
-      <div class="concept-flow" aria-hidden="true">
-        <span class="concept-node">PITCH<small>nod · rotate around X</small></span>
-        <span class="concept-node">ROLL<small>tilt · rotate around Z</small></span>
-        <span class="concept-node">YAW<small>turn · rotate around Y</small></span>
+      <div class="theory-visual" style="--diagram-ratio: 960 / 520; --diagram-mobile-height: 390px">
+        <canvas class="theory-canvas" data-theory-diagram="theory_axes" width="960" height="520" aria-hidden="true"></canvas>
+        <div class="theory-fallback"><div class="concept-flow" aria-hidden="true">
+          <span class="concept-node">PITCH<small>lateral Y · wingtip ↔ wingtip</small></span>
+          <span class="concept-node">ROLL<small>longitudinal X · nose ↔ tail</small></span>
+          <span class="concept-node">YAW<small>vertical Z · up ↔ down</small></span>
+        </div></div>
       </div>
       <figcaption>Three human-readable views of one orientation.</figcaption>
     </figure>
@@ -1379,11 +1429,14 @@
     <h3>Six degrees of freedom</h3>
     <p class="eli5"><strong>ELI5:</strong> you can slide in three directions and spin in three ways. That is six degrees of freedom. Your headset tracks all six. A video file only captured light from one camera center.</p>
     <figure class="theory-figure anim-6dof">
-      <div class="concept-flow" aria-hidden="true">
-        <span class="concept-node">X<small>left ↔ right</small></span>
-        <span class="concept-node">Y<small>down ↕ up</small></span>
-        <span class="concept-node">Z<small>back ↔ forward</small></span>
-        <span class="concept-node">P · R · Y<small>three rotations</small></span>
+      <div class="theory-visual" style="--diagram-ratio: 960 / 260; --diagram-mobile-height: 195px">
+        <canvas class="theory-canvas" data-theory-diagram="theory_6dof" width="960" height="260" aria-hidden="true"></canvas>
+        <div class="theory-fallback"><div class="concept-flow" aria-hidden="true">
+          <span class="concept-node">X<small>left ↔ right</small></span>
+          <span class="concept-node">Y<small>down ↕ up</small></span>
+          <span class="concept-node">Z<small>back ↔ forward</small></span>
+          <span class="concept-node">P · R · Y<small>three rotations</small></span>
+        </div></div>
       </div>
       <figcaption>HEADSET = full 6DoF · VIDEO = capture center only. Translation cannot reveal rays the camera never recorded.</figcaption>
     </figure>
@@ -1403,12 +1456,15 @@
     <h3>Human visual system</h3>
     <p class="eli5"><strong>ELI5:</strong> two eyes see slightly different pictures. Your brain smushes them into depth. VR fakes that with left and right images.</p>
     <figure class="theory-figure anim-vision">
-      <div class="concept-flow" aria-hidden="true">
-        <span class="concept-node">LEFT EYE<small>left half-frame</small></span>
-        <span class="concept-arrow">+</span>
-        <span class="concept-node">RIGHT EYE<small>right half-frame</small></span>
-        <span class="concept-arrow">→</span>
-        <span class="concept-node">STEREO FUSION<small>disparity becomes depth</small></span>
+      <div class="theory-visual" style="--diagram-ratio: 960 / 260; --diagram-mobile-height: 195px">
+        <canvas class="theory-canvas" data-theory-diagram="theory_hvs" width="960" height="260" aria-hidden="true"></canvas>
+        <div class="theory-fallback"><div class="concept-flow" aria-hidden="true">
+          <span class="concept-node">LEFT EYE<small>left half-frame</small></span>
+          <span class="concept-arrow">+</span>
+          <span class="concept-node">RIGHT EYE<small>right half-frame</small></span>
+          <span class="concept-arrow">→</span>
+          <span class="concept-node">STEREO FUSION<small>disparity becomes depth</small></span>
+        </div></div>
       </div>
       <figcaption>Two correctly routed views become one stable 3D percept.</figcaption>
     </figure>
@@ -1426,10 +1482,13 @@
     <h3>How video becomes a world</h3>
     <p class="eli5"><strong>ELI5:</strong> pixels have to land somewhere. Flat sticks them on a panel. 180/360 wraps them on a dome. Fisheye remaps a circle. Wrong map looks wrong.</p>
     <figure class="theory-figure anim-mapping">
-      <div class="concept-flow" aria-hidden="true">
-        <span class="concept-node">FLAT ▭<small>rectangle in room space</small></span>
-        <span class="concept-node">180 / 360 ◯<small>equirectangular dome</small></span>
-        <span class="concept-node">FISHEYE ◉<small>circle through lens UV</small></span>
+      <div class="theory-visual" style="--diagram-ratio: 960 / 300; --diagram-mobile-height: 225px">
+        <canvas class="theory-canvas" data-theory-diagram="theory_mapping" width="960" height="300" aria-hidden="true"></canvas>
+        <div class="theory-fallback"><div class="concept-flow" aria-hidden="true">
+          <span class="concept-node">FLAT ▭<small>rectangle in room space</small></span>
+          <span class="concept-node">180 / 360 ◯<small>equirectangular dome</small></span>
+          <span class="concept-node">FISHEYE ◉<small>circle through lens UV</small></span>
+        </div></div>
       </div>
       <figcaption>Pixels → surface geometry · never fake FOV zoom.</figcaption>
     </figure>
@@ -1447,12 +1506,15 @@
     <h3>Signal path</h3>
     <p class="eli5"><strong>ELI5:</strong> file on disk → figure out the shape → decode frames → wrap them for each eye → headset shows them. No cloud hop.</p>
     <figure class="theory-figure anim-sequence">
-      <div class="concept-flow" aria-hidden="true">
-        <span class="concept-node">DISK<small>bytes</small></span><span class="concept-arrow">→</span>
-        <span class="concept-node">DETECT<small>lens / stereo</small></span><span class="concept-arrow">→</span>
-        <span class="concept-node">DECODE<small>Exo → GPU</small></span><span class="concept-arrow">→</span>
-        <span class="concept-node">PROJECT<small>mesh / UV</small></span><span class="concept-arrow">→</span>
-        <span class="concept-node">XR<small>layers</small></span>
+      <div class="theory-visual" style="--diagram-ratio: 960 / 220; --diagram-mobile-height: 165px">
+        <canvas class="theory-canvas" data-theory-diagram="theory_pipeline" width="960" height="220" aria-hidden="true"></canvas>
+        <div class="theory-fallback"><div class="concept-flow" aria-hidden="true">
+          <span class="concept-node">DISK<small>bytes</small></span><span class="concept-arrow">→</span>
+          <span class="concept-node">DETECT<small>lens / stereo</small></span><span class="concept-arrow">→</span>
+          <span class="concept-node">DECODE<small>Exo → GPU</small></span><span class="concept-arrow">→</span>
+          <span class="concept-node">PROJECT<small>mesh / UV</small></span><span class="concept-arrow">→</span>
+          <span class="concept-node">XR<small>layers</small></span>
+        </div></div>
       </div>
       <figcaption>offline · local · yours</figcaption>
     </figure>
@@ -1473,7 +1535,10 @@
     <p class="eli5"><strong>ELI5:</strong> a short rant about why math is beautiful, why SOHCAHTOA was a bad first date, and why Euler shows up in your headset.</p>
     <p>This one is personal. Not a textbook. Me going off.</p>
     <figure class="theory-figure anim-euler">
-      <div class="equation">e<sup>iθ</sup> = cos θ + i sin θ &nbsp; → &nbsp; e<sup>iπ</sup> + 1 = 0</div>
+      <div class="theory-visual" style="--diagram-ratio: 960 / 320; --diagram-mobile-height: 240px">
+        <canvas class="theory-canvas" data-theory-diagram="theory_euler" width="960" height="320" aria-hidden="true"></canvas>
+        <div class="theory-fallback"><div class="equation">e<sup>iθ</sup> = cos θ + i sin θ &nbsp; → &nbsp; e<sup>iπ</sup> + 1 = 0</div></div>
+      </div>
       <figcaption>The circle, rotation, and five famous constants in one line.</figcaption>
     </figure>
     <h4>I love math</h4>
@@ -1519,10 +1584,13 @@
     <p class="eli5"><strong>ELI5:</strong> Theory was the map. This room is the engine bay. Optional. A little meaner. Green on the left.</p>
     <p>You finished Theory. You know axes, stereo, mapping. You may have read A quick word. No shame if you bounce. If you stay: how orientation is stored, how frames chain, why Euler angles lie, and the linear algebra your neck already believes.</p>
     <figure class="theory-figure anim-sequence">
-      <div class="concept-flow" aria-hidden="true">
-        <span class="concept-node">THEORY<small>the map</small></span><span class="concept-arrow">→</span>
-        <span class="concept-node">DEEPER<small>the engine bay</small></span><span class="concept-arrow">→</span>
-        <span class="concept-node">QUAT · FRAMES · MATH<small>the machinery</small></span>
+      <div class="theory-visual" style="--diagram-ratio: 960 / 200; --diagram-mobile-height: 150px">
+        <canvas class="theory-canvas" data-theory-diagram="theory_deeper_intro" width="960" height="200" aria-hidden="true"></canvas>
+        <div class="theory-fallback"><div class="concept-flow" aria-hidden="true">
+          <span class="concept-node">THEORY<small>the map</small></span><span class="concept-arrow">→</span>
+          <span class="concept-node">DEEPER<small>the engine bay</small></span><span class="concept-arrow">→</span>
+          <span class="concept-node">QUAT · FRAMES · MATH<small>the machinery</small></span>
+        </div></div>
       </div>
       <figcaption>Past the controls, into the representation underneath them.</figcaption>
     </figure>
@@ -1541,13 +1609,18 @@
     <h3>Unit quaternions</h3>
     <p class="eli5"><strong>ELI5:</strong> the headset does not store “look left a bit.” It stores four numbers that mean “spin this much around this direction.” That package is a quaternion. Pitch/roll/yaw are just how we read it out loud.</p>
     <figure class="theory-figure anim-quat">
-      <div class="equation">q = (w, x, y, z) &nbsp; · &nbsp; ‖q‖ = 1 &nbsp; · &nbsp; q and −q = same attitude</div>
-      <div class="concept-flow" aria-hidden="true">
-        <span class="concept-node">AXIS û<small>direction to spin around</small></span>
-        <span class="concept-arrow">×</span>
-        <span class="concept-node">HALF-ANGLE θ/2<small>amount of rotation</small></span>
-        <span class="concept-arrow">→</span>
-        <span class="concept-node">ORIENTATION q</span>
+      <div class="theory-visual" style="--diagram-ratio: 960 / 300; --diagram-mobile-height: 225px">
+        <canvas class="theory-canvas" data-theory-diagram="theory_quat" width="960" height="300" aria-hidden="true"></canvas>
+        <div class="theory-fallback">
+          <div class="equation">q = (w, x, y, z) &nbsp; · &nbsp; ‖q‖ = 1 &nbsp; · &nbsp; q and −q = same attitude</div>
+          <div class="concept-flow" aria-hidden="true">
+            <span class="concept-node">AXIS û<small>direction to spin around</small></span>
+            <span class="concept-arrow">×</span>
+            <span class="concept-node">HALF-ANGLE θ/2<small>amount of rotation</small></span>
+            <span class="concept-arrow">→</span>
+            <span class="concept-node">ORIENTATION q</span>
+          </div>
+        </div>
       </div>
       <figcaption>A compact, continuous representation of 3D orientation.</figcaption>
     </figure>
@@ -1569,12 +1642,17 @@
     <h3>Coordinate frames</h3>
     <p class="eli5"><strong>ELI5:</strong> “where is this point?” only makes sense if you say relative to what. Room, head, eye, screen. Matrices are the translators between those answers.</p>
     <figure class="theory-figure anim-sequence">
-      <div class="concept-flow" aria-hidden="true">
-        <span class="concept-node">MODEL<small>content → world</small></span><span class="concept-arrow">→</span>
-        <span class="concept-node">VIEW<small>world → eye</small></span><span class="concept-arrow">→</span>
-        <span class="concept-node">PROJECTION<small>eye → clip</small></span>
+      <div class="theory-visual" style="--diagram-ratio: 960 / 280; --diagram-mobile-height: 210px">
+        <canvas class="theory-canvas" data-theory-diagram="theory_frames" width="960" height="280" aria-hidden="true"></canvas>
+        <div class="theory-fallback">
+          <div class="concept-flow" aria-hidden="true">
+            <span class="concept-node">MODEL<small>content → world</small></span><span class="concept-arrow">→</span>
+            <span class="concept-node">VIEW<small>world → eye</small></span><span class="concept-arrow">→</span>
+            <span class="concept-node">PROJECTION<small>eye → clip</small></span>
+          </div>
+          <div class="equation">clip = P · V · M · vertex</div>
+        </div>
       </div>
-      <div class="equation">clip = P · V · M · vertex</div>
       <figcaption>Order matters. Reverse the chain and the world spins wrong.</figcaption>
     </figure>
     <h4>The chain</h4>
@@ -1596,12 +1674,15 @@
     <h3>Gimbal lock &amp; Euler</h3>
     <p class="eli5"><strong>ELI5:</strong> describing a turn as three dials in a row can jam. When two dials line up, you lose a way to turn. That jam is gimbal lock. Headsets avoid it by not living on those dials.</p>
     <figure class="theory-figure anim-gimbal">
-      <div class="concept-flow" aria-hidden="true">
-        <span class="concept-node">YAW RING</span>
-        <span class="concept-node">PITCH ±90°<small>two axes align</small></span>
-        <span class="concept-node">ROLL RING<small>one degree is lost</small></span>
-        <span class="concept-arrow">→</span>
-        <span class="concept-node">QUATERNION<small>no sequential dial state</small></span>
+      <div class="theory-visual" style="--diagram-ratio: 960 / 280; --diagram-mobile-height: 210px">
+        <canvas class="theory-canvas" data-theory-diagram="theory_gimbal" width="960" height="280" aria-hidden="true"></canvas>
+        <div class="theory-fallback"><div class="concept-flow" aria-hidden="true">
+          <span class="concept-node">YAW RING</span>
+          <span class="concept-node">PITCH ±90°<small>two axes align</small></span>
+          <span class="concept-node">ROLL RING<small>one degree is lost</small></span>
+          <span class="concept-arrow">→</span>
+          <span class="concept-node">QUATERNION<small>no sequential dial state</small></span>
+        </div></div>
       </div>
       <figcaption>Euler is a useful readout. It is a fragile place to live.</figcaption>
     </figure>
@@ -1623,12 +1704,15 @@
     <h3>Linear algebra you feel</h3>
     <p class="eli5"><strong>ELI5:</strong> vectors point. Matrices move things between spaces. Quaternions are a compact way to spin. You already feel this when tracking is honest.</p>
     <figure class="theory-figure anim-sequence">
-      <div class="concept-flow" aria-hidden="true">
-        <span class="concept-node">VECTOR<small>direction or offset</small></span>
-        <span class="concept-node">MATRIX 4×4<small>move between spaces</small></span>
-        <span class="concept-node">QUATERNION<small>spin without lock</small></span>
-        <span class="concept-arrow">→</span>
-        <span class="concept-node">STABLE VIEW<small>the result you feel</small></span>
+      <div class="theory-visual" style="--diagram-ratio: 960 / 280; --diagram-mobile-height: 210px">
+        <canvas class="theory-canvas" data-theory-diagram="theory_math" width="960" height="280" aria-hidden="true"></canvas>
+        <div class="theory-fallback"><div class="concept-flow" aria-hidden="true">
+          <span class="concept-node">VECTOR<small>direction or offset</small></span>
+          <span class="concept-node">MATRIX 4×4<small>move between spaces</small></span>
+          <span class="concept-node">QUATERNION<small>spin without lock</small></span>
+          <span class="concept-arrow">→</span>
+          <span class="concept-node">STABLE VIEW<small>the result you feel</small></span>
+        </div></div>
       </div>
       <figcaption>Your neck is already doing the acceptance test.</figcaption>
     </figure>
@@ -1655,7 +1739,7 @@
   <p><strong>Decode:</strong> MediaCodec hardware path with decoder fallback; FFmpeg software audio where hardware can't. <strong>Sisters:</strong> Finally is built alongside ChloeVibes and ChloeVR in the same shop.</p>
   <div id="support" class="support-block">
     <p><strong>Thank you for supporting independent development.</strong></p>
-    <p>Finally exists because one person kept building the player he wanted to use. If you want to help keep that work moving, use the support link below.</p>
+    <p>Finally exists because one person kept building the player he wanted to use. If you want to help keep that work moving, choose any support option below.</p>
     <div class="support-actions">
       <a class="support-cta" href="https://www.paypal.com/ncp/payment/BANJQ2TMHJVF8" target="_blank" rel="noopener noreferrer">♡ Support Finally VR Video Player with PayPal</a>
       <a class="support-cta cashapp" href="https://cash.app/$DavidLombardo518" target="_blank" rel="noopener noreferrer">$ Support via Cash App · $DavidLombardo518</a>
@@ -1675,6 +1759,7 @@
   <div class="credits">© Coldbricks · Long Island, New York</div>
 </footer>
 
+<script src="theory-diagrams.js"></script>
 <script>
   (function () {
     var links = Array.prototype.slice.call(document.querySelectorAll("nav.rail a[href^='#']"));
