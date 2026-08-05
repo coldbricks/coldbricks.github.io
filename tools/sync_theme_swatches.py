@@ -20,11 +20,12 @@ for match in pattern.finditer(catalog):
     label, bg, card, accent, colors = match.groups()
     hexes = re.findall(r'0x([0-9A-Fa-f]{6})', colors)[:4]
     if len(hexes) >= 3:
+        text_match = re.search(r'(?<![A-Za-z])text\s*=\s*0x([0-9A-Fa-f]{6})', match.group(0))
         specs[label] = {
             "bg": "#" + bg,
             "card": "#" + card,
             "accent": "#" + accent,
-            "text": "#" + hexes[2],
+            "text": "#" + (text_match.group(1) if text_match else "F7F5FA"),
             "gradient": "linear-gradient(90deg," + ",".join("#" + h for h in hexes) + ")",
         }
 
