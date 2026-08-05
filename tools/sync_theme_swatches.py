@@ -19,7 +19,8 @@ pattern = re.compile(
 for match in pattern.finditer(catalog):
     theme_id, label, bg, card, accent, colors = match.groups()
     hexes = re.findall(r'0x([0-9A-Fa-f]{6})', colors)[:4]
-    if len(hexes) >= 3:
+    # HIGH CONTRAST skins may ship only two chips (bg + signal).
+    if len(hexes) >= 2:
         text_match = re.search(r'(?<![A-Za-z])text\s*=\s*0x([0-9A-Fa-f]{6})', match.group(0))
         specs[label] = {
             "id": theme_id,
