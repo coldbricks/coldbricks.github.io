@@ -1,6 +1,7 @@
 """Inject accurate hover swatches into the manual's generated theme atlas."""
 from pathlib import Path
 import re
+from html import escape
 
 root = Path(__file__).resolve().parents[1]
 catalog = (root.parent / "FinallyPlayer/app/src/main/java/com/coldbricks/finallyplayer/ui/ClubThemeCatalog.kt").read_text(encoding="utf-8")
@@ -8,18 +9,43 @@ manual_path = root / "finally/manual/index.html"
 manual = manual_path.read_text(encoding="utf-8")
 
 specs = {}
-for match in re.finditer(r'spec\(\s*"[^"]+",\s*"([^"]+)".*?preview\s*=\s*longArrayOf\((.*?)\)', catalog, re.S):
-    label, colors = match.groups()
+pattern = re.compile(
+    r'spec\(\s*"[^"]+"\s*,\s*"([^"]+)".*?'
+    r'Section\.[A-Za-z_]+\s*,\s*0x([0-9A-Fa-f]{6})\s*,\s*'
+    r'0x([0-9A-Fa-f]{6})\s*,\s*0x([0-9A-Fa-f]{6}).*?'
+    r'preview\s*=\s*longArrayOf\((.*?)\)',
+    re.S,
+)
+for match in pattern.finditer(catalog):
+    label, bg, card, accent, colors = match.groups()
     hexes = re.findall(r'0x([0-9A-Fa-f]{6})', colors)[:4]
-    if hexes:
-        specs[label] = "linear-gradient(90deg," + ",".join("#" + h for h in hexes) + ")"
+    if len(hexes) >= 3:
+        specs[label] = {
+            "bg": "#" + bg,
+            "card": "#" + card,
+            "accent": "#" + accent,
+            "text": "#" + hexes[2],
+            "gradient": "linear-gradient(90deg," + ",".join("#" + h for h in hexes) + ")",
+        }
 
 start = manual.index('<section id="themes">')
 end = manual.index('</section>', start) + len('</section>')
 atlas = manual[start:end]
 for label, palette in sorted(specs.items(), key=lambda item: len(item[0]), reverse=True):
     old = f'<td>{label}</td>'
-    new = f'<td><button class="theme-name" type="button" aria-label="{label}: show palette" style="--theme-swatch: {palette}">{label}</button></td>'
+    safe_label = escape(label, quote=False)
+    safe_attr = escape(label, quote=True)
+    new = (
+        f'<td><button class="theme-name" type="button" aria-label="{safe_attr}: preview theme" '
+        f'aria-pressed="false" data-theme-bg="{palette["bg"]}" data-theme-card="{palette["card"]}" '
+        f'data-theme-accent="{palette["accent"]}" data-theme-text="{palette["text"]}" '
+        f'style="--theme-swatch: {palette["gradient"]}">{safe_label}</button></td>'
+    )
     atlas = atlas.replace(old, new)
+    if old not in atlas:
+        button_pattern = re.compile(
+            r'<td><button class="theme-name"[^>]*>' + re.escape(label) + r'</button></td>'
+        )
+        atlas = button_pattern.sub(new, atlas, count=1)
 manual_path.write_text(manual[:start] + atlas + manual[end:], encoding="utf-8")
 print(f"swatches injected: {sum(1 for label in specs if f'>{label}</button>' in atlas)} / {len(specs)}")
