@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
-  <title id="title">Chloe MVC Engine headless throughput — flight-test worker sweep on Quest 3</title>
-  <desc id="desc">Flight-test card for the exact official MVC title: auto mode decoded 32.0884 stereo pairs per second, six workers decoded 32.2047, and four workers decoded 32.1034. The 24 pairs per second reference line is the decoder gate. Lines connect the recorded test order only.</desc>
+  <title id="title">Chloe MVC Engine headless throughput — worker sweep on Quest 3</title>
+  <desc id="desc">Recorded performance card for the exact official MVC title: auto mode decoded 32.0884 stereo pairs per second, six workers decoded 32.2047, and four workers decoded 32.1034. The 24 pairs per second reference line is the decoder gate. Lines connect the recorded test order only.</desc>
   <style>
     svg { shape-rendering: geometricPrecision; text-rendering: geometricPrecision; }
     text { fill: #EFE6F0; font-family: system-ui, sans-serif; font-weight: 500; }

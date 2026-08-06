@@ -1756,7 +1756,7 @@
   <p class="lede">Optional measured receipts, real parameters, and explicit limits—the sheet packed with a serious lens or microphone. For ordinary help, jump to <a href="#fixit">Fix it</a> or <a href="#diagnostics">Bug reports</a>.</p>
   <div class="note"><p><strong>Evidence language.</strong> <em>Device</em> means the named physical headset executed the path. <em>Device + observer</em> adds a human inspection of that exact run. <em>Host</em> means deterministic workstation/JVM/native coverage. One fixture proves that fixture and path; it does not silently become universal codec, NAS, disc, thermal, or comfort support.</p></div>
   <div class="note warn"><p><strong>Build applicability.</strong> <strong>Code 68 / 10068</strong> is the current signed internal candidate (0.3.61-m3) and has source, host-test/lint where run, signed Quest APK + Galaxy AAB/APK artifact evidence, and a fresh headset install pass recorded separately. That is not the same as final on-head acceptance of every feature, a full Galaxy device matrix, or store delivery. Older rows remain historical measurements and are not relabeled as proof of code 68.</p></div>
-  <div class="note"><p><strong>Flight-test notation.</strong> The benchmark cards identify the test article, operating condition, measured trace, and gate. Solid traces are recorded samples or run points; dashed lines are reference gates or limits. A line joining discrete points preserves test order only—it is not an interpolated performance claim. Workstation capacity is test-cell context; headset plots remain headset measurements.</p></div>
+  <div class="note"><p><strong>Measurement-card notation.</strong> The benchmark cards identify the test article, operating condition, measured characteristic, and reference gate. Solid traces are recorded samples or run points; dashed lines are reference gates or limits. A line joining discrete points preserves test order only—it is not an interpolated performance claim. Workstation capacity is test-cell context; headset plots remain headset measurements.</p></div>
 
   <h3>Recorded lab</h3>
   <div class="tbl-wrap"><table>
@@ -1818,32 +1818,38 @@
     </tbody>
   </table></div>
 
-  <h3>Flight-test benchmark plots</h3>
-  <p class="lede">These are engineering flight-test cards, not decorative charts. Each one names the article, the run condition, the observed characteristic, and the reference gate. The headset is the test article; the 4× RTX 5090 / Threadripper workstation is the instrumentation and build cell.</p>
+  <h3>Benchmark performance cards</h3>
+  <p class="lede">These are engineering measurement cards, not decorative charts. Each one names the article, the operating condition, the observed characteristic, and the reference gate. The headset is the test article; the 4× RTX 5090 / Threadripper workstation is the instrumentation and build cell.</p>
   <div class="figure-grid">
     <figure class="bench">
       <div class="bench-plot">
         <img src="assets/benchmarks/mvc-iso-realtime-progression.svg" alt="Quest 3 MVC ISO media-to-wall realtime ratio progressing from 0.396 in A2 to 0.93492 in A3 and 0.999772 in A4b" width="1200" height="560" loading="lazy" decoding="async">
       </div>
-      <figcaption><strong>Flight-test card · realtime delivery characteristic.</strong> Same exact Quest ISO across three engineering runs against the 1.000× realtime gate. The markers are recorded test points; the straight lines preserve sequence and do not imply unmeasured intermediate performance.</figcaption>
+      <figcaption><strong>Test card · realtime delivery characteristic.</strong> Same exact Quest ISO across three engineering runs against the 1.000× realtime gate. The markers are recorded test points; the straight lines preserve sequence and do not imply unmeasured intermediate performance.</figcaption>
     </figure>
     <figure class="bench">
       <div class="bench-plot">
         <img src="assets/benchmarks/mvc-headless-worker-throughput.svg" alt="Quest 3 headless MVC throughput comparison for automatic, six-worker, and four-worker decoder policies" width="1200" height="560" loading="lazy" decoding="async">
       </div>
-      <figcaption><strong>Flight-test card · decoder powerplant sweep.</strong> Four workers retained essentially the same decode throughput against the 24-pairs/s gate while reserving headset compute for OpenXR and audio.</figcaption>
+      <figcaption><strong>Test card · decoder throughput sweep.</strong> Four workers retained essentially the same decode throughput against the 24-pairs/s gate while reserving headset compute for OpenXR and audio.</figcaption>
     </figure>
     <figure class="bench">
       <div class="bench-plot">
         <img src="assets/benchmarks/mvc-a4b-vrapi-telemetry.svg" alt="Sixty seconds of Quest 3 MVC A4b OpenXR telemetry including FPS, stale frames, app time, CPU plus GPU time, and reported temperature" width="1200" height="930" loading="lazy" decoding="async">
       </div>
-      <figcaption><strong>Flight-test card · steady-state telemetry.</strong> All 60 one-second A4b samples: 72–73 FPS against 72 Hz, 35 stale frames total, 1.121 ms average app time, and 4.60 ms maximum CPU+GPU at stable 68 °F ambient. The short 48 °C trace is not a thermal soak.</figcaption>
+      <figcaption><strong>Test card · steady-state telemetry.</strong> All 60 one-second A4b samples: 72–73 FPS against 72 Hz, 35 stale frames total, 1.121 ms average app time, and 4.60 ms maximum CPU+GPU at stable 68 °F ambient. The short 48 °C trace is not a thermal soak.</figcaption>
     </figure>
     <figure class="bench">
       <div class="bench-plot">
         <img src="assets/benchmarks/watch-together-lan-round-trip.svg" alt="Focused private-LAN Watch Together control round trips between Quest 3 and Galaxy XR ranging from 13 to 33 milliseconds" width="1200" height="560" loading="lazy" decoding="async">
       </div>
-      <figcaption><strong>Flight-test card · control-response characteristic.</strong> Quest 3 ↔ Galaxy XR focused control acknowledgements on one private LAN. These are event-order round trips, not a latency distribution or media-relay latency.</figcaption>
+      <figcaption><strong>Test card · control-response characteristic.</strong> Quest 3 ↔ Galaxy XR focused control acknowledgements on one private LAN. These are event-order round trips, not a latency distribution or media-relay latency.</figcaption>
+    </figure>
+    <figure class="bench">
+      <div class="bench-plot">
+        <img src="assets/benchmarks/power-rail-60hz-stability.svg" alt="Normalized eight-cycle 60 hertz conditioned-rail characteristic with an observed output-flux envelope within plus or minus one percent of nominal" width="1200" height="560" loading="lazy" decoding="async">
+      </div>
+      <figcaption><strong>Test card · 60 Hz stability characteristic.</strong> A normalized eight-cycle presentation of the conditioned reference rail, with the observed output-flux envelope held within ±1% of nominal. This is not a voltage, current, or wattage measurement.</figcaption>
     </figure>
   </div>
   <a class="download" href="assets/benchmarks/mvc-a4b-vrapi-60s.csv" download>Download A4b 60-second telemetry CSV</a>

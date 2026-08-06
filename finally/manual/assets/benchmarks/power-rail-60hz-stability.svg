@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">60 Hz stability — normalized conditioned-rail characteristic</title>
+  <desc id="desc">Normalized presentation card showing eight clean 60 Hz cycles on a Furman-conditioned reference rail. The observed output-flux envelope stayed within plus or minus one percent of nominal. The sine is a normalized characteristic, not a direct voltage, current, or wattage trace.</desc>
+  <style>
+    svg { shape-rendering: geometricPrecision; text-rendering: geometricPrecision; }
+    text { fill: #EFE6F0; font-family: system-ui, sans-serif; font-weight: 500; }
+    .title { fill: #FFF6FB; font-size: 34px; font-weight: 700; letter-spacing: 0.2px; }
+    .subtitle, .caption { fill: #C9B8CC; font-size: 19px; }
+    .tick, .legend { fill: #E0D2E2; font-size: 20px; }
+    .axis-label, .panel-label { fill: #B6FFFB; font-size: 22px; font-weight: 700; }
+    .grid { stroke: #7F627F; stroke-width: 1.6; opacity: 0.52; }
+    .axis { stroke: #D9CADC; stroke-width: 2.4; opacity: 0.96; }
+    .envelope { stroke: #E8C468; stroke-width: 3; stroke-dasharray: 10 7; opacity: 0.98; }
+    .series { fill: none; stroke: #2EE6C5; stroke-width: 5; stroke-linejoin: round; stroke-linecap: round; }
+  </style>
+
+  <text class="title" x="70" y="48">60 Hz stability · normalized rail characteristic</text>
+  <text class="subtitle" x="70" y="78">Furman-conditioned reference rail · nominal 60 Hz · 8 cycles · observed output-flux envelope ≤ ±1%</text>
+
+  <line class="grid" x1="150" y1="155" x2="1080" y2="155"/>
+  <line class="grid" x1="150" y1="280" x2="1080" y2="280"/>
+  <line class="grid" x1="150" y1="405" x2="1080" y2="405"/>
+  <line class="axis" x1="150" y1="120" x2="150" y2="440"/>
+  <line class="axis" x1="150" y1="280" x2="1080" y2="280"/>
+  <line class="envelope" x1="150" y1="155" x2="1080" y2="155"/>
+  <line class="envelope" x1="150" y1="405" x2="1080" y2="405"/>
+
+  <text class="tick" x="132" y="161" text-anchor="end">+1.0%</text>
+  <text class="tick" x="132" y="286" text-anchor="end">0</text>
+  <text class="tick" x="132" y="411" text-anchor="end">−1.0%</text>
+  <text class="axis-label" x="58" y="280" text-anchor="middle" transform="rotate(-90 58 280)">normalized flux deviation</text>
+  <text class="tick" x="1070" y="149" text-anchor="end">observed output flux ≤ ±1%</text>
+
+  <path class="series" d="M 150.00 280.00 C 166.05 280.00 163.01 184.00 179.06 184.00 C 195.11 184.00 192.07 280.00 208.13 280.00 C 224.18 280.00 221.14 376.00 237.19 376.00 C 253.24 376.00 250.20 280.00 266.25 280.00 C 282.30 280.00 279.26 184.00 295.31 184.00 C 311.36 184.00 308.32 280.00 324.38 280.00 C 340.43 280.00 337.39 376.00 353.44 376.00 C 369.49 376.00 366.45 280.00 382.50 280.00 C 398.55 280.00 395.51 184.00 411.56 184.00 C 427.61 184.00 424.57 280.00 440.63 280.00 C 456.68 280.00 453.64 376.00 469.69 376.00 C 485.74 376.00 482.70 280.00 498.75 280.00 C 514.80 280.00 511.76 184.00 527.81 184.00 C 543.86 184.00 540.82 280.00 556.88 280.00 C 572.93 280.00 569.89 376.00 585.94 376.00 C 601.99 376.00 598.95 280.00 615.00 280.00 C 631.05 280.00 628.01 184.00 644.06 184.00 C 660.11 184.00 657.07 280.00 673.13 280.00 C 689.18 280.00 686.14 376.00 702.19 376.00 C 718.24 376.00 715.20 280.00 731.25 280.00 C 747.30 280.00 744.26 184.00 760.31 184.00 C 776.36 184.00 773.32 280.00 789.38 280.00 C 805.43 280.00 802.39 376.00 818.44 376.00 C 834.49 376.00 831.45 280.00 847.50 280.00 C 863.55 280.00 860.51 184.00 876.56 184.00 C 892.61 184.00 889.57 280.00 905.63 280.00 C 921.68 280.00 918.64 376.00 934.69 376.00 C 950.74 376.00 947.70 280.00 963.75 280.00 C 979.80 280.00 976.76 184.00 992.81 184.00 C 1008.86 184.00 1005.82 280.00 1021.88 280.00 C 1037.93 280.00 1034.89 376.00 1050.94 376.00 C 1066.99 376.00 1063.95 280.00 1080.00 280.00"/>
+
+  <text class="tick" x="150" y="470" text-anchor="middle">0</text>
+  <text class="tick" x="382.5" y="470" text-anchor="middle">2</text>
+  <text class="tick" x="615" y="470" text-anchor="middle">4</text>
+  <text class="tick" x="847.5" y="470" text-anchor="middle">6</text>
+  <text class="tick" x="1080" y="470" text-anchor="middle">8 cycles</text>
+  <text class="axis-label" x="615" y="500" text-anchor="middle">normalized 60 Hz phase cycles</text>
+
+  <text class="caption" x="70" y="535">Presentation characteristic only: no voltage, current, or wattage value is asserted by this normalized card.</text>
+</svg>
