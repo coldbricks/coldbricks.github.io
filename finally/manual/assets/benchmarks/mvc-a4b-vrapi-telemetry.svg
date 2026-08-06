@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 930" role="img" aria-labelledby="title desc">
-  <title id="title">Quest 3 MVC A4b 60-second VrApi telemetry</title>
-  <desc id="desc">Sixty one-second samples show 72 to 73 frames per second against a 72 hertz target, 35 stale frames total with a maximum of 4 in one sample, app time averaging 1.121 milliseconds with a maximum of 3.64, CPU plus GPU time no higher than 4.60 milliseconds, and a constant reported 48 degrees Celsius. This short run is not a thermal soak.</desc>
+  <title id="title">Quest 3 MVC A4b — flight-test steady-state VrApi telemetry</title>
+  <desc id="desc">Flight-test card from sixty one-second samples at stable 68 degrees Fahrenheit ambient: 72 to 73 frames per second against a 72 hertz target, 35 stale frames total with a maximum of 4 in one sample, app time averaging 1.121 milliseconds with a maximum of 3.64, CPU plus GPU time no higher than 4.60 milliseconds, and a constant reported headset temperature of 48 degrees Celsius. This short run is not a thermal soak.</desc>
   <style>
     svg { shape-rendering: geometricPrecision; text-rendering: geometricPrecision; }
     text { fill: #EFE6F0; font-family: system-ui, sans-serif; font-weight: 500; }
@@ -15,9 +15,9 @@
     .secondary { fill: none; stroke: #FF8DC7; stroke-width: 4.5; stroke-dasharray: 9 6; stroke-linejoin: round; stroke-linecap: round; opacity: 1; }
   </style>
 
-  <text class="title" x="60" y="45">MVC A4b runtime measurement sheet</text>
+  <text class="title" x="60" y="45">MVC A4b runtime · flight-test steady-state telemetry</text>
   <text class="subtitle" x="60" y="74">Quest 3 · 60 steady one-second VrApi samples · 2026-07-28 18:38:40–18:39:39 local</text>
-  <text class="subtitle" x="60" y="98">Official MVC ISO SHA-256 e1478208…edd87d71 · code 27 debug · four-worker product policy</text>
+  <text class="subtitle" x="60" y="98">Official MVC ISO SHA-256 e1478208…edd87d71 · code 27 debug · four-worker policy · 68 °F ambient</text>
 
   <line class="grid" x1="115" y1="130" x2="115" y2="840"/>
   <line class="grid" x1="290.4" y1="130" x2="290.4" y2="840"/>
@@ -74,7 +74,7 @@
   <text class="tick" x="1142" y="551" text-anchor="end">72 Hz frame interval (derived)</text>
 
   <!-- Panel 4: reported temperature -->
-  <text class="panel-label" x="115" y="745">Reported temperature</text>
+  <text class="panel-label" x="115" y="745">Reported headset temperature</text>
   <line class="axis" x1="115" y1="760" x2="115" y2="840"/>
   <line class="axis" x1="115" y1="840" x2="1150" y2="840"/>
   <line class="grid" x1="115" y1="800" x2="1150" y2="800"/>
@@ -83,7 +83,7 @@
   <text class="tick" x="98" y="766" text-anchor="end">50</text>
   <text class="axis-label" x="37" y="800" text-anchor="middle" transform="rotate(-90 37 800)">°C</text>
   <path class="series" d="M115.0,800.0 L132.5,800.0 L150.1,800.0 L167.6,800.0 L185.2,800.0 L202.7,800.0 L220.3,800.0 L237.8,800.0 L255.3,800.0 L272.9,800.0 L290.4,800.0 L308.0,800.0 L325.5,800.0 L343.1,800.0 L360.6,800.0 L378.1,800.0 L395.7,800.0 L413.2,800.0 L430.8,800.0 L448.3,800.0 L465.8,800.0 L483.4,800.0 L500.9,800.0 L518.5,800.0 L536.0,800.0 L553.6,800.0 L571.1,800.0 L588.6,800.0 L606.2,800.0 L623.7,800.0 L641.3,800.0 L658.8,800.0 L676.4,800.0 L693.9,800.0 L711.4,800.0 L729.0,800.0 L746.5,800.0 L764.1,800.0 L781.6,800.0 L799.2,800.0 L816.7,800.0 L834.2,800.0 L851.8,800.0 L869.3,800.0 L886.9,800.0 L904.4,800.0 L921.9,800.0 L939.5,800.0 L957.0,800.0 L974.6,800.0 L992.1,800.0 L1009.7,800.0 L1027.2,800.0 L1044.7,800.0 L1062.3,800.0 L1079.8,800.0 L1097.4,800.0 L1114.9,800.0 L1132.5,800.0 L1150.0,800.0"/>
-  <text class="legend" x="1138" y="786" text-anchor="end">48 °C in every recorded sample · not a long thermal soak</text>
+  <text class="legend" x="1138" y="786" text-anchor="end">48 °C in every recorded sample · 60 s, not a thermal soak</text>
 
   <text class="tick" x="115" y="868" text-anchor="middle">0</text>
   <text class="tick" x="290.4" y="868" text-anchor="middle">10</text>
@@ -93,5 +93,5 @@
   <text class="tick" x="992.1" y="868" text-anchor="middle">50</text>
   <text class="tick" x="1150" y="868" text-anchor="middle">59</text>
   <text class="axis-label" x="632" y="896" text-anchor="middle">elapsed sample time (s)</text>
-  <text class="caption" x="60" y="922">Source: artifacts/mvc-iso/official_iso_quest3_20260728_a4b/logcat-full.txt. No smoothing or synthetic samples.</text>
+  <text class="caption" x="60" y="922">Source: artifacts/mvc-iso/official_iso_quest3_20260728_a4b/logcat-full.txt · test-cell ambient 68 °F · no smoothing or synthetic samples.</text>
 </svg>

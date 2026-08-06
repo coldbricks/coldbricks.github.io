@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Finally — Field Manual</title>
-<meta name="description" content="The 0.3.33-m3 candidate field manual for Finally: daily use, stick Distance + reset, AUDIO studio, ChloeVibes/Handy, local and network sources, rooms, Watch Together, MVC, and measured engineering receipts.">
+<meta name="description" content="The 0.3.61-m3 candidate field manual for Finally: daily use, smooth Club browsing, stick Distance + reset, AUDIO studio, ChloeVibes/Handy, local and network sources, rooms, Watch Together, MVC, and measured engineering receipts.">
 <style>
   :root {
     color-scheme: dark;
@@ -565,7 +565,7 @@
     <span class="eyebrow">Field Manual</span>
     <h1>FINALLY</h1>
     <p class="tag"><b>offline · local · yours</b> — the VR video player that respects your library, your network, and your controls.</p>
-    <p class="hero-meta">covers v0.3.33-m3 candidate · quest code 39 · galaxy code 10039 · august 1, 2026</p>
+    <p class="hero-meta">covers v0.3.61-m3 candidate · quest code 68 · galaxy code 10068 · august 5, 2026</p>
     <div class="hero-actions">
       <a class="support-top-cta" href="#support">SUPPORT FINALLY</a>
       <a class="store-cta" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Get Finally on the Meta Horizon Store →</a>
@@ -613,17 +613,18 @@
   <p class="kicker">01 · basics</p>
   <h2>Start here</h2>
   <p class="lede">Point the laser. Pull the trigger. That's most of Finally.</p>
-  <div class="note warn"><p><strong>Read the installed version in the Club.</strong> This page documents the signed internal <strong>0.3.33-m3 candidate &mdash; Quest code 39 / Galaxy code 10039</strong>. It does not claim that either store has delivered that build. Store releases can lag this manual, so the version shown inside your headset remains the authority.</p></div>
+  <div class="note warn"><p><strong>Read the installed version in the Club.</strong> This page documents the signed internal <strong>0.3.61-m3 candidate &mdash; Quest code 68 / Galaxy code 10068</strong>. It does not claim that either store has delivered that build. Store releases can lag this manual, so the version shown inside your headset remains the authority.</p></div>
   <div class="tbl-wrap"><table>
     <thead><tr><th scope="col">Installed identity</th><th scope="col">How this manual applies</th></tr></thead>
     <tbody>
-      <tr><td>Quest · 0.3.33-m3 · code 39</td><td>Current candidate behavior: stick Distance + stick-click reset, AUDIO studio, MOVE SUBS, AFR MAX, soft-retain library, and the rest of the 0.3.32+ set. Signed Quest APK and Galaxy AAB/APK built and verified for this code. Final on-head acceptance of every code-39 change remains a separate gate.</td></tr>
-      <tr><td>Galaxy XR · 0.3.33-m3 · code 10039</td><td>Current shared controls and source behavior. Signed APK/AAB and local validation gates passed; this exact candidate was not physically rerun on Galaxy XR for every feature.</td></tr>
-      <tr><td>Any build below 0.3.33-m3</td><td>Use only controls present in that installed build. Older manuals and Engineering Receipts remain historical evidence, not proof of code 39.</td></tr>
+      <tr><td>Quest · 0.3.61-m3 · code 68</td><td>Current candidate behavior: smoother Club/theme browsing, stick Distance + stick-click reset, AUDIO studio, MOVE SUBS, AFR MAX, soft-retain library, and the rest of the carried-forward set. Signed Quest APK and Galaxy AAB/APK are rebuilt for this code; final on-head acceptance of every change remains a separate gate.</td></tr>
+      <tr><td>Galaxy XR · 0.3.61-m3 · code 10068</td><td>Current shared controls and source behavior. Signed APK/AAB are rebuilt for this code; the exact Galaxy headset pass is reported separately from artifact proof.</td></tr>
+      <tr><td>Any build below 0.3.61-m3</td><td>Use only controls present in that installed build. Older manuals and Engineering Receipts remain historical evidence, not proof of code 68.</td></tr>
       <tr><td>Any other version</td><td>Use this as orientation, then follow that build's in-headset HELP and release notes. A control described here may be absent or changed.</td></tr>
     </tbody>
   </table></div>
-  <div class="note love"><p><strong>What just got fixed (code 39):</strong> on VR180 / VR360 / fisheye / alpha passthru, stick forward/back is the same <strong>Distance</strong> value as the cockpit slider and per-title save. Stick-click homes Distance + Zoom to <code>D1.00 / Z1.00</code> and recenters. Older builds could move the scene with a hidden dolly that never touched the slider and never reset.</p></div>
+  <div class="note"><p><strong>Startup film.</strong> The c68 candidate embeds the mastered 1920&times;1080 startup intro: a cleaned black field, a restrained aviation layer, and the final audio hold. The 244-frame / 24-fps film remains <strong>ON</strong> by default on cold start; <span class="chip">HIDE</span> is an explicit Global Settings choice after the first watch.</p></div>
+  <div class="note love"><p><strong>What this candidate carries:</strong> the Club/theme board uses continuous stick and laser-drag scrolling with hard clipping and explicit page affordances. During a drag or flick, the list keeps a bounded compositor scroll window, remaps hit testing analytically, and avoids re-baking the full panel for every laser crossing. The list/cover well is hard-clipped on every frame; Settings and theme panels use a lower redraw/supersample budget, with hover chrome kept separate from full bitmap work. On VR180 / VR360 / fisheye / alpha passthru, stick forward/back remains the same <strong>Distance</strong> value as the cockpit slider and per-title save; stick-click homes Distance + Zoom to <code>D1.00 / Z1.00</code> and recenters. These are the c68 implementation contracts; the headset remains the authority for feel under a particular library, network, and thermal condition.</p></div>
   <p><strong>Two reading lanes:</strong> Start here through Bug reports is <strong>Daily Use</strong>. <a href="#specs">Engineering Receipts</a>, <a href="#theory">Theory of Operation</a>, and <a href="#deeper">Deeper</a> are optional appendices; you do not need them to set up a source or watch a title.</p>
   <p>The <strong>vault</strong> is your library. Open a folder to dig in. Open a title to play. Daily browsing and playback stay in VR; source management, document pickers, delete confirmation, and Watch Together can intentionally open Android's flat or system UI.</p>
   <div class="note"><p><strong>Your first hour.</strong> Finally ships no catalog, so an empty vault is normal. The fastest first frame is one known-good file in <span class="path">Movies/Finally</span>, followed by <span class="chip">↻ SCAN</span>. Add one Android folder or one SMB share next; use <strong>Browse instantly</strong> on a large NAS instead of waiting for a whole-library index. Posters and metadata can continue filling in after playable rows appear.</p></div>
@@ -668,7 +669,7 @@
       <tr><td>Can I choose another audio track?</td><td>Yes for ordinary ExoPlayer-backed containers. Tap <span class="chip">AUDIO</span> for the multi-track list (language chips, remembered preference) and the <strong>AUDIO studio</strong> — SIMPLE Night soft, or PRO EQ / dynamics / stereo width. The shared path is disabled for prepared ISO/SSIF playback. Finally does not invent a missing dub or ask Plex to transcode one.</td></tr>
       <tr><td>Can I load an external subtitle file?</td><td>Yes. Start an ordinary video, open the quick strip or PLAY page, and choose <span class="chip">LOAD SUBTITLE</span>. Pick an SRT, VTT, ASS, or SSA file up to 4 MiB. Local/SMB (and WebDAV same-folder) sidecars can auto-pick. <span class="chip">MOVE SUBS</span> free-drags the caption on the picture; <span class="key">B</span> saves. Stills and the special ISO/MVC path are excluded.</td></tr>
       <tr><td>Does Finally support ChloeVibes or <code>.funscript</code> files?</td><td>Yes. ChloeVibes is integrated into Finally, so no second app is required. Open <span class="chip">GLOBAL SETTINGS</span> &rarr; <span class="chip">CHLOEVIBES</span>, connect and explicitly ARM a compatible Bluetooth accessory, then use a readable sidecar with the same complete basename as the video. Stroke length/speed caps tame wild scripts. <strong>The Handy</strong> can use a HandyFeeling connection key (Wi‑Fi) from the same panel family. See <a href="#haptics">ChloeVibes haptics</a>.</td></tr>
-      <tr><td>Stick moves the girl closer but nothing resets?</td><td>On code 39+, stick ↕ is Distance (the slider moves). Stick-click homes Distance + Zoom and recenters. On older builds a hidden dolly could ignore the slider — update.</td></tr>
+      <tr><td>Stick moves the girl closer but nothing resets?</td><td>On the current c68 candidate, stick ↕ is Distance (the slider moves). Stick-click homes Distance + Zoom and recenters. That behavior originated in code 39; on older builds a hidden dolly could ignore the slider — update.</td></tr>
       <tr><td>What happens to surround audio?</td><td>Finally keeps up to eight-channel tracks eligible, uses headset hardware when available, and falls back to its bundled FFmpeg audio path for AC-3, E-AC-3, and DTS when needed. Android's audio system performs the headset downmix.</td></tr>
       <tr><td>Are chapters supported?</td><td>Yes when the container exposes them: Blu-ray playlist marks and Media3 multi-period chapter marks show CHAPTER chips (including in SIMPLE). The code-28 resume-plus-authored-seek route remains a historical Quest receipt; DVD menu navigation is still not claimed.</td></tr>
       <tr><td>Does HDR work?</td><td>A focused 1080p60 AV1 Main 10 HDR10 file reached the hardware decoder and recovered after seek on Quest 3 and Galaxy XR. That is decode-path proof, not a blanket HDR tone-map, output-accuracy, 4K/8K, or every-profile guarantee.</td></tr>
@@ -1082,17 +1083,17 @@
 <section id="iso">
   <p class="kicker">09 · discs</p>
   <h2>Blu-ray ISO, MVC &amp; physical DVD</h2>
-  <p class="lede">The 0.3.27 candidate carries a narrow, explicit set of decrypted H.264/MVC routes at 1.0×. Quest has retained production-route receipts from code 28 and earlier; this exact code-33 build was not rerun on-head, and the Galaxy, SMB, and WebDAV boundaries remain separate.</p>
+  <p class="lede">The current 0.3.61-m3 candidate (Quest c68 / Galaxy c10068) carries a narrow, explicit set of decrypted H.264/MVC routes at 1.0×. Quest retains production-route receipts from code 28 and earlier; those are historical device evidence. This candidate has not received a complete c68/c10068 MVC, SMB, or WebDAV device matrix, so the route contract and the measured acceptance boundary stay separate.</p>
 
   <h3>Supported today / not today</h3>
   <div class="tbl-wrap"><table>
-    <thead><tr><th scope="col">Supported in the 0.3.27 candidate</th><th scope="col">Not claimed today</th></tr></thead>
+    <thead><tr><th scope="col">Supported by the current route contract</th><th scope="col">Not claimed for c68/c10068</th></tr></thead>
     <tbody>
       <tr><td>Quest local, complete decrypted 3D Blu-ray MVC/SSIF ISO: zero start, nonzero resume, and authored chapter/indexed seek through the production MVC/OpenXR route</td><td>AACS or other protected-disc decryption; BD-J menus; every authored disc or playlist</td></tr>
       <tr><td>Quest local standalone <code>.ssif</code> through <code>PlayerFactory</code>, Chloe MVC Engine 1, and separate per-eye OpenXR presentation</td><td>Standalone SSIF resume/seek breadth, network SSIF, or feature-length endurance</td></tr>
       <tr><td>Quest local genuine combined-track MVC <code>.mkv</code>/<code>.mk3d</code> through the same production route</td><td>Every file merely named MKV/MK3D; a genuine MVC dependent view is required</td></tr>
-      <tr><td>Eligible decrypted MVC ISO over configured SMB or a compatible WebDAV collection remains a product path</td><td>The code-33 SMB fixture was not physically rerun; WebDAV ISO is source/host validated without a live-server or on-head receipt; the Quest code-27 SMB receipt is historical, and neither route is a current Galaxy physical claim</td></tr>
-      <tr><td>Galaxy code 10033 carries the shared routes and passed current host/artifact gates</td><td>The code-10033 Galaxy ISO/SSIF/MKV physical route matrix was not rerun; retained code-10027 local-ISO results do not become code-10033 proof</td></tr>
+      <tr><td>Eligible decrypted MVC ISO over configured SMB or a compatible WebDAV collection remains a source/build product path</td><td>No fresh c68 SMB fixture was physically rerun; WebDAV ISO is source/host validated without a live-server or on-head receipt; the Quest code-27 SMB receipt is historical, and neither route is a current Galaxy physical claim</td></tr>
+      <tr><td>Galaxy c10068 carries the shared routes through the current source/build/artifact contract</td><td>No c10068 Galaxy ISO/SSIF/MKV physical route matrix is claimed; retained code-10027 local-ISO results remain historical and are not promoted by the new artifact</td></tr>
     </tbody>
   </table></div>
   <div class="note warn"><p><strong>Keep MVC at 1.0×.</strong> Speed changes are outside the MVC contract. The exact Quest ISO physically passed resume at 12 seconds and an authored/indexed seek to 40 seconds. The standalone SSIF and direct MVC MKV proofs are clean start-to-completion production-route gates; their resume/seek breadth is not inferred.</p></div>
@@ -1176,7 +1177,7 @@
   <div class="tbl-wrap"><table>
     <thead><tr><th scope="col">Room</th><th scope="col">What it is</th></tr></thead>
     <tbody>
-      <tr><td>ASH AIRFOIL LOFT</td><td><strong>SMITHTOWN, NY · 180° PHOTO STAGE</strong> — the real studio photograph staged across the front 180° × 90° on an 8192×4096 dark-neutral canvas</td></tr>
+      <tr><td>ASH AIRFOIL LOFT</td><td><strong>SUFFOLK COUNTY, LONG ISLAND, NY · 180° PHOTO STAGE</strong> — the real studio photograph staged across the front 180° × 90° on an 8192×4096 dark-neutral canvas</td></tr>
       <tr><td>LOFT NIGHT</td><td><strong>NEON PENTHOUSE</strong> — the generated high-end night environment</td></tr>
       <tr><td>REFERENCE DARK</td><td>A low-distraction dark theater reference</td></tr>
       <tr><td>CLUB CRACKED</td><td>Established bundled Club environment</td></tr>
@@ -1235,7 +1236,7 @@
   <div class="tbl-wrap"><table>
     <thead><tr><th>Theme</th><th>Line</th></tr></thead>
     <tbody>
-      <tr><td><button class="theme-name" type="button" aria-label="Twin Globes StarStream: preview theme" aria-pressed="false" data-theme-id="TWIN_GLOBES" data-theme-bg="#FFFFFF" data-theme-card="#F7F7F7" data-theme-accent="#C8102E" data-theme-text="#141414" style="--theme-swatch: linear-gradient(90deg,#FFFFFF,#C8102E,#FFFFFF,#C8102E)">Twin Globes StarStream</button></td><td><em>Red globe on a white tail. The original still knows how to arrive.</em></td></tr>
+      <tr><td><button class="theme-name" type="button" aria-label="Twin Globes StarStream: preview theme" aria-pressed="false" data-theme-id="TWIN_GLOBES" data-theme-bg="#FFFFFF" data-theme-card="#F7F7F7" data-theme-accent="#C8102E" data-theme-text="#141414" style="--theme-swatch: linear-gradient(90deg,#FFFFFF,#C8102E,#FFFFFF,#C8102E)">Twin Globes StarStream</button></td><td><em>Touch With Authority: Soft hands. Heavy airplane. Butter landing. No notes from the cabin.</em></td></tr>
       <tr><td><button class="theme-name" type="button" aria-label="Day VFR: preview theme" aria-pressed="false" data-theme-id="DAY_VFR" data-theme-bg="#E8F4FC" data-theme-card="#D0E8F8" data-theme-accent="#003087" data-theme-text="#0A1628" style="--theme-swatch: linear-gradient(90deg,#87CEEB,#FFFFFF,#003087)">Day VFR</button></td><td><em>Sky blue glass and navy type. See and be seen.</em></td></tr>
       <tr><td><button class="theme-name" type="button" aria-label="NOTAM: preview theme" aria-pressed="false" data-theme-id="NOTAM" data-theme-bg="#FFF8DC" data-theme-card="#F5E6B8" data-theme-accent="#C8102E" data-theme-text="#1A1A1A" style="--theme-swatch: linear-gradient(90deg,#FFD100,#1A1A1A,#C8102E)">NOTAM</button></td><td><em>Yellow pad, black type, red priority. Read before you fly.</em></td></tr>
       <tr><td><button class="theme-name" type="button" aria-label="Macrodata Refinement: preview theme" aria-pressed="false" data-theme-id="SEVERANCE" data-theme-bg="#E8E4DC" data-theme-card="#D8D4CC" data-theme-accent="#2B4C7E" data-theme-text="#1A1A1A" style="--theme-swatch: linear-gradient(90deg,#E8E4DC,#2B4C7E,#6B8F71,#1A1A1A)">Macrodata Refinement</button></td><td><em>Your outie already picked a better theme.</em></td></tr>
@@ -1259,7 +1260,7 @@
   <div class="tbl-wrap"><table>
     <thead><tr><th>Theme</th><th>Line</th></tr></thead>
     <tbody>
-      <tr><td><button class="theme-name" type="button" aria-label="Twin Globes StarStream: preview theme" aria-pressed="false" data-theme-id="TWIN_GLOBES" data-theme-bg="#FFFFFF" data-theme-card="#F7F7F7" data-theme-accent="#C8102E" data-theme-text="#141414" style="--theme-swatch: linear-gradient(90deg,#FFFFFF,#C8102E,#FFFFFF,#C8102E)">Twin Globes StarStream</button></td><td><em>Red globe on a white tail. The original still knows how to arrive.</em></td></tr>
+      <tr><td><button class="theme-name" type="button" aria-label="Twin Globes StarStream: preview theme" aria-pressed="false" data-theme-id="TWIN_GLOBES" data-theme-bg="#FFFFFF" data-theme-card="#F7F7F7" data-theme-accent="#C8102E" data-theme-text="#141414" style="--theme-swatch: linear-gradient(90deg,#FFFFFF,#C8102E,#FFFFFF,#C8102E)">Twin Globes StarStream</button></td><td><em>Touch With Authority: Soft hands. Heavy airplane. Butter landing. No notes from the cabin.</em></td></tr>
       <tr><td><button class="theme-name" type="button" aria-label="Heading 220: preview theme" aria-pressed="false" data-theme-id="HEADING_220" data-theme-bg="#0A1020" data-theme-card="#142038" data-theme-accent="#D5152E" data-theme-text="#FFFFFF" style="--theme-swatch: linear-gradient(90deg,#304CB2,#D5152E,#FFBF27,#FFFFFF)">Heading 220</button></td><td><em>Canyon blue, red heart, sunshine yellow. Take the shortcut home.</em></td></tr>
       <tr><td><button class="theme-name" type="button" aria-label="Clipper Globe Blue: preview theme" aria-pressed="false" data-theme-id="CLIPPER_GLOBE" data-theme-bg="#0A1528" data-theme-card="#122440" data-theme-accent="#2B67AC" data-theme-text="#FFFFFF" style="--theme-swatch: linear-gradient(90deg,#2B67AC,#FFFFFF,#000000)">Clipper Globe Blue</button></td><td><em>The blue ball that made the world feel smaller.</em></td></tr>
       <tr><td><button class="theme-name" type="button" aria-label="Hockey Stick Horizon: preview theme" aria-pressed="false" data-theme-id="HOCKEY_STICK" data-theme-bg="#0A1228" data-theme-card="#142040" data-theme-accent="#00A3E0" data-theme-text="#FFFFFF" style="--theme-swatch: linear-gradient(90deg,#243C74,#00A3E0,#FFFFFF)">Hockey Stick Horizon</button></td><td><em>Ionosphere blue, Caribbean blue, slap-shot logo energy.</em></td></tr>
@@ -1656,22 +1657,22 @@
   <div class="tbl-wrap"><table>
     <thead><tr><th scope="col">Capability</th><th scope="col">Meta Quest</th><th scope="col">Samsung Galaxy XR</th></tr></thead>
     <tbody>
-      <tr><td>Current manual identity</td><td><code>0.3.33-m3</code>, version code 39</td><td><code>0.3.33-m3</code>, version code 10039</td></tr>
-      <tr><td>Distribution</td><td>Meta Horizon Store is the public path; code 39 is a signed internal candidate and this page does not claim the store has delivered it</td><td>Google Play is the Galaxy XR path; code 10039 is a signed internal candidate and this page does not claim the store has delivered it</td></tr>
+      <tr><td>Current manual identity</td><td><code>0.3.61-m3</code>, version code 68</td><td><code>0.3.61-m3</code>, version code 10068</td></tr>
+      <tr><td>Distribution</td><td>Meta Horizon Store is the public path; code 68 is a signed internal candidate and this page does not claim the store has delivered it</td><td>Google Play is the Galaxy XR path; code 10068 is a signed internal candidate and this page does not claim the store has delivered it</td></tr>
       <tr><td>Launch</td><td>Straight into the Club (when your vault has titles)</td><td>Library first — tap <span class="chip">ENTER THE CLUB</span></td></tr>
       <tr><td>Passthrough</td><td>Meta passthrough layer</td><td>System blend-through — same controls, same keying</td></tr>
       <tr><td>AFR</td><td>Cadence-aware Android hint including 25/50/100→100 when advertised; optional MAX (~120 on Quest 3). Runtime still chooses the actual mode — verify Stats HUD</td><td>Same shared policy, with requested modes below 71 Hz excluded to avoid the visibly flickering 60 Hz micro-OLED mode. MAX floors below 72 Hz. A 60-fps source may remain at runtime-reported 72 Hz with a cadence mismatch; verify Stats HUD</td></tr>
       <tr><td>Hardware AV1</td><td>Retained code-27 Main 8/Main 10 HDR10 first-frame/seek proof</td><td>Retained code-10027 Main 8/Main 10 HDR10 first-frame/seek proof</td></tr>
       <tr><td>Watch Together</td><td>Retained code-27 production-UI proof as host</td><td>Retained code-10027 production-UI proof as follower</td></tr>
-      <tr><td>Subtitles / audio / stick Distance</td><td>MOVE SUBS, 75–300% size, multi-audio + AUDIO studio, stick Distance + stick-click reset (code 39); exact full-matrix on-head acceptance remains open</td><td>Same shared behavior; exact-build on-head acceptance remains open</td></tr>
+      <tr><td>Subtitles / audio / stick Distance</td><td>MOVE SUBS, 75–300% size, multi-audio + AUDIO studio, stick Distance + stick-click reset (carried into code 68); exact full-matrix on-head acceptance remains open</td><td>Same shared behavior; exact-build on-head acceptance remains open</td></tr>
       <tr><td>Nearby sources</td><td>Retained Quest proof covers one live SMB host-discovery path and one DLNA discovery/ranged-read path; no commercial-server matrix</td><td>Shared source/build behavior; no current Galaxy device run</td></tr>
-      <tr><td>3D MVC in 0.3.27</td><td>Retained Quest proof: local ISO zero/resume/chapter, standalone SSIF, and direct MVC MKV; code 33 and SMB were not physically rerun</td><td>Shared routes pass current source/build gates, but the code-10033 physical route matrix was not rerun</td></tr>
+      <tr><td>3D MVC — historical receipt boundary</td><td>Retained Quest proof: local ISO zero/resume/chapter, standalone SSIF, and direct MVC MKV; c68 and SMB were not physically rerun</td><td>Shared routes pass current source/build/artifact gates, but no c10068 physical route matrix is claimed</td></tr>
       <tr><td>USB DVD-Video</td><td>Retained code-27 exact clear-disc Quest 3 proof</td><td><strong>Not claimed in this manual</strong></td></tr>
       <tr><td>Exit label</td><td><span class="chip">LEAVE → QUEST</span></td><td><span class="chip">LEAVE → HOME</span></td></tr>
       <tr><td>Controllers</td><td>Touch — full map; B/Y menu and stereo roles can swap</td><td>Standard profile — every control still reachable via menu</td></tr>
     </tbody>
   </table></div>
-  <p>The daily-use and source work shares one codebase, but a device claim changes only after that target/build has its own physical evidence. Galaxy's older local MVC receipt remains useful history; it is not relabeled as a code-10039 pass. AFR uses normalized cadences such as 23.976, 29.97, and 59.94 on both targets (plus 25/50/100→100 when advertised) and lets the runtime choose the actual mode. Galaxy requests no mode below 71 Hz, so Finally does not request its flickering 60 Hz mode; a 60-fps title may remain at 72 Hz with a visible cadence mismatch. Stats HUD is the current readout.</p>
+  <p>The daily-use and source work shares one codebase, but a device claim changes only after that target/build has its own physical evidence. Galaxy's older local MVC receipt remains useful history; it is not relabeled as a c10068 pass. AFR uses normalized cadences such as 23.976, 29.97, and 59.94 on both targets (plus 25/50/100→100 when advertised) and lets the runtime choose the actual mode. Galaxy requests no mode below 71 Hz, so Finally does not request its flickering 60 Hz mode; a 60-fps title may remain at 72 Hz with a visible cadence mismatch. Stats HUD is the current readout.</p>
 </section>
 
 <section id="fixit">
@@ -1682,7 +1683,7 @@
     <tbody>
       <tr><td>Warped shape</td><td>PLAY → <span class="chip">AUTO</span> to re-detect — or audition the lens row (a "slightly zoomed" fisheye is usually 180 vs 190)</td></tr>
       <tr><td>Double vision</td><td>PLAY → <span class="chip">Eyes</span> · or <span class="chip">AUTO</span></td></tr>
-      <tr><td>Scene too close / stuck after stick</td><td>Stick-click for full reset (D1.00 / Z1.00 + recenter), or PLACE → Distance slider / <span class="chip">Reset place + eyes</span>. On code 39+ the Distance slider must move with stick ↕; if it does not, you are on an older build</td></tr>
+      <tr><td>Scene too close / stuck after stick</td><td>Stick-click for full reset (D1.00 / Z1.00 + recenter), or PLACE → Distance slider / <span class="chip">Reset place + eyes</span>. On the current c68 candidate, the Distance slider moves with stick ↕; that behavior originated in code 39. If it does not, you are on an older build</td></tr>
       <tr><td>Eye strain</td><td>PLACE / EYES → depth position and eye height · <span class="chip">Reset place + eyes</span></td></tr>
       <tr><td>Ends instantly</td><td>Resume was at the last frame — the next open starts clean</td></tr>
       <tr><td>Silent MKV</td><td>Check mute, volume, and the selected audio track. AC-3, E-AC-3, and DTS can use Finally's FFmpeg fallback, but the exact codec, profile, and file still matter; compare a known-good local file and report the result</td></tr>
@@ -1694,15 +1695,15 @@
       <tr><td><code>TARGET … · NOT LOCKED</code></td><td>Android has not reported the requested mode as current. AFR does not interpolate frames, and Finally does not call a requested rate “locked”</td></tr>
       <tr><td>A video vanished from the lists</td><td>It auto-detected as mono (a whole-word <code>mono</code> filename tag) — the vault footer counts it as <em>MONO hidden</em>. Rename the file to bring it back; titles with your saved settings are never hidden</td></tr>
       <tr><td>Subtitle track is absent</td><td>For automatic local/SMB discovery, match the complete video stem, use SRT/VTT/ASS/SSA, keep it under 4 MiB, and place it beside the title. For any ordinary supported video route, use <span class="chip">LOAD SUBTITLE</span> and choose the file manually. ISO/MVC and stills do not offer the picker</td></tr>
-      <tr><td>Plex crashes after SORT or will not relaunch</td><td>Install code 32 or later; code 33 contains the comparator and saved-crash-loop repair and keeps the Plex index/source/credentials. If an older build is still trapped, Android Settings → Apps → Finally → Storage → Clear data is the last resort; it removes Finally's local index, source setup, credentials, and settings—not media on the Plex server. Deleting visible OBB or Android/data folders is not the same operation</td></tr>
-      <tr><td>Stash rows show scene numbers</td><td>Rescan with code 33. A nonblank scene title wins; otherwise Finally uses the sanitized file basename, then falls back to <code>Stash scene &lt;id&gt;</code> only when the server supplied neither usable value. Use <span class="chip">⌕ SEARCH</span> on the displayed filename</td></tr>
+      <tr><td>Plex crashes after SORT or will not relaunch</td><td>The current candidate contains the comparator and saved-crash-loop repair first shipped in code 33, and keeps the Plex index/source/credentials. If an older build is still trapped, Android Settings → Apps → Finally → Storage → Clear data is the last resort; it removes Finally's local index, source setup, credentials, and settings—not media on the Plex server. Deleting visible OBB or Android/data folders is not the same operation</td></tr>
+      <tr><td>Stash rows show scene numbers</td><td>Rescan with the current candidate. A nonblank scene title wins; otherwise Finally uses the sanitized file basename, then falls back to <code>Stash scene &lt;id&gt;</code> only when the server supplied neither usable value. The filename fallback originated in code 33. Use <span class="chip">⌕ SEARCH</span> on the displayed filename</td></tr>
       <tr><td>Vault search finds nothing</td><td>Every typed word must occur in the displayed title. Shorten the query, check the Stash filename fallback after a rescan, or press Menu / Back to clear the applied search</td></tr>
-      <tr><td>WebDAV Connect &amp; scan is redirected or fails</td><td>Code 39+ can follow safe HTTPS <code>PROPFIND</code> redirects; still prefer the final collection URL when you know it. Confirm credentials and collection permissions before testing playback</td></tr>
+      <tr><td>WebDAV Connect &amp; scan is redirected or fails</td><td>The current candidate can follow safe HTTPS <code>PROPFIND</code> redirects; that policy originated in code 39. Still prefer the final collection URL when you know it. Confirm credentials and collection permissions before testing playback</td></tr>
       <tr><td>The server response is not compatible with Finally's WebDAV reader</td><td>Update to the current candidate. Once listing succeeds, playback still requires correct seekable <code>206 Content-Range</code> replies. Only ranged media GETs get the bounded HTTPS handoff support; Finally still rejects a server that ignores Range with <code>200</code>, returns malformed offsets, downgrades to HTTP, loops, or exceeds five hops. Use the server's direct compatible WebDAV/storage endpoint or ask its administrator whether ranged GET is supported</td></tr>
-      <tr><td>Source actions only show Cancel</td><td>Update to code 38+ — Rescan · Edit · Remove for Plex/FTP/WebDAV/Stash/DLNA/XBVR were hidden by a dialog bug</td></tr>
-      <tr><td>LEAVE leaves Meta home broken / black</td><td>Update to code 38+ for the harder OpenXR teardown. Force-quit Finally from the system menu if an older build already stuck the session</td></tr>
+      <tr><td>Source actions only show Cancel</td><td>Use the current candidate — Rescan · Edit · Remove for Plex/FTP/WebDAV/Stash/DLNA/XBVR are available. The dialog repair originated in code 38</td></tr>
+      <tr><td>LEAVE leaves Meta home broken / black</td><td>Use the current candidate for the harder OpenXR teardown first shipped in code 38. Force-quit Finally from the system menu if an older build already stuck the session</td></tr>
       <tr><td><code>SUBS · ISO N/A</code></td><td>Expected in the current candidate: ISO text/PGS rendering is intentionally disabled</td></tr>
-      <tr><td>3D Blu-ray ISO opens in 2D</td><td>Use a complete decrypted MVC/SSIF ISO and keep speed at 1.0×. The retained Quest code-28 receipt covers one exact title from zero, resume, and authored seek; code 33, code-10033 Galaxy, and current SMB/WebDAV routes were not physically rerun</td></tr>
+      <tr><td>3D Blu-ray ISO opens in 2D</td><td>Use a complete decrypted MVC/SSIF ISO and keep speed at 1.0×. The retained Quest code-28 receipt covers one exact title from zero, resume, and authored seek; c68/c10068, current SMB, and current WebDAV routes were not physically rerun</td></tr>
       <tr><td>MVC becomes 2D after a transition</td><td>At non-1.0× speed this is outside the MVC contract. A retained Quest code-28 receipt covers one eligible ISO's resume/chapter seek; standalone SSIF/MVC-MKV transition breadth is not claimed, so reopen at 0 and report the exact source type</td></tr>
       <tr><td>USB DVD drive is not listed</td><td>Confirm a data-capable USB-C/OTG connection, adequate power, Android USB permission, and a ready disc</td></tr>
       <tr><td>DVD is refused after discovery</td><td>The current path needs clear readable sectors and an ISO9660 <code>VIDEO_TS</code> bridge; CSS/encrypted and some UDF-only discs are outside it</td></tr>
@@ -1754,19 +1755,20 @@
   <h2>Testing &amp; technical specifications</h2>
   <p class="lede">Optional measured receipts, real parameters, and explicit limits—the sheet packed with a serious lens or microphone. For ordinary help, jump to <a href="#fixit">Fix it</a> or <a href="#diagnostics">Bug reports</a>.</p>
   <div class="note"><p><strong>Evidence language.</strong> <em>Device</em> means the named physical headset executed the path. <em>Device + observer</em> adds a human inspection of that exact run. <em>Host</em> means deterministic workstation/JVM/native coverage. One fixture proves that fixture and path; it does not silently become universal codec, NAS, disc, thermal, or comfort support.</p></div>
-  <div class="note warn"><p><strong>Build applicability.</strong> <strong>Code 39 / 10039</strong> is the current signed internal candidate (0.3.33-m3) and has source, host-test/lint where run, and signed Quest APK + Galaxy AAB/APK artifact evidence for the distance stick-click hotfix. That is not the same as final on-head acceptance of every feature, a full Galaxy device matrix, or store delivery. Older rows remain historical measurements and are not relabeled as proof of code 39.</p></div>
+  <div class="note warn"><p><strong>Build applicability.</strong> <strong>Code 68 / 10068</strong> is the current signed internal candidate (0.3.61-m3) and has source, host-test/lint where run, signed Quest APK + Galaxy AAB/APK artifact evidence, and a fresh headset install pass recorded separately. That is not the same as final on-head acceptance of every feature, a full Galaxy device matrix, or store delivery. Older rows remain historical measurements and are not relabeled as proof of code 68.</p></div>
+  <div class="note"><p><strong>Flight-test notation.</strong> The benchmark cards identify the test article, operating condition, measured trace, and gate. Solid traces are recorded samples or run points; dashed lines are reference gates or limits. A line joining discrete points preserves test order only—it is not an interpolated performance claim. Workstation capacity is test-cell context; headset plots remain headset measurements.</p></div>
 
   <h3>Recorded lab</h3>
   <div class="tbl-wrap"><table>
     <thead><tr><th scope="col">Field</th><th scope="col">Recorded condition</th></tr></thead>
     <tbody>
-      <tr><td>Facility / date</td><td>Ash Airfoil Tailstrike Studio Loft, Smithtown, New York, USA · 2026-07-28</td></tr>
+      <tr><td>Test location / date</td><td>Ash Airfoil Tailstrike Studio Loft, Suffolk County, Long Island, New York, USA · 2026-07-28</td></tr>
       <tr><td>Primary headset</td><td>Meta Quest 3 (<code>eureka</code>), Android API 34</td></tr>
       <tr><td>Second headset</td><td>Samsung Galaxy XR / SM-I610 (<code>xrvst2</code>), Android 14</td></tr>
       <tr><td>Optical path</td><td>PLDS DVD-RW DS8A8SH mobile USB drive · clear-sector <code>STEVE_LUKATHER</code> DVD-Video</td></tr>
-      <tr><td>Lab host</td><td>ASUS G835LX · Intel Core Ultra 9 275HX (24 cores / 24 logical processors) · NVIDIA GeForce RTX 5090 Laptop GPU · 32 GiB · Windows 11 Pro build 26200</td></tr>
-      <tr><td>Host boundary</td><td>The 5090 generates fixtures, hashes, builds, and decoder-oracle results. It is not in the standalone-headset playback path and is never equated with Quest/Galaxy performance.</td></tr>
-      <tr><td>Power / ambient</td><td>Headsets were externally powered during bench work. Controlled battery-drain and ambient-temperature series were not recorded.</td></tr>
+      <tr><td>Lab host</td><td>64-core AMD Threadripper system · 4× NVIDIA GeForce RTX 5090 · 128 GiB RAM · Windows 11 Pro build 26200</td></tr>
+      <tr><td>Host boundary</td><td>The four-GPU workstation generates fixtures, hashes, builds, and decoder-oracle results. It is not in the standalone-headset playback path and is never equated with Quest/Galaxy performance; the device plots measure the headsets.</td></tr>
+      <tr><td>Power / ambient</td><td>Headsets were externally powered during bench work. Test-cell ambient was stable at 68 °F. The A4b headset trace reported 48 °C in every recorded sample; the 60-second run is not a thermal soak.</td></tr>
     </tbody>
   </table></div>
 
@@ -1790,6 +1792,7 @@
   <div class="tbl-wrap"><table>
     <thead><tr><th scope="col">Program</th><th scope="col">Tier</th><th scope="col">Exact result</th><th scope="col">Boundary</th></tr></thead>
     <tbody>
+      <tr><td>Code 68 / 10068 · current signed candidate</td><td>Artifact + device install/launch</td><td>Signed Quest c68 and Galaxy c10068 APK/AAB identity, signing, alignment, native Build IDs, and package/version checks passed; release artifacts installed in place on physical Quest 3 and Galaxy XR and launched at 0.3.61-m3. The embedded startup film matched the source at 1920×1080 / 244 frames / 24 fps; focused Club scroll contracts passed.</td><td>Current internal candidate. Visual acceptance remains feature-specific; the full Galaxy host suite retains 34 known failures on clean HEAD, no complete c68/c10068 device matrix is claimed, and this is not store-delivery proof.</td></tr>
       <tr><td>Code 39 / 10039 · Distance stick + stick-click reset</td><td>Source + signed artifacts</td><td>Canonical Distance path (no hidden viewForward); Quest APK code 39 and Galaxy AAB/APK 10039 signed with the release certificate; release notes staged for dual-store reupload</td><td>Not a full on-head matrix for every 0.3.32 feature; not store-delivery proof</td></tr>
       <tr><td>Code 37 / 10037 · ChloeVibes, source, playback, and UI gate</td><td>Host + artifact; Quest install/launch</td><td>Quest/Galaxy unit suites, focused ChloeVibes and menu-contract tests, lint, forced release builds, APK signing/alignment, and Galaxy Bundletool validation passed; exact code-37 direct package installed and launched on Quest 3</td><td>Historical gate; not relabeled as code-39 proof</td></tr>
       <tr><td>Code 33 / 10033 · full unit and lint gate</td><td>Host</td><td>Mobile 894, Quest 1,016, Galaxy 1,009 tests; zero failures/errors, three intentional skips per variant; all three debug lint tasks completed</td><td>No headset, store-delivery, visual, live-server, or thermal claim</td></tr>
@@ -1815,31 +1818,32 @@
     </tbody>
   </table></div>
 
-  <h3>Real benchmark plots</h3>
+  <h3>Flight-test benchmark plots</h3>
+  <p class="lede">These are engineering flight-test cards, not decorative charts. Each one names the article, the run condition, the observed characteristic, and the reference gate. The headset is the test article; the 4× RTX 5090 / Threadripper workstation is the instrumentation and build cell.</p>
   <div class="figure-grid">
     <figure class="bench">
       <div class="bench-plot">
         <img src="assets/benchmarks/mvc-iso-realtime-progression.svg" alt="Quest 3 MVC ISO media-to-wall realtime ratio progressing from 0.396 in A2 to 0.93492 in A3 and 0.999772 in A4b" width="1200" height="560" loading="lazy" decoding="async">
       </div>
-      <figcaption>Same exact Quest ISO across three engineering runs. The straight lines connect discrete tests; they do not imply unmeasured intermediate performance.</figcaption>
+      <figcaption><strong>Flight-test card · realtime delivery characteristic.</strong> Same exact Quest ISO across three engineering runs against the 1.000× realtime gate. The markers are recorded test points; the straight lines preserve sequence and do not imply unmeasured intermediate performance.</figcaption>
     </figure>
     <figure class="bench">
       <div class="bench-plot">
         <img src="assets/benchmarks/mvc-headless-worker-throughput.svg" alt="Quest 3 headless MVC throughput comparison for automatic, six-worker, and four-worker decoder policies" width="1200" height="560" loading="lazy" decoding="async">
       </div>
-      <figcaption>Four workers retained essentially the same decode throughput while reserving headset compute for OpenXR and audio.</figcaption>
+      <figcaption><strong>Flight-test card · decoder powerplant sweep.</strong> Four workers retained essentially the same decode throughput against the 24-pairs/s gate while reserving headset compute for OpenXR and audio.</figcaption>
     </figure>
     <figure class="bench">
       <div class="bench-plot">
         <img src="assets/benchmarks/mvc-a4b-vrapi-telemetry.svg" alt="Sixty seconds of Quest 3 MVC A4b OpenXR telemetry including FPS, stale frames, app time, CPU plus GPU time, and reported temperature" width="1200" height="930" loading="lazy" decoding="async">
       </div>
-      <figcaption>All 60 one-second A4b samples: 72–73 FPS against 72 Hz, 35 stale frames total, 1.121 ms average app time, and 4.60 ms maximum CPU+GPU. The short 48 °C trace is not a thermal soak.</figcaption>
+      <figcaption><strong>Flight-test card · steady-state telemetry.</strong> All 60 one-second A4b samples: 72–73 FPS against 72 Hz, 35 stale frames total, 1.121 ms average app time, and 4.60 ms maximum CPU+GPU at stable 68 °F ambient. The short 48 °C trace is not a thermal soak.</figcaption>
     </figure>
     <figure class="bench">
       <div class="bench-plot">
         <img src="assets/benchmarks/watch-together-lan-round-trip.svg" alt="Focused private-LAN Watch Together control round trips between Quest 3 and Galaxy XR ranging from 13 to 33 milliseconds" width="1200" height="560" loading="lazy" decoding="async">
       </div>
-      <figcaption>Quest 3 ↔ Galaxy XR focused control acknowledgements on one private LAN. These are control round trips, not media-relay latency.</figcaption>
+      <figcaption><strong>Flight-test card · control-response characteristic.</strong> Quest 3 ↔ Galaxy XR focused control acknowledgements on one private LAN. These are event-order round trips, not a latency distribution or media-relay latency.</figcaption>
     </figure>
   </div>
   <a class="download" href="assets/benchmarks/mvc-a4b-vrapi-60s.csv" download>Download A4b 60-second telemetry CSV</a>

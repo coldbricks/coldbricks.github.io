@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
-  <title id="title">Chloe MVC Engine headless worker throughput on Quest 3</title>
-  <desc id="desc">On the exact official MVC title, auto mode decoded 32.0884 stereo pairs per second, six workers decoded 32.2047, and four workers decoded 32.1034. The 24 pairs per second reference line is the decoder gate. Lines connect the recorded test order only.</desc>
+  <title id="title">Chloe MVC Engine headless throughput — flight-test worker sweep on Quest 3</title>
+  <desc id="desc">Flight-test card for the exact official MVC title: auto mode decoded 32.0884 stereo pairs per second, six workers decoded 32.2047, and four workers decoded 32.1034. The 24 pairs per second reference line is the decoder gate. Lines connect the recorded test order only.</desc>
   <style>
     svg { shape-rendering: geometricPrecision; text-rendering: geometricPrecision; }
     text { fill: #EFE6F0; font-family: system-ui, sans-serif; font-weight: 500; }
@@ -15,8 +15,8 @@
     .point { fill: #0A0610; stroke: #2EE6C5; stroke-width: 5; }
   </style>
 
-  <text class="title" x="70" y="48">Headless MVC decoder throughput</text>
-  <text class="subtitle" x="70" y="78">Quest 3 · Chloe MVC Engine 1 / edge264 (BSD) · run 1785277886881</text>
+  <text class="title" x="70" y="48">Headless MVC decoder throughput · worker sweep</text>
+  <text class="subtitle" x="70" y="78">Quest 3 · Chloe MVC Engine 1 / edge264 (BSD) · run 1785277886881 · 24 pairs/s gate</text>
 
   <line class="grid" x1="150" y1="412.8" x2="1080" y2="412.8"/>
   <line class="grid" x1="150" y1="343.9" x2="1080" y2="343.9"/>
@@ -33,7 +33,7 @@
   <text class="tick" x="132" y="212" text-anchor="end">30</text>
   <text class="tick" x="132" y="143" text-anchor="end">32</text>
   <text class="axis-label" x="58" y="275" text-anchor="middle" transform="rotate(-90 58 275)">stereo pairs / second</text>
-  <text class="tick" x="1070" y="403" text-anchor="end">24.0 gate</text>
+  <text class="tick" x="1070" y="403" text-anchor="end">24.0 pairs/s gate</text>
 
   <path class="series" d="M250 134.2 L600 130.2 L950 133.7"/>
   <circle class="point" cx="250" cy="134.2" r="8"/>
@@ -48,5 +48,5 @@
   <text class="tick" x="950" y="462" text-anchor="middle">4 workers</text>
   <text class="tick" x="950" y="488" text-anchor="middle">product policy</text>
 
-  <text class="caption" x="70" y="525">Four workers were 0.315% below six while reserving two reported processors for OpenXR and audio.</text>
+  <text class="caption" x="70" y="525">Four workers were 0.315% below six while reserving two reported processors for OpenXR and audio; this is a recorded policy sweep, not a synthetic scaling curve.</text>
 </svg>
