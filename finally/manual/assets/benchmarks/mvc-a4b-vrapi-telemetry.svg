@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 930" role="img" aria-labelledby="title desc">
-  <title id="title">Quest 3 MVC A4b — flight-test steady-state VrApi telemetry</title>
-  <desc id="desc">Flight-test card from sixty one-second samples at stable 68 degrees Fahrenheit ambient: 72 to 73 frames per second against a 72 hertz target, 35 stale frames total with a maximum of 4 in one sample, app time averaging 1.121 milliseconds with a maximum of 3.64, CPU plus GPU time no higher than 4.60 milliseconds, and a constant reported headset temperature of 48 degrees Celsius. This short run is not a thermal soak.</desc>
+  <title id="title">Quest 3 MVC A4b — steady-state VrApi telemetry</title>
+  <desc id="desc">Recorded measurement card from sixty one-second samples at stable 68 degrees Fahrenheit ambient: 72 to 73 frames per second against a 72 hertz target, 35 stale frames total with a maximum of 4 in one sample, app time averaging 1.121 milliseconds with a maximum of 3.64, CPU plus GPU time no higher than 4.60 milliseconds, and a constant reported headset temperature of 48 degrees Celsius. This short run is not a thermal soak.</desc>
   <style>
     svg { shape-rendering: geometricPrecision; text-rendering: geometricPrecision; }
     text { fill: #EFE6F0; font-family: system-ui, sans-serif; font-weight: 500; }
@@ -15,7 +15,7 @@
     .secondary { fill: none; stroke: #FF8DC7; stroke-width: 4.5; stroke-dasharray: 9 6; stroke-linejoin: round; stroke-linecap: round; opacity: 1; }
   </style>
 
-  <text class="title" x="60" y="45">MVC A4b runtime · flight-test steady-state telemetry</text>
+  <text class="title" x="60" y="45">MVC A4b runtime · steady-state telemetry</text>
   <text class="subtitle" x="60" y="74">Quest 3 · 60 steady one-second VrApi samples · 2026-07-28 18:38:40–18:39:39 local</text>
   <text class="subtitle" x="60" y="98">Official MVC ISO SHA-256 e1478208…edd87d71 · code 27 debug · four-worker policy · 68 °F ambient</text>
 

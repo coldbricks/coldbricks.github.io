@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
-  <title id="title">Watch Together — flight-test control-response characteristic</title>
-  <desc id="desc">Flight-test card from five recorded round trips in one Quest 3 to Galaxy XR room: 33 milliseconds for clock, 16 for play, 13 for pause, 15 for seek, and 28 for drift. The median was 16 milliseconds. This is an event sequence, not a latency distribution.</desc>
+  <title id="title">Watch Together — control-response characteristic</title>
+  <desc id="desc">Recorded measurement card from five round trips in one Quest 3 to Galaxy XR room: 33 milliseconds for clock, 16 for play, 13 for pause, 15 for seek, and 28 for drift. The median was 16 milliseconds. This is an event sequence, not a latency distribution.</desc>
   <style>
     svg { shape-rendering: geometricPrecision; text-rendering: geometricPrecision; }
     text { fill: #EFE6F0; font-family: system-ui, sans-serif; font-weight: 500; }
@@ -15,7 +15,7 @@
     .point { fill: #0A0610; stroke: #2EE6C5; stroke-width: 5; }
   </style>
 
-  <text class="title" x="70" y="48">Private-LAN control response · flight-test sequence</text>
+  <text class="title" x="70" y="48">Private-LAN control response · measured sequence</text>
   <text class="subtitle" x="70" y="78">Quest 3 ↔ Galaxy XR · run LAN20260728Q3GX05 · five event points · direct-IP authenticated fallback</text>
 
   <line class="grid" x1="150" y1="430" x2="1080" y2="430"/>
