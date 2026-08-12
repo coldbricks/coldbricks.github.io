@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Finally — Field Manual</title>
-<meta name="description" content="The 1.0.0 candidate field manual for Finally: daily use, smooth Club browsing, stick Distance + reset, AUDIO studio, ChloeVibes/Handy, local and network sources, rooms, Watch Together, MVC, and measured engineering receipts.">
+<meta name="description" content="The 1.0.1 field manual for Finally: daily use, smooth Lobby browsing, stick Distance + reset, playlist view carry, photo slideshow, AUDIO studio, ChloeVibes/Handy, local and network sources, rooms, Watch Together, MVC, and measured engineering receipts.">
 <style>
   :root {
     color-scheme: dark;
@@ -565,7 +565,7 @@
     <span class="eyebrow">Field Manual</span>
     <h1>FINALLY</h1>
     <p class="tag"><b>offline · local · yours</b> — the VR video player that respects your library, your network, and your controls.</p>
-    <p class="hero-meta">covers v1.0.0 candidate · quest code 85 · galaxy code 10085 · august 8, 2026</p>
+    <p class="hero-meta">covers v1.0.1 · quest code 92 · galaxy code 10092 · august 12, 2026</p>
     <div class="hero-actions">
       <a class="support-top-cta" href="#support">SUPPORT FINALLY</a>
       <a class="store-cta" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Get Finally on the Meta Horizon Store →</a>
@@ -580,7 +580,7 @@
   <a href="#tutorial">Guided tutorial</a>
   <a href="#faq">Daily-use FAQ</a>
   <a href="#controls">Controls</a>
-  <a href="#club">The Club</a>
+  <a href="#club">The Lobby</a>
   <a href="#cockpit">The Cockpit</a>
   <a href="#haptics">ChloeVibes haptics</a>
   <a href="#lenses">Lenses &amp; projection</a>
@@ -613,18 +613,27 @@
   <p class="kicker">01 · basics</p>
   <h2>Start here</h2>
   <p class="lede">Point the laser. Pull the trigger. That's most of Finally.</p>
-  <div class="note warn"><p><strong>Read the installed version in the Club.</strong> This page documents the signed internal <strong>1.0.0 candidate &mdash; Quest code 85 / Galaxy code 10085</strong>. It does not claim that either store has delivered that build. Store releases can lag this manual, so the version shown inside your headset remains the authority.</p></div>
+  <div class="note warn"><p><strong>Read the installed version in the Lobby.</strong> This page documents release <strong>1.0.1 &mdash; Quest code 92 / Galaxy code 10092</strong>. Store rollouts can lag this manual, so the version shown inside your headset remains the authority.</p></div>
   <div class="tbl-wrap"><table>
     <thead><tr><th scope="col">Installed identity</th><th scope="col">How this manual applies</th></tr></thead>
     <tbody>
-      <tr><td>Quest · 1.0.0 · code 85</td><td>Current candidate behavior: smoother Club/theme browsing, stick Distance + stick-click reset, AUDIO studio, MOVE SUBS, AFR MAX, soft-retain library, and the rest of the carried-forward set. Signed Quest APK and Galaxy AAB/APK are rebuilt for this code; final on-head acceptance of every change remains a separate gate.</td></tr>
-      <tr><td>Galaxy XR · 1.0.0 · code 10085</td><td>Current shared controls and source behavior. Signed APK/AAB are rebuilt for this code; the exact Galaxy headset pass is reported separately from artifact proof.</td></tr>
-      <tr><td>Any build below 1.0.0</td><td>Use only controls present in that installed build. Older manuals and Engineering Receipts remain historical evidence, not proof of code 85.</td></tr>
+      <tr><td>Quest · 1.0.1 · code 92</td><td>Current release behavior: playlist view carry, the photo slideshow, folder shuffle, the 1.0.1 hardening set below, plus the carried-forward stick Distance + stick-click reset, AUDIO studio, MOVE SUBS, AFR MAX, and soft-retain library.</td></tr>
+      <tr><td>Galaxy XR · 1.0.1 · code 10092</td><td>Current shared controls and source behavior. The Galaxy artifact is built from the same code; device-specific claims stay separate where this page says so.</td></tr>
+      <tr><td>Any build below 1.0.1</td><td>Use only controls present in that installed build. Older manuals and Engineering Receipts remain historical evidence, not proof of code 92.</td></tr>
       <tr><td>Any other version</td><td>Use this as orientation, then follow that build's in-headset HELP and release notes. A control described here may be absent or changed.</td></tr>
     </tbody>
   </table></div>
-  <div class="note"><p><strong>Startup film.</strong> The c85 candidate embeds the mastered 1920&times;1080 startup intro: a cleaned black field, a restrained aviation layer, and the final audio hold. The 244-frame / 24-fps film remains <strong>ON</strong> by default on cold start; <span class="chip">HIDE</span> is an explicit Global Settings choice after the first watch.</p></div>
-  <div class="note love"><p><strong>What this candidate carries:</strong> the Club/theme board uses continuous stick and laser-drag scrolling with hard clipping and explicit page affordances. During a drag or flick, the list keeps a bounded compositor scroll window, remaps hit testing analytically, and avoids re-baking the full panel for every laser crossing. The list/cover well is hard-clipped on every frame; Settings and theme panels use a lower redraw/supersample budget, with hover chrome kept separate from full bitmap work. On VR180 / VR360 / fisheye / alpha passthru, stick forward/back remains the same <strong>Distance</strong> value as the cockpit slider and per-title save; stick-click homes Distance + Zoom to <code>D1.00 / Z1.00</code> and recenters. These are the c85 implementation contracts; the headset remains the authority for feel under a particular library, network, and thermal condition.</p></div>
+  <div class="note"><p><strong>Startup film.</strong> Release 1.0.1 embeds the mastered 1920&times;1080 startup intro: a cleaned black field, a restrained aviation layer, and the final audio hold. The 244-frame / 24-fps film remains <strong>ON</strong> by default on cold start; <span class="chip">HIDE</span> is an explicit Global Settings choice after the first watch.</p></div>
+  <div class="note love"><p><strong>What this release carries:</strong> the Lobby/theme board uses continuous stick and laser-drag scrolling with hard clipping and explicit page affordances. During a drag or flick, the list keeps a bounded compositor scroll window, remaps hit testing analytically, and avoids re-baking the full panel for every laser crossing. The list/cover well is hard-clipped on every frame; Settings and theme panels use a lower redraw/supersample budget, with hover chrome kept separate from full bitmap work. On VR180 / VR360 / fisheye / alpha passthru, stick forward/back remains the same <strong>Distance</strong> value as the cockpit slider and per-title save; stick-click homes Distance + Zoom to <code>D1.00 / Z1.00</code> and recenters. These are the current implementation contracts; the headset remains the authority for feel under a particular library, network, and thermal condition.</p></div>
+  <h3>What 1.0.1 hardened</h3>
+  <p>1.0.1 is a repair-and-polish release on top of 1.0.0. Beyond the new features documented in their own sections — <a href="#loops">playlist view carry</a> and the <a href="#photos">photo slideshow</a> — it lands a stability sweep:</p>
+  <ul>
+    <li><strong>Playlist and folder navigation</strong> — continuous advance (autoplay, PREV/NEXT, shuffle) and folder back-out paths were stabilized so a fast jump can no longer strand playback or the list.</li>
+    <li><strong>Blu-ray ISO playback</strong> — disc metadata is sanitized before it reaches the native layer, and teardown races on close/stop can no longer wedge a session.</li>
+    <li><strong>Network sources</strong> — SMB connect repairs for dual-stack hosts and Tailscale/CGNAT-class addresses (RFC 6598 shared space now counts as trusted-LAN), with the first trusted DNS answer pinned instead of the whole answer set being rejected.</li>
+    <li><strong>Haptics safety</strong> — the emergency <span class="chip">STOP</span> path was hardened: stale accessory writes are re-fenced so STOP always lands last.</li>
+    <li><strong>Upgrade-safe migration</strong> — sources and credentials saved by earlier builds (including pre-gate SMB entries and the legacy Handy key) are grandfathered in place instead of being silently dropped by newer validation.</li>
+  </ul>
   <p><strong>Two reading lanes:</strong> Start here through Bug reports is <strong>Daily Use</strong>. <a href="#specs">Engineering Receipts</a>, <a href="#theory">Theory of Operation</a>, and <a href="#deeper">Deeper</a> are optional appendices; you do not need them to set up a source or watch a title.</p>
   <p>The <strong>vault</strong> is your library. Open a folder to dig in. Open a title to play. Daily browsing and playback stay in VR; source management, document pickers, delete confirmation, and Watch Together can intentionally open Android's flat or system UI.</p>
   <div class="note"><p><strong>Your first hour.</strong> Finally ships no catalog, so an empty vault is normal. The fastest first frame is one known-good file in <span class="path">Movies/Finally</span>, followed by <span class="chip">↻ SCAN</span>. Add one Android folder or one SMB share next; use <strong>Browse instantly</strong> on a large NAS instead of waiting for a whole-library index. Posters and metadata can continue filling in after playable rows appear.</p></div>
@@ -653,7 +662,7 @@
     <li>Find Dark room, subtitles, and automatic frame-rate matching.</li>
     <li>Choose SIMPLE or PRO and start using Finally.</li>
   </ol>
-  <p><span class="chip">SKIP TUTORIAL</span> and <span class="chip">START USING FINALLY</span> both record completion. System Back leaves it incomplete, so it can return after a cold start. Replay it whenever you want from <span class="chip">SOURCES</span> → <strong>Quick-start tutorial</strong>.</p>
+  <p><span class="chip">SKIP TUTORIAL</span> and <span class="chip">START USING FINALLY</span> both record completion. System Back leaves it incomplete, so it can return after a cold start. Replay it whenever you want from <span class="chip">SRC</span> → <strong>Quick-start tutorial</strong>.</p>
   <div class="note"><p><strong>Private by construction.</strong> The tour is local, needs no account, and sends no completion telemetry. Quest 3 and Galaxy XR physically rendered all six steps and passed practice/forward/back assertions; those tests deliberately did not press Finish, so a complete human walkthrough remains a separate check.</p></div>
 </section>
 
@@ -669,7 +678,7 @@
       <tr><td>Can I choose another audio track?</td><td>Yes for ordinary ExoPlayer-backed containers. Tap <span class="chip">AUDIO</span> for the multi-track list (language chips, remembered preference) and the <strong>AUDIO studio</strong> — SIMPLE Night soft, or PRO EQ / dynamics / stereo width. The shared path is disabled for prepared ISO/SSIF playback. Finally does not invent a missing dub or ask Plex to transcode one.</td></tr>
       <tr><td>Can I load an external subtitle file?</td><td>Yes. Start an ordinary video, open the quick strip or PLAY page, and choose <span class="chip">LOAD SUBTITLE</span>. Pick an SRT, VTT, ASS, or SSA file up to 4 MiB. Local/SMB (and WebDAV same-folder) sidecars can auto-pick. <span class="chip">MOVE SUBS</span> free-drags the caption on the picture; <span class="key">B</span> saves. Stills and the special ISO/MVC path are excluded.</td></tr>
       <tr><td>Does Finally support ChloeVibes or <code>.funscript</code> files?</td><td>Yes. ChloeVibes is integrated into Finally, so no second app is required. Open <span class="chip">GLOBAL SETTINGS</span> &rarr; <span class="chip">CHLOEVIBES</span>, connect and explicitly ARM a compatible Bluetooth accessory, then use a readable sidecar with the same complete basename as the video. Stroke length/speed caps tame wild scripts. <strong>The Handy</strong> can use a HandyFeeling connection key (Wi‑Fi) from the same panel family. See <a href="#haptics">ChloeVibes haptics</a>.</td></tr>
-      <tr><td>Stick moves the girl closer but nothing resets?</td><td>On the current c85 candidate, stick ↕ is Distance (the slider moves). Stick-click homes Distance + Zoom and recenters. That behavior originated in code 39; on older builds a hidden dolly could ignore the slider — update.</td></tr>
+      <tr><td>Stick moves the girl closer but nothing resets?</td><td>On the current 1.0.1 release, stick ↕ is Distance (the slider moves). Stick-click homes Distance + Zoom and recenters. That behavior originated in code 39; on older builds a hidden dolly could ignore the slider — update.</td></tr>
       <tr><td>What happens to surround audio?</td><td>Finally keeps up to eight-channel tracks eligible, uses headset hardware when available, and falls back to its bundled FFmpeg audio path for AC-3, E-AC-3, and DTS when needed. Android's audio system performs the headset downmix.</td></tr>
       <tr><td>Are chapters supported?</td><td>Yes when the container exposes them: Blu-ray playlist marks and Media3 multi-period chapter marks show CHAPTER chips (including in SIMPLE). The code-28 resume-plus-authored-seek route remains a historical Quest receipt; DVD menu navigation is still not claimed.</td></tr>
       <tr><td>Does HDR work?</td><td>A focused 1080p60 AV1 Main 10 HDR10 file reached the hardware decoder and recovered after seek on Quest 3 and Galaxy XR. That is decode-path proof, not a blanket HDR tone-map, output-accuracy, 4K/8K, or every-profile guarantee.</td></tr>
@@ -697,7 +706,7 @@
       <tr><td>Zoom (optical / size)</td><td>Immersive optical zoom and flat window size live on the PLACE/VIEW sliders and grip+stick size chord — not on free stick ↕. Zoom range up to 6× where the cockpit exposes it</td></tr>
       <tr><td>Flat: window size</td><td><span class="key">Grip</span> + <span class="key">Stick ← →</span> — shrink / enlarge in place</td></tr>
       <tr><td>List navigation</td><td><span class="key">Stick ↕</span> with the menu open</td></tr>
-      <tr><td>Grab-scroll the vault</td><td>Hold <span class="key">Trigger</span> on the list and drag — release with speed to coast (see <a href="#club">The Club</a>)</td></tr>
+      <tr><td>Grab-scroll the vault</td><td>Hold <span class="key">Trigger</span> on the list and drag — release with speed to coast (see <a href="#club">The Lobby</a>)</td></tr>
       <tr><td>Prev / next title</td><td><span class="key">Grip</span> + <span class="key">Stick ↓ / ↑</span></td></tr>
       <tr><td>Drag the world (dome)</td><td>Hold <span class="key">Grip</span>, then pull that same hand's <span class="key">Trigger</span> and drag — grab-the-world</td></tr>
       <tr><td>Full reset</td><td><span class="key">Stick click</span> — Distance <code>D1.00</code>, Zoom <code>Z1.00</code>, height/slide/drag zeroed, content on gaze</td></tr>
@@ -707,7 +716,7 @@
       <tr><td>Resize the menu</td><td>While grip-holding: <span class="key">Stick ← →</span></td></tr>
     </tbody>
   </table></div>
-  <div class="note"><p><strong>Controllers, precisely:</strong> bare-hand tracking is not enabled. One tracked controller can point and trigger every critical visible Club and cockpit target, including <span class="chip">PRO CONTROLS</span> on the quick strip. <span class="key">A</span>, the Menu / Back face button, grip/stick gestures, and controller hover/click haptics remain controller inputs. Optional ChloeVibes / Handy accessory motion is a separate explicitly armed system described under <a href="#haptics">ChloeVibes haptics</a>. Club <span class="chip">GLOBAL SETTINGS</span> holds a <strong>Controller map</strong> summary: face B/Y swap, seek-stick invert, and stick-distance direction. Eye swap also has a visible menu control.</p></div>
+  <div class="note"><p><strong>Controllers, precisely:</strong> bare-hand tracking is not enabled. One tracked controller can point and trigger every critical visible Lobby and cockpit target, including <span class="chip">PRO CONTROLS</span> on the quick strip. <span class="key">A</span>, the Menu / Back face button, grip/stick gestures, and controller hover/click haptics remain controller inputs. Optional ChloeVibes / Handy accessory motion is a separate explicitly armed system described under <a href="#haptics">ChloeVibes haptics</a>. Lobby <span class="chip">GLOBAL SETTINGS</span> holds a <strong>Controller map</strong> summary: face B/Y swap, seek-stick invert, and stick-distance direction. Eye swap also has a visible menu control.</p></div>
   <h3>What the stick means right now</h3>
   <div class="tbl-wrap"><table>
     <thead><tr><th scope="col">Current mode</th><th scope="col">Stick input</th><th scope="col">Result</th></tr></thead>
@@ -729,35 +738,31 @@
 
 <section id="club">
   <p class="kicker">04 · the lobby</p>
-  <h2>The Club</h2>
-  <p class="lede">♡ FINALLY CLUB — your vault, floating in a neon room (or your real one).</p>
-  <p>The Club is where you land. Titles list in the center; favorites wear a <span class="chip">★</span>; folders glow gold. Aim and trigger to open anything.</p>
+  <h2>The Lobby</h2>
+  <p class="lede">♡ Finally Lobby — your vault, floating in a neon room (or your real one).</p>
+  <p>The Lobby is where you land. Titles list in the center; favorites wear a <span class="chip">★</span>; folders glow gold. Aim and trigger to open anything.</p>
   <h3>The chip row</h3>
   <div class="tbl-wrap"><table>
     <thead><tr><th>Chip</th><th>What it does</th></tr></thead>
     <tbody>
-      <tr><td><span class="chip">▲ PREV</span> <span class="chip">▼ MORE</span></td><td>Page the root vault; the lower chip changes to <span class="chip">▼ END</span> on the last page — or just grab the list itself (see below)</td></tr>
-      <tr><td><span class="chip">↻ SCAN</span></td><td>Rescan your sources for new files — <strong>including your saved NAS share</strong>, so server-side additions land without leaving VR. Also sweeps out library entries whose local file no longer exists</td></tr>
-      <tr><td><span class="chip">⌕ SEARCH</span></td><td>Open the in-headset keyboard and search displayed titles—including Stash filename fallbacks—without leaving the Club</td></tr>
-      <tr><td><span class="chip">RANDOM</span></td><td>Play a no-repeat random local video. Network, still, audio, missing, and unavailable rows stay out of the deck</td></tr>
+      <tr><td><span class="chip">SELECT</span></td><td>Enter selection mode — tap row boxes, then <span class="chip">FAV</span> / <span class="chip">DEL</span> / <span class="chip">HIDE</span> / <span class="chip">COLOR</span> act on the whole set. A <span class="chip">HIDDEN</span> chip appears when hidden rows exist so you can show or re-filter them</td></tr>
+      <tr><td><span class="chip">LIST</span> / <span class="chip">COVER</span></td><td>Flip the vault between the list layout and the cover-art shelf</td></tr>
+      <tr><td><span class="chip">↻ SCAN</span></td><td>Rescan your sources for new files — <strong>including your saved NAS share</strong>, so server-side additions land without leaving VR</td></tr>
       <tr><td><span class="chip">SORT</span></td><td>Cycle the eight saved folder orders: A-Z, Z-A, NEW, OLD, BIG, SMALL, LONG, SHORT</td></tr>
-      <tr><td><span class="chip">DELETE</span></td><td>Permanently delete the selected validated local video after an exact-file confirmation; network, folder, disc, ISO, and cloud targets are refused</td></tr>
-      <tr><td><span class="chip">WATCH</span></td><td>Open private-LAN Host / Join pairing (see <a href="#watch">Watch Together</a>)</td></tr>
-      <tr><td><span class="chip">◎ ROOM</span></td><td>Passthrough — the vault floats in your real room. Saved as your default</td></tr>
-      <tr><td><span class="chip">✦ WORLD</span></td><td>Open the responsive <strong>ROOMS</strong> grid and select a bundled or user room directly (see <a href="#worlds">Worlds</a>)</td></tr>
-      <tr><td><span class="chip">ROOM DIM</span></td><td>Cycle saved background brightness through 100 / 75 / 50 / 25 / 0%; media, subtitles, and UI remain unchanged</td></tr>
-      <tr><td><span class="chip">★ FAV</span></td><td>Pin the aimed title to favorites — or, with rows checked via <span class="chip">SELECT</span>, pin the whole checked set at once</td></tr>
-      <tr><td><span class="chip">SELECT</span></td><td>Multi-select mode: every row grows a checkbox. Tap boxes to check rows; the chip counts them. <span class="chip">FAV</span> / <span class="chip">HIDE</span> / <span class="chip">COLOR</span> then act on the whole set</td></tr>
-      <tr><td><span class="chip">HIDE</span></td><td>Tuck the checked rows out of the vault — <strong>nothing is deleted</strong>; favorites, resume points, and posters all survive</td></tr>
-      <tr><td><span class="chip">COLOR</span></td><td>Cycle the checked rows through five color tags — red, amber, green, blue, violet — then off. Tags paint a slim bar on the row's leading edge</td></tr>
-      <tr><td><span class="chip">HIDDEN</span></td><td>Appears only while something is hidden: shows your hidden rows so any of them can be restored. The way back is visible exactly when you need it</td></tr>
+      <tr><td><span class="chip">FAV</span></td><td>Pin the selected title to favorites</td></tr>
+      <tr><td><span class="chip">DEL</span></td><td>Permanently delete the selected validated local video after an exact-file confirmation; network, folder, disc, ISO, and cloud targets are refused</td></tr>
+      <tr><td><span class="chip">RAND</span></td><td>Play a no-repeat random local video. Network, still, audio, missing, and unavailable rows stay out of the deck</td></tr>
+      <tr><td><span class="chip">SET</span></td><td>Open the responsive <strong>ROOMS</strong> grid and select a bundled or user room directly (see <a href="#worlds">Worlds</a>)</td></tr>
+      <tr><td><span class="chip">REAL</span></td><td>Passthrough — the vault floats in your real room. Saved as your default</td></tr>
+      <tr><td><span class="chip">FIND</span></td><td>Open the in-headset keyboard and search displayed titles—including Stash filename fallbacks—without leaving the Lobby</td></tr>
     </tbody>
   </table></div>
+  <p>The wide band under the list carries the four destinations: <span class="chip">SRC</span> (sources), <span class="chip">CFG</span> (GLOBAL SETTINGS), <span class="chip">HELP</span>, and <span class="chip">EXIT</span>. <strong>GROUP WATCH</strong> — private-LAN Host / Join pairing (see <a href="#watch">Watch Together</a>) — lives under <span class="chip">CFG</span>, and <strong>Room dim</strong> is a CFG preference too.</p>
   <h3>Search a large vault</h3>
-  <p>Choose <span class="chip">⌕ SEARCH</span>, type with the controller-first keyboard, and apply the query. Search is case-insensitive, every word must appear somewhere in the displayed title, and the resulting rows keep the active sort order. Untitled Stash scenes are searchable by their filename fallback. Press Menu / Back—<span class="key">B</span> by default or <span class="key">Y</span> after the optional swap—to close the editor or clear an applied search before the normal folder-back action continues.</p>
+  <p>Choose <span class="chip">FIND</span>, type with the controller-first keyboard, and apply the query. Search is case-insensitive, every word must appear somewhere in the displayed title, and the resulting rows keep the active sort order. Untitled Stash scenes are searchable by their filename fallback. Press Menu / Back—<span class="key">B</span> by default or <span class="key">Y</span> after the optional swap—to close the editor or clear an applied search before the normal folder-back action continues.</p>
   <h3>Grab the list</h3>
   <p>The vault scrolls like a phone list. Grab it with <span class="key">Trigger</span> and drag — past a small threshold of travel the press becomes a scroll instead of a click, so aiming at a row and squeezing still just opens it. Release while moving and the list <strong>coasts</strong>, bleeding off speed like a flick on glass, with a hard stop at each end — no bounce. A press while it's coasting catches the list: it stops under your laser, and releasing never fires the row it happened to land on.</p>
-  <p>When the vault overflows, a slim <strong>scroll bar</strong> rides the right edge — a dim neon thumb sized by how much of the list you're seeing. Point at it and drag for an absolute jump, or tap anywhere on the track and the thumb lands under your laser. The root-vault <span class="chip">▲ PREV</span> / <span class="chip">▼ MORE</span> chips (ending with <span class="chip">▼ END</span>) and stick ↕ still work; they're just no longer the only way.</p>
+  <p>When the vault overflows, a slim <strong>scroll bar</strong> rides the right edge — a dim neon thumb sized by how much of the list you're seeing. Point at it and drag for an absolute jump, or tap anywhere on the track and the thumb lands under your laser. Stick ↕ still works; it's just no longer the only way.</p>
   <p>One honest line while we're here: every list now reaches its final entries — earlier builds carried a capacity bug that hid the last two rows of any overflowing list. 0.3.14 fixed the math.</p>
   <h3>Check many at once</h3>
   <p>Press <span class="chip">SELECT</span> and every row grows a checkbox on its leading edge. Tap boxes to check rows — checking never opens a title, and the row's open target starts after the box, so the two can't collide. The chip becomes a live count. Rows are remembered by <em>which title they are</em>, not where they sit, so a list that re-sorts under you never re-targets your checks.</p>
@@ -771,10 +776,10 @@
   <p>Files that auto-detect as plain mono — a whole-word <code>mono</code> tag in the filename — are tucked out of the vault and the 2D library, with an honest count in the vault footer: <em>N MONO hidden</em>. Two rules keep this safe: the detector matches whole tags only (<em>Kimono</em> and <em>Monolith</em> never vanish), and <strong>a title with your saved settings is never auto-hidden</strong> — your choices always beat the detector's. The tag is the switch: rename the file and it's back.</p>
   <p>Deleted files clean up after themselves now. A library entry whose local file is gone used to be unkillable — it wouldn't play, and DELETE refused it because there was no file left to delete. As of 1.0.0 it clears on contact: open it and Finally removes the entry (telling you so), press <span class="chip">DELETE</span> on it and "already gone" counts as done, or press <span class="chip">↻ SCAN</span> to sweep every such ghost in one pass. One safety stands guard: if the whole storage volume is unmounted, nothing is removed — every file merely <em>looking</em> absent must never erase a library.</p>
   <h3>Sort a folder</h3>
-  <p>The flat Library has a Sort picker; each Club press of <span class="chip">SORT</span> advances the same saved choice. Favorites remain pinned and folders remain above videos. Missing size, duration, or date values sort last in either direction, and stable tie-breakers prevent rows from jumping during refresh.</p>
+  <p>The flat Library has a Sort picker; each Lobby press of <span class="chip">SORT</span> advances the same saved choice. Favorites remain pinned and folders remain above videos. Missing size, duration, or date values sort last in either direction, and stable tie-breakers prevent rows from jumping during refresh.</p>
   <p><strong>Large-library repair in code 32 and later:</strong> A-Z and Z-A now obey the full comparator contract even across thousands of Plex rows. Finally rebuilds the view before saving a new sort choice, so a failed rebuild cannot poison the next launch. The repair keeps the existing library index, Plex source, and credentials.</p>
   <div class="tbl-wrap"><table>
-    <thead><tr><th scope="col">Club chip</th><th scope="col">Order</th><th scope="col">Club chip</th><th scope="col">Order</th></tr></thead>
+    <thead><tr><th scope="col">Lobby chip</th><th scope="col">Order</th><th scope="col">Lobby chip</th><th scope="col">Order</th></tr></thead>
     <tbody>
       <tr><td><span class="chip">A-Z</span></td><td>Name, ascending</td><td><span class="chip">Z-A</span></td><td>Name, descending</td></tr>
       <tr><td><span class="chip">NEW</span></td><td>Date added, newest</td><td><span class="chip">OLD</span></td><td>Date added, oldest</td></tr>
@@ -786,15 +791,15 @@
 
   <h3>Delete one local video</h3>
   <ol class="steps">
-    <li>Focus one local video and choose <span class="chip">DELETE</span>.</li>
+    <li>Focus one local video and choose <span class="chip">DEL</span>.</li>
     <li>Read the exact-file confirmation.</li>
     <li>Choose <strong>Delete file</strong>; Android may show its own final consent surface.</li>
   </ol>
   <p>Finally reloads the vault row and root before deletion so a stale selection cannot redirect the action. It fails closed for SMB, FTP, WebDAV, Plex, Stash, folders, DVD, ISO, cloud/server rows, traversal paths, missing roots, or a target that no longer matches the selection. A successful delete is permanent. <strong>Clear vault</strong> only removes Finally's records and never deletes the media.</p>
-  <h3>Setup from the Club</h3>
-  <p><span class="chip">⚙ SOURCES</span> opens the in-room source status and rescan panel. Choose <strong>MANAGE</strong> when you need the flat Library setup screen, Android pickers, or server forms; <strong>Quick-start tutorial</strong> replays the guided tour. Lobby <span class="chip">GLOBAL SETTINGS</span> holds menu level, resume, skip intro, tilt follow, stick direction, seek step, <em>Seek landing</em> (FAST ⇄ EXACT, see <a href="#loops">Seeking</a>), <em>NAS buffer</em> (LEAN · DEFAULT · BIG · MAX, see <a href="#sources">Sources &amp; NAS</a>), cockpit <em>Menu style</em> (SIMPLE ⇄ PRO), and the dedicated <span class="chip">CHLOEVIBES</span> control entry. The same GLOBAL SETTINGS tab is reachable during playback, where it exposes the <span class="chip">HAPTIC CONTROL PANEL</span>. <span class="chip">📖 HELP</span> opens help in-headset with no title required.</p>
-  <p>Android's flat or system UI appears only for tasks that need it: source management and folder/document pickers, the external-subtitle picker, local-file delete confirmation, and Watch Together setup. Return to the Club when that task finishes.</p>
-  <p><span class="chip">LEAVE</span> exits to your headset home — labeled <span class="chip">LEAVE → QUEST</span> on Quest and <span class="chip">LEAVE → HOME</span> on Galaxy XR. The leave path is single-flight with a harder OpenXR teardown so Meta home / Loft can reclaim the headset. Lobby worlds reload after stop; a failed 8K environment load falls back to VOID instead of leaving a broken room. On the empty first run, open <span class="chip">⚙ SOURCES</span>, or drop files in <span class="path">Movies/Finally</span> and use <span class="chip">↻ SCAN</span>.</p>
+  <h3>Setup from the Lobby</h3>
+  <p><span class="chip">SRC</span> opens the in-room source status and rescan panel. Choose <strong>EDIT WITH KEYBOARD</strong> when you need the flat Library setup screen, Android pickers, or server forms; <strong>Quick-start tutorial</strong> replays the guided tour. Lobby <span class="chip">CFG</span> (GLOBAL SETTINGS) holds menu level, resume, skip intro, tilt follow, stick direction, seek step, <em>Seek landing</em> (FAST ⇄ EXACT, see <a href="#loops">Seeking</a>), <em>NAS buffer</em> (LEAN · DEFAULT · BIG · MAX, see <a href="#sources">Sources &amp; NAS</a>), <em>Room dim</em>, cockpit <em>Menu style</em> (SIMPLE ⇄ PRO), <strong>GROUP WATCH</strong>, and the dedicated <span class="chip">CHLOEVIBES</span> control entry. The same GLOBAL SETTINGS tab is reachable during playback, where it exposes the <span class="chip">HAPTIC CONTROL PANEL</span>. <span class="chip">HELP</span> opens help in-headset with no title required.</p>
+  <p>Android's flat or system UI appears only for tasks that need it: source management and folder/document pickers, the external-subtitle picker, local-file delete confirmation, and Watch Together setup. Return to the Lobby when that task finishes.</p>
+  <p><span class="chip">EXIT</span> leaves to your headset home — labeled <span class="chip">EXIT → QUEST</span> on Quest and <span class="chip">EXIT → HOME</span> on Galaxy XR. The exit path is single-flight with a harder OpenXR teardown so Meta home / Loft can reclaim the headset. Lobby worlds reload after stop; a failed 8K environment load falls back to VOID instead of leaving a broken room. On the empty first run, open <span class="chip">SRC</span>, or drop files in <span class="path">Movies/Finally</span> and use <span class="chip">↻ SCAN</span>.</p>
 </section>
 
 <section id="cockpit">
@@ -807,7 +812,7 @@
   <p>Photos skip the strip — Menu / Back opens the full cockpit directly, because transport means nothing to a still. In the lobby, the same button backs out through panels and folders before hiding the root vault.</p>
 
   <h3>The quick strip</h3>
-  <p>The strip carries the moves you actually make mid-video: the timeline scrubber (full drag-seek; local/SAF titles can show <strong>storyboard tiles</strong> while scrubbing), <span class="chip">-30s</span> / <span class="chip">-5s</span> / <span class="chip">PLAY</span> / <span class="chip">+5s</span> / <span class="chip">+30s</span> (the small step is adjustable in SETUP), <span class="chip">■ STOP</span>, speed, volume, mute, <span class="chip">PREV</span> / <span class="chip">◆ CLUB</span> / <span class="chip">NEXT</span>, <span class="chip">RANDOM</span> (no-repeat local shuffle — also on the player HUD), <span class="chip">◀ CLOSER</span> / <span class="chip">FARTHER ▶</span>, and <span class="chip">◎ ROOM</span>. In SIMPLE mode, point and trigger the always-visible <span class="chip">PRO CONTROLS</span> target to promote the strip into the full cockpit without another Menu / Back press. In PRO mode the strip adds A·B·C·D loop chips and <span class="chip">◎ STATS</span>. If a network stream stalls, it raises itself with a <strong>REBUFFERING</strong> banner that shows buffer seconds · fill % · MB/s · network class, then stands back down when the flow recovers — details in <a href="#sources">Sources &amp; NAS</a>.</p>
+  <p>The strip carries the moves you actually make mid-video: the timeline scrubber (full drag-seek; local/SAF titles can show <strong>storyboard tiles</strong> while scrubbing), <span class="chip">-30s</span> / <span class="chip">-5s</span> / <span class="chip">PLAY</span> / <span class="chip">+5s</span> / <span class="chip">+30s</span> (the small step is adjustable in SETUP), <span class="chip">■ STOP</span>, speed, volume, mute, <span class="chip">PREV</span> / <span class="chip">◆ LOBBY</span> / <span class="chip">NEXT</span>, <span class="chip">SHUF</span> (no-repeat shuffle through the current folder), <span class="chip">◀ CLOSER</span> / <span class="chip">FARTHER ▶</span>, and the <span class="chip">DARK</span> / <span class="chip">ROOM</span> toggle. In SIMPLE mode, point and trigger the always-visible <span class="chip">PRO CONTROLS</span> target to promote the strip into the full cockpit without another Menu / Back press. In PRO mode the strip adds A·B·C·D loop chips and <span class="chip">STATS</span>. If a network stream stalls, it raises itself with a <strong>REBUFFERING</strong> banner that shows buffer seconds · fill % · MB/s · network class, then stands back down when the flow recovers — details in <a href="#sources">Sources &amp; NAS</a>.</p>
 
   <h3>SIMPLE and PRO</h3>
   <p>The full cockpit ships in <strong>SIMPLE</strong> mode: four tabs — <span class="chip">PLAY</span> · <span class="chip">VIEW</span> · <span class="chip">GLOBAL SETTINGS</span> · <span class="chip">HELP</span> — with the essentials. PLAY keeps the transport, speed, volume, mute, <span class="chip">Eyes</span>, passthrough, <span class="chip">PREV</span>/<span class="chip">NEXT</span>, and the core lens row (AUTO · VR180 · VR360 · Flat · SBS · OU). VIEW keeps scene height, distance, zoom, and screen curve, plus the resets and the <span class="chip">AUTO</span> escape hatch.</p>
@@ -821,21 +826,21 @@
       <tr><td>Loops and live stats</td><td>Hidden (chapters still show when the file has them)</td><td>A–B–C–D loop controls and Stats HUD</td></tr>
       <tr><td>Audio</td><td>AUDIO list + SIMPLE Night soft studio</td><td>Full AUDIO studio: EQ, dynamics, stereo width</td></tr>
       <tr><td>Color and keying</td><td>Hidden</td><td>Color grade, four-color chroma key, and packed alpha</td></tr>
-      <tr><td>Switch modes</td><td colspan="2"><span class="chip">PRO</span>/<span class="chip">BASIC</span> in the tab row, or lobby <span class="chip">🎛 SET</span> → <em>Menu style</em>; the choice is saved</td></tr>
+      <tr><td>Switch modes</td><td colspan="2"><span class="chip">PRO</span>/<span class="chip">BASIC</span> in the tab row, or lobby <span class="chip">CFG</span> → <em>Menu style</em>; the choice is saved</td></tr>
     </tbody>
   </table></div>
 
   <p>The six PRO pages:</p>
 
   <h3>PLAY</h3>
-  <p>The transport. Timeline scrubber (drag-seek; storyboard tiles on local/SAF when available), <span class="chip">-30s</span> / <span class="chip">-5s</span> / <span class="chip">PLAY</span> / <span class="chip">+5s</span> / <span class="chip">+30s</span>, <span class="chip">■ STOP</span>, <span class="chip">◆ CLUB</span> to return to the lobby, speed, volume, mute, <span class="chip">AUDIO</span> (track list + studio), <span class="chip">SUBS</span> / <span class="chip">LOAD SUBTITLE</span> / <span class="chip">MOVE SUBS</span>, <span class="chip">Eyes</span> (L·R ⇄ R·L), the preset AUTO/MANUAL toggle, passthrough, CHAPTER chips when marks exist, A·B·C·D loop marks (PRO), <span class="chip">PREV</span>/<span class="chip">NEXT</span>/<span class="chip">RANDOM</span>, and the quick lens row (VR180 · VR360 · Flat · SBS · OU · AUTO).</p>
+  <p>The transport. Timeline scrubber (drag-seek; storyboard tiles on local/SAF when available), <span class="chip">-30s</span> / <span class="chip">-5s</span> / <span class="chip">PLAY</span> / <span class="chip">+5s</span> / <span class="chip">+30s</span>, <span class="chip">■ STOP</span>, <span class="chip">◆ LOBBY</span> to return to the lobby, speed, volume, mute, <span class="chip">AUDIO</span> (track list + studio), <span class="chip">SUBS</span> / <span class="chip">LOAD SUBTITLE</span> / <span class="chip">MOVE SUBS</span>, <span class="chip">Eyes</span> (L·R ⇄ R·L), the preset AUTO/MANUAL toggle, passthrough, CHAPTER chips when marks exist, A·B·C·D loop marks (PRO), <span class="chip">PREV</span>/<span class="chip">NEXT</span>/<span class="chip">SHUF</span>, and the quick lens row (VR180 · VR360 · Flat · SBS · OU · AUTO). On a photo, the transport cluster becomes the slideshow controls — <span class="chip">START SLIDESHOW</span> on the PLAY chip, <span class="chip">PHOTO TIME</span> where Speed sits, and <span class="chip">TRANSITION</span> beside it (see <a href="#photos">Photos</a>).</p>
   <p><span class="chip">SBS</span> and <span class="chip">OU</span> are <strong>toggles</strong>: press the lit one and the title drops back to 2D — the lit cell even says so: <em>again = 2D</em>. Stereo always has a one-press exit, in SIMPLE and PRO alike.</p>
   <h3>AUDIO studio</h3>
   <p>Tap <span class="chip">AUDIO</span> during ordinary playback. <strong>SIMPLE</strong> keeps Night soft, volume, mute, and the multi-track list (preferred language is remembered). Tap <span class="chip">PRO</span> inside the studio for Bass / Mid / Treble EQ, Dynamics (Off / Soft / Night / Punch), stereo width, and Reset FX. Effects fail closed if the Android audio chain cannot attach. ISO/SSIF prepared routes keep the shared AUDIO path disabled.</p>
 
   <h3>PLACE / EYES</h3>
   <p>Where the scene sits and how your eyes meet it. Sliders for <strong>scene height</strong>, <strong>move scene</strong> (left/right), <strong>distance</strong> (about 0.22–8.0 for cinema seats), <strong>zoom</strong> (up to 6× where exposed), <strong>depth position</strong> (stereo convergence), <strong>eye height align</strong>, <strong>scene tilt</strong>, <strong>scene roll</strong>, and <strong>screen curve</strong> (flat titles only — 0 to ~100° of cylindrical wrap, saved per title). Plus flip left/right, flip up/down, <span class="chip">Reset place + eyes</span>, and the full manual lens row — see <a href="#lenses">Lenses</a>.</p>
-  <p>These sliders are <strong>live</strong> twice over: every cockpit slider repaints while your trigger drags it, and tilt, roll, and <strong>Distance</strong> also follow grip and stick gestures in real time — push the stick and the Distance readout moves with you. Stick-click homes Distance + Zoom. Roll the dome with your wrist and SCENE ROLL moves with you, instead of showing a stale value that later snaps the scene back.</p>
+  <p>These sliders are <strong>live</strong> twice over: every cockpit slider repaints while your trigger drags it, and tilt, roll, and <strong>Distance</strong> also follow grip and stick gestures in real time — push the stick and the Distance readout moves with you. Stick-click homes Distance + Zoom. Roll the dome with your wrist and SCENE ROLL moves with you, instead of showing a stale value that later snaps the scene back. During continuous playback, zoom and distance also carry forward onto untuned titles — see <a href="#loops">view carry</a>.</p>
 
   <h3>COLOR / KEY</h3>
   <p>A full color grade: <strong>brightness</strong>, <strong>contrast</strong>, <strong>gamma</strong>, <strong>saturation</strong>, <strong>hue</strong>, and <strong>warmth</strong> — six proper sliders with a one-tap <span class="chip">Reset</span>. The grade touches the video only (the menu panel stays neutral) and starts clean each session. That reset is deliberate: grade is a temporary viewing correction, not per-title metadata, so a fix for one session cannot silently tint later content or diagnostics. Projection, placement, and resume remain sticky where documented; grade does not. Below them, the entire passthrough keying suite: master passthrough toggle, packed-alpha matte, four-color chroma key with per-color edge controls. Detailed in <a href="#room">Your room</a>.</p>
@@ -844,7 +849,7 @@
   <p>Seek step size, menu distance and size, theme, menu spawn (at gaze or fixed origin), default-SBS-for-180 toggle, skip intro, resume on/off, <strong>stick distance direction</strong> (<em>pull = smaller</em> by default, flippable), wrist-roll dome tilt, the haptics master plus saved OFF–100% strength, subtitle delay and size, and the <span class="chip">Stats HUD</span> toggle — plus the lying-down suite: <strong>tilt follow</strong> rolls the picture with your head so it stays upright to <em>your face</em> instead of the room (lie on your side; the movie comes with you — menus and laser stay world-anchored), and <strong>menu level</strong> makes the cockpit spawn gravity-level instead of matching your head tilt.</p>
 
   <h3>GLOBAL SETTINGS (highlights)</h3>
-  <p>Reachable from the Club and during playback. Beyond the older resume / skip-intro / NAS buffer / menu-style controls:</p>
+  <p>Reachable from the Lobby (<span class="chip">CFG</span>) and during playback. Beyond the older resume / skip-intro / NAS buffer / menu-style controls:</p>
   <ul>
     <li><strong>Default projection</strong> for untagged files — cycle Flat / VR180 / FE190 / Fisheye / MKX200 / MKX220 / VRCA220 / 360°. Filename tags and strong frame geometry still win when present.</li>
     <li><strong>Display refresh</strong> — cadence-aware AFR, plus optional <strong>MAX</strong> = highest advertised headset rate (about 120 Hz on Quest 3 when available; Galaxy still floors below 72 Hz).</li>
@@ -867,7 +872,7 @@
   <p>The in-headset version of this manual: subjects on the left, article on the right, stick ↕ scrolls. It also includes two extra chapters — <em>THEORY</em> (teal) and <em>DEEPER</em> (green). Both are reproduced below in full: start with <a href="#theory">Theory of Operation</a>, then enter <a href="#deeper">Deeper</a>.</p>
 
   <h3>Stats for nerds</h3>
-  <p>PRO only. Tap <span class="chip">◎ STATS</span> on the quick strip's header (or PRO → SETUP → <span class="chip">Stats HUD</span>) and the strip's lower half becomes a live readout: source class, video codec with resolution @ fps, decoder and dropped frames, audio codec, color info, buffer seconds against target, NAS fill % with live MB/s, position / speed / state, active lens + stereo, current Android display mode, source cadence, target refresh, and cadence multiple. It refreshes once a second while open, the scrubber and transport stay live above it, and it never appears on photos.</p>
+  <p>PRO only. Tap <span class="chip">STATS</span> on the quick strip's header (or PRO → SETUP → <span class="chip">Stats HUD</span>) and the strip's lower half becomes a live readout: source class, video codec with resolution @ fps, decoder and dropped frames, audio codec, color info, buffer seconds against target, NAS fill % with live MB/s, position / speed / state, active lens + stereo, current Android display mode, source cadence, target refresh, and cadence multiple. It refreshes once a second while open, the scrubber and transport stay live above it, and it never appears on photos.</p>
   <div class="tbl-wrap"><table>
     <thead><tr><th scope="col">Readout</th><th scope="col">Exact meaning</th></tr></thead>
     <tbody>
@@ -898,7 +903,7 @@
 
   <h3>Connect and arm</h3>
   <ol>
-    <li>In the Club, open <span class="chip">GLOBAL SETTINGS</span> &rarr; <span class="chip">CHLOEVIBES</span>.</li>
+    <li>In the Lobby, open <span class="chip">CFG</span> (GLOBAL SETTINGS) &rarr; <span class="chip">CHLOEVIBES</span>.</li>
     <li>Choose <span class="chip">SCAN</span>. Android may ask for Nearby Devices / Bluetooth permission the first time.</li>
     <li>Select and connect the intended accessory, confirm its displayed name, and set <strong>TOY STRENGTH</strong>.</li>
     <li>Choose <span class="chip">ARM</span> only when you are ready for accessory output.</li>
@@ -1017,7 +1022,7 @@
 <section id="sources">
   <p class="kicker">08 · your library</p>
   <h2>Sources &amp; NAS</h2>
-  <p class="lede">Local folders and SMB are first-class. The current candidate also has nearby SMB/DLNA discovery plus bounded FTP, WebDAV, Plex, Stash, DLNA, and direct-link paths.</p>
+  <p class="lede">Local folders and SMB are first-class. The current release also has nearby SMB/DLNA discovery plus bounded FTP, WebDAV, Plex, Stash, DLNA, and direct-link paths.</p>
 
   <h3>The zero-setup path</h3>
   <p>Drop files into <span class="path">Movies/Finally</span> on the headset and hit <span class="chip">↻ SCAN</span>. Done.</p>
@@ -1052,7 +1057,7 @@
   <p><strong>Edit / Rescan / Remove:</strong> long-press or open the source actions for Plex, FTP, WebDAV, Stash, DLNA, and XBVR. The action list must show all three choices (an older dialog bug could hide everything except Cancel). Removing a source deletes Finally's record and vault rows for that source — never the server's files.</p>
 
   <h3>The NAS buffer</h3>
-  <p>Lobby <span class="chip">🎛 SET</span> → <em>NAS buffer</em> cycles <strong>LEAN · DEFAULT · BIG · MAX</strong> — how far a network stream reads ahead of playback. Bigger rides out longer Wi-Fi dips before the REBUFFERING banner would ever appear; the cost is more memory and cache space on the headset. DEFAULT is the shipped profile. The setting applies from the <strong>next title you open</strong> — a title already playing keeps the buffer it started with.</p>
+  <p>Lobby <span class="chip">CFG</span> → <em>NAS buffer</em> cycles <strong>LEAN · DEFAULT · BIG · MAX</strong> — how far a network stream reads ahead of playback. Bigger rides out longer Wi-Fi dips before the REBUFFERING banner would ever appear; the cost is more memory and cache space on the headset. DEFAULT is the shipped profile. The setting applies from the <strong>next title you open</strong> — a title already playing keeps the buffer it started with.</p>
   <p>The network reservoir pipelines bounded read-ahead, coalesces short server reads, cancels in-flight work on close, and handles far seeks without unbounded hot memory. Its deterministic jitter gate consumes one second at 150 Mbps and then performs a far seek inside the configured caps. That proves the buffer logic, not that a particular Wi-Fi link or spinning disk can sustain 150 Mbps.</p>
   <h3>When the stream stalls</h3>
   <p>NAS playback narrates itself. While a network title loads, the vault shows a <strong>real buffering percentage</strong> — the actual readahead fill, not a spinner. If the stream stalls mid-play, the quick strip raises itself with a <strong>REBUFFERING</strong> banner that reports buffer seconds · fill % · MB/s · network class (no silent black dome), then hides again once the flow recovers. In Stats HUD, compare sustained live MB/s against content bitrate: a negative margin predicts repeated buffering even when a short speed test looks fast.</p>
@@ -1067,7 +1072,7 @@
       <tr><td>WebDAV</td><td>Configure, validate, browse, index, and range-read a user-supplied collection. HTTPS <code>PROPFIND</code> can follow safe redirects; same-folder subtitle sidecars auto-pick. Ranged media GETs may follow a bounded HTTPS handoff while preserving Range and stripping credentials at a new origin; malformed or ignored ranges still fail closed</td></tr>
       <tr><td>Plex</td><td>Direct Play the original Part from a user-supplied local server and token; no transcoding request, cloud login, or hosted relay. Large libraries retain all eight safe sort modes. Token can be updated in place; Remove is visible again</td></tr>
       <tr><td>Stash</td><td>Page scenes and open native stream identities from a server/API key you supply. Display order is nonblank scene title → sanitized filename → opaque scene-ID fallback; Finally supplies no catalog</td></tr>
-      <tr><td>XBVR</td><td>First-class Club SOURCES entry: add a local XBVR server, browse multi-title catalog sessions, and optionally pull matching funscripts for ChloeVibes when the server exposes them. Empty/HTML diagnostics stay honest when the endpoint is wrong</td></tr>
+      <tr><td>XBVR</td><td>First-class Lobby SRC entry: add a local XBVR server, browse multi-title catalog sessions, and optionally pull matching funscripts for ChloeVibes when the server exposes them. Empty/HTML diagnostics stay honest when the endpoint is wrong</td></tr>
       <tr><td>DLNA / UPnP</td><td>Discover or manually add a trusted-LAN MediaServer, browse its ContentDirectory, and range-read compatible media. Server behavior varies; no Internet discovery, transcoding, or universal DLNA claim</td></tr>
       <tr><td>Play link</td><td>Compatible direct HLS, DASH, SmoothStreaming, or RTSP media; not a general browser and does not bypass login, DRM, cookies, or blob-only page logic</td></tr>
     </tbody>
@@ -1079,7 +1084,7 @@
     <li><strong>WebDAV:</strong> Sources → <strong>Add WebDAV</strong>. Enter the collection URL plus username/password, then <strong>Connect &amp; scan</strong>. Prefer HTTPS; acknowledged HTTP is limited to a trusted private address.</li>
     <li><strong>Plex:</strong> Sources → <strong>Add Plex</strong>. Enter the local Plex Media Server URL and its <code>X-Plex-Token</code>, then <strong>Connect &amp; scan</strong>. Finally Direct Plays the original Part and does not request transcoding.</li>
     <li><strong>Stash:</strong> Sources → <strong>Add Stash</strong>. Enter the Stash base URL and API key, then <strong>Connect &amp; scan</strong>. Finally reads bounded GraphQL scene pages; rescan to replace blank-title scene numbers with filename fallbacks.</li>
-    <li><strong>XBVR:</strong> Sources → <strong>Add XBVR</strong>. Enter the local XBVR base URL (and credentials if required), then connect. Browse titles from Club SOURCES; funscript download is optional when the server offers it.</li>
+    <li><strong>XBVR:</strong> Sources → <strong>Add XBVR</strong>. Enter the local XBVR base URL (and credentials if required), then connect. Browse titles from Lobby SRC; funscript download is optional when the server offers it.</li>
     <li><strong>DLNA:</strong> Sources → <strong>Add DLNA server</strong>. Use a discovered device or enter the trusted-LAN description URL, validate it, then browse or index its ContentDirectory.</li>
   </ol>
   <p><strong>WebDAV compatibility boundary:</strong> Connect &amp; scan uses collection <code>PROPFIND</code> and can follow safe HTTPS redirects to the final collection. After listing succeeds, ranged media GETs can follow at most five HTTPS handoffs. Finally accepts exact or server-proven end-of-file <code>206 Content-Range</code> replies, including chunked partial bodies. It keeps authorization only on the original origin and rejects HTTP downgrade, URL credentials, loops, excessive hops, malformed ranges, or a full <code>200</code> reply that ignored <code>Range</code>. A server that cannot meet that contract is reported as incompatible instead of feeding wrong bytes to the decoder.</p>
@@ -1094,17 +1099,17 @@
 <section id="iso">
   <p class="kicker">09 · discs</p>
   <h2>Blu-ray ISO, MVC &amp; physical DVD</h2>
-  <p class="lede">The current 1.0.0 candidate (Quest c85 / Galaxy c10085) carries a narrow, explicit set of decrypted H.264/MVC routes at 1.0×. Quest retains production-route receipts from code 28 and earlier; those are historical device evidence. This candidate has not received a complete c85/c10085 MVC, SMB, or WebDAV device matrix, so the route contract and the measured acceptance boundary stay separate.</p>
+  <p class="lede">The current 1.0.1 release (Quest c92 / Galaxy c10092) carries a narrow, explicit set of decrypted H.264/MVC routes at 1.0×. Quest retains production-route receipts from code 28 and earlier; those are historical device evidence. This release has not received a complete c92/c10092 MVC, SMB, or WebDAV device matrix, so the route contract and the measured acceptance boundary stay separate.</p>
 
   <h3>Supported today / not today</h3>
   <div class="tbl-wrap"><table>
-    <thead><tr><th scope="col">Supported by the current route contract</th><th scope="col">Not claimed for c85/c10085</th></tr></thead>
+    <thead><tr><th scope="col">Supported by the current route contract</th><th scope="col">Not claimed for c92/c10092</th></tr></thead>
     <tbody>
       <tr><td>Quest local, complete decrypted 3D Blu-ray MVC/SSIF ISO: zero start, nonzero resume, and authored chapter/indexed seek through the production MVC/OpenXR route</td><td>AACS or other protected-disc decryption; BD-J menus; every authored disc or playlist</td></tr>
       <tr><td>Quest local standalone <code>.ssif</code> through <code>PlayerFactory</code>, Chloe MVC Engine 1, and separate per-eye OpenXR presentation</td><td>Standalone SSIF resume/seek breadth, network SSIF, or feature-length endurance</td></tr>
       <tr><td>Quest local genuine combined-track MVC <code>.mkv</code>/<code>.mk3d</code> through the same production route</td><td>Every file merely named MKV/MK3D; a genuine MVC dependent view is required</td></tr>
-      <tr><td>Eligible decrypted MVC ISO over configured SMB or a compatible WebDAV collection remains a source/build product path</td><td>No fresh c85 SMB fixture was physically rerun; WebDAV ISO is source/host validated without a live-server or on-head receipt; the Quest code-27 SMB receipt is historical, and neither route is a current Galaxy physical claim</td></tr>
-      <tr><td>Galaxy c10085 carries the shared routes through the current source/build/artifact contract</td><td>No c10085 Galaxy ISO/SSIF/MKV physical route matrix is claimed; retained code-10027 local-ISO results remain historical and are not promoted by the new artifact</td></tr>
+      <tr><td>Eligible decrypted MVC ISO over configured SMB or a compatible WebDAV collection remains a source/build product path</td><td>No fresh c92 SMB fixture was physically rerun; WebDAV ISO is source/host validated without a live-server or on-head receipt; the Quest code-27 SMB receipt is historical, and neither route is a current Galaxy physical claim</td></tr>
+      <tr><td>Galaxy c10092 carries the shared routes through the current source/build/artifact contract</td><td>No c10092 Galaxy ISO/SSIF/MKV physical route matrix is claimed; retained code-10027 local-ISO results remain historical and are not promoted by the new artifact</td></tr>
     </tbody>
   </table></div>
   <div class="note warn"><p><strong>Keep MVC at 1.0×.</strong> Speed changes are outside the MVC contract. The exact Quest ISO physically passed resume at 12 seconds and an authored/indexed seek to 40 seconds. The standalone SSIF and direct MVC MKV proofs are clean start-to-completion production-route gates; their resume/seek breadth is not inferred.</p></div>
@@ -1144,7 +1149,7 @@
   <h3>Happy path — the same bytes on both headsets</h3>
   <ol class="steps">
     <li>Put the byte-identical file on both headsets and connect them to the same private LAN.</li>
-    <li>On the host, open that file and choose <span class="chip">WATCH</span> → <strong>HOST A ROOM</strong>.</li>
+    <li>On the host, open that file and choose <span class="chip">GROUP WATCH</span> (under Lobby <span class="chip">CFG</span>) → <strong>HOST A ROOM</strong>.</li>
     <li>On the follower, choose <strong>JOIN ROOM</strong> and enter the room code; use the displayed private <code>IP:port</code> if discovery is blocked.</li>
     <li>Compare the complete pairing code on both headsets and accept only when every character matches.</li>
     <li>Select the matching file if asked. The host then controls play, pause, and seek.</li>
@@ -1152,7 +1157,7 @@
   <p>A matching filename is not proof of matching media; the bytes must be identical.</p>
   <h3>Host</h3>
   <ol class="steps">
-    <li>Open the title, choose <span class="chip">WATCH</span>, then <strong>HOST A ROOM</strong>.</li>
+    <li>Open the title, choose <span class="chip">GROUP WATCH</span>, then <strong>HOST A ROOM</strong>.</li>
     <li>Give the follower the displayed room code. If discovery is blocked, also give them the displayed private <code>IP:port</code>.</li>
     <li>Compare the complete pairing code aloud and choose <strong>CODES MATCH</strong> only when both headsets agree.</li>
     <li>The host owns play, pause, and seek while the room is active.</li>
@@ -1172,7 +1177,7 @@
   <p class="kicker">11 · mixed reality</p>
   <h2>Your room</h2>
   <p class="lede">Passthrough puts the video in your actual space. The keying suite makes it belong there.</p>
-  <p>Toggle <span class="chip">◎ ROOM</span> in the lobby (persisted as your default) or <span class="chip">PASSTHRU</span> while playing. Then, on COLOR / KEY:</p>
+  <p>Toggle <span class="chip">REAL</span> in the lobby (persisted as your default) or <span class="chip">PASSTHRU</span> while playing. Then, on COLOR / KEY:</p>
   <h3>Chroma key — up to four colors</h3>
   <p><span class="chip">◆ MULTI-PICK</span> samples a key color <em>from the frame itself</em> — point the laser at the green screen, pull the trigger. Each of the four color slots gets independent <strong>tolerance</strong> (tight ↔ wide), <strong>edge</strong> (sharp ↔ feather), and <strong>bleed</strong> (none ↔ clean) sliders. A pixel is removed when it matches any enabled color.</p>
   <h3>Packed alpha</h3>
@@ -1184,39 +1189,55 @@
   <p class="kicker">12 · environments</p>
   <h2>Worlds</h2>
   <p class="lede">Choose a bundled 8K environment or your own room image directly from the responsive ROOMS grid.</p>
-  <p>Press <span class="chip">✦ WORLD</span> to open <strong>ROOMS</strong>. The candidate ships six bundled choices: the three featured rooms appear first, followed by three established Club rooms. User rooms follow them. Each room is a separate large controller target, and the exact selection persists across sessions.</p>
+  <p>Press <span class="chip">SET</span> to open <strong>ROOMS</strong>. The three featured rooms appear first, followed by the established bundled rooms. User rooms follow them. Each room is a separate large controller target, and the exact selection persists across sessions.</p>
   <div class="tbl-wrap"><table>
     <thead><tr><th scope="col">Room</th><th scope="col">What it is</th></tr></thead>
     <tbody>
       <tr><td>ASH AIRFOIL LOFT</td><td><strong>SUFFOLK COUNTY, LONG ISLAND, NY · 180° PHOTO STAGE</strong> — the real studio photograph staged across the front 180° × 90° on an 8192×4096 dark-neutral canvas</td></tr>
       <tr><td>LOFT NIGHT</td><td><strong>NEON PENTHOUSE</strong> — the generated high-end night environment</td></tr>
       <tr><td>REFERENCE DARK</td><td>A low-distraction dark theater reference</td></tr>
-      <tr><td>CLUB CRACKED</td><td>Established bundled Club environment</td></tr>
-      <tr><td>CLUB QUILTED</td><td>Established bundled Club environment</td></tr>
+      <tr><td>CLUB CRACKED</td><td>Established bundled environment</td></tr>
+      <tr><td>CLUB QUILTED</td><td>Established bundled environment</td></tr>
       <tr><td>LOFT KITCHEN</td><td>Established bundled loft environment</td></tr>
     </tbody>
   </table></div>
   <p>Add your own equirectangular <code>jpg</code>, <code>png</code>, or <code>webp</code> images under <span class="path">Movies/Finally/environments</span>, then reopen <strong>ROOMS</strong>. The measured seven-choice layout was <strong>six bundled rooms plus one user-room fixture</strong>: it proves responsive four-by-two layout at the production panel size and three-column reflow on narrower panels. It does not mean seven bundled rooms or establish an unlimited-overflow policy.</p>
-  <p><span class="chip">ROOM DIM</span> is saved separately from the room. The lobby shortcut cycles 100 / 75 / 50 / 25 / 0%; the playback picture slider exposes 0–100% in 5% steps. It dims the environment/passthrough layer only—not the media, subtitles, or UI.</p>
+  <p><span class="chip">ROOM DIM</span> is saved separately from the room. The lobby <span class="chip">CFG</span> preference offers the 100 / 75 / 50 / 25 / 0% presets; the playback picture slider exposes 0–100% in 5% steps. It dims the environment/passthrough layer only—not the media, subtitles, or UI.</p>
 </section>
 
 <section id="photos">
   <p class="kicker">13 · stills</p>
   <h2>Photos</h2>
   <p class="lede">Same vault, same lenses, same dome — full resolution.</p>
-  <p>Stills live in the library beside videos and project through the identical lens system: a VR180 photo wraps the half-dome, a flat photo is a panel you can place and curve. The transport row politely dims (<span class="chip">◆ PHOTO</span>) since speed and seek mean nothing to a photograph. On a photo, Menu / Back opens the full cockpit directly — the quick strip is transport, and a still doesn't need one. Camera originals render at full sensor resolution on the dome — up to 8192px wide.</p>
+  <p>Stills live in the library beside videos and project through the identical lens system: a VR180 photo wraps the half-dome, a flat photo is a panel you can place and curve. On a photo, Menu / Back opens the full cockpit directly — the quick strip is transport, and a still doesn't need one. Camera originals render at full sensor resolution on the dome — up to 8192px wide.</p>
   <p>Stills navigate by stick: <span class="key">Stick ← →</span> steps to the <strong>previous / next file</strong> — a photo has no timeline, so the seek stick pages the album instead. The hint under the title says so: <em>stick ◀ PREV · NEXT ▶</em>. Video seeking is unchanged.</p>
+  <h3>Slideshow</h3>
+  <p>On a photo, the PLAY chip runs the show: <span class="chip">START SLIDESHOW</span> begins it, <span class="chip">PAUSE SLIDESHOW</span> holds it, and the chip reports the current dwell — <em>N seconds per photo</em>.</p>
+  <ul>
+    <li><strong>PHOTO TIME</strong> sits where Speed sits for video and sets the dwell — 3 to 60 seconds per photo. The clock arms only after a photo has actually reached your eyes, so decode or SMB transfer time never eats the dwell.</li>
+    <li><strong>TRANSITION</strong> picks <em>hard cut</em> (default) or <em>fade</em>. The fade dips only the photo to black for a beat — the room stays lit — and the next photo decodes behind the current one first, so there is no long black hold between slides.</li>
+    <li><strong>Your view holds.</strong> Slides keep your view anchor — no recenter between photos, and (per <a href="#loops">view carry</a>) your zoom and distance ride onto untuned photos.</li>
+    <li><strong>Manual wins.</strong> <span class="key">Stick ← →</span> NEXT / PREV stays an instant hard cut even while a show runs — user-initiated jumps should feel instant.</li>
+    <li><strong>Never use slideshows?</strong> A <em>Slideshow</em> ticker in <span class="chip">GLOBAL SETTINGS</span> (default ON) gates the whole feature — flip it OFF and every slideshow control on stills goes dark.</li>
+  </ul>
   <p>And a still that can't be decoded gets a plain amber card — <em>"Couldn't decode this image — it may be corrupt or not really a photo"</em> — never a raw codec string.</p>
 </section>
 
 <section id="loops">
   <p class="kicker">14 · playback</p>
   <h2>Loops, seeking &amp; sound</h2>
+  <h3>View carry across a playlist</h3>
+  <p>Set your zoom and distance once and continuous playback keeps it. During a continuous advance — natural-end autoplay, <span class="chip">PREV</span>/<span class="chip">NEXT</span> jumps, folder shuffle, and the <a href="#photos">photo slideshow</a> — the incoming title inherits the session's current zoom and distance <strong>when it has no explicit view tuning of its own</strong>. Three rules keep it predictable:</p>
+  <ul>
+    <li><strong>Per-title tuning always wins.</strong> A title you already tuned keeps its own saved zoom and distance, whole — the carry never mixes one saved axis with one carried axis.</li>
+    <li><strong>Fresh opens start clean.</strong> Opening a title from the vault, returning to the lobby, or a cold start begins a new session — nothing is inherited.</li>
+    <li><strong>Carried values persist normally.</strong> Values carried onto a title save into its per-title settings exactly like live adjustments do, so the next direct open of that title remembers them.</li>
+  </ul>
   <h3>A–B loops, and then some</h3>
   <p>Set <span class="chip">A</span>, then <span class="chip">B</span> — hard loop. Add <span class="chip">C</span> and <span class="chip">D</span> — <strong>cascade</strong>: A→B jumps to C, C→D jumps back to A, forever. Seek far past an end marker to escape; <span class="chip">Clear</span> wipes the marks; loops reset when you change titles.</p>
   <p>Loop chips are a PRO tool — they live on the PRO cockpit and the PRO quick strip. If you don't see them, tap <span class="chip">PRO</span> in the tab row (see <a href="#cockpit">The Cockpit</a>).</p>
   <h3>Seeking</h3>
-  <p>Seeks land <strong>FAST</strong> by default: on the nearest keyframe, so the picture is there the instant you let go — an exact seek into a long 8K GOP silently decodes seconds of video before showing you anything. FAST also makes A–B loop jumps and resume instant. Need frame-perfect landings? Flip the lobby setting: <span class="chip">🎛 SET</span> → <em>Seek landing</em> → EXACT.</p>
+  <p>Seeks land <strong>FAST</strong> by default: on the nearest keyframe, so the picture is there the instant you let go — an exact seek into a long 8K GOP silently decodes seconds of video before showing you anything. FAST also makes A–B loop jumps and resume instant. Need frame-perfect landings? Flip the lobby setting: <span class="chip">CFG</span> → <em>Seek landing</em> → EXACT.</p>
   <p>Loading is quieter after a seek, too: the brief catch-up buffer after a jump gets several seconds of grace before the REBUFFERING strip would appear. Genuine stalls still raise it immediately.</p>
   <h3>Speed</h3>
   <p>0.25× to 3×, pitch-corrected, from the PLAY page or the quick strip.</p>
@@ -1231,22 +1252,22 @@
   <div class="tbl-wrap"><table>
     <thead><tr><th scope="col">Capability</th><th scope="col">Meta Quest</th><th scope="col">Samsung Galaxy XR</th></tr></thead>
     <tbody>
-      <tr><td>Current manual identity</td><td><code>1.0.0</code>, version code 85</td><td><code>1.0.0</code>, version code 10085</td></tr>
-      <tr><td>Distribution</td><td>Meta Horizon Store is the public path; code 85 is a signed internal candidate and this page does not claim the store has delivered it</td><td>Google Play is the Galaxy XR path; code 10085 is a signed internal candidate and this page does not claim the store has delivered it</td></tr>
-      <tr><td>Launch</td><td>Straight into the Club (when your vault has titles)</td><td>Library first — tap <span class="chip">ENTER THE CLUB</span></td></tr>
+      <tr><td>Current manual identity</td><td><code>1.0.1</code>, version code 92</td><td><code>1.0.1</code>, version code 10092</td></tr>
+      <tr><td>Distribution</td><td>Meta Horizon Store is the public path; store rollout can lag this page, so the in-headset version remains the authority</td><td>Google Play is the Galaxy XR path; store rollout can lag this page, so the in-headset version remains the authority</td></tr>
+      <tr><td>Launch</td><td>Straight into the Lobby (when your vault has titles)</td><td>Library first — tap <span class="chip">ENTER THE LOBBY</span></td></tr>
       <tr><td>Passthrough</td><td>Meta passthrough layer</td><td>System blend-through — same controls, same keying</td></tr>
       <tr><td>AFR</td><td>Cadence-aware Android hint including 25/50/100→100 when advertised; optional MAX (~120 on Quest 3). Runtime still chooses the actual mode — verify Stats HUD</td><td>Same shared policy, with requested modes below 71 Hz excluded to avoid the visibly flickering 60 Hz micro-OLED mode. MAX floors below 72 Hz. A 60-fps source may remain at runtime-reported 72 Hz with a cadence mismatch; verify Stats HUD</td></tr>
       <tr><td>Hardware AV1</td><td>Retained code-27 Main 8/Main 10 HDR10 first-frame/seek proof</td><td>Retained code-10027 Main 8/Main 10 HDR10 first-frame/seek proof</td></tr>
       <tr><td>Watch Together</td><td>Retained code-27 production-UI proof as host</td><td>Retained code-10027 production-UI proof as follower</td></tr>
-      <tr><td>Subtitles / audio / stick Distance</td><td>MOVE SUBS, 75–300% size, multi-audio + AUDIO studio, stick Distance + stick-click reset (carried into code 85); exact full-matrix on-head acceptance remains open</td><td>Same shared behavior; exact-build on-head acceptance remains open</td></tr>
+      <tr><td>Subtitles / audio / stick Distance</td><td>MOVE SUBS, 75–300% size, multi-audio + AUDIO studio, stick Distance + stick-click reset (carried into code 92); exact full-matrix on-head acceptance remains open</td><td>Same shared behavior; exact-build on-head acceptance remains open</td></tr>
       <tr><td>Nearby sources</td><td>Retained Quest proof covers one live SMB host-discovery path and one DLNA discovery/ranged-read path; no commercial-server matrix</td><td>Shared source/build behavior; no current Galaxy device run</td></tr>
-      <tr><td>3D MVC — historical receipt boundary</td><td>Retained Quest proof: local ISO zero/resume/chapter, standalone SSIF, and direct MVC MKV; c85 and SMB were not physically rerun</td><td>Shared routes pass current source/build/artifact gates, but no c10085 physical route matrix is claimed</td></tr>
+      <tr><td>3D MVC — historical receipt boundary</td><td>Retained Quest proof: local ISO zero/resume/chapter, standalone SSIF, and direct MVC MKV; c92 and SMB were not physically rerun</td><td>Shared routes pass current source/build/artifact gates, but no c10092 physical route matrix is claimed</td></tr>
       <tr><td>USB DVD-Video</td><td>Retained code-27 exact clear-disc Quest 3 proof</td><td><strong>Not claimed in this manual</strong></td></tr>
-      <tr><td>Exit label</td><td><span class="chip">LEAVE → QUEST</span></td><td><span class="chip">LEAVE → HOME</span></td></tr>
+      <tr><td>Exit label</td><td><span class="chip">EXIT → QUEST</span></td><td><span class="chip">EXIT → HOME</span></td></tr>
       <tr><td>Controllers</td><td>Touch — full map; B/Y menu and stereo roles can swap</td><td>Standard profile — every control still reachable via menu</td></tr>
     </tbody>
   </table></div>
-  <p>The daily-use and source work shares one codebase, but a device claim changes only after that target/build has its own physical evidence. Galaxy's older local MVC receipt remains useful history; it is not relabeled as a c10085 pass. AFR uses normalized cadences such as 23.976, 29.97, and 59.94 on both targets (plus 25/50/100→100 when advertised) and lets the runtime choose the actual mode. Galaxy requests no mode below 71 Hz, so Finally does not request its flickering 60 Hz mode; a 60-fps title may remain at 72 Hz with a visible cadence mismatch. Stats HUD is the current readout.</p>
+  <p>The daily-use and source work shares one codebase, but a device claim changes only after that target/build has its own physical evidence. Galaxy's older local MVC receipt remains useful history; it is not relabeled as a c10092 pass. AFR uses normalized cadences such as 23.976, 29.97, and 59.94 on both targets (plus 25/50/100→100 when advertised) and lets the runtime choose the actual mode. Galaxy requests no mode below 71 Hz, so Finally does not request its flickering 60 Hz mode; a 60-fps title may remain at 72 Hz with a visible cadence mismatch. Stats HUD is the current readout.</p>
 </section>
 
 <section id="fixit">
@@ -1257,7 +1278,7 @@
     <tbody>
       <tr><td>Warped shape</td><td>PLAY → <span class="chip">AUTO</span> to re-detect — or audition the lens row (a "slightly zoomed" fisheye is usually 180 vs 190)</td></tr>
       <tr><td>Double vision</td><td>PLAY → <span class="chip">Eyes</span> · or <span class="chip">AUTO</span></td></tr>
-      <tr><td>Scene too close / stuck after stick</td><td>Stick-click for full reset (D1.00 / Z1.00 + recenter), or PLACE → Distance slider / <span class="chip">Reset place + eyes</span>. On the current c85 candidate, the Distance slider moves with stick ↕; that behavior originated in code 39. If it does not, you are on an older build</td></tr>
+      <tr><td>Scene too close / stuck after stick</td><td>Stick-click for full reset (D1.00 / Z1.00 + recenter), or PLACE → Distance slider / <span class="chip">Reset place + eyes</span>. On the current 1.0.1 release, the Distance slider moves with stick ↕; that behavior originated in code 39. If it does not, you are on an older build</td></tr>
       <tr><td>Eye strain</td><td>PLACE / EYES → depth position and eye height · <span class="chip">Reset place + eyes</span></td></tr>
       <tr><td>Ends instantly</td><td>Resume was at the last frame — the next open starts clean</td></tr>
       <tr><td>Silent MKV</td><td>Check mute, volume, and the selected audio track. AC-3, E-AC-3, and DTS can use Finally's FFmpeg fallback, but the exact codec, profile, and file still matter; compare a known-good local file and report the result</td></tr>
@@ -1269,15 +1290,15 @@
       <tr><td><code>TARGET … · NOT LOCKED</code></td><td>Android has not reported the requested mode as current. AFR does not interpolate frames, and Finally does not call a requested rate “locked”</td></tr>
       <tr><td>A video vanished from the lists</td><td>It auto-detected as mono (a whole-word <code>mono</code> filename tag) — the vault footer counts it as <em>MONO hidden</em>. Rename the file to bring it back; titles with your saved settings are never hidden</td></tr>
       <tr><td>Subtitle track is absent</td><td>For automatic local/SMB discovery, match the complete video stem, use SRT/VTT/ASS/SSA, keep it under 4 MiB, and place it beside the title. For any ordinary supported video route, use <span class="chip">LOAD SUBTITLE</span> and choose the file manually. ISO/MVC and stills do not offer the picker</td></tr>
-      <tr><td>Plex crashes after SORT or will not relaunch</td><td>The current candidate contains the comparator and saved-crash-loop repair first shipped in code 33, and keeps the Plex index/source/credentials. If an older build is still trapped, Android Settings → Apps → Finally → Storage → Clear data is the last resort; it removes Finally's local index, source setup, credentials, and settings—not media on the Plex server. Deleting visible OBB or Android/data folders is not the same operation</td></tr>
-      <tr><td>Stash rows show scene numbers</td><td>Rescan with the current candidate. A nonblank scene title wins; otherwise Finally uses the sanitized file basename, then falls back to <code>Stash scene &lt;id&gt;</code> only when the server supplied neither usable value. The filename fallback originated in code 33. Use <span class="chip">⌕ SEARCH</span> on the displayed filename</td></tr>
+      <tr><td>Plex crashes after SORT or will not relaunch</td><td>The current release contains the comparator and saved-crash-loop repair first shipped in code 33, and keeps the Plex index/source/credentials. If an older build is still trapped, Android Settings → Apps → Finally → Storage → Clear data is the last resort; it removes Finally's local index, source setup, credentials, and settings—not media on the Plex server. Deleting visible OBB or Android/data folders is not the same operation</td></tr>
+      <tr><td>Stash rows show scene numbers</td><td>Rescan with the current release. A nonblank scene title wins; otherwise Finally uses the sanitized file basename, then falls back to <code>Stash scene &lt;id&gt;</code> only when the server supplied neither usable value. The filename fallback originated in code 33. Use <span class="chip">FIND</span> on the displayed filename</td></tr>
       <tr><td>Vault search finds nothing</td><td>Every typed word must occur in the displayed title. Shorten the query, check the Stash filename fallback after a rescan, or press Menu / Back to clear the applied search</td></tr>
-      <tr><td>WebDAV Connect &amp; scan is redirected or fails</td><td>The current candidate can follow safe HTTPS <code>PROPFIND</code> redirects; that policy originated in code 39. Still prefer the final collection URL when you know it. Confirm credentials and collection permissions before testing playback</td></tr>
-      <tr><td>The server response is not compatible with Finally's WebDAV reader</td><td>Update to the current candidate. Once listing succeeds, playback still requires correct seekable <code>206 Content-Range</code> replies. Only ranged media GETs get the bounded HTTPS handoff support; Finally still rejects a server that ignores Range with <code>200</code>, returns malformed offsets, downgrades to HTTP, loops, or exceeds five hops. Use the server's direct compatible WebDAV/storage endpoint or ask its administrator whether ranged GET is supported</td></tr>
-      <tr><td>Source actions only show Cancel</td><td>Use the current candidate — Rescan · Edit · Remove for Plex/FTP/WebDAV/Stash/DLNA/XBVR are available. The dialog repair originated in code 38</td></tr>
-      <tr><td>LEAVE leaves Meta home broken / black</td><td>Use the current candidate for the harder OpenXR teardown first shipped in code 38. Force-quit Finally from the system menu if an older build already stuck the session</td></tr>
-      <tr><td><code>SUBS · ISO N/A</code></td><td>Expected in the current candidate: ISO text/PGS rendering is intentionally disabled</td></tr>
-      <tr><td>3D Blu-ray ISO opens in 2D</td><td>Use a complete decrypted MVC/SSIF ISO and keep speed at 1.0×. The retained Quest code-28 receipt covers one exact title from zero, resume, and authored seek; c85/c10085, current SMB, and current WebDAV routes were not physically rerun</td></tr>
+      <tr><td>WebDAV Connect &amp; scan is redirected or fails</td><td>The current release can follow safe HTTPS <code>PROPFIND</code> redirects; that policy originated in code 39. Still prefer the final collection URL when you know it. Confirm credentials and collection permissions before testing playback</td></tr>
+      <tr><td>The server response is not compatible with Finally's WebDAV reader</td><td>Update to the current release. Once listing succeeds, playback still requires correct seekable <code>206 Content-Range</code> replies. Only ranged media GETs get the bounded HTTPS handoff support; Finally still rejects a server that ignores Range with <code>200</code>, returns malformed offsets, downgrades to HTTP, loops, or exceeds five hops. Use the server's direct compatible WebDAV/storage endpoint or ask its administrator whether ranged GET is supported</td></tr>
+      <tr><td>Source actions only show Cancel</td><td>Use the current release — Rescan · Edit · Remove for Plex/FTP/WebDAV/Stash/DLNA/XBVR are available. The dialog repair originated in code 38</td></tr>
+      <tr><td>EXIT leaves Meta home broken / black</td><td>Use the current release for the harder OpenXR teardown first shipped in code 38. Force-quit Finally from the system menu if an older build already stuck the session</td></tr>
+      <tr><td><code>SUBS · ISO N/A</code></td><td>Expected in the current release: ISO text/PGS rendering is intentionally disabled</td></tr>
+      <tr><td>3D Blu-ray ISO opens in 2D</td><td>Use a complete decrypted MVC/SSIF ISO and keep speed at 1.0×. The retained Quest code-28 receipt covers one exact title from zero, resume, and authored seek; c92/c10092, current SMB, and current WebDAV routes were not physically rerun</td></tr>
       <tr><td>MVC becomes 2D after a transition</td><td>At non-1.0× speed this is outside the MVC contract. A retained Quest code-28 receipt covers one eligible ISO's resume/chapter seek; standalone SSIF/MVC-MKV transition breadth is not claimed, so reopen at 0 and report the exact source type</td></tr>
       <tr><td>USB DVD drive is not listed</td><td>Confirm a data-capable USB-C/OTG connection, adequate power, Android USB permission, and a ready disc</td></tr>
       <tr><td>DVD is refused after discovery</td><td>The current path needs clear readable sectors and an ISO9660 <code>VIDEO_TS</code> bridge; CSS/encrypted and some UDF-only discs are outside it</td></tr>
@@ -1310,10 +1331,10 @@
   </ol>
   <p>The fixed-format archive is capped at 1,572,864 bytes. It can contain build/device/library counts, allowlisted settings, bounded app events, current playback scalar facts, and bounded playback-truth receipts such as codec family, dimensions, cadence, bitrate, buffer, dropped-frame, or rebuffer counters.</p>
   <p>It excludes raw paths, URIs, filenames, NAS/server/share names, usernames, credentials, IP addresses, media bytes, arbitrary logcat, exception messages, DRM data, and decoder initialization blobs. Needed correlations become bundle-local opaque identifiers, not stable exported IDs.</p>
-  <div class="note"><p><strong>You remain in control.</strong> Creating the ZIP does not email it. Handoff order is email composer → generic Android share sheet → manual. If neither app path is available, the ZIP remains under <span class="path">Downloads/Finally Support</span> and the Club shows its filename, folder, and <a href="mailto:coldbricks@gmail.com">coldbricks@gmail.com</a> for manual attachment. The bundle path has physical Quest MediaStore evidence; the fallback policy is host-tested and still needs final Galaxy device smoke.</p></div>
+  <div class="note"><p><strong>You remain in control.</strong> Creating the ZIP does not email it. Handoff order is email composer → generic Android share sheet → manual. If neither app path is available, the ZIP remains under <span class="path">Downloads/Finally Support</span> and the Lobby shows its filename, folder, and <a href="mailto:coldbricks@gmail.com">coldbricks@gmail.com</a> for manual attachment. The bundle path has physical Quest MediaStore evidence; the fallback policy is host-tested and still needs final Galaxy device smoke.</p></div>
   <h3>Useful context to add</h3>
   <ul>
-    <li>Finally version/target shown in the Club, headset model, and OS version.</li>
+    <li>Finally version/target shown in the Lobby, headset model, and OS version.</li>
     <li>Source class: local, SMB, FTP, WebDAV, Plex, Stash, DLNA, link, ISO, or DVD.</li>
     <li>Container/codec and approximate resolution or bitrate when known.</li>
     <li>The exact actions immediately before failure and whether the same file works locally.</li>
@@ -1329,7 +1350,7 @@
   <h2>Testing &amp; technical specifications</h2>
   <p class="lede">Optional measured receipts, real parameters, and explicit limits—the sheet packed with a serious lens or microphone. For ordinary help, jump to <a href="#fixit">Fix it</a> or <a href="#diagnostics">Bug reports</a>.</p>
   <div class="note"><p><strong>Evidence language.</strong> <em>Device</em> means the named physical headset executed the path. <em>Device + observer</em> adds a human inspection of that exact run. <em>Host</em> means deterministic workstation/JVM/native coverage. One fixture proves that fixture and path; it does not silently become universal codec, NAS, disc, thermal, or comfort support.</p></div>
-  <div class="note warn"><p><strong>Build applicability.</strong> <strong>Code 68 / 10085</strong> is the current signed internal candidate (1.0.0) and has source, host-test/lint where run, signed Quest APK + Galaxy AAB/APK artifact evidence, and a fresh headset install pass recorded separately. That is not the same as final on-head acceptance of every feature, a full Galaxy device matrix, or store delivery. Older rows remain historical measurements and are not relabeled as proof of code 85.</p></div>
+  <div class="note warn"><p><strong>Build applicability.</strong> <strong>Code 92 / 10092</strong> is the current release (1.0.1) with source, host-test/lint where run, and signed Quest APK + Galaxy AAB/APK artifact evidence. That is not the same as final on-head acceptance of every feature or a full Galaxy device matrix. Older rows remain historical measurements and are not relabeled as proof of code 92.</p></div>
   <div class="note"><p><strong>Measurement-card notation.</strong> The benchmark cards identify the test article, operating condition, measured characteristic, and reference gate. Solid traces are recorded samples or run points; dashed lines are reference gates or limits. A line joining discrete points preserves test order only—it is not an interpolated performance claim. Workstation capacity is test-cell context; headset plots remain headset measurements.</p></div>
 
   <h3>Recorded lab</h3>
@@ -1366,7 +1387,7 @@
   <div class="tbl-wrap"><table>
     <thead><tr><th scope="col">Program</th><th scope="col">Tier</th><th scope="col">Exact result</th><th scope="col">Boundary</th></tr></thead>
     <tbody>
-      <tr><td>Code 68 / 10085 · current signed candidate</td><td>Artifact + device install/launch</td><td>Signed Quest c85 and Galaxy c10085 APK/AAB identity, signing, alignment, native Build IDs, and package/version checks passed; release artifacts installed in place on physical Quest 3 and Galaxy XR and launched at 1.0.0. The embedded startup film receipt (frame match at 1920×1080 / 244 frames / 24 fps) is retained from c68 with the asset unchanged since; focused Club scroll contracts passed.</td><td>Current internal candidate. Visual acceptance remains feature-specific; the full Galaxy host suite retains 34 known failures on clean HEAD, no complete c85/c10085 device matrix is claimed, and this is not store-delivery proof.</td></tr>
+      <tr><td>Code 68 / 10068 · 0.3.61-m3 candidate</td><td>Artifact + device install/launch</td><td>Signed Quest c68 and Galaxy c10068 APK/AAB identity, signing, alignment, native Build IDs, and package/version checks passed; release artifacts installed in place on physical Quest 3 and Galaxy XR and launched at 0.3.61-m3. The embedded startup film matched the source at 1920×1080 / 244 frames / 24 fps; focused lobby scroll contracts passed.</td><td>Historical candidate gate. Visual acceptance remains feature-specific, no complete c68/c10068 device matrix is claimed, and the row is not relabeled as proof of code 92/10092.</td></tr>
       <tr><td>Code 39 / 10039 · Distance stick + stick-click reset</td><td>Source + signed artifacts</td><td>Canonical Distance path (no hidden viewForward); Quest APK code 39 and Galaxy AAB/APK 10039 signed with the release certificate; release notes staged for dual-store reupload</td><td>Not a full on-head matrix for every 0.3.32 feature; not store-delivery proof</td></tr>
       <tr><td>Code 37 / 10037 · ChloeVibes, source, playback, and UI gate</td><td>Host + artifact; Quest install/launch</td><td>Quest/Galaxy unit suites, focused ChloeVibes and menu-contract tests, lint, forced release builds, APK signing/alignment, and Galaxy Bundletool validation passed; exact code-37 direct package installed and launched on Quest 3</td><td>Historical gate; not relabeled as code-39 proof</td></tr>
       <tr><td>Code 33 / 10033 · full unit and lint gate</td><td>Host</td><td>Mobile 894, Quest 1,016, Galaxy 1,009 tests; zero failures/errors, three intentional skips per variant; all three debug lint tasks completed</td><td>No headset, store-delivery, visual, live-server, or thermal claim</td></tr>
