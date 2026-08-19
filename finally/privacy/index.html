@@ -20,18 +20,30 @@
 <body>
 <main>
   <h1>Privacy Policy — Finally VR Video Player</h1>
-  <p class="meta">Effective date: July 31, 2026<br>
+  <p class="meta">Effective date: August 19, 2026<br>
   Publisher: Coldbricks<br>
   Contact: <a href="mailto:coldbricks@gmail.com">coldbricks@gmail.com</a></p>
 
   <p>Finally VR Video Player (&ldquo;Finally,&rdquo; &ldquo;the app&rdquo;) is a media player for
-  content you already own. Our privacy policy is short because the app is built not to collect
-  anything.</p>
+  content you already own. It has no Coldbricks account or telemetry backend. The user-requested
+  network paths the app does use are described below.</p>
 
-  <h2>What we collect</h2>
-  <p><strong>Nothing.</strong> Finally has no accounts, no analytics, no advertising, no crash
-  reporting service, and no server of ours that the app talks to. We do not collect, transmit,
-  sell, or share any personal information or usage data.</p>
+  <h2>What Finally sends to Coldbricks automatically</h2>
+  <p><strong>Nothing.</strong> Finally has no Coldbricks account, analytics, advertising, crash
+  reporting, telemetry, or automatic diagnostic-upload service. It does not automatically send
+  library, viewing-history, credential, accessory, or usage data to Coldbricks. The user-controlled
+  support handoff and other user-requested network features are described below.</p>
+
+  <h2>User-submitted support messages</h2>
+  <p>If you choose <em>Submit Bug Report</em>, Finally creates a bounded diagnostic ZIP locally and
+  opens an email composer or Android share sheet. Creating the ZIP sends nothing. Only if you choose
+  a destination and press <em>Send</em> does that destination receive it; if you send it to
+  <a href="mailto:coldbricks@gmail.com">coldbricks@gmail.com</a>, Coldbricks receives the message and
+  ZIP you chose to send.</p>
+  <p>The ZIP can contain build and device facts, library counts, allowlisted settings, bounded app
+  events, and playback scalar/receipt facts. It excludes raw paths, URIs, filenames, server/share
+  names, usernames, passwords, tokens, IP addresses, media bytes, arbitrary logcat, exception
+  messages, DRM data, and decoder-initialization data.</p>
 
   <h2>What stays on your device</h2>
   <ul>
@@ -50,25 +62,55 @@
     or discovers a service on your private LAN and creates a direct encrypted connection between
     the two headsets. The peers exchange pairing and playback-session data plus an identity for the
     selected media. Finally does not upload or relay the media, and Coldbricks receives no room data.</li>
-    <li><strong>Optional haptic accessories.</strong> If you open the Haptic Control Panel and enable
+    <li><strong>Optional Bluetooth haptic accessories.</strong> If you open the Haptic Control Panel and enable
     accessory support, Finally can scan for and connect directly to a nearby Bluetooth accessory.
     Scan results, device identifiers, connection state, and matching <code>.funscript</code> timing
     remain on your headset and are not sent to Coldbricks. The controls require explicit arming and
     provide an immediate stop action.</li>
+    <li><strong>Optional The Handy service.</strong> If you choose <em>Connect The Handy</em>, Finally
+    contacts HandyFeeling, operated by Ohdoki AS, as described below. A verified key is stored
+    encrypted on the headset until you choose <em>Forget Handy key</em> or uninstall.</li>
     <li><strong>Settings.</strong> Playback and display preferences are stored locally.</li>
   </ul>
-  <p>Uninstalling the app deletes all of the above.</p>
+  <p>Uninstalling the app deletes Finally&rsquo;s local database, settings, and saved credentials. It
+  cannot delete records retained by a media server, platform, or third-party service you chose to
+  contact.</p>
 
   <h2>Network access</h2>
   <p>Finally uses the network only to do what you ask it to: discover local media servers, stream
-  media from sources you configure, verify Meta entitlement in a Meta store build, or connect two
-  headsets for Watch Together. It does not connect to a Coldbricks telemetry, advertising, account,
-  update, or content service.</p>
+  media from sources you configure, verify Meta entitlement in a Meta store build, connect two
+  headsets for Watch Together, or control The Handy through HandyFeeling after an explicit connect
+  action. It does not connect to a Coldbricks telemetry, advertising, account, update, or content
+  service.</p>
   <p>Some source protocols can be unencrypted if you choose them, such as plain FTP or an HTTP
   server on a trusted LAN. Finally labels those choices and does not turn them into Internet-facing
   services. Watch Together uses TLS.</p>
   <p>Optional Bluetooth accessory discovery and control are direct, local device operations. They
   do not use a Coldbricks service or transmit accessory data to us.</p>
+
+  <h2>The Handy / HandyFeeling</h2>
+  <p>If you choose <em>Connect The Handy</em>, Finally contacts HandyFeeling, operated by Ohdoki AS,
+  over HTTPS to control the device. <em>Connect</em> sends the connection key, source IP address and
+  normal network-request metadata, connection/status checks, device-setup requests, and a
+  rest-position command. <strong>Connect can physically reposition The Handy before ARM; keep
+  clear.</strong> While connected and <em>ARMED</em>, script playback or <em>TEST</em> sends motion
+  target position and duration. <em>STOP</em> or disconnect can send mode and stop commands even
+  when not armed. During
+  script playback, motion values and command cadence are derived on the headset from the local
+  <code>.funscript</code>. Firmware-4-and-newer requests also include Finally&rsquo;s registered
+  application ID.</p>
+  <p>Finally does not send the media title, media path, video, or raw <code>.funscript</code> file to
+  HandyFeeling, and Coldbricks receives none of these requests.</p>
+  <p>A verified connection key is stored encrypted on the headset until you choose <em>Forget Handy
+  key</em> or uninstall. Ohdoki&rsquo;s current policy says that logs scramble connection keys and IP
+  addresses and are deleted by default after seven days. See <a href="https://www.thehandy.com/privacy-policy/">The
+  Handy privacy policy</a> for its current retention, deletion-request, and contact terms.
+  <em>Forget Handy key</em> removes Finally&rsquo;s local copy; it is not a request to delete
+  Ohdoki&rsquo;s server records.</p>
+  <p>On an upgrade from a build before 1.0.1, if Android secure storage is temporarily unavailable,
+  the older local key copy can remain dormant until a later encrypted migration succeeds. Finally
+  does not use that dormant copy to connect. It is removed after migration, by <em>Forget Handy
+  key</em>, or by uninstalling the app.</p>
 
   <h2>Optional website support</h2>
   <p>The web field manual may offer optional support links to PayPal, Cash App, or Venmo. Following one

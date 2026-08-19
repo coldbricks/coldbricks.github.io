@@ -160,8 +160,10 @@
     margin: 0;
     font-family: Orbitron, system-ui, sans-serif;
     font-weight: 800;
-    font-size: clamp(2.6rem, 9vw, 5.4rem);
-    letter-spacing: 0.14em;
+    /* Keep the final S visible on narrow phones: the old 9vw + fixed tracking
+       could overrun the padded viewport while body overflow was clipped. */
+    font-size: clamp(2.2rem, 8.2vw, 5.4rem);
+    letter-spacing: clamp(0.04em, 0.8vw, 0.14em);
     line-height: 0.95;
     text-transform: uppercase;
     background: linear-gradient(180deg, #fff 0%, #F4EAF0 35%, #2EE6C5 70%, #FF1493 100%);
@@ -493,7 +495,7 @@
 
   <header class="hero">
     <div class="hero-kicker">Ash Airfoil · Independent lab</div>
-    <h1>COLDBRICKS</h1>
+    <h1 aria-label="COLDBRICKS">COLDBRICKS</h1>
     <p class="hero-sub">
       Instruments, not toys. <strong>Native XR</strong>, <strong>deterministic sims</strong>,
       <strong>haptic force</strong>, archive resurrection, and RF radar —
