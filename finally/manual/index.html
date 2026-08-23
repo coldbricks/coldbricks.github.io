@@ -555,31 +555,61 @@
     border-top: 1px solid var(--line); color: var(--dim); font-size: 0.9rem;
   }
   footer .credits { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.06em; margin-top: 0.8rem; }
+  /* product strip: the same panel header the rest of finallyvr.com wears */
   .prod-strip {
-    display: flex; flex-wrap: wrap; gap: 0.55rem 1.1rem; align-items: center;
-    justify-content: space-between;
-    max-width: 1060px; margin: 0 auto; padding: 0.7rem 1.5rem 0;
-    font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+    --w-stage: 1240px; --gutter: 1.5rem;
+    position: relative; display: flex; align-items: center; gap: 1.1rem; min-height: 64px;
+    padding: 0.55rem max(var(--gutter), calc((100% - var(--w-stage)) / 2));
+    font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--dim); border-bottom: 1px solid rgba(255,255,255,0.07);
+    background: rgba(8,4,12,0.78); backdrop-filter: blur(16px) saturate(1.25); -webkit-backdrop-filter: blur(16px) saturate(1.25);
   }
-  .prod-strip nav { display: flex; flex-wrap: wrap; gap: 0.7rem 1rem; }
-  .prod-strip a { color: var(--mut); }
-  .prod-strip a:hover { color: var(--teal-pale); text-decoration: none; }
+  .prod-strip::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; pointer-events: none;
+    background: linear-gradient(90deg, rgba(255,72,173,0) 0%, rgba(255,72,173,0.75) 10%, rgba(46,230,197,0.55) 38%, rgba(46,230,197,0) 72%);
+  }
+  .prod-strip .ps-brand {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-family: "Segoe UI", Roboto, system-ui, sans-serif; font-size: 0.95rem; font-weight: 700;
+    letter-spacing: 0.34em; color: #FFF6FB; flex: 0 0 auto;
+    text-shadow: 0 0 14px rgba(255,72,173,0.6), 0 0 32px rgba(255,72,173,0.28);
+  }
+  .prod-strip .ps-brand:hover { color: #fff; text-decoration: none; }
+  .prod-strip .ps-brand img { width: 32px; height: 32px; filter: drop-shadow(0 0 10px rgba(255,72,173,0.55)) drop-shadow(0 0 22px rgba(46,230,197,0.25)); }
+  .prod-strip .ps-readout { padding-left: 1rem; border-left: 1px solid rgba(255,255,255,0.07); letter-spacing: 0.12em; white-space: nowrap; }
+  .prod-strip .ps-readout b { color: var(--mut); font-weight: 600; }
+  .prod-strip nav { display: flex; flex-wrap: wrap; align-items: center; gap: 0.15rem 0.2rem; margin-left: auto; }
+  .prod-strip nav a { color: var(--mut); padding: 0.4rem 0.72rem; border-radius: 999px; border: 1px solid transparent; white-space: nowrap; }
+  .prod-strip nav a:hover { color: var(--teal-pale); text-decoration: none; border-color: rgba(46,230,197,0.22); }
+  .prod-strip nav a[aria-current="page"] { color: #FFD9EC; border-color: rgba(255,72,173,0.55); background: rgba(255,72,173,0.08); box-shadow: 0 0 18px rgba(255,72,173,0.16); }
   .prod-strip .get {
-    color: var(--ink-deep); background: var(--teal); border-radius: 999px;
-    padding: 0.35rem 0.8rem; font-weight: 750; letter-spacing: 0.08em;
+    color: var(--ink-deep); background: var(--teal); border-radius: 999px; flex: 0 0 auto;
+    padding: 0.5rem 0.95rem; font-weight: 750; letter-spacing: 0.1em; white-space: nowrap;
+    box-shadow: 0 0 22px rgba(46,230,197,0.28);
   }
-  .prod-strip .get:hover { color: var(--ink-deep); background: var(--teal-pale); }
+  .prod-strip .get:hover { color: var(--ink-deep); background: var(--teal-pale); text-decoration: none; }
+  @media (max-width: 780px) {
+    .prod-strip { flex-wrap: wrap; gap: 0.5rem 0.8rem; padding: 0.7rem 1rem 0; }
+    .prod-strip .ps-readout { display: none; }
+    .prod-strip .get { order: 2; margin-left: auto; padding: 0.42rem 0.85rem; }
+    .prod-strip nav { order: 3; flex: 1 0 100%; flex-wrap: nowrap; overflow-x: auto; margin: 0.1rem -1rem 0; padding: 0.1rem 1rem 0.65rem; scrollbar-width: none; mask-image: linear-gradient(90deg, #000 calc(100% - 3rem), transparent); -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 3rem), transparent); }
+    .prod-strip nav::-webkit-scrollbar { display: none; }
+  }
 </style>
 
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to manual</a>
 <div class="prod-strip">
-  <nav>
-    <a href="/">Finally VR Video Player</a>
-    <a href="/nas/">NAS / SMB</a>
-    <a href="/vr180/">VR180</a>
+  <a class="ps-brand" href="/"><img src="/finally/assets/f_mark-96.png" alt="" width="32" height="32" decoding="async">FINALLY</a>
+  <span class="ps-readout"><b>Field manual</b></span>
+  <nav aria-label="Site">
+    <a href="/quest-3/">Quest 3</a>
+    <a href="/free/">Free</a>
+    <a href="/nas/">NAS</a>
     <a href="/compare/">Compare</a>
+    <a href="/guides/">Guides</a>
+    <a href="/finally/manual/" aria-current="page">Manual</a>
     <a href="/finally/privacy/">Privacy</a>
   </nav>
   <a class="get" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Get it free</a>
