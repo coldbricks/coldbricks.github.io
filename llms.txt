@@ -1,6 +1,6 @@
 # Finally VR Video Player
 
-> Free native OpenXR VR video player for Meta Quest. No account, no ads, no Coldbricks telemetry. Plays the library you already own — local files and NAS/SMB. Early Access on the Horizon Store.
+> Free native OpenXR VR video player for Meta Quest. No account, no ads, no Coldbricks telemetry. Plays the library you already own — local files and NAS/SMB. Free on the Meta Horizon Store.
 
 - Store: https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/
 - Home: https://finallyvr.com/
@@ -9,7 +9,7 @@
 
 ## Facts
 
-- Price: free (Early Access)
+- Price: free
 - Publisher: Coldbricks
 - Platforms: Meta Quest 3, Quest 3S, Quest Pro, Quest 2
 - What Coldbricks collects automatically: nothing. Bug-report ZIP only after Send. Meta entitlement pass/fail. Other optional network paths are listed in the privacy policy.
