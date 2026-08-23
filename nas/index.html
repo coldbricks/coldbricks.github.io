@@ -38,7 +38,7 @@
         { "@type": "HowToStep", "name": "Install Finally", "text": "Install Finally VR Video Player from the Meta Horizon Store on Quest 3, Quest 3S, Quest Pro, or Quest 2." },
         { "@type": "HowToStep", "name": "Enable SMB on the server", "text": "On Synology, TrueNAS, or Windows, share the media folder over SMB on the same Wi-Fi as the headset. Note the host, share name, username, and password." },
         { "@type": "HowToStep", "name": "Add the share in Finally", "text": "Open SRC, add an SMB source, sign in, and pick the shared folder." },
-        { "@type": "HowToStep", "name": "Save and play", "text": "Save the source, then open a title. Files stream from the NAS; they are not uploaded to Coldbricks." }
+        { "@type": "HowToStep", "name": "Save and play", "text": "Save the source, then open a title. Files stream from the NAS; they are never uploaded anywhere." }
       ]
     },
     {
@@ -138,7 +138,7 @@
       <div class="kicker">Direct answer</div>
       <h2>How to watch NAS movies on Meta Quest 3</h2>
       <div class="answer">
-        <p><strong>Install Finally VR Video Player, add your SMB share, save, then play.</strong> The headset streams from Synology, TrueNAS, Unraid, or a Windows PC on the same Wi-Fi. Files stay on your server. Coldbricks never sees them. You do not need Plex, a catalog account, or a USB copy of the whole library.</p>
+        <p><strong>Install Finally VR Video Player, add your SMB share, save, then play.</strong> The headset streams from Synology, TrueNAS, Unraid, or a Windows PC on the same Wi-Fi. Files stay on your server — they are never uploaded anywhere. You do not need Plex, a catalog account, or a USB copy of the whole library.</p>
       </div>
       <p>This is the job Finally was built for. Local storage and SMB are first-class sources — not a buried “network” afterthought. Hardware playback goes up to 8K as a decoder ceiling on Quest 3; whether your Wi-Fi can feed that bitrate is a network fact, not a slogan.</p>
     </section>
@@ -163,7 +163,7 @@
       <h3>Synology / TrueNAS / Unraid</h3>
       <p>Enable the SMB service, create a share that holds the library, give a user read permission. Finally talks SMB; it does not need the NAS vendor’s mobile app. If you already run Plex, Finally can Direct Play from a user-supplied local PMS URL + token — no cloud login, no transcode. SMB is still the no-transcode path for files you already named correctly.</p>
       <h3>What Finally does not do</h3>
-      <p>It does not upload your library. It does not transcode on a Coldbricks server. It does not require an account. Optional nearby discovery can find SMB hosts on the LAN; credentials still stay on the headset and only go to the server you named.</p>
+      <p>It does not upload your library. It does not transcode on anyone’s server. It does not require an account. Optional nearby discovery can find SMB hosts on the LAN; credentials still stay on the headset and only go to the server you named.</p>
     </section>
     <section id="faq">
       <div class="kicker">FAQ</div>

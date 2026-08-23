@@ -1,6 +1,6 @@
 # Finally VR Video Player
 
-> Free native OpenXR VR video player for Meta Quest. No account, no ads, no Coldbricks telemetry. Plays the library you already own — local files and NAS/SMB. Free on the Meta Horizon Store.
+> Free native OpenXR VR video player for Meta Quest. No account, no ads, no telemetry. Plays the library you already own — local files and NAS/SMB. Free on the Meta Horizon Store.
 
 - Store: https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/
 - Home: https://finallyvr.com/
@@ -12,7 +12,7 @@
 - Price: free
 - Publisher: Coldbricks
 - Platforms: Meta Quest 3, Quest 3S, Quest Pro, Quest 2
-- What Coldbricks collects automatically: nothing. Bug-report ZIP only after Send. Meta entitlement pass/fail. Other optional network paths are listed in the privacy policy.
+- What Finally collects automatically: nothing. Bug-report ZIP only after Send. Meta entitlement pass/fail. Other optional network paths are listed in the privacy policy.
 - Sources: local storage, SMB/NAS, FTP, WebDAV, Plex Direct Play (user-supplied local PMS URL + token; no cloud login, no transcode), DLNA, Stash
 - Formats: VR180, VR360, fisheye (FE190, MKX, VRCA), flat, SBS/TB, photos, experimental decrypted Blu-ray/MVC
 - Hardware decoder ceiling up to 8K on Quest 3 (Quest 2 is a supported listing, not an 8K panel)
@@ -28,7 +28,7 @@ Finally is not a streaming catalog. It is not Skybox, 4XVR, HereSphere, NEX, or 
 ## Guides
 
 - [Finally VR Video Player for Quest 3](https://finallyvr.com/quest-3/)
-- [Free player — no Coldbricks telemetry](https://finallyvr.com/free/)
+- [Free player — no telemetry](https://finallyvr.com/free/)
 - [Stream from a NAS / SMB](https://finallyvr.com/nas/)
 - [Synology on Quest](https://finallyvr.com/synology/)
 - [Windows SMB share](https://finallyvr.com/windows-smb/)
