@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Play VR180, VR360, and SBS Video on Meta Quest 3 — Finally VR Video Player</title>
+<meta name="description" content="How to play VR180, 360, fisheye, and 3D SBS files on Meta Quest 3 with Finally VR Video Player. Auto lens detection plus per-title overrides that stick after consent.">
+<link rel="canonical" href="https://finallyvr.com/vr180/">
+<meta name="theme-color" content="#08040C">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Finally VR Video Player">
+<meta property="og:title" content="Play VR180, VR360, and SBS Video on Meta Quest 3 — Finally VR Video Player">
+<meta property="og:description" content="Finally auto-detects VR180/360/fisheye/SBS and remembers the override you set after one consent.">
+<meta property="og:url" content="https://finallyvr.com/vr180/">
+<meta property="og:image" content="https://finallyvr.com/finally/assets/landing/05_preset_consent.jpg">
+<meta property="og:image:width" content="3840">
+<meta property="og:image:height" content="2160">
+<meta property="og:image:alt" content="Finally OVERRIDE versus KEEP AUTO consent card on Meta Quest">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Play VR180, VR360, and SBS Video on Meta Quest 3">
+<meta name="twitter:description" content="Auto lens detection plus per-title overrides that stick after consent.">
+<meta name="twitter:image" content="https://finallyvr.com/finally/assets/landing/05_preset_consent.jpg">
+<meta name="twitter:image:alt" content="Finally OVERRIDE versus KEEP AUTO consent card on Meta Quest">
+<link rel="icon" href="/finally/manual/f_mark.png" type="image/png">
+<link rel="stylesheet" href="/finally/assets/site.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I play VR180 video on Meta Quest 3?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Install Finally VR Video Player, open a VR180 file from local storage or SMB, and let auto-detect pick the lens. If the picture is wrong, set VR180 / SBS / eye order once — Finally stores that override on the title after OVERRIDE consent." }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my VR180 look stretched or have swapped eyes?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Wrong projection or packing. Finally can use filename tags (180, sbs, mkx200, fe190, rf52) and frame geometry. Manual lens, FULL vs HALF SBS/OU, and eye swap are in the cockpit and persist per title after consent." }
+    },
+    {
+      "@type": "Question",
+      "name": "Local files or NAS?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Both. Same detector, same per-title memory." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this only for 180 cameras?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Flat 3D movies, 360 travel, fisheye originals, and photos share the vault. VR180 is just the search most people type." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="topbar">
+  <a class="brand-mark" href="/"><img src="/finally/manual/f_mark.png" alt="">Finally</a>
+  <nav aria-label="Site">
+    <a href="/">Home</a>
+    <a href="/guides/">Guides</a>
+    <a href="/compare/">Compare</a>
+    <a href="/finally/manual/">Manual</a>
+  </nav>
+</div>
+<p class="crumbs"><a href="/">Finally</a> / <a href="/guides/">Guides</a> / VR180</p>
+<header class="hero" id="main-content" tabindex="-1">
+  <img class="hero-f" src="/finally/manual/f_mark.png" width="168" height="168" alt="">
+  <div class="hero-text">
+    <span class="eyebrow">VR180 · 360 · fisheye · SBS</span>
+    <h1>FINALLY</h1>
+    <p class="product-name">Finally VR Video Player</p>
+    <p class="tag">The lens is a promise. When you fix it, it stays fixed.</p>
+  </div>
+</header>
+<div class="shell">
+  <nav class="rail" aria-label="On this page">
+    <p class="rail-title">This guide</p>
+    <a href="#answer">The answer</a>
+    <a href="#detect">Detection</a>
+    <a href="#fix">When it’s wrong</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <main>
+    <section id="answer">
+      <div class="kicker">Direct answer</div>
+      <h2>How to play VR180 on Quest 3</h2>
+      <div class="answer">
+        <p><strong>Open the file in Finally.</strong> A <code>180</code> / <code>vr180</code> / <code>sbs</code> tag in the filename is honored. Untagged files use frame geometry and your default projection. If the world still looks wrong, set the lens and packing in the cockpit once — Finally asks OVERRIDE vs KEEP AUTO, then stores that title’s choice across rescans and updates.</p>
+      </div>
+      <p>This is the failure mode that makes people install a second player. Auto-detect that fights you, or a manual fix that evaporates on the next launch. Finally’s rule is the opposite: after consent, your last honest choice wins.</p>
+    </section>
+    <section id="detect">
+      <div class="kicker">Lenses</div>
+      <h2>What Finally can wrap.</h2>
+      <ul>
+        <li><strong>VR180</strong> equirect half-dome — the usual stitched camera export.</li>
+        <li><strong>VR360</strong> full sphere.</li>
+        <li><strong>Fisheye / FE190 / MKX200 / MKX220 / VRCA</strong> — unstitched and wide lens families, including Canon RF 5.2 dual-fisheye exports tagged <code>rf52</code> as stitched VR180.</li>
+        <li><strong>Flat</strong> cinema panel, optionally curved, with SBS / top-bottom packing (full or half).</li>
+      </ul>
+      <p>SBS and OU cells are toggles: press the lit one again for 2D. Depth inverted? Swap eyes instead of changing FULL to HALF. Details live in the <a href="/finally/manual/">filename-tag tables</a>.</p>
+    </section>
+    <section id="fix">
+      <div class="kicker">Overrides</div>
+      <h2>When the picture lies.</h2>
+      <ol class="steps">
+        <li>Play the title. If scale, edges, or depth are wrong, open the cockpit lens row.</li>
+        <li>Audition VR180 vs FE190 vs fisheye before you blame the file. A 190° source on a 180° mesh looks slightly zoomed with warped edges.</li>
+        <li>Set packing (FULL/HALF SBS or OU) to match the frame, not the vibe.</li>
+        <li>Accept OVERRIDE when asked. That setting survives rescans and app updates. AUTO remains the escape hatch.</li>
+      </ol>
+      <figure class="shot inline-shot">
+        <img src="/finally/assets/landing/05_preset_consent.jpg" alt="FILENAME PRESET card: Flat SBS with OVERRIDE and KEEP AUTO" width="3840" height="2160">
+        <figcaption>Consent once. OVERRIDE sticks on that title; KEEP AUTO follows the filename.</figcaption>
+      </figure>
+    </section>
+    <section id="faq">
+      <div class="kicker">FAQ</div>
+      <h2>Projection questions.</h2>
+      <div class="faq">
+        <details open>
+          <summary>How do I play VR180 video on Meta Quest 3?</summary>
+          <p>Install Finally VR Video Player, open a VR180 file from local storage or SMB, and let auto-detect pick the lens. If the picture is wrong, set VR180 / SBS / eye order once — Finally stores that override on the title after OVERRIDE consent.</p>
+        </details>
+        <details>
+          <summary>Why does my VR180 look stretched or have swapped eyes?</summary>
+          <p>Wrong projection or packing. Finally can use filename tags (180, sbs, mkx200, fe190, rf52) and frame geometry. Manual lens, FULL vs HALF SBS/OU, and eye swap are in the cockpit and persist per title after consent.</p>
+        </details>
+        <details>
+          <summary>Local files or NAS?</summary>
+          <p>Both. Same detector, same per-title memory. See <a href="/nas/">NAS / SMB</a> and <a href="/local/">local files</a>.</p>
+        </details>
+        <details>
+          <summary>Is this only for 180 cameras?</summary>
+          <p>No. Flat 3D movies, 360 travel, fisheye originals, and photos share the vault. VR180 is just the search most people type.</p>
+        </details>
+      </div>
+      <div class="cta-band">
+        <p>Get the file onto the headset or the share. Finally will wrap it.</p>
+        <a class="store-cta" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Get Finally on Quest</a>
+      </div>
+    </section>
+  </main>
+</div>
+<footer class="site">
+  <div class="row">
+    <span>Finally VR Video Player · Coldbricks</span>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/nas/">NAS</a>
+      <a href="/iso/">ISO</a>
+      <a href="/compare/">Compare</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stream Windows Shared Folders to Meta Quest 3 (SMB) — Finally VR Video Player</title>
+<meta name="description" content="Play movies from a Windows PC share on Meta Quest 3 with Finally VR Video Player. SMB setup, same Wi-Fi, no Plex, no account. Free. No Coldbricks telemetry.">
+<link rel="canonical" href="https://finallyvr.com/windows-smb/">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#08040C">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Finally VR Video Player">
+<meta property="og:title" content="Stream Windows Shared Folders to Meta Quest 3 — Finally VR Video Player">
+<meta property="og:description" content="Windows SMB → Finally VR Video Player on Quest. No upload.">
+<meta property="og:url" content="https://finallyvr.com/windows-smb/">
+<meta property="og:image" content="https://finallyvr.com/finally/assets/landing/06_vault_cracked_club.jpg">
+<meta property="og:image:width" content="3840">
+<meta property="og:image:height" content="2160">
+<meta property="og:image:alt" content="Finally SET room with neon floor on Meta Quest">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Stream Windows Shared Folders to Meta Quest 3 — Finally VR Video Player">
+<meta name="twitter:description" content="Windows SMB → Finally VR Video Player on Quest.">
+<meta name="twitter:image" content="https://finallyvr.com/finally/assets/landing/06_vault_cracked_club.jpg">
+<meta name="twitter:image:alt" content="Finally SET room with neon floor on Meta Quest">
+<link rel="icon" href="/finally/manual/f_mark.png" type="image/png">
+<link rel="stylesheet" href="/finally/assets/site.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Stream a Windows shared folder to Meta Quest",
+  "step": [
+    { "@type": "HowToStep", "name": "Share the folder", "text": "In Windows, share the movies folder and allow a local account to read it." },
+    { "@type": "HowToStep", "name": "Note the LAN IP", "text": "ipconfig — IPv4 of the PC. Headset and PC on the same Wi-Fi, not guest isolation." },
+    { "@type": "HowToStep", "name": "Add SMB in Finally", "text": "SRC → SMB → host, user, password → pick the share → save." }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="topbar">
+  <a class="brand-mark" href="/"><img src="/finally/manual/f_mark.png" alt="">Finally</a>
+  <nav aria-label="Site">
+    <a href="/">Home</a>
+    <a href="/nas/">NAS</a>
+    <a href="/synology/">Synology</a>
+    <a class="get" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Get it free</a>
+  </nav>
+</div>
+<p class="crumbs"><a href="/">Finally</a> / <a href="/nas/">NAS</a> / Windows SMB</p>
+<header class="hero" id="main-content" tabindex="-1">
+  <img class="hero-f" src="/finally/manual/f_mark.png" width="168" height="168" alt="">
+  <div class="hero-text">
+    <span class="eyebrow">Windows share · Quest 3</span>
+    <h1>FINALLY</h1>
+    <p class="tag">The folder on the PC. The picture in the headset.</p>
+  </div>
+</header>
+<div class="shell">
+  <nav class="rail" aria-label="On this page">
+    <p class="rail-title">This page</p>
+    <a href="#answer">The answer</a>
+    <a href="#steps">Steps</a>
+  </nav>
+  <main>
+    <section id="answer">
+      <div class="kicker">Direct answer</div>
+      <h2>How to play PC videos on Quest 3 without a cable</h2>
+      <div class="answer">
+        <p><strong>Share the folder over SMB, put the Quest on the same Wi-Fi, add the share in Finally.</strong> No Plex. No Virtual Desktop required for this job. Files stay on the PC. Finally is free and collects nothing. Broader recipe: <a href="/nas/">NAS / SMB</a>.</p>
+      </div>
+    </section>
+    <section id="steps">
+      <div class="kicker">Windows</div>
+      <h2>Share, then SRC.</h2>
+      <ol class="steps">
+        <li>Folder → Properties → Sharing. A local user that can read it. Password-protected sharing on is fine — Finally will ask for the user.</li>
+        <li>PC IPv4 from <code>ipconfig</code>. Private network profile, not public. Disable AP/client isolation on the router.</li>
+        <li>Finally → SRC → SMB → IP, username, password → shared-folder card → save.</li>
+      </ol>
+      <p>Firewall: allow File and Printer Sharing on private networks. If Test fails, it is almost always Wi-Fi isolation or a wrong user, not the player. Travel / no PC: <a href="/local/">local files</a>.</p>
+      <div class="cta-band">
+        <p>Windows already shared it. Finally just has to be told.</p>
+        <a class="store-cta loud" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Get Finally on Quest</a>
+      </div>
+    </section>
+  </main>
+</div>
+<footer class="site">
+  <div class="row">
+    <span>Finally VR Video Player · Coldbricks</span>
+    <nav>
+      <a href="/nas/">NAS</a>
+      <a href="/synology/">Synology</a>
+      <a href="/local/">Local</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

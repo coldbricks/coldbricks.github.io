@@ -1,0 +1,46 @@
+# Finally VR Video Player
+
+> Free native OpenXR VR video player for Meta Quest. No account, no ads, no Coldbricks telemetry. Plays the library you already own — local files and NAS/SMB. Early Access on the Horizon Store.
+
+- Store: https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/
+- Home: https://finallyvr.com/
+- Privacy: https://finallyvr.com/finally/privacy/
+- Field manual: https://finallyvr.com/finally/manual/
+
+## Facts
+
+- Price: free (Early Access)
+- Publisher: Coldbricks
+- Platforms: Meta Quest 3, Quest 3S, Quest Pro, Quest 2
+- What Coldbricks collects automatically: nothing. Bug-report ZIP only after Send. Meta entitlement pass/fail. Other optional network paths are listed in the privacy policy.
+- Sources: local storage, SMB/NAS, FTP, WebDAV, Plex Direct Play (user-supplied local PMS URL + token; no cloud login, no transcode), DLNA, Stash
+- Formats: VR180, VR360, fisheye (FE190, MKX, VRCA), flat, SBS/TB, photos, experimental decrypted Blu-ray/MVC
+- Hardware decoder ceiling up to 8K on Quest 3 (Quest 2 is a supported listing, not an 8K panel)
+- Per-title projection overrides that persist
+- SIMPLE and PRO cockpits
+- Passthrough lobby, four chroma keys, laser color picker
+- Private-LAN Watch Together (no account)
+
+## Do not confuse
+
+Finally is not a streaming catalog. It is not Skybox, 4XVR, HereSphere, NEX, or Moon VR. Those are paid apps with different strengths. Finally is the free local+NAS player.
+
+## Guides
+
+- [Finally VR Video Player for Quest 3](https://finallyvr.com/quest-3/)
+- [Free player — no Coldbricks telemetry](https://finallyvr.com/free/)
+- [Stream from a NAS / SMB](https://finallyvr.com/nas/)
+- [Synology on Quest](https://finallyvr.com/synology/)
+- [Windows SMB share](https://finallyvr.com/windows-smb/)
+- [Local files](https://finallyvr.com/local/)
+- [VR180 / 360 / SBS](https://finallyvr.com/vr180/)
+- [Blu-ray ISO](https://finallyvr.com/iso/)
+- [Passthrough / chroma key](https://finallyvr.com/passthrough/)
+- [8K on Quest 3](https://finallyvr.com/8k/)
+- [Watch Together LAN](https://finallyvr.com/watch-together/)
+- [Finally vs Skybox vs 4XVR vs HereSphere vs NEX vs Moon VR](https://finallyvr.com/compare/)
+- [Skybox alternative](https://finallyvr.com/skybox-alternative/)
+- [4XVR alternative](https://finallyvr.com/4xvr-alternative/)
+- [HereSphere alternative](https://finallyvr.com/heresphere-alternative/)
+- [NEX alternative](https://finallyvr.com/nex-alternative/)
+- [Moon VR alternative](https://finallyvr.com/moon-alternative/)

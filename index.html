@@ -3,682 +3,614 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#05030A">
-<meta name="description" content="Coldbricks — Finally, ChloeVR, Chloe Vibes, Paisley Ponytail, Flow Fixer, SECTOR 305, Kaila, Charm13.">
-<title>COLDBRICKS</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #05030A;
-    --bg-elev: #0C0714;
-    --bg-card: rgba(14, 8, 22, 0.72);
-    --fg: #F7ECF2;
-    --muted: #A08496;
-    --dim: #5C3F52;
-    --line: rgba(255, 20, 147, 0.18);
-    --line-strong: rgba(46, 230, 197, 0.35);
-    --cyan: #2EE6C5;
-    --cyan-dim: rgba(46, 230, 197, 0.12);
-    --pink: #FF1493;
-    --pink-dim: rgba(255, 20, 147, 0.14);
-    --amber: #FFB020;
-    --violet: #8B5CFF;
-    --radius: 14px;
-    --shadow: 0 0 0 1px rgba(255, 20, 147, 0.08), 0 24px 60px rgba(0, 0, 0, 0.55);
-  }
-
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    min-height: 100vh;
-    color: var(--fg);
-    font-family: "IBM Plex Sans", system-ui, sans-serif;
-    background: var(--bg);
-    overflow-x: hidden;
-  }
-
-  /* Atmosphere */
-  .bg {
-    position: fixed;
-    inset: 0;
-    z-index: -2;
-    background:
-      radial-gradient(ellipse 90% 55% at 15% -10%, rgba(255, 20, 147, 0.28), transparent 55%),
-      radial-gradient(ellipse 70% 50% at 95% 10%, rgba(46, 230, 197, 0.16), transparent 50%),
-      radial-gradient(ellipse 60% 40% at 50% 100%, rgba(139, 92, 255, 0.14), transparent 55%),
-      linear-gradient(180deg, #080412 0%, #05030A 40%, #0A0512 100%);
-  }
-  .bg::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(46, 230, 197, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 20, 147, 0.035) 1px, transparent 1px);
-    background-size: 64px 64px;
-    mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 20%, transparent 75%);
-    pointer-events: none;
-  }
-  .bg::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0, 0, 0, 0.12) 2px,
-      rgba(0, 0, 0, 0.12) 4px
-    );
-    opacity: 0.35;
-    pointer-events: none;
-  }
-  .noise {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    opacity: 0.045;
-    pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-
-  .wrap {
-    width: min(1120px, calc(100% - 2rem));
-    margin: 0 auto;
-    padding: 1.25rem 0 4rem;
-  }
-
-  /* Top bar */
-  .topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 0.85rem 0 1.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    margin-bottom: 2.5rem;
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-  .topbar .live {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    color: var(--cyan);
-  }
-  .topbar .live i {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--cyan);
-    box-shadow: 0 0 12px var(--cyan);
-    animation: pulse 1.8s ease-in-out infinite;
-  }
-  .topbar nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.85rem 1.15rem;
-  }
-  .topbar a {
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.15s ease;
-  }
-  .topbar a:hover { color: var(--pink); }
-
-  /* Hero */
-  .hero {
-    position: relative;
-    padding: 2.5rem 0 3rem;
-    margin-bottom: 1rem;
-  }
-  .hero-kicker {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--cyan);
-    margin-bottom: 1.1rem;
-  }
-  .hero-kicker::before {
-    content: "";
-    width: 28px;
-    height: 2px;
-    background: linear-gradient(90deg, var(--pink), var(--cyan));
-    box-shadow: 0 0 12px var(--pink);
-  }
-  .hero h1 {
-    margin: 0;
-    font-family: Orbitron, system-ui, sans-serif;
-    font-weight: 800;
-    /* Keep the final S visible on narrow phones: the old 9vw + fixed tracking
-       could overrun the padded viewport while body overflow was clipped. */
-    font-size: clamp(2.2rem, 8.2vw, 5.4rem);
-    letter-spacing: clamp(0.04em, 0.8vw, 0.14em);
-    line-height: 0.95;
-    text-transform: uppercase;
-    background: linear-gradient(180deg, #fff 0%, #F4EAF0 35%, #2EE6C5 70%, #FF1493 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    filter: drop-shadow(0 0 28px rgba(255, 20, 147, 0.35));
-  }
-  .hero-sub {
-    max-width: 38rem;
-    margin: 1.35rem 0 0;
-    font-size: clamp(1.05rem, 2.2vw, 1.25rem);
-    line-height: 1.55;
-    color: var(--muted);
-    font-weight: 500;
-  }
-  .hero-sub strong {
-    color: var(--fg);
-    font-weight: 600;
-  }
-  .hero-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.65rem;
-    margin-top: 1.75rem;
-  }
-  .chip {
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.45rem 0.75rem;
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.35);
-    color: var(--muted);
-  }
-  .chip.hot {
-    border-color: rgba(255, 20, 147, 0.45);
-    color: #ff8ec8;
-    background: var(--pink-dim);
-    box-shadow: 0 0 20px rgba(255, 20, 147, 0.15);
-  }
-  .chip.cool {
-    border-color: rgba(46, 230, 197, 0.4);
-    color: var(--cyan);
-    background: var(--cyan-dim);
-  }
-
-  .hero-cta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-top: 2rem;
-  }
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    min-height: 2.75rem;
-    padding: 0.7rem 1.2rem;
-    border-radius: 999px;
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: 1px solid transparent;
-    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
-  }
-  .btn:hover { transform: translateY(-1px); }
-  .btn-primary {
-    color: #05030A;
-    background: linear-gradient(135deg, var(--cyan) 0%, #1ad4b5 45%, #ff4fb0 130%);
-    box-shadow: 0 0 0 1px rgba(46, 230, 197, 0.4), 0 10px 40px rgba(46, 230, 197, 0.25);
-  }
-  .btn-primary:hover {
-    box-shadow: 0 0 0 1px rgba(255, 20, 147, 0.5), 0 12px 48px rgba(255, 20, 147, 0.35);
-  }
-  .btn-ghost {
-    color: var(--fg);
-    border-color: rgba(255, 255, 255, 0.14);
-    background: rgba(255, 255, 255, 0.03);
-  }
-  .btn-ghost:hover {
-    border-color: var(--pink);
-    color: #ff8ec8;
-    box-shadow: 0 0 24px rgba(255, 20, 147, 0.2);
-  }
-
-  /* Sections */
-  section {
-    margin: 3.25rem 0 0;
-  }
-  .section-head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 1.1rem;
-  }
-  .section-head h2 {
-    margin: 0;
-    font-family: Orbitron, system-ui, sans-serif;
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--fg);
-  }
-  .section-head .idx {
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
-    color: var(--dim);
-  }
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 1rem;
-  }
-
-  /* Cards */
-  .card {
-    position: relative;
-    grid-column: span 12;
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
-    padding: 1.25rem 1.3rem 1.15rem;
-    border-radius: var(--radius);
-    background:
-      linear-gradient(145deg, rgba(255, 20, 147, 0.07), transparent 40%),
-      linear-gradient(180deg, rgba(20, 12, 32, 0.92), rgba(8, 5, 14, 0.95));
-    border: 1px solid var(--line);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-  }
-  .card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--accent, var(--pink)), var(--accent-2, var(--cyan)), transparent);
-    opacity: 0.85;
-  }
-  .card::after {
-    content: "";
-    position: absolute;
-    inset: auto -20% -40% auto;
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    background: radial-gradient(circle, var(--glow, rgba(255, 20, 147, 0.18)), transparent 70%);
-    pointer-events: none;
-    transition: opacity 0.2s ease;
-  }
-  .card:hover {
-    transform: translateY(-3px);
-    border-color: var(--line-strong);
-    box-shadow:
-      0 0 0 1px rgba(46, 230, 197, 0.12),
-      0 28px 70px rgba(0, 0, 0, 0.65),
-      0 0 40px rgba(255, 20, 147, 0.12);
-  }
-  .card:hover::after { opacity: 1.4; }
-
-  .card.feature {
-    padding: 1.55rem 1.5rem 1.35rem;
-  }
-  .card.feature .title {
-    font-size: clamp(1.45rem, 3vw, 1.85rem);
-  }
-
-  .card-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 0.75rem;
-    margin-bottom: 0.65rem;
-  }
-  .code {
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent, var(--cyan));
-  }
-  .pill {
-    flex-shrink: 0;
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.28rem 0.55rem;
-    border-radius: 999px;
-    border: 1px solid currentColor;
-    color: var(--accent, var(--cyan));
-    background: rgba(0, 0, 0, 0.35);
-  }
-  .title {
-    margin: 0 0 0.5rem;
-    font-family: Orbitron, system-ui, sans-serif;
-    font-weight: 700;
-    font-size: 1.2rem;
-    letter-spacing: 0.06em;
-    line-height: 1.15;
-  }
-  .blurb {
-    margin: 0 0 1.1rem;
-    color: var(--muted);
-    font-size: 0.95rem;
-    line-height: 1.55;
-    flex: 1;
-  }
-  .links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: auto;
-  }
-  .link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--fg);
-    padding: 0.48rem 0.75rem;
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.03);
-    transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
-  }
-  .link:hover {
-    color: var(--cyan);
-    border-color: rgba(46, 230, 197, 0.45);
-    background: var(--cyan-dim);
-    box-shadow: 0 0 18px rgba(46, 230, 197, 0.15);
-  }
-  .link.hot:hover {
-    color: #ff8ec8;
-    border-color: rgba(255, 20, 147, 0.5);
-    background: var(--pink-dim);
-    box-shadow: 0 0 18px rgba(255, 20, 147, 0.18);
-  }
-  .link::after {
-    content: "↗";
-    font-size: 0.85em;
-    opacity: 0.7;
-  }
-
-  /* Accent themes per card */
-  .a-pink  { --accent: #FF1493; --accent-2: #2EE6C5; --glow: rgba(255, 20, 147, 0.22); }
-  .a-cyan  { --accent: #2EE6C5; --accent-2: #8B5CFF; --glow: rgba(46, 230, 197, 0.2); }
-  .a-violet{ --accent: #8B5CFF; --accent-2: #FF1493; --glow: rgba(139, 92, 255, 0.22); }
-  .a-amber { --accent: #FFB020; --accent-2: #2EE6C5; --glow: rgba(255, 176, 32, 0.18); }
-  .a-mint  { --accent: #5DFFB0; --accent-2: #2EE6C5; --glow: rgba(93, 255, 176, 0.16); }
-
-  @media (min-width: 700px) {
-    .card.half { grid-column: span 6; }
-    .card.feature { grid-column: span 12; }
-  }
-  @media (min-width: 960px) {
-    .card.third { grid-column: span 4; }
-    .card.wide { grid-column: span 8; }
-  }
-
-  .footer {
-    margin-top: 4rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.07);
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.08em;
-    color: var(--dim);
-  }
-  .footer a {
-    color: var(--muted);
-    text-decoration: none;
-  }
-  .footer a:hover { color: var(--pink); }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.45; transform: scale(0.85); }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    .topbar .live i { animation: none; }
-    .card, .btn, .link { transition: none; }
-    .card:hover { transform: none; }
-  }
-</style>
+<title>Finally VR Video Player for Meta Quest 3 — Free. We collect nothing.</title>
+<meta name="description" content="Finally is free. We collect nothing — no account, no ads, no Coldbricks telemetry. VR video player for Meta Quest 3: local files, NAS/SMB, VR180, 360. Decoder ceiling up to 8K on Quest 3. Early Access.">
+<link rel="canonical" href="https://finallyvr.com/">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="https://finallyvr.com/sitemap.xml">
+<link rel="alternate" type="text/plain" href="https://finallyvr.com/llms.txt" title="LLM index">
+<link rel="preload" as="image" href="/finally/assets/landing/02_transport.jpg" fetchpriority="high">
+<meta name="theme-color" content="#08040C">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Finally VR Video Player">
+<meta property="og:title" content="Finally VR Video Player for Meta Quest 3 — Free. We collect nothing.">
+<meta property="og:description" content="Free on Meta Quest. We collect nothing. Local files, NAS/SMB, VR180/360. Decoder ceiling up to 8K on Quest 3.">
+<meta property="og:url" content="https://finallyvr.com/">
+<meta property="og:image" content="https://finallyvr.com/finally/assets/landing/02_transport.jpg">
+<meta property="og:image:width" content="3840">
+<meta property="og:image:height" content="2160">
+<meta property="og:image:alt" content="Finally PRO transport panel with PLAY, skip, Set A–D loops, and distance controls in a theater on Meta Quest">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Finally VR Video Player">
+<meta name="twitter:description" content="Free. We collect nothing. Local + NAS VR player for Meta Quest.">
+<meta name="twitter:image" content="https://finallyvr.com/finally/assets/landing/02_transport.jpg">
+<meta name="twitter:image:alt" content="Finally PRO transport panel with PLAY, skip, Set A–D loops, and distance controls in a theater on Meta Quest">
+<link rel="icon" href="/finally/manual/f_mark.png" type="image/png">
+<link rel="stylesheet" href="/finally/assets/site.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Finally VR Video Player",
+      "applicationCategory": "MultimediaApplication",
+      "alternateName": ["Finally", "Finally VR"],
+      "operatingSystem": "Meta Quest 3, Meta Quest 3S, Meta Quest Pro, Meta Quest 2",
+      "applicationSubCategory": "VR video player",
+      "featureList": [
+        "Local file playback",
+        "SMB NAS streaming",
+        "VR180 and VR360",
+        "Fisheye and 3D SBS",
+        "Hardware decoder ceiling up to 8K on Quest 3",
+        "Per-title projection memory",
+        "Passthrough chroma key",
+        "No account",
+        "No Coldbricks telemetry"
+      ],
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "url": "https://finallyvr.com/",
+      "downloadUrl": "https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/",
+      "sameAs": "https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/",
+      "isAccessibleForFree": true,
+      "softwareHelp": "https://finallyvr.com/finally/manual/",
+      "privacyPolicy": "https://finallyvr.com/finally/privacy/",
+      "image": "https://finallyvr.com/finally/assets/landing/02_transport.jpg",
+      "screenshot": [
+        "https://finallyvr.com/finally/assets/landing/01_cockpit_arena.jpg",
+        "https://finallyvr.com/finally/assets/landing/02_transport.jpg",
+        "https://finallyvr.com/finally/assets/landing/05_preset_consent.jpg"
+      ],
+      "publisher": { "@type": "Organization", "name": "Coldbricks", "email": "coldbricks@gmail.com", "url": "https://finallyvr.com/lab/" },
+      "description": "A native OpenXR VR video player for media you already own. Local files and SMB/NAS, VR180/360/fisheye, hardware decoder ceiling up to 8K on Quest 3, no account, no Coldbricks telemetry. Early Access on the Meta Horizon Store."
+    },
+    {
+      "@type": "WebSite",
+      "name": "Finally VR Video Player",
+      "url": "https://finallyvr.com/",
+      "publisher": { "@type": "Organization", "name": "Coldbricks" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Finally, in one sentence?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A native OpenXR VR video player for media you already own — local files and network shares, no catalog and no account." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I watch a NAS / SMB library on Quest 3?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Install Finally from the Horizon Store, open SRC, add the SMB server, pick the shared folder, and save. Playback streams from your machine. Coldbricks never sees the files." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this a Skybox or 4XVR alternative?",
+          "acceptedAnswer": { "@type": "Answer", "text": "If you want a free player that treats local + NAS as the product, remembers projection, and does not run Coldbricks telemetry — yes. Store builds still check Meta entitlement. Nearby discovery, Watch Together, and optional bug-report Send are on the privacy map. Skybox, 4XVR, HereSphere, NEX, and Moon VR remain strong paid apps with their own strengths." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does it play VR180, 360, SBS, and fisheye?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Filename tags and frame geometry pick a lens; you can override; the override is stored per title. Flat 3D movies use SBS / top-bottom packing with a one-press 2D exit." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it free? What’s the catch?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Free on the Meta Horizon Store, listed as Early Access. No ads, no subscription, no account. Optional support links live on the web manual, not in the player. Galaxy XR shares the same player family; the Quest store listing is the current public install path." }
+        },
+        {
+          "@type": "Question",
+          "name": "What do you collect?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Nothing automatically to Coldbricks. Library index, credentials, and playback memory stay on the headset. Optional Submit Bug Report creates a ZIP locally and sends it only if you press Send. Meta store builds check entitlement with Meta (pass/fail). Other optional network paths are listed in the privacy policy." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Finally free on Meta Quest?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Finally is a free native player for local files and NAS libraries on Quest 3 / 3S / Pro / 2, listed as Early Access. Paid apps still win specific jobs — Skybox for environments, 4XVR for a dense format board, HereSphere for optical calibration." }
+        },
+        {
+          "@type": "Question",
+          "name": "Which headsets?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Meta Quest 3, Quest 3S, Quest Pro, and Quest 2 on the Horizon Store. Hardware decoder ceiling up to 8K is a Quest 3 proof, not a Quest 2 panel claim. Galaxy XR shares the same player family; the Quest listing is the current public install path." }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
-<div class="bg" aria-hidden="true"></div>
-<div class="noise" aria-hidden="true"></div>
+<a class="skip-link" href="#main-content">Skip to content</a>
 
-<div class="wrap">
-  <div class="topbar">
-    <span class="live"><i></i> Systems online</span>
+<div class="topbar">
+  <a class="brand-mark" href="/"><img src="/finally/manual/f_mark.png" alt="">Finally</a>
+  <nav aria-label="Site">
+    <a href="#play">Play</a>
+    <a href="#library">Library</a>
+    <a href="/guides/">Guides</a>
+    <a href="/compare/">Compare</a>
+    <a href="/finally/privacy/">Privacy</a>
+    <a href="/finally/manual/">Manual</a>
+    <a class="get" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Get it free</a>
+  </nav>
+</div>
+
+<main id="main-content" tabindex="-1">
+<header class="stage">
+  <img class="stage-shot" src="/finally/assets/landing/02_transport.jpg" width="1920" height="1080" alt="Finally VR Video Player transport panel floating in a live theater on Meta Quest" fetchpriority="high" decoding="async">
+  <div class="stage-shade" aria-hidden="true"></div>
+  <div class="stage-inner">
+    <span class="eyebrow">Free on Meta Quest · We collect nothing</span>
+    <h1><span aria-hidden="true">FINALLY</span><span class="sr-only">Finally VR Video Player</span></h1>
+    <p class="verdict">You already have the files. <em>This is the player.</em></p>
+    <p class="lede"><strong>Free. We collect nothing.</strong> Local storage and NAS. VR180, 360, fisheye, 3D. Decoder ceiling up to 8K on Quest 3. No account, no ads, no Coldbricks telemetry.</p>
+    <div class="hero-actions">
+      <a class="store-cta loud" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Get it free on Meta Quest</a>
+      <a class="ghost-cta" href="#privacy">What we collect</a>
+    </div>
+    <div class="hero-chips">
+      <span class="chip teal">Free</span>
+      <span class="chip">We collect nothing</span>
+      <span class="chip">No account</span>
+      <span class="chip">No ads</span>
+      <span class="chip gold">Local + NAS</span>
+      <span class="chip">Early Access</span>
+    </div>
+  </div>
+</header>
+
+<div class="proof" aria-label="In-headset">
+  <a href="#headset">
+    <figure>
+      <img src="/finally/assets/landing/01_cockpit_arena.jpg" alt="Finally PLACE/EYES cockpit over Madison Square Garden with distance, zoom, and lens family" width="3840" height="2160">
+      <figcaption>The cockpit · SIMPLE and PRO</figcaption>
+    </figure>
+  </a>
+  <a href="#room">
+    <figure>
+      <img src="/finally/assets/landing/03_chroma_passthrough.jpg" alt="Finally chroma key panel in passthrough with laser picker" width="3840" height="2160">
+      <figcaption>Passthrough · four chroma keys</figcaption>
+    </figure>
+  </a>
+  <a href="#play">
+    <figure>
+      <img src="/finally/assets/landing/05_preset_consent.jpg" alt="Finally OVERRIDE versus KEEP AUTO consent card over a theater scene" width="3840" height="2160">
+      <figcaption>VR180 · overrides that stick</figcaption>
+    </figure>
+  </a>
+</div>
+
+<aside class="pact" id="privacy">
+  <div class="pact-card free">
+    <div class="kicker">Price</div>
+    <p class="pact-line">Free.</p>
+    <p>No subscription. No account. No ads. Early Access on the Horizon Store — the listing is the whole receipt.</p>
+  </div>
+  <div class="pact-card quiet">
+    <div class="kicker">What we collect</div>
+    <p class="pact-line">Nothing.</p>
+    <p>No Coldbricks telemetry, analytics, or ads. Your library stays on the headset. Optional Send and Meta entitlement are in the <a href="/finally/privacy/">privacy policy</a>.</p>
+  </div>
+</aside>
+
+<div class="shell">
+  <nav class="rail" aria-label="On this page">
+    <p class="rail-title">On this page</p>
+    <a href="#privacy">Free · nothing collected</a>
+    <a href="#play">Playback</a>
+    <a href="#headset">Built for the headset</a>
+    <a href="#room">Mixed reality</a>
+    <a href="#library">Your library</a>
+    <a href="#shots">In headset</a>
+    <a href="#compare">Versus the field</a>
+    <a href="#guides">Guides</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+
+  <div>
+    <section id="play">
+      <div class="kicker">01 · playback</div>
+      <h2>One player. Your whole library.</h2>
+      <p class="lede">Hardware decoder ceiling up to 8K on Quest 3. Quest 2 is a supported listing, not an 8K panel. Projection is auto-detected from the filename and the frame. When you override it, the override <em>sticks</em> on that title.</p>
+      <div class="feat-grid">
+        <article class="feat">
+          <div class="kicker">Lenses</div>
+          <h3>VR180, 360, fisheye, flat</h3>
+          <p>Equirect, circular fisheye, FE190, MKX, VRCA, and a flat panel that can curve. SBS / top-bottom packing, full or half, with a one-press exit back to 2D.</p>
+        </article>
+        <article class="feat">
+          <div class="kicker">Memory</div>
+          <h3>Overrides that stay put</h3>
+          <p>Finally asks once — OVERRIDE or KEEP AUTO — then keeps lens, stereo, and eye order on that title across rescans and updates.</p>
+        </article>
+        <article class="feat">
+          <div class="kicker">Discs</div>
+          <h3>Experimental Blu-ray / MVC</h3>
+          <p>Experimental decrypted Blu-ray / MVC playback for rips you already own. No disc menus, no decryption service — just the stream, in the headset.</p>
+        </article>
+        <article class="feat">
+          <div class="kicker">Stills</div>
+          <h3>Photos in the same vault</h3>
+          <p>Videos and stills share the library. Passthrough, placement, and the same cockpit grammar — not a second app for pictures.</p>
+        </article>
+      </div>
+      <figure class="shot inline-shot">
+        <img src="/finally/assets/landing/05_preset_consent.jpg" alt="FILENAME PRESET card offering OVERRIDE or KEEP AUTO for a Flat SBS title" width="3840" height="2160">
+        <figcaption>Consent once. OVERRIDE sticks on that title; KEEP AUTO follows the filename.</figcaption>
+      </figure>
+    </section>
+
+    <section id="headset">
+      <div class="kicker">02 · cockpit</div>
+      <h2>Built for the headset.</h2>
+      <p class="lede">Native OpenXR theater. SIMPLE for daily transport. PRO when you want the whole board. One tracked controller can reach every critical control.</p>
+      <ul>
+        <li><strong>SIMPLE and PRO cockpits</strong> — daily transport in SIMPLE; placement, color, loops, and stats waiting in PRO.</li>
+        <li><strong>True scene dolly</strong> — move closer without wrecking world scale. Stick click homes distance and zoom.</li>
+        <li><strong>Lie-back tilt follow</strong> — the picture stays upright to your face. Menus stay world-anchored.</li>
+        <li><strong>Refresh-rate matching</strong> — cadence-aware display hints for 24 / 25 / 30 / 60 fps content. Not fake frame interpolation.</li>
+        <li><strong>Grab the vault and flick it</strong> — momentum scrolling for large collections, with a real end of the list.</li>
+        <li><strong>Subtitles that live on the picture</strong> — embedded or sidecar SRT / VTT / ASS, movable, including below the frame.</li>
+      </ul>
+      <figure class="shot inline-shot">
+        <img src="/finally/assets/landing/02_transport.jpg" alt="Finally PRO transport: PLAY, skip, speed, volume, Set A–D loop chips, LOOP, Clear AB, CLOSER and FARTHER over a theater" width="3840" height="2160">
+        <figcaption>PRO transport — play, skip, speed, volume, A–B–C–D loops, and distance. SIMPLE hides the loop chips.</figcaption>
+      </figure>
+    </section>
+
+    <section id="room">
+      <div class="kicker">03 · mixed reality</div>
+      <h2>Your room, not a black void.</h2>
+      <p class="lede">Alpha-packed AR video plays in passthrough. Four simultaneous chroma keys, picked with the in-headset laser. Browse the vault with the room still visible — or drop into a 360 world.</p>
+      <div class="feat-grid">
+        <article class="feat">
+          <div class="kicker">Key</div>
+          <h3>Four chroma keys</h3>
+          <p>Independent colors with edge controls. Point the laser, click, it’s keyed. Packed-alpha mattes for files that already carry transparency.</p>
+        </article>
+        <article class="feat">
+          <div class="kicker">Lobby</div>
+          <h3>Passthrough or a world</h3>
+          <p>REAL puts the vault in your space. SET loads a bundled or custom room. Dark room and room-dim are for flat movies that need a cinema, not a glow.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="library">
+      <div class="kicker">04 · sources</div>
+      <h2>Your library, your rules.</h2>
+      <p class="lede">Local storage and SMB shares are first-class — not an afterthought behind a catalog. Resume positions and per-title projection memory. Color grade starts clean each session. No Coldbricks telemetry.</p>
+      <ul>
+        <li><strong>Local folders</strong> on the headset, added through the system picker.</li>
+        <li><strong>SMB / NAS</strong> — sign in, pick the share, save. Playback streams from your server.</li>
+        <li><strong>Also in the player</strong> — FTP, WebDAV, Plex Direct Play (user-supplied local PMS URL + token; no cloud login, no transcode), Stash, DLNA/UPnP, nearby discovery. Credentials stay on the device and only go to the server you named.</li>
+        <li><strong>Watch Together</strong> — two headsets on a private LAN, same media bytes, no account and no Internet room.</li>
+      </ul>
+      <div class="note">
+        <p><strong>Private by construction.</strong> No Coldbricks telemetry, analytics, ads, or account. Optional Submit Bug Report sends a ZIP only after you press Send. Meta entitlement is pass/fail. Nearby discovery, Watch Together, and other optional network paths are on the <a href="/finally/privacy/">privacy policy</a>.</p>
+      </div>
+    </section>
+
+    <section id="shots">
+      <div class="kicker">05 · in headset</div>
+      <h2>What it actually looks like.</h2>
+      <div class="shot-grid">
+        <figure class="shot">
+          <img src="/finally/assets/landing/06_vault_cracked_club.jpg" alt="Neon cracked floor in a Finally SET room with a stale SETUP panel floating above it" width="3840" height="2160">
+          <figcaption>A SET room — neon floor, leftover SETUP chrome. Not a title list.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="/finally/assets/landing/01_cockpit_arena.jpg" alt="Finally PLACE/EYES board with distance, zoom, stereo repair, and MKX / FE190 / VRCA lens chips" width="3840" height="2160">
+          <figcaption>The cockpit — SIMPLE for daily use, PRO when you want the board.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="/finally/assets/landing/05_preset_consent.jpg" alt="Consent card: this file is tagged Flat SBS, OVERRIDE or KEEP AUTO" width="3840" height="2160">
+          <figcaption>Sticky override — consent once, then that title keeps the lens you set.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="/finally/assets/landing/03_chroma_passthrough.jpg" alt="Chroma-keyed video composited into passthrough" width="3840" height="2160">
+          <figcaption>Passthrough keying — laser-pick a color, keep the room.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="/finally/assets/landing/04_photo_passthrough.jpg" alt="Photo viewing in mixed reality passthrough" width="3840" height="2160">
+          <figcaption>Stills in the same vault, in your real room.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="/finally/assets/landing/02_transport.jpg" alt="PRO transport panel with PLAY, skip chips, Set A–D loops, and CLOSER / FARTHER" width="3840" height="2160">
+          <figcaption>PRO transport — A–B–C–D loops on the strip. SIMPLE hides them.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="compare">
+      <div class="kicker">06 · the field</div>
+      <h2>Finally vs the usual suspects.</h2>
+      <p class="lede">Skybox, 4XVR, HereSphere, NEX, and Moon VR are real products with real fans. Finally is the free native player built around <em>your</em> files — and it remembers the projection you just fixed. Early Access on the Horizon Store.</p>
+      <p class="tbl-hint">This table scrolls sideways on a narrow screen — NEX and Moon VR sit to the right.</p>
+      <div class="tbl-wrap wide" role="region" aria-label="Player comparison" tabindex="0">
+        <table>
+          <thead>
+            <tr>
+              <th>What you care about</th>
+              <th class="us">Finally</th>
+              <th>Skybox VR</th>
+              <th>4XVR</th>
+              <th>HereSphere</th>
+              <th>NEX</th>
+              <th>Moon VR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Price</td>
+              <td class="us">Free <span class="sub">Early Access</span></td>
+              <td>~$10 buy <span class="sub">listing is today’s price</span></td>
+              <td>Free + Premium IAP (~$30 class) <span class="sub">30-day local 2D; 5 min/day for 3D, SMB, USB</span></td>
+              <td>$29.99</td>
+              <td>Trial + Full IAP (~$10 class) <span class="sub">listing is today’s price</span></td>
+              <td>~$10 class + DLC <span class="sub">listing is today’s price</span></td>
+            </tr>
+            <tr>
+              <td>Engine</td>
+              <td class="us">Native OpenXR</td>
+              <td>Unity</td>
+              <td>Native OpenXR</td>
+              <td>Unreal</td>
+              <td>Unity-class <span class="sub">~1.1 GB</span></td>
+              <td>Unity-class</td>
+            </tr>
+            <tr>
+              <td>Account</td>
+              <td class="us">None</td>
+              <td>Required for rooms / extras</td>
+              <td>Store app</td>
+              <td>Store app</td>
+              <td>Store app</td>
+              <td>Store app</td>
+            </tr>
+            <tr>
+              <td>Account / Coldbricks telemetry</td>
+              <td class="us">No Coldbricks telemetry</td>
+              <td>Login for rooms / extras</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Local + NAS / SMB</td>
+              <td class="us">First-class</td>
+              <td>Yes</td>
+              <td>Yes</td>
+              <td>Yes</td>
+              <td>Yes</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td>USB OTG</td>
+              <td class="us">SAF / OS-exposed volumes <span class="sub">not host MSC</span></td>
+              <td>USB sticks</td>
+              <td>USB sticks</td>
+              <td>—</td>
+              <td>USB sticks</td>
+              <td>USB sticks</td>
+            </tr>
+            <tr>
+              <td>Projection memory</td>
+              <td class="us">Consent once, per-title</td>
+              <td>Persisted per-file user type</td>
+              <td>Recover-auto</td>
+              <td>Precision calibration</td>
+              <td>Simple / auto</td>
+              <td>Simple / auto</td>
+            </tr>
+            <tr>
+              <td>8K hardware path</td>
+              <td class="us">Decoder ceiling on Quest 3</td>
+              <td>skybox.xyz claims 8K <span class="sub">Meta listing: high-res + HDR</span></td>
+              <td>Yes</td>
+              <td>High-res path</td>
+              <td>Not the listing pitch</td>
+              <td>Listing claims 8K / 12K</td>
+            </tr>
+            <tr>
+              <td>ISO / 3D disc rips</td>
+              <td class="us">Experimental decrypted Blu-ray / MVC</td>
+              <td>Public Blu-ray ISO + MVC 3D <span class="sub">Preview 2.0.0</span></td>
+              <td>Strong ISO / MVC path</td>
+              <td>—</td>
+              <td>Listing claims MVC 3D from Blu-ray ISO</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Mixed reality</td>
+              <td class="us">Passthrough lobby, 4 chroma keys, laser picker</td>
+              <td>Environments</td>
+              <td>Some passthrough paths</td>
+              <td>Passthrough / crop tools</td>
+              <td>Some passthrough</td>
+              <td>Passthrough 2.0</td>
+            </tr>
+            <tr>
+              <td>Watch with someone</td>
+              <td class="us">Private LAN, no account</td>
+              <td>Cloud rooms, login</td>
+              <td>—</td>
+              <td>—</td>
+              <td>NEX Link <span class="sub">PC companion</span></td>
+              <td>Moon Link <span class="sub">PC companion</span></td>
+            </tr>
+            <tr>
+              <td>Install class</td>
+              <td class="us">Lean native OpenXR</td>
+              <td>Large Unity package</td>
+              <td>Native, heavier</td>
+              <td>Unreal ~100 MB APK</td>
+              <td>Large Unity</td>
+              <td>Large Unity</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Full notes, including what they still do better, live on the <a href="/compare/">comparison page</a>. Prices move; the store listing on each app is the authority for what you pay today.</p>
+    </section>
+
+    <section id="guides">
+      <div class="kicker">07 · search</div>
+      <h2>Guides for the queries people actually type.</h2>
+      <p class="lede">If you landed here from “watch NAS movies on Quest” or “play VR180 on Quest 3,” start with the matching guide. Each page is written to answer the question in the first screen.</p>
+      <div class="feat-grid">
+        <article class="feat">
+          <div class="kicker">NAS</div>
+          <h3><a href="/nas/">Stream from a NAS / SMB share</a></h3>
+          <p>Synology, TrueNAS, Windows share — sign in, pick the folder, press play. Files never leave your network.</p>
+        </article>
+        <article class="feat">
+          <div class="kicker">VR180</div>
+          <h3><a href="/vr180/">Play VR180, 360, and SBS on Quest</a></h3>
+          <p>How Finally picks a lens, why overrides stick, and what to do when a file looks stretched or swapped.</p>
+        </article>
+        <article class="feat">
+          <div class="kicker">ISO</div>
+          <h3><a href="/iso/">Blu-ray ISO and 3D rips in the headset</a></h3>
+          <p>Experimental decrypted disc images you already own — not a ripping service, not a catalog.</p>
+        </article>
+        <article class="feat">
+          <div class="kicker">Versus</div>
+          <h3><a href="/compare/">Finally vs Skybox vs 4XVR vs HereSphere vs NEX vs Moon VR</a></h3>
+          <p>Same-page notes plus indexable pages: <a href="/skybox-alternative/">Skybox alternative</a>, <a href="/4xvr-alternative/">4XVR</a>, <a href="/heresphere-alternative/">HereSphere</a>, <a href="/nex-alternative/">NEX</a>, <a href="/moon-alternative/">Moon VR</a>.</p>
+        </article>
+        <article class="feat">
+          <div class="kicker">Quest 3</div>
+          <h3><a href="/quest-3/">Finally VR Video Player for Meta Quest 3</a></h3>
+          <p>Local files, NAS, VR180, and when to still pay Skybox, 4XVR, or HereSphere.</p>
+        </article>
+        <article class="feat">
+          <div class="kicker">Free</div>
+          <h3><a href="/free/">Free. No Coldbricks telemetry.</a></h3>
+          <p>Price, what stays on the headset, and the privacy map.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="kicker">08 · questions</div>
+      <h2>Daily-use FAQ</h2>
+      <div class="faq">
+        <details open>
+          <summary>What is Finally, in one sentence?</summary>
+          <p>A native OpenXR VR video player for media you already own — local files and network shares, no catalog and no account.</p>
+        </details>
+        <details>
+          <summary>How do I watch a NAS / SMB library on Quest 3?</summary>
+          <p>Install Finally from the Horizon Store, open SRC, add the SMB server, pick the shared folder, and save. Playback streams from your machine. Coldbricks never sees the files. The <a href="/finally/manual/">field manual</a> has the exact first-hour path.</p>
+        </details>
+        <details>
+          <summary>Is this a Skybox or 4XVR alternative?</summary>
+          <p>If you want a free player that treats local + NAS as the product, remembers projection, and does not run Coldbricks telemetry — yes. Store builds still check Meta entitlement. Nearby discovery, Watch Together, and optional bug-report Send are on the <a href="/finally/privacy/">privacy map</a>. If you want Skybox environments, 4XVR’s densest format board, or HereSphere’s optical microsurgery, those apps still earn their price. Read the <a href="/compare/">comparison</a>.</p>
+        </details>
+        <details>
+          <summary>Does it play VR180, 360, SBS, and fisheye?</summary>
+          <p>Yes. Filename tags and frame geometry pick a lens; you can override; the override is stored per title. Flat 3D movies use SBS / top-bottom packing with a one-press 2D exit.</p>
+        </details>
+        <details>
+          <summary>Is it free? What’s the catch?</summary>
+          <p>Free on the Meta Horizon Store, listed as Early Access. No ads, no subscription, no account. Optional support links live on the web manual, not in the player. Galaxy XR shares the same player family; the Quest store listing is the current public install path.</p>
+        </details>
+        <details>
+          <summary>What do you collect?</summary>
+          <p>Nothing automatically to Coldbricks. Library index, credentials, and playback memory stay on the headset. Optional Submit Bug Report creates a ZIP locally and sends it only if you press Send. Meta store builds check entitlement with Meta (pass/fail). Other optional network paths are listed in the <a href="/finally/privacy/">privacy policy</a>.</p>
+        </details>
+        <details>
+          <summary>Is Finally free on Meta Quest?</summary>
+          <p>Yes. Finally is a free native player for local files and NAS libraries on Quest 3 / 3S / Pro / 2, listed as Early Access. Paid apps still win specific jobs — Skybox for environments, 4XVR for a dense format board, HereSphere for optical calibration. Start here if you do not want to pay to play your own files.</p>
+        </details>
+        <details>
+          <summary>Which headsets?</summary>
+          <p>Meta Quest 3, Quest 3S, Quest Pro, and Quest 2 on the Horizon Store. Hardware decoder ceiling up to 8K is a Quest 3 proof, not a Quest 2 panel claim. Galaxy XR shares the same player family; the Quest listing is the current public install path.</p>
+        </details>
+      </div>
+
+      <div class="cta-band">
+        <p><strong>If you have a media collection and a Quest, start here.</strong> Early Access on the Horizon Store. The field manual is the authority for the build in your Lobby.</p>
+        <a class="store-cta" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Get it on Meta Quest</a>
+      </div>
+    </section>
+  </div>
+</div>
+</main>
+
+<div class="get-dock">
+  <a class="store-cta loud" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Get it free on Meta Quest</a>
+</div>
+
+<footer class="site">
+  <div class="row">
+    <span>Finally VR Video Player · Coldbricks</span>
     <nav>
-      <a href="#shipped">Finally</a>
-      <a href="#xr">XR</a>
-      <a href="#tools">Tools</a>
-      <a href="#sims">Sims</a>
-      <a href="#rf">RF</a>
-      <a href="#research">Research</a>
-      <a href="https://github.com/coldbricks">GitHub</a>
+      <a href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Horizon Store</a>
+      <a href="/finally/manual/">Field manual</a>
+      <a href="/finally/privacy/">Privacy</a>
+      <a href="/guides/">Guides</a>
+      <a href="/compare/">Compare</a>
+      <a href="/lab/">Lab</a>
+      <a href="mailto:coldbricks@gmail.com">coldbricks@gmail.com</a>
     </nav>
   </div>
+  <div class="mega">
+    <div>
+      <h2>Product</h2>
+      <a href="/">Finally VR Video Player</a>
+      <a href="/quest-3/">Quest 3 player</a>
+      <a href="/free/">Free · we collect nothing</a>
+      <a href="/finally/privacy/">Privacy policy</a>
+      <a href="/finally/manual/">Field manual</a>
+    </div>
+    <div>
+      <h2>Setup</h2>
+      <a href="/nas/">NAS / SMB</a>
+      <a href="/synology/">Synology</a>
+      <a href="/windows-smb/">Windows share</a>
+      <a href="/local/">Local files</a>
+      <a href="/vr180/">VR180 / 360</a>
+      <a href="/iso/">Blu-ray ISO</a>
+    </div>
+    <div>
+      <h2>Versus</h2>
+      <a href="/compare/">All players</a>
+      <a href="/skybox-alternative/">Skybox alternative</a>
+      <a href="/4xvr-alternative/">4XVR alternative</a>
+      <a href="/heresphere-alternative/">HereSphere alternative</a>
+      <a href="/alternatives/">Hub</a>
+    </div>
+    <div>
+      <h2>More</h2>
+      <a href="/passthrough/">Passthrough / chroma</a>
+      <a href="/8k/">8K on Quest</a>
+      <a href="/watch-together/">Watch Together</a>
+      <a href="/guides/">Guides</a>
+      <a href="/sitemap.html">Sitemap</a>
+    </div>
+  </div>
+</footer>
 
-  <header class="hero">
-    <div class="hero-kicker">Ash Airfoil · Independent lab</div>
-    <h1 aria-label="COLDBRICKS">COLDBRICKS</h1>
-    <p class="hero-sub">
-      Instruments, not toys. <strong>Native XR</strong>, <strong>deterministic sims</strong>,
-      <strong>haptic force</strong>, archive resurrection, and RF radar —
-      built to hold under pressure.
-    </p>
-    <div class="hero-meta">
-      <span class="chip hot">Shipped · Meta Horizon</span>
-      <span class="chip cool">OpenXR · Quest · Galaxy XR</span>
-      <span class="chip">Deterministic cores</span>
-      <span class="chip">Sideload + public tools</span>
-    </div>
-    <div class="hero-cta">
-      <a class="btn btn-primary" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Get Finally</a>
-      <a class="btn btn-ghost" href="https://github.com/coldbricks">All repositories</a>
-    </div>
-  </header>
-
-  <section id="shipped" aria-labelledby="shipped-h">
-    <div class="section-head">
-      <h2 id="shipped-h">Shipped product</h2>
-      <span class="idx">01 // PRODUCTION</span>
-    </div>
-    <div class="grid">
-      <article class="card feature a-pink">
-        <div class="card-top">
-          <span class="code">CBX-FINALLY</span>
-          <span class="pill">Meta Horizon</span>
-        </div>
-        <h3 class="title">Finally</h3>
-        <p class="blurb">VR video player for Meta Quest and Galaxy XR — local library, NAS path, field-manual polish. The store-facing flagship.</p>
-        <div class="links">
-          <a class="link hot" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Horizon Store</a>
-          <a class="link" href="/finally/manual/">Field manual</a>
-          <a class="link" href="/finally/privacy/">Privacy</a>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section id="xr" aria-labelledby="xr-h">
-    <div class="section-head">
-      <h2 id="xr-h">XR &amp; haptics</h2>
-      <span class="idx">02 // PRESENCE STACK</span>
-    </div>
-    <div class="grid">
-      <article class="card half a-violet">
-        <div class="card-top">
-          <span class="code">CBX-CHLOEVR</span>
-          <span class="pill">Sideload</span>
-        </div>
-        <h3 class="title">ChloeVR</h3>
-        <p class="blurb">Native OpenXR for Galaxy XR and Quest — VR180/360 cinema plus a full 6DOF dancer stage. BeatReactor, ClipDrive, intimate suite. Not a Unity port.</p>
-        <div class="links">
-          <a class="link" href="mailto:coldbricks@gmail.com?subject=ChloeVR%20beta">Request beta</a>
-          <a class="link hot" href="mailto:coldbricks@gmail.com?subject=ChloeVR%20release%20access">Release access</a>
-        </div>
-      </article>
-      <article class="card half a-cyan">
-        <div class="card-top">
-          <span class="code">CBX-VIBES</span>
-          <span class="pill">Public</span>
-        </div>
-        <h3 class="title">Chloe Vibes</h3>
-        <p class="blurb">Sound into calibrated haptic force in real time — deterministic, dual-client, parity-locked companion for the Chloe stack.</p>
-        <div class="links">
-          <a class="link" href="https://github.com/coldbricks/Chloe-Vibes">GitHub</a>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section id="tools" aria-labelledby="tools-h">
-    <div class="section-head">
-      <h2 id="tools-h">Tools &amp; recovery</h2>
-      <span class="idx">03 // FORENSICS</span>
-    </div>
-    <div class="grid">
-      <article class="card half a-amber">
-        <div class="card-top">
-          <span class="code">CBX-PAISLEY</span>
-          <span class="pill">Archive</span>
-        </div>
-        <h3 class="title">Paisley Ponytail</h3>
-        <p class="blurb">The Webshots Resurrector. Search an old screen name — pull full-resolution photos back from the Internet Archive.</p>
-        <div class="links">
-          <a class="link" href="https://github.com/coldbricks/paisley-ponytail">GitHub</a>
-        </div>
-      </article>
-      <article class="card half a-pink">
-        <div class="card-top">
-          <span class="code">CBX-FLOW</span>
-          <span class="pill">Reliability</span>
-        </div>
-        <h3 class="title">Flow Fixer</h3>
-        <p class="blurb">Reliability toolkit for Google Flow — HAR forensics, fan-out analysis, eng brief. Not a bypass tool.</p>
-        <div class="links">
-          <a class="link" href="https://github.com/coldbricks/flow-fixer">GitHub</a>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section id="sims" aria-labelledby="sims-h">
-    <div class="section-head">
-      <h2 id="sims-h">Simulators</h2>
-      <span class="idx">04 // DOCTRINE</span>
-    </div>
-    <div class="grid">
-      <article class="card half a-cyan">
-        <div class="card-top">
-          <span class="code">CBX-305</span>
-          <span class="pill">Miami</span>
-        </div>
-        <h3 class="title">SECTOR 305</h3>
-        <p class="blurb">Doctrine-driven PSAP dispatch sim — deterministic grading, adaptive mastery, GIS plate, 17-track score. Process over spectacle.</p>
-        <div class="links">
-          <a class="link" href="https://github.com/coldbricks/SECTOR-305">GitHub</a>
-          <a class="link hot" href="/SECTOR-305/ost/">Play the OST</a>
-        </div>
-      </article>
-      <article class="card half a-amber">
-        <div class="card-top">
-          <span class="code">CBX-KAILA</span>
-          <span class="pill">UHF / TV</span>
-        </div>
-        <h3 class="title">Kaila</h3>
-        <p class="blurb">The flight simulator for broadcast engineers — dual-mode UHF TV transmitter training. Physics authority under the glass.</p>
-        <div class="links">
-          <a class="link" href="https://github.com/coldbricks/kaila">GitHub</a>
-          <a class="link" href="/kaila/">Public teaser</a>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section id="rf" aria-labelledby="rf-h">
-    <div class="section-head">
-      <h2 id="rf-h">Radio &amp; RF</h2>
-      <span class="idx">05 // SPECTRUM</span>
-    </div>
-    <div class="grid">
-      <article class="card half a-mint">
-        <div class="card-top">
-          <span class="code">CBX-ADSB</span>
-          <span class="pill">RTL-SDR</span>
-        </div>
-        <h3 class="title">Coldbricks ADS-B</h3>
-        <p class="blurb">Live aircraft radar map powered by RTL-SDR + dump1090. Local glass for the sky.</p>
-        <div class="links">
-          <a class="link" href="https://github.com/coldbricks/coldbricks-adsb">GitHub</a>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section id="research" aria-labelledby="research-h">
-    <div class="section-head">
-      <h2 id="research-h">Research</h2>
-      <span class="idx">06 // THEORY</span>
-    </div>
-    <div class="grid">
-      <article class="card half a-violet">
-        <div class="card-top">
-          <span class="code">CBX-CHARM13</span>
-          <span class="pill">Math</span>
-        </div>
-        <h3 class="title">Charm13</h3>
-        <p class="blurb">Budgeted adaptive inspection in finite models — exact envelopes G₂(K)=1−1/K, certificates, habitat-cover engineering corollary.</p>
-        <div class="links">
-          <a class="link" href="https://github.com/coldbricks/charm13">GitHub</a>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <span>COLDBRICKS · NO SPECTACLE WITHOUT INSTRUMENT</span>
-    <span>
-      <a href="mailto:coldbricks@gmail.com">coldbricks@gmail.com</a>
-      ·
-      <a href="https://github.com/coldbricks">github.com/coldbricks</a>
-    </span>
-  </footer>
-</div>
+<script>
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll("nav.rail a[href^='#']"));
+  var ids = links.map(function (a) { return a.getAttribute("href").slice(1); });
+  var sections = ids.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  if (!("IntersectionObserver" in window) || sections.length === 0) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      links.forEach(function (a) {
+        a.classList.toggle("on", a.getAttribute("href") === "#" + e.target.id);
+      });
+    });
+  }, { rootMargin: "-20% 0px -65% 0px", threshold: 0.01 });
+  sections.forEach(function (s) { io.observe(s); });
+})();
+</script>
 </body>
 </html>

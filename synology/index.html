@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Watch Synology NAS Videos on Meta Quest 3 (SMB) — Finally VR Video Player</title>
+<meta name="description" content="Stream Synology NAS movies to Meta Quest 3 with Finally VR Video Player over SMB. No Plex required, no upload, no account. Free. No Coldbricks telemetry.">
+<link rel="canonical" href="https://finallyvr.com/synology/">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#08040C">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Finally VR Video Player">
+<meta property="og:title" content="Watch Synology NAS Videos on Meta Quest 3 — Finally VR Video Player">
+<meta property="og:description" content="Synology SMB → Finally VR Video Player on Quest 3. Files stay on the NAS.">
+<meta property="og:url" content="https://finallyvr.com/synology/">
+<meta property="og:image" content="https://finallyvr.com/finally/assets/landing/06_vault_cracked_club.jpg">
+<meta property="og:image:width" content="3840">
+<meta property="og:image:height" content="2160">
+<meta property="og:image:alt" content="Finally SET room with neon floor on Meta Quest">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Watch Synology NAS Videos on Meta Quest 3 — Finally VR Video Player">
+<meta name="twitter:description" content="Synology SMB → Finally VR Video Player on Quest 3.">
+<meta name="twitter:image" content="https://finallyvr.com/finally/assets/landing/06_vault_cracked_club.jpg">
+<meta name="twitter:image:alt" content="Finally SET room with neon floor on Meta Quest">
+<link rel="icon" href="/finally/manual/f_mark.png" type="image/png">
+<link rel="stylesheet" href="/finally/assets/site.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Stream Synology NAS videos to Meta Quest 3",
+  "step": [
+    { "@type": "HowToStep", "name": "Enable SMB", "text": "On the Synology, enable the SMB service and share the media folder with a user that has read permission." },
+    { "@type": "HowToStep", "name": "Same Wi-Fi", "text": "Quest and NAS on the same LAN. Avoid guest Wi-Fi isolation." },
+    { "@type": "HowToStep", "name": "Add in Finally", "text": "SRC → SMB → sign in with the NAS IP or hostname → pick the share → save." }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="topbar">
+  <a class="brand-mark" href="/"><img src="/finally/manual/f_mark.png" alt="">Finally</a>
+  <nav aria-label="Site">
+    <a href="/">Home</a>
+    <a href="/nas/">NAS guide</a>
+    <a href="/windows-smb/">Windows</a>
+    <a class="get" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Get it free</a>
+  </nav>
+</div>
+<p class="crumbs"><a href="/">Finally</a> / <a href="/nas/">NAS</a> / Synology</p>
+<header class="hero" id="main-content" tabindex="-1">
+  <img class="hero-f" src="/finally/manual/f_mark.png" width="168" height="168" alt="">
+  <div class="hero-text">
+    <span class="eyebrow">Synology · Quest 3 · SMB</span>
+    <h1>FINALLY</h1>
+    <p class="tag">The DSM share, in the headset. No Plex required.</p>
+  </div>
+</header>
+<div class="shell">
+  <nav class="rail" aria-label="On this page">
+    <p class="rail-title">This page</p>
+    <a href="#answer">The answer</a>
+    <a href="#steps">DSM → Quest</a>
+  </nav>
+  <main>
+    <section id="answer">
+      <div class="kicker">Direct answer</div>
+      <h2>Can Quest 3 play videos from a Synology NAS?</h2>
+      <div class="answer">
+        <p><strong>Yes. Enable SMB on the Synology, install Finally, add the share, press play.</strong> Files stream from the NAS. They are not uploaded to Coldbricks. You do not need Plex, Video Station, or a USB copy of the library. Finally is free and collects nothing. Generic NAS steps: <a href="/nas/">NAS / SMB guide</a>.</p>
+      </div>
+    </section>
+    <section id="steps">
+      <div class="kicker">DSM</div>
+      <h2>What to turn on.</h2>
+      <ol class="steps">
+        <li>Control Panel → File Services → SMB. Enable it.</li>
+        <li>Shared Folder: the movies/VR library, with a user that can read it. Note the NAS IP.</li>
+        <li>Quest and NAS on the same LAN (not a client-isolated guest SSID).</li>
+        <li>Finally → SRC → SMB → host / user / password → shared-folder card → save.</li>
+      </ol>
+      <p>Plex on the Synology is optional. Finally can Direct Play from a user-supplied local PMS URL + token — no cloud login, no transcode. SMB is the no-transcode path for files you already named. 8K is a Wi-Fi fact — wired NAS plus 5/6 GHz to the Quest. See <a href="/8k/">8K on Quest</a>.</p>
+      <div class="cta-band">
+        <p>Synology already holds the library. Finally is the Quest end of the cable.</p>
+        <a class="store-cta loud" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Get Finally on Quest</a>
+      </div>
+    </section>
+  </main>
+</div>
+<footer class="site">
+  <div class="row">
+    <span>Finally VR Video Player · Coldbricks</span>
+    <nav>
+      <a href="/nas/">NAS</a>
+      <a href="/windows-smb/">Windows SMB</a>
+      <a href="/quest-3/">Quest 3</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

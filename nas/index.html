@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Stream Videos from a NAS to Meta Quest 3 (SMB) — Finally VR Video Player</title>
+<meta name="description" content="Stream movies from Synology, TrueNAS, or a Windows SMB share to Meta Quest 3 with Finally VR Video Player. No upload, no Plex required, no account. Step-by-step NAS setup.">
+<link rel="canonical" href="https://finallyvr.com/nas/">
+<meta name="theme-color" content="#08040C">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Finally VR Video Player">
+<meta property="og:title" content="How to Stream Videos from a NAS to Meta Quest 3 (SMB) — Finally VR Video Player">
+<meta property="og:description" content="Finally plays your NAS library over SMB on Quest 3. Sign in, pick the share, save. Files stay on your server.">
+<meta property="og:url" content="https://finallyvr.com/nas/">
+<meta property="og:image" content="https://finallyvr.com/finally/assets/landing/06_vault_cracked_club.jpg">
+<meta property="og:image:width" content="3840">
+<meta property="og:image:height" content="2160">
+<meta property="og:image:alt" content="Finally SET room with neon floor on Meta Quest">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How to Stream Videos from a NAS to Meta Quest 3 (SMB)">
+<meta name="twitter:description" content="Finally plays your NAS library over SMB on Quest 3. Files stay on your server.">
+<meta name="twitter:image" content="https://finallyvr.com/finally/assets/landing/06_vault_cracked_club.jpg">
+<meta name="twitter:image:alt" content="Finally SET room with neon floor on Meta Quest">
+<link rel="icon" href="/finally/manual/f_mark.png" type="image/png">
+<link rel="stylesheet" href="/finally/assets/site.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "HowTo",
+      "name": "How to stream videos from a NAS to Meta Quest",
+      "description": "Use Finally VR Video Player to play a local SMB/NAS library on Meta Quest 3 without uploading files.",
+      "totalTime": "PT10M",
+      "tool": [{ "@type": "HowToTool", "name": "Finally VR Video Player" }, { "@type": "HowToTool", "name": "SMB share on the same Wi-Fi" }],
+      "step": [
+        { "@type": "HowToStep", "name": "Install Finally", "text": "Install Finally VR Video Player from the Meta Horizon Store on Quest 3, Quest 3S, Quest Pro, or Quest 2." },
+        { "@type": "HowToStep", "name": "Enable SMB on the server", "text": "On Synology, TrueNAS, or Windows, share the media folder over SMB on the same Wi-Fi as the headset. Note the host, share name, username, and password." },
+        { "@type": "HowToStep", "name": "Add the share in Finally", "text": "Open SRC, add an SMB source, sign in, and pick the shared folder." },
+        { "@type": "HowToStep", "name": "Save and play", "text": "Save the source, then open a title. Files stream from the NAS; they are not uploaded to Coldbricks." }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can Quest 3 play 8K from a NAS?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Finally’s hardware path goes up to 8K as a decoder ceiling on Quest 3. Whether your Wi-Fi and NAS can feed that bitrate is a network fact, not a slogan. Use a wired NAS and 5/6 GHz Wi-Fi to the headset." }
+        },
+        {
+          "@type": "Question",
+          "name": "SMB vs Plex vs copying files",
+          "acceptedAnswer": { "@type": "Answer", "text": "Copying is simplest and slowest to update. Plex is a catalog you already maintain. SMB is the folder on the server, as it is. Finally speaks all three. Plex Direct Play is a user-supplied local PMS URL + token; no cloud login, no transcode. Start with SMB if the files are already organized." }
+        },
+        {
+          "@type": "Question",
+          "name": "Skybox or 4XVR for NAS instead?",
+          "acceptedAnswer": { "@type": "Answer", "text": "They also speak SMB. Finally is free, has no account, and keeps per-title projection after a one-time consent." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="topbar">
+  <a class="brand-mark" href="/"><img src="/finally/manual/f_mark.png" alt="">Finally</a>
+  <nav aria-label="Site">
+    <a href="/">Home</a>
+    <a href="/guides/">Guides</a>
+    <a href="/compare/">Compare</a>
+    <a href="/finally/manual/">Manual</a>
+  </nav>
+</div>
+<p class="crumbs"><a href="/">Finally</a> / <a href="/guides/">Guides</a> / NAS</p>
+<header class="hero" id="main-content" tabindex="-1">
+  <img class="hero-f" src="/finally/manual/f_mark.png" width="168" height="168" alt="">
+  <div class="hero-text">
+    <span class="eyebrow">NAS · SMB · Quest 3</span>
+    <h1>FINALLY</h1>
+    <p class="product-name">Finally VR Video Player</p>
+    <p class="tag">Stream your NAS library to the headset. Nothing is uploaded.</p>
+  </div>
+</header>
+<div class="shell">
+  <nav class="rail" aria-label="On this page">
+    <p class="rail-title">This guide</p>
+    <a href="#answer">The answer</a>
+    <a href="#steps">Steps</a>
+    <a href="#servers">Synology / Windows</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <main>
+    <section id="answer">
+      <div class="kicker">Direct answer</div>
+      <h2>How to watch NAS movies on Meta Quest 3</h2>
+      <div class="answer">
+        <p><strong>Install Finally VR Video Player, add your SMB share, save, then play.</strong> The headset streams from Synology, TrueNAS, Unraid, or a Windows PC on the same Wi-Fi. Files stay on your server. Coldbricks never sees them. You do not need Plex, a catalog account, or a USB copy of the whole library.</p>
+      </div>
+      <p>This is the job Finally was built for. Local storage and SMB are first-class sources — not a buried “network” afterthought. Hardware playback goes up to 8K as a decoder ceiling on Quest 3; whether your Wi-Fi can feed that bitrate is a network fact, not a slogan.</p>
+    </section>
+    <section id="steps">
+      <div class="kicker">Setup</div>
+      <h2>From zero to a picture.</h2>
+      <ol class="steps">
+        <li><strong>Install Finally</strong> from the <a href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Meta Horizon Store</a>. Quest 3, 3S, Pro, and Quest 2.</li>
+        <li><strong>Share the folder over SMB</strong> on the same network as the headset. Write down host (IP or name), share, username, password.</li>
+        <li>In Finally open <span class="key">SRC</span>, add SMB, sign in to the server, pick the shared folder.</li>
+        <li>Save the source, then open a title.</li>
+      </ol>
+      <div class="note">
+        <p>The <a href="/finally/manual/">field manual</a> is the authority for the build in your Lobby — buffer sizes, the live rebuffer banner, and the exact SRC chrome in that build.</p>
+      </div>
+    </section>
+    <section id="servers">
+      <div class="kicker">Servers</div>
+      <h2>Windows, Synology, TrueNAS.</h2>
+      <h3>Windows PC</h3>
+      <p>Share the movies folder (Properties → Sharing). Use a local account that can read the share. On the Quest, the host is the PC’s LAN IP. Private Wi-Fi, not guest isolation — the headset must see the PC.</p>
+      <h3>Synology / TrueNAS / Unraid</h3>
+      <p>Enable the SMB service, create a share that holds the library, give a user read permission. Finally talks SMB; it does not need the NAS vendor’s mobile app. If you already run Plex, Finally can Direct Play from a user-supplied local PMS URL + token — no cloud login, no transcode. SMB is still the no-transcode path for files you already named correctly.</p>
+      <h3>What Finally does not do</h3>
+      <p>It does not upload your library. It does not transcode on a Coldbricks server. It does not require an account. Optional nearby discovery can find SMB hosts on the LAN; credentials still stay on the headset and only go to the server you named.</p>
+    </section>
+    <section id="faq">
+      <div class="kicker">FAQ</div>
+      <h2>NAS questions.</h2>
+      <div class="faq">
+        <details open>
+          <summary>Can Quest 3 play 8K from a NAS?</summary>
+          <p>Finally’s hardware path goes up to 8K as a decoder ceiling on Quest 3. Whether <em>your</em> Wi-Fi and NAS can feed that bitrate is a network fact, not a slogan. Use a wired NAS and 5/6 GHz Wi-Fi to the headset. The in-player rebuffer readout tells you if the pipe is the problem.</p>
+        </details>
+        <details>
+          <summary>SMB vs Plex vs copying files</summary>
+          <p>Copying is simplest and slowest to update. Plex is a catalog you already maintain. SMB is “the folder on the server, as it is.” Finally speaks all three. Plex Direct Play is a user-supplied local PMS URL + token; no cloud login, no transcode. Start with SMB if the files are already organized.</p>
+        </details>
+        <details>
+          <summary>Skybox or 4XVR for NAS instead?</summary>
+          <p>They also speak SMB. Finally is free, has no account, and keeps per-title projection after a one-time consent. Read <a href="/compare/skybox/">vs Skybox</a> and <a href="/compare/4xvr/">vs 4XVR</a>.</p>
+        </details>
+      </div>
+      <div class="cta-band">
+        <p>Point it at the share. Press play.</p>
+        <a class="store-cta" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Get Finally on Quest</a>
+      </div>
+    </section>
+  </main>
+</div>
+<footer class="site">
+  <div class="row">
+    <span>Finally VR Video Player · Coldbricks</span>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/vr180/">VR180</a>
+      <a href="/iso/">ISO</a>
+      <a href="/compare/">Compare</a>
+      <a href="/finally/privacy/">Privacy</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>
