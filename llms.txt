@@ -44,3 +44,7 @@ Finally is not a streaming catalog. It is not Skybox, 4XVR, HereSphere, NEX, or 
 - [HereSphere alternative](https://finallyvr.com/heresphere-alternative/)
 - [NEX alternative](https://finallyvr.com/nex-alternative/)
 - [Moon VR alternative](https://finallyvr.com/moon-alternative/)
+
+## Platform and photo setup
+- [Galaxy XR](https://finallyvr.com/galaxy-xr/): Google Play installation, first local video, compatibility checks.
+- [SBS photos](https://finallyvr.com/photos/): Flat vs VR180, FULL vs HALF SBS and eye order.
