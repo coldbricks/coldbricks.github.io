@@ -6,22 +6,22 @@
 <title>Stream Windows Shared Folders to Meta Quest 3 (SMB) — Finally VR Video Player</title>
 <meta name="description" content="Play movies from a Windows PC share on Meta Quest 3 with Finally VR Video Player. SMB setup, same Wi-Fi, no Plex, no account. Free. No telemetry.">
 <link rel="canonical" href="https://finallyvr.com/windows-smb/">
-<meta name="robots" content="index,follow">
+<meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="theme-color" content="#08040C">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Finally VR Video Player">
 <meta property="og:title" content="Stream Windows Shared Folders to Meta Quest 3 — Finally VR Video Player">
 <meta property="og:description" content="Windows SMB → Finally VR Video Player on Quest. No upload.">
 <meta property="og:url" content="https://finallyvr.com/windows-smb/">
-<meta property="og:image" content="https://finallyvr.com/finally/assets/landing/02_transport.jpg">
-<meta property="og:image:width" content="3840">
-<meta property="og:image:height" content="2160">
-<meta property="og:image:alt" content="Finally PRO transport panel — PLAY, skip, loops and distance — floating in a live theater on Meta Quest">
+<meta property="og:image" content="https://finallyvr.com/connect/assets/02-connect-computer.png">
+<meta property="og:image:width" content="2560">
+<meta property="og:image:height" content="2000">
+<meta property="og:image:alt" content="Finally Sources illustration with fictional Mac and NAS servers">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Stream Windows Shared Folders to Meta Quest 3 — Finally VR Video Player">
 <meta name="twitter:description" content="Windows SMB → Finally VR Video Player on Quest.">
-<meta name="twitter:image" content="https://finallyvr.com/finally/assets/landing/02_transport.jpg">
-<meta name="twitter:image:alt" content="Finally PRO transport panel — PLAY, skip, loops and distance — floating in a live theater on Meta Quest">
+<meta name="twitter:image" content="https://finallyvr.com/connect/assets/02-connect-computer.png">
+<meta name="twitter:image:alt" content="Finally Sources illustration with fictional Mac and NAS servers">
 <link rel="icon" href="/finally/manual/f_mark.png" type="image/png">
 <link rel="stylesheet" href="/finally/assets/site.css">
 <script type="application/ld+json">
@@ -32,7 +32,7 @@
   "step": [
     { "@type": "HowToStep", "name": "Share the folder", "text": "In Windows, share the movies folder and allow a local account to read it." },
     { "@type": "HowToStep", "name": "Note the LAN IP", "text": "ipconfig — IPv4 of the PC. Headset and PC on the same Wi-Fi, not guest isolation." },
-    { "@type": "HowToStep", "name": "Add SMB in Finally", "text": "SRC → SMB → host, user, password → pick the share → save." }
+    { "@type": "HowToStep", "name": "Add SMB in Finally", "text": "Source setup (SRC or SOURCES) → SMB → host, user, password → pick the share → save." }
   ]
 }
 </script>
@@ -113,20 +113,20 @@
         <p><strong>Share the folder over SMB, put the Quest on the same Wi-Fi, add the share in Finally.</strong> No Plex. No Virtual Desktop required for this job. Files stay on the PC. Finally is free and collects nothing. Broader recipe: <a href="/nas/">NAS / SMB</a>.</p>
       </div>
     </section>
-    <section id="steps">
+    <section id="steps"><div class="connection-intro"><p><strong>Follow the illustrated connection guide.</strong> <a href="/connect/">Mac, NAS and DLNA setup, step by step</a>, with an updated Sources preview and fixes for discovery, sign-in and empty folders. Earlier builds label this entry point <strong>SRC</strong>.</p></div>
       <div class="kicker">Windows</div>
-      <h2>Share, then SRC.</h2>
+      <h2>Share the folder. Connect the headset.</h2>
       <ol class="steps">
         <li>Folder → Properties → Sharing. A local user that can read it. Password-protected sharing on is fine — Finally will ask for the user.</li>
         <li>PC IPv4 from <code>ipconfig</code>. Private network profile, not public. Disable AP/client isolation on the router.</li>
-        <li>Finally → SRC → SMB → IP, username, password → shared-folder card → save.</li>
+        <li>Finally → Source setup (SRC or SOURCES) → SMB → IP, username, password → shared-folder card → save.</li>
       </ol>
       <p>Firewall: allow File and Printer Sharing on private networks. If Test fails, it is almost always Wi-Fi isolation or a wrong user, not the player. Travel / no PC: <a href="/local/">local files</a>.</p>
       <div class="cta-band">
         <p>Windows already shared it. Finally just has to be told.</p>
         <a class="store-cta loud" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Get it free on Meta Quest</a>
       </div>
-    </section>
+    <div class="connection-pair"><figure class="connection-capture"><a href="/connect/assets/02-connect-computer.png"><img src="/connect/assets/02-connect-computer.webp" srcset="/connect/assets/02-connect-computer-640.webp 640w, /connect/assets/02-connect-computer-1280.webp 1280w, /connect/assets/02-connect-computer.webp 2560w" sizes="(max-width:800px) calc(100vw - 40px), 720px" width="2560" height="2000" loading="lazy" decoding="async" alt="Finally Sources showing a fictional nearby Mac and NAS"></a><figcaption>Updated interface preview · Fictional sample library. Earlier versions use SRC. <a href="/connect/assets/02-connect-computer.png">Full resolution ↗</a></figcaption></figure><figure class="connection-capture"><a href="/connect/assets/05-smb-signin.png"><img src="/connect/assets/05-smb-signin.webp" srcset="/connect/assets/05-smb-signin-640.webp 640w, /connect/assets/05-smb-signin-1280.webp 1280w, /connect/assets/05-smb-signin.webp 1856w" sizes="(max-width:800px) calc(100vw - 40px), 720px" width="1856" height="841" loading="lazy" decoding="async" alt="Compact SMB form with a fictional server, viewer username and empty password"></a><figcaption>Simplified SMB form preview · Use your own server address and account. <a href="/connect/assets/05-smb-signin.png">Full resolution ↗</a></figcaption></figure></div></section>
   </main>
 </div>
 <div class="get-dock">

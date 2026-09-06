@@ -7,21 +7,21 @@
 <meta name="description" content="Stream movies from Synology, TrueNAS, or a Windows SMB share to Meta Quest 3 with Finally VR Video Player. No upload, no Plex required, no account. Step-by-step NAS setup.">
 <link rel="canonical" href="https://finallyvr.com/nas/">
 <meta name="theme-color" content="#08040C">
-<meta name="robots" content="index,follow">
+<meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Finally VR Video Player">
 <meta property="og:title" content="How to Stream Videos from a NAS to Meta Quest 3 (SMB) — Finally VR Video Player">
 <meta property="og:description" content="Finally plays your NAS library over SMB on Quest 3. Sign in, pick the share, save. Files stay on your server.">
 <meta property="og:url" content="https://finallyvr.com/nas/">
-<meta property="og:image" content="https://finallyvr.com/finally/assets/landing/02_transport.jpg">
-<meta property="og:image:width" content="3840">
-<meta property="og:image:height" content="2160">
-<meta property="og:image:alt" content="Finally PRO transport panel — PLAY, skip, loops and distance — floating in a live theater on Meta Quest">
+<meta property="og:image" content="https://finallyvr.com/connect/assets/02-connect-computer.png">
+<meta property="og:image:width" content="2560">
+<meta property="og:image:height" content="2000">
+<meta property="og:image:alt" content="Finally Sources illustration with fictional Mac and NAS servers">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="How to Stream Videos from a NAS to Meta Quest 3 (SMB)">
 <meta name="twitter:description" content="Finally plays your NAS library over SMB on Quest 3. Files stay on your server.">
-<meta name="twitter:image" content="https://finallyvr.com/finally/assets/landing/02_transport.jpg">
-<meta name="twitter:image:alt" content="Finally PRO transport panel — PLAY, skip, loops and distance — floating in a live theater on Meta Quest">
+<meta name="twitter:image" content="https://finallyvr.com/connect/assets/02-connect-computer.png">
+<meta name="twitter:image:alt" content="Finally Sources illustration with fictional Mac and NAS servers">
 <link rel="icon" href="/finally/manual/f_mark.png" type="image/png">
 <link rel="stylesheet" href="/finally/assets/site.css">
 <script type="application/ld+json">
@@ -37,8 +37,8 @@
       "step": [
         { "@type": "HowToStep", "name": "Install Finally", "text": "Install Finally VR Video Player from the Meta Horizon Store on Quest 3, Quest 3S, Quest Pro, or Quest 2." },
         { "@type": "HowToStep", "name": "Enable SMB on the server", "text": "On Synology, TrueNAS, or Windows, share the media folder over SMB on the same Wi-Fi as the headset. Note the host, share name, username, and password." },
-        { "@type": "HowToStep", "name": "Add the share in Finally", "text": "Open SRC, add an SMB source, sign in, and pick the shared folder." },
-        { "@type": "HowToStep", "name": "Save and play", "text": "Save the source, then open a title. Files stream from the NAS; they are never uploaded anywhere." }
+        { "@type": "HowToStep", "name": "Add the share in Finally", "text": "Open source setup (SRC in earlier versions, SOURCES in the simplified interface), add an SMB source, sign in, and pick the shared folder." },
+        { "@type": "HowToStep", "name": "Save and play", "text": "Save the source, then open a title. Files stream from the NAS; SMB playback does not upload them to Coldbricks." }
       ]
     },
     {
@@ -140,32 +140,32 @@
       <div class="kicker">Direct answer</div>
       <h2>How to watch NAS movies on Meta Quest 3</h2>
       <div class="answer">
-        <p><strong>Install Finally VR Video Player, add your SMB share, save, then play.</strong> The headset streams from Synology, TrueNAS, Unraid, or a Windows PC on the same Wi-Fi. Files stay on your server — they are never uploaded anywhere. You do not need Plex, a catalog account, or a USB copy of the whole library.</p>
+        <p><strong>Install Finally VR Video Player, add your SMB share, save, then play.</strong> The headset streams from Synology, TrueNAS, Unraid, or a Windows PC on the same Wi-Fi. Files stay on your server — SMB playback does not upload them to Coldbricks. You do not need Plex, a catalog account, or a USB copy of the whole library.</p>
       </div>
-      <p>This is the job Finally was built for. Local storage and SMB are first-class sources — not a buried “network” afterthought. Hardware playback goes up to 8K as a decoder ceiling on Quest 3; whether your Wi-Fi can feed that bitrate is a network fact, not a slogan.</p>
+      <p>This is the job Finally was built for. Local storage and SMB let you play your existing folders directly. Hardware playback goes up to 8K as a decoder ceiling on Quest 3; whether your Wi-Fi can feed that bitrate is a network fact, not a slogan.</p>
     </section>
-    <section id="steps">
+    <section id="steps"><div class="connection-intro"><p><strong>Follow the illustrated connection guide.</strong> <a href="/connect/">Mac, NAS and DLNA setup, step by step</a>, with an updated Sources preview and fixes for discovery, sign-in and empty folders. Earlier builds label this entry point <strong>SRC</strong>.</p></div>
       <div class="kicker">Setup</div>
       <h2>From zero to a picture.</h2>
       <ol class="steps">
         <li><strong>Install Finally</strong> from the <a href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Meta Horizon Store</a>. Quest 3, 3S, Pro, and Quest 2.</li>
         <li><strong>Share the folder over SMB</strong> on the same network as the headset. Write down host (IP or name), share, username, password.</li>
-        <li>In Finally open <span class="key">SRC</span>, add SMB, sign in to the server, pick the shared folder.</li>
+        <li>In Finally open <span class="key">SRC</span> (or <span class="key">SOURCES</span> in the simplified interface), add SMB, sign in to the server, pick the shared folder.</li>
         <li>Save the source, then open a title.</li>
       </ol>
       <div class="note">
-        <p>The <a href="/finally/manual/">field manual</a> is the authority for the build in your Lobby — buffer sizes, the live rebuffer banner, and the exact SRC chrome in that build.</p>
+        <p>The <a href="/finally/manual/">field manual</a> is the authority for the build in your Lobby — buffer sizes, the live rebuffer banner, and the source controls available in your version.</p>
       </div>
-    </section>
+    <div class="connection-pair"><figure class="connection-capture"><a href="/connect/assets/02-connect-computer.png"><img src="/connect/assets/02-connect-computer.webp" srcset="/connect/assets/02-connect-computer-640.webp 640w, /connect/assets/02-connect-computer-1280.webp 1280w, /connect/assets/02-connect-computer.webp 2560w" sizes="(max-width:800px) calc(100vw - 40px), 720px" width="2560" height="2000" loading="lazy" decoding="async" alt="Finally Sources showing a fictional nearby Mac and NAS"></a><figcaption>Updated interface preview · Fictional sample library. Earlier versions use SRC. <a href="/connect/assets/02-connect-computer.png">Full resolution ↗</a></figcaption></figure><figure class="connection-capture"><a href="/connect/assets/05-smb-signin.png"><img src="/connect/assets/05-smb-signin.webp" srcset="/connect/assets/05-smb-signin-640.webp 640w, /connect/assets/05-smb-signin-1280.webp 1280w, /connect/assets/05-smb-signin.webp 1856w" sizes="(max-width:800px) calc(100vw - 40px), 720px" width="1856" height="841" loading="lazy" decoding="async" alt="Compact SMB form with a fictional server, viewer username and empty password"></a><figcaption>Simplified SMB form preview · Use your own server address and account. <a href="/connect/assets/05-smb-signin.png">Full resolution ↗</a></figcaption></figure></div></section>
     <section id="servers">
       <div class="kicker">Servers</div>
       <h2>Windows, Synology, TrueNAS.</h2>
-      <h3>Windows PC</h3>
+      <h3>Mac or FireStream</h3><p>For a Mac shared folder, enable SMB in File Sharing. If you use FireStream, choose its DLNA server instead. Follow the <a href="/connect/#smb">Mac SMB steps</a> or <a href="/connect/#dlna">FireStream DLNA steps</a>.</p><h3>Windows PC</h3>
       <p>Share the movies folder (Properties → Sharing). Use a local account that can read the share. On the Quest, the host is the PC’s LAN IP. Private Wi-Fi, not guest isolation — the headset must see the PC.</p>
       <h3>Synology / TrueNAS / Unraid</h3>
       <p>Enable the SMB service, create a share that holds the library, give a user read permission. Finally talks SMB; it does not need the NAS vendor’s mobile app. If you already run Plex, Finally can Direct Play from a user-supplied local PMS URL + token — no cloud login, no transcode. SMB is still the no-transcode path for files you already named correctly.</p>
       <h3>What Finally does not do</h3>
-      <p>It does not upload your library. It does not transcode on anyone’s server. It does not require an account. Optional nearby discovery can find SMB hosts on the LAN; credentials still stay on the headset and only go to the server you named.</p>
+      <p>It does not upload your library. It does not transcode on anyone’s server. It does not require a Finally account. Your server may require its own username and password. Optional nearby discovery can find SMB hosts on the LAN; credentials still stay on the headset and only go to the server you named.</p>
     </section>
     <section id="faq">
       <div class="kicker">FAQ</div>
@@ -189,7 +189,7 @@
         <a class="store-cta loud" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Get it free on Meta Quest</a>
       </div>
     </section>
-<section id="connection-check"><div class="kicker">Find the step that failed</div><h2>Sign-in, folder access and playback are separate checks.</h2><ol class="steps"><li>Use <strong>Test server sign-in</strong> to check credentials. This does not save a source or test a folder.</li><li>Choose <strong>Browse shared folders</strong>, select a folder, then <strong>Test connection</strong> to check that exact folder.</li><li>Choose <strong>Add &amp; browse</strong> to save it. Start with <strong>Browse instantly</strong> and one familiar video before indexing a large source.</li></ol><p>Put the share name in <strong>Shared folder</strong> and any path inside it in <strong>Folder</strong>. Do not publish credentials or private server addresses in a support post. If playback stalls, compare the same file locally and check network reachability, bitrate and server read permission.</p><p>For installation on Samsung's headset, start with the <a href="/galaxy-xr/">Galaxy XR guide</a>. <a href="/finally/manual/#sources">Full source reference</a>.</p></section>
+<section id="connection-check"><div class="kicker">Finish the connection</div><h2>Choose the folder you want to open.</h2><ol class="steps"><li>Check the server address and enter the account that can read your shared folder. A discovered server’s address is already filled.</li><li>Choose <strong>Browse shared folders</strong>, open the share or a subfolder, then choose <strong>Select this folder</strong>.</li><li>Choose <strong>Add &amp; browse</strong> to save and open that folder. Start with one familiar video before indexing a large source.</li></ol><p>If something fails, use the sign-in and connection tests to separate account trouble from folder access. In the simplified form, these diagnostics and the domain, port and manual-folder fields live under <strong>Advanced settings</strong>.</p><p>For a missing computer, follow <a href="/connect/#troubleshooting">discovery troubleshooting</a>. For Samsung’s headset, start with the <a href="/galaxy-xr/">Galaxy XR guide</a>. <a href="/finally/manual/#sources">Full source reference</a>.</p></section>
   </main>
 </div>
 <div class="get-dock">

@@ -6,22 +6,22 @@
 <title>Watch Synology NAS Videos on Meta Quest 3 (SMB) — Finally VR Video Player</title>
 <meta name="description" content="Stream Synology NAS movies to Meta Quest 3 with Finally VR Video Player over SMB. No Plex required, no upload, no account. Free. No telemetry.">
 <link rel="canonical" href="https://finallyvr.com/synology/">
-<meta name="robots" content="index,follow">
+<meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="theme-color" content="#08040C">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Finally VR Video Player">
 <meta property="og:title" content="Watch Synology NAS Videos on Meta Quest 3 — Finally VR Video Player">
 <meta property="og:description" content="Synology SMB → Finally VR Video Player on Quest 3. Files stay on the NAS.">
 <meta property="og:url" content="https://finallyvr.com/synology/">
-<meta property="og:image" content="https://finallyvr.com/finally/assets/landing/02_transport.jpg">
-<meta property="og:image:width" content="3840">
-<meta property="og:image:height" content="2160">
-<meta property="og:image:alt" content="Finally PRO transport panel — PLAY, skip, loops and distance — floating in a live theater on Meta Quest">
+<meta property="og:image" content="https://finallyvr.com/connect/assets/02-connect-computer.png">
+<meta property="og:image:width" content="2560">
+<meta property="og:image:height" content="2000">
+<meta property="og:image:alt" content="Finally Sources illustration with fictional Mac and NAS servers">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Watch Synology NAS Videos on Meta Quest 3 — Finally VR Video Player">
 <meta name="twitter:description" content="Synology SMB → Finally VR Video Player on Quest 3.">
-<meta name="twitter:image" content="https://finallyvr.com/finally/assets/landing/02_transport.jpg">
-<meta name="twitter:image:alt" content="Finally PRO transport panel — PLAY, skip, loops and distance — floating in a live theater on Meta Quest">
+<meta name="twitter:image" content="https://finallyvr.com/connect/assets/02-connect-computer.png">
+<meta name="twitter:image:alt" content="Finally Sources illustration with fictional Mac and NAS servers">
 <link rel="icon" href="/finally/manual/f_mark.png" type="image/png">
 <link rel="stylesheet" href="/finally/assets/site.css">
 <script type="application/ld+json">
@@ -32,7 +32,7 @@
   "step": [
     { "@type": "HowToStep", "name": "Enable SMB", "text": "On the Synology, enable the SMB service and share the media folder with a user that has read permission." },
     { "@type": "HowToStep", "name": "Same Wi-Fi", "text": "Quest and NAS on the same LAN. Avoid guest Wi-Fi isolation." },
-    { "@type": "HowToStep", "name": "Add in Finally", "text": "SRC → SMB → sign in with the NAS IP or hostname → pick the share → save." }
+    { "@type": "HowToStep", "name": "Add in Finally", "text": "Source setup (SRC or SOURCES) → SMB → sign in with the NAS IP or hostname → pick the share → save." }
   ]
 }
 </script>
@@ -113,21 +113,21 @@
         <p><strong>Yes. Enable SMB on the Synology, install Finally, add the share, press play.</strong> Files stream from the NAS. They are never uploaded anywhere. You do not need Plex, Video Station, or a USB copy of the library. Finally is free and collects nothing. Generic NAS steps: <a href="/nas/">NAS / SMB guide</a>.</p>
       </div>
     </section>
-    <section id="steps">
+    <section id="steps"><div class="connection-intro"><p><strong>Follow the illustrated connection guide.</strong> <a href="/connect/">Mac, NAS and DLNA setup, step by step</a>, with an updated Sources preview and fixes for discovery, sign-in and empty folders. Earlier builds label this entry point <strong>SRC</strong>.</p></div>
       <div class="kicker">DSM</div>
       <h2>What to turn on.</h2>
       <ol class="steps">
         <li>Control Panel → File Services → SMB. Enable it.</li>
         <li>Shared Folder: the movies/VR library, with a user that can read it. Note the NAS IP.</li>
         <li>Quest and NAS on the same LAN (not a client-isolated guest SSID).</li>
-        <li>Finally → SRC → SMB → host / user / password → shared-folder card → save.</li>
+        <li>Finally → Source setup (SRC or SOURCES) → SMB → host / user / password → shared-folder card → save.</li>
       </ol>
       <p>Plex on the Synology is optional. Finally can Direct Play from a user-supplied local PMS URL + token — no cloud login, no transcode. SMB is the no-transcode path for files you already named. 8K is a Wi-Fi fact — wired NAS plus 5/6 GHz to the Quest. See <a href="/8k/">8K on Quest</a>.</p>
       <div class="cta-band">
         <p>Synology already holds the library. Finally is the Quest end of the cable.</p>
         <a class="store-cta loud" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Get it free on Meta Quest</a>
       </div>
-    </section>
+    <div class="connection-pair"><figure class="connection-capture"><a href="/connect/assets/02-connect-computer.png"><img src="/connect/assets/02-connect-computer.webp" srcset="/connect/assets/02-connect-computer-640.webp 640w, /connect/assets/02-connect-computer-1280.webp 1280w, /connect/assets/02-connect-computer.webp 2560w" sizes="(max-width:800px) calc(100vw - 40px), 720px" width="2560" height="2000" loading="lazy" decoding="async" alt="Finally Sources showing a fictional nearby Mac and NAS"></a><figcaption>Updated interface preview · Fictional sample library. Earlier versions use SRC. <a href="/connect/assets/02-connect-computer.png">Full resolution ↗</a></figcaption></figure><figure class="connection-capture"><a href="/connect/assets/05-smb-signin.png"><img src="/connect/assets/05-smb-signin.webp" srcset="/connect/assets/05-smb-signin-640.webp 640w, /connect/assets/05-smb-signin-1280.webp 1280w, /connect/assets/05-smb-signin.webp 1856w" sizes="(max-width:800px) calc(100vw - 40px), 720px" width="1856" height="841" loading="lazy" decoding="async" alt="Compact SMB form with a fictional server, viewer username and empty password"></a><figcaption>Simplified SMB form preview · Use your own server address and account. <a href="/connect/assets/05-smb-signin.png">Full resolution ↗</a></figcaption></figure></div></section>
   </main>
 </div>
 <div class="get-dock">
