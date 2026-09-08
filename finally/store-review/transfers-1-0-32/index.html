@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#101018">
+  <meta name="description" content="Store-review demonstration of user-started downloads and file transfers in Finally VR Video Player 1.0.32.">
+  <title>Transfer demonstration · Finally 1.0.32</title>
+  <link rel="icon" href="/finally/manual/f_mark.png" type="image/png">
+  <style>
+    :root{color-scheme:dark;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#101018;color:#f1f1f8}
+    *{box-sizing:border-box}body{margin:0;line-height:1.65}main{max-width:960px;margin:auto;padding:36px 24px 56px}
+    a{color:#82ecdb;text-underline-offset:3px}a:focus-visible,video:focus-visible{outline:3px solid #ffd878;outline-offset:5px}
+    .skip{position:absolute;left:12px;top:-100px;padding:8px 14px;background:#101018}.skip:focus{top:12px}
+    .brand,.eyebrow{letter-spacing:.12em;text-transform:uppercase;font-size:.8rem;font-weight:700}.brand{color:#82ecdb}.eyebrow{color:#c7bddc;margin-top:40px}
+    h1{font-size:clamp(1.9rem,5vw,3rem);line-height:1.15;margin:12px 0 20px}h2{font-size:1.35rem;line-height:1.3;margin:0 0 14px}
+    p{max-width:76ch;margin:12px 0}.lead{font-size:1.1rem;color:#d9d9e8}.identity{color:#c7bddc;font-size:.95rem}
+    section{margin-top:28px;border:1px solid #393947;background:#191922;border-radius:14px;padding:24px}
+    .steps{padding-left:22px}.steps li{margin:12px 0}summary{cursor:pointer;color:#82ecdb;font-weight:650}summary:focus-visible{outline:3px solid #ffd878;outline-offset:5px}
+    code{font:inherit;font-weight:650;color:#b9dff7}.video-frame{margin:18px 0 0}video{display:block;width:100%;max-height:75vh;border-radius:8px;background:#000}
+    .muted{color:#b9b9c9;font-size:.95rem}footer{border-top:1px solid #393947;margin-top:36px;padding-top:20px;font-size:.95rem}
+    @media(max-width:520px){main{padding:28px 16px 40px}section{padding:20px 16px}.eyebrow{margin-top:28px}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main-content">Skip to demonstration</a>
+  <main id="main-content" tabindex="-1">
+    <div class="brand">Finally VR Video Player</div>
+    <p class="eyebrow">Store review · foreground transfers</p>
+    <h1>Downloads and copies, from start to cancel.</h1>
+    <p class="lead">Downloads and file copies keep running while their requested work is active. Finally displays progress and offers cancellation, then stops the foreground service when its queue finishes.</p>
+    <p class="identity">Recorded on a <strong>development candidate used to validate the 1.0.32 transfer features</strong>. The visible <strong>1.0.31-debug</strong> footer predates the release version bump. This does not establish runtime proof of the exact store-delivered artifact.</p>
+
+    <section id="recording" aria-labelledby="recording-heading">
+      <h2 id="recording-heading">Demonstration video</h2>
+      <p id="video-description">Captured application panels show a network download and a local file copy, their progress, and cancellation. Inputs are automated through the production handlers, with panels captured after native presentation settled. The capture uses only synthetic test files and contains no audio. It is a panel recording, not optical headset footage.</p>
+      <div class="video-frame">
+        <video controls playsinline preload="metadata" aria-label="Network download and local file-copy cancellation demonstration" aria-describedby="video-description">
+          <source src="Finally-1.0.32-transfer-demo.mp4" type="video/mp4">
+          Your browser cannot play the embedded video. <a href="Finally-1.0.32-transfer-demo.mp4">Open the MP4 directly</a>.
+        </video>
+      </div>
+      <p class="muted">18 seconds · silent video · <a href="Finally-1.0.32-transfer-demo.mp4">Direct MP4 link</a></p>
+      <details>
+        <summary>Text description of the demonstration</summary>
+        <ol class="steps">
+          <li>The library tools offer <strong>Download to headset</strong> for the selected synthetic network video.</li>
+          <li>The requested download shows progress and a cancel control, followed by its cancelled state.</li>
+          <li>The file tools offer <strong>Copy to…</strong> for a synthetic local file. A destination is selected and <strong>Copy here</strong> starts the operation.</li>
+          <li>The file copy shows progress and a cancel control, followed by its cancelled state.</li>
+        </ol>
+      </details>
+    </section>
+
+    <section aria-labelledby="download-heading">
+      <h2 id="download-heading">1. Start and cancel a network download</h2>
+      <ol class="steps">
+        <li>Select a source video and open <strong>MORE → Download to headset</strong>.</li>
+        <li>Follow the transfer's status, percentage and copied bytes. <strong>Cancel download</strong> stops a queued or active copy.</li>
+        <li>The cancelled transfer stays visible in its cancelled state. The source remains in place.</li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="copy-heading">
+      <h2 id="copy-heading">2. Start and cancel a local file copy</h2>
+      <ol class="steps">
+        <li>Open <strong>MORE → Manage files → Copy to…</strong> for the selected item.</li>
+        <li>Choose a writable destination and press <strong>Copy here</strong>. Choosing a folder alone does not start a copy.</li>
+        <li>Follow progress and cancel the operation. The cancelled state remains visible; existing files are not overwritten.</li>
+      </ol>
+      <p class="muted">A finalization step completes safely before the result is published. Cancellation is unavailable during that final step.</p>
+    </section>
+
+    <section aria-labelledby="lifetime-heading">
+      <h2 id="lifetime-heading">Foreground-service lifetime</h2>
+      <p>The download and file-operation services use Android's <code>dataSync</code> foreground-service type for an explicit user-started queue. They provide a progress notification. Each service stops when no queued or active work remains; cancelling one item does not cancel other requested items.</p>
+      <p>Neither transfer service starts at boot or automatically resumes unfinished work after a process restart. Interrupted work requires another user action. These services do not keep running to browse a library or watch a movie.</p>
+    </section>
+
+    <footer>
+      <a href="/finally/manual/">Field manual</a> · <a href="/finally/privacy/">Privacy policy</a>
+    </footer>
+  </main>
+</body>
+</html>
