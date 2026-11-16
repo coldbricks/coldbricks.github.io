@@ -7,7 +7,7 @@
 <meta name="description" content="Privacy policy for Finally VR Video Player. No automatic Coldbricks collection. Bug-report ZIP only after Send. HandyFeeling if you connect. Meta entitlement pass/fail.">
 <link rel="canonical" href="https://finallyvr.com/finally/privacy/">
 <meta name="theme-color" content="#08040C">
-<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="robots" content="index,follow">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Finally VR Video Player">
 <meta property="og:title" content="Privacy Policy — Finally VR Video Player">
@@ -52,9 +52,9 @@
   <span class="topbar-readout"><b>Privacy policy</b></span>
   <nav aria-label="Site">
     <a href="/quest-3/">Quest 3</a>
-    <a href="/free/">Free</a>
-    <a href="/nas/">NAS</a>
-    <a href="/compare/">Compare</a>
+    <a href="/galaxy-xr/">Galaxy XR</a>
+    <a href="/connect/">Connect</a>
+    <a href="/photos/">Photos</a>
     <a href="/guides/">Guides</a>
     <a href="/finally/manual/">Manual</a>
     <a href="/finally/privacy/" aria-current="page">Privacy</a>
@@ -68,8 +68,8 @@
     <div class="hero-head">
       <h1><span class="wm">Finally</span> <span class="topic"><span class="sep" aria-hidden="true">·</span>Privacy policy</span></h1>
     </div>
-    <p class="tag">Effective date: September 8, 2026</p>
-    <p class="lede">No Coldbricks account or telemetry backend. The user-requested network paths the app does use are described below.</p>
+    <p class="tag">Effective date: November 15, 2026</p>
+    <p class="lede">No Coldbricks account, location permission, microphone access, or telemetry backend. The user-requested network paths the app does use are described below.</p>
     <p class="hero-meta">Publisher: Coldbricks · <a href="mailto:coldbricks@gmail.com">coldbricks@gmail.com</a></p>
   </div>
 </header>
@@ -80,6 +80,7 @@
     <a href="#support">Bug reports</a>
     <a href="#device">On the device</a>
     <a href="#network">Network</a>
+    <a href="#ai-models">2D → 3D models</a>
     <a href="#handy">The Handy</a>
     <a href="#web">Website support</a>
     <a href="#platform">Platform</a>
@@ -104,14 +105,15 @@
       <div class="kicker">Local</div>
       <h2>What stays on your device</h2>
       <ul>
-        <li><strong>Your media library.</strong> Finally indexes videos and images you point it at. That index (titles, file paths, playback positions, projection settings) is stored in a local database on your headset and never leaves it.</li>
+        <li><strong>Your media library and local music.</strong> Finally indexes videos, images, and local music tracks (<code>READ_MEDIA_VIDEO</code>, <code>READ_MEDIA_IMAGES</code>, <code>READ_MEDIA_AUDIO</code>, or folders you grant) on your headset. That index (titles, file paths, playback positions, saved playlists, projection settings) is stored in a local database on your headset and never leaves it.</li>
+        <li><strong>Audio-reactive Club Lights and Music Vibes.</strong> Spectrum and beat analysis for Club Lights and ChloeVibes run strictly on Finally’s own decoded audio output buffers inside the app process. Finally never requests <code>RECORD_AUDIO</code> and never accesses the headset microphone.</li>
+        <li><strong>Private-browser streams.</strong> Streams opened from the built-in browser play directly in memory and are never written to Finally’s persistent media disk cache.</li>
         <li><strong>Network-source credentials.</strong> If you configure SMB, FTP, WebDAV, Plex, or Stash, the address and credentials or access token you enter are stored locally on your device solely so the app can reconnect. They are transmitted only to the server you specify and never to Coldbricks.</li>
-        <li><strong>Nearby-source discovery.</strong> When you choose <strong>Find nearby sources</strong>, Finally listens for SMB hosts and DLNA/UPnP media servers on your local network. Device names, service names, and local addresses are used on your headset to show the picker; they are not sent to Coldbricks.</li>
+        <li><strong>Nearby-source discovery.</strong> When you choose <strong>Find nearby sources</strong> or open <strong>DLNA</strong>, Finally listens for SMB hosts and DLNA/UPnP media servers on your local network. Device names, service names, and local addresses are used on your headset to show the picker; they are not sent to Coldbricks.</li>
         <li><strong>Watch Together.</strong> When you explicitly host or join a room, Finally advertises or discovers a service on your private LAN and creates a direct encrypted connection between the two headsets. The peers exchange pairing and playback-session data plus an identity for the selected media. Finally does not upload or relay the media, and Coldbricks receives no room data.</li>
-        <li><strong>Optional Bluetooth haptic accessories.</strong> If you open the Haptic Control Panel and enable accessory support, Finally can scan for and connect directly to a nearby Bluetooth accessory. Scan results, device identifiers, connection state, and matching <code>.funscript</code> timing remain on your headset and are not sent to Coldbricks. The controls require explicit arming and provide an immediate stop action.</li>
+        <li><strong>Optional Bluetooth haptic accessories (no location permissions).</strong> If you open the Haptic Control Panel and enable accessory support, Finally can scan for and connect directly to a nearby Bluetooth Low Energy accessory using Android’s <code>neverForLocation</code> Bluetooth permission flag. Finally does <strong>not</strong> request <code>ACCESS_FINE_LOCATION</code> or <code>ACCESS_COARSE_LOCATION</code> on any Android version. Scan results, device identifiers, connection state, and matching <code>.funscript</code> timing remain on your headset and are not sent to Coldbricks. The controls require explicit arming and provide an immediate stop action.</li>
         <li><strong>Optional The Handy service.</strong> If you choose <strong>Connect The Handy</strong>, Finally contacts HandyFeeling, operated by Ohdoki AS, as described below. A verified key is stored encrypted on the headset until you choose <strong>Forget Handy key</strong> or uninstall.</li>
-        <li><strong>Settings.</strong> Playback and display preferences are stored locally.</li>
-        <li><strong>Playlists, downloads and file tools.</strong> Saved playlists, transfer jobs and custom color palettes are stored locally. When you request a download or file operation, Finally reads from the source and writes to the destination you select. A network destination receives the files and file-management requests you explicitly choose; none of this is sent to Coldbricks.</li>
+        <li><strong>Settings.</strong> Playback, display, and custom cockpit palette preferences are stored locally.</li>
       </ul>
       <p>Uninstalling the app deletes Finally’s local database, settings, and saved credentials. It cannot delete records retained by a media server, platform, or third-party service you chose to contact.</p>
     </section>
@@ -119,9 +121,16 @@
     <section id="network">
       <div class="kicker">Network</div>
       <h2>Network access</h2>
-      <p>Finally uses the network only to do what you ask it to: discover local media servers, stream or download media from sources you configure, perform file operations on the network locations you choose, verify Meta entitlement in a Meta store build, connect two headsets for Watch Together, or control The Handy through HandyFeeling after an explicit connect action. It does not connect to a Coldbricks telemetry, advertising, account, update, or content service.</p>
+      <p>Finally uses the network only to do what you ask it to: discover local media servers, stream media from sources you configure, verify Meta entitlement in a Meta store build, connect two headsets for Watch Together, control The Handy through HandyFeeling after an explicit connect action, or download an optional 2D → 3D depth model the first time you turn that feature on. It does not connect to a Coldbricks-run telemetry, advertising, account, update, or content server.</p>
       <p>Some source protocols can be unencrypted if you choose them (for example, plain FTP or an HTTP server on a trusted LAN). Finally labels those choices and does not turn them into Internet-facing services. Watch Together uses TLS.</p>
       <p>Optional Bluetooth accessory discovery and control are direct, local device operations. They do not use a Coldbricks service or transmit accessory data to us.</p>
+    </section>
+
+    <section id="ai-models">
+      <div class="kicker">Optional · experimental</div>
+      <h2>2D → 3D model downloads</h2>
+      <p>2D → 3D needs a depth model that is not bundled with the app. The first time you turn it on, Finally downloads that model once over HTTPS: the <strong>FAST</strong> model from Qualcomm AI Hub’s public asset storage (hosted on Amazon S3), the <strong>BEST</strong> model from Finally’s public model release on GitHub (served through GitHub’s release-asset CDN). As with any download, that host receives your IP address and normal network-request metadata. GitHub shows a release’s publisher only aggregate download counts.</p>
+      <p>Each model file has a pinned size and SHA-256 checksum that Finally verifies before use, and it is stored in Finally’s private app storage. The download carries no video, images, media titles, media locations, or account credentials. Depth is computed on the headset and frames are never uploaded. The AI BACKGROUND person model ships inside the app and downloads nothing.</p>
     </section>
 
     <section id="handy">
@@ -143,7 +152,7 @@
     <section id="platform">
       <div class="kicker">Platform</div>
       <h2>Platform services</h2>
-      <p>On Meta Quest, store builds perform a one-time entitlement verification at launch through the Meta Platform SDK, which confirms with Meta that your account owns the app. That check is operated by Meta and governed by <a href="https://www.meta.com/legal/privacy-policy/">Meta’s privacy policy</a>. We receive nothing from it beyond a pass/fail result inside the app.</p>
+      <p>On Meta Quest, store builds perform a one-time entitlement verification at launch through the Meta Platform SDK, which confirms with Meta that your account owns the app (<a href="https://www.meta.com/legal/privacy-policy/">Meta’s privacy policy</a>). On Samsung Galaxy XR / Android XR, installations distributed through Google Play are governed by <a href="https://policies.google.com/privacy">Google’s privacy policy</a>. Coldbricks receives no personal account data from either store.</p>
     </section>
 
     <section id="children">

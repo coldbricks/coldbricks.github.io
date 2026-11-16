@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Finally VR Video Player Field Manual — Quest, Galaxy XR, NAS/SMB, VR180 &amp; Photos</title>
-<meta name="description" content="Finally VR Video Player field manual for Meta Quest and Samsung Galaxy XR: local files, SMB/DLNA, VR180/360, stereo photos, BASIC/PRO controls and advanced reference.">
+<title>Finally VR Video Player Field Manual — Quest, Galaxy XR, NAS/SMB, DLNA, Music &amp; Photos</title>
+<meta name="description" content="Field manual for Finally VR Video Player 1.0.43 on Meta Quest and Samsung Galaxy XR: local files, NAS/SMB, zero-config DLNA, VR180/360, music + club lights, ChloeVibes, 2D-to-3D AI, and stereo photos.">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://finallyvr.com/finally/manual/">
 <style>
@@ -313,6 +313,52 @@
     border-top: 1px solid rgba(46,230,197,0.18); padding: 0.8rem 1rem;
     color: #D9CADC; font-size: 0.92rem; line-height: 1.55;
   }
+
+  /* in-headset screens: captures live in assets/screens/; a capture that is not there yet hides its figure */
+  figure.screen {
+    --va: 46, 230, 197;
+    margin: 1.3rem 0; max-width: 760px; min-width: 0; border-radius: 12px; overflow: hidden;
+    background: #06030B; border: 1px solid rgba(255,255,255,0.075);
+    box-shadow: 0 0 0 1px rgba(var(--va),0.14), 0 22px 60px rgba(0,0,0,0.45), 0 0 48px rgba(var(--va),0.08);
+  }
+  figure.screen.pink { --va: 255, 72, 173; }
+  figure.screen.gold { --va: 232, 196, 104; }
+  figure.screen.green { --va: 124, 255, 178; }
+  figure.screen img { display: block; width: 100%; max-width: 100%; height: auto; background: #000; }
+  figure.screen figcaption {
+    position: relative; padding: 0.62rem 0.9rem 0.62rem calc(0.9rem + 6px + 0.6rem);
+    border-top: 1px solid rgba(var(--va),0.24); background: rgba(8,4,12,0.88);
+    font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+    line-height: 1.45; color: var(--dim);
+  }
+  figure.screen figcaption::before {
+    content: ""; position: absolute; left: 0.9rem; top: calc(0.62rem + 0.5em); width: 6px; height: 6px;
+    border-radius: 50%; background: rgb(var(--va)); box-shadow: 0 0 8px rgba(var(--va),0.95);
+  }
+  figure.screen.pending { display: none; }
+
+  /* version badges and next-update draft blocks */
+  .ver {
+    display: inline-block; margin-left: 0.45rem; padding: 0.02rem 0.5rem; vertical-align: 0.12em;
+    border: 1px solid rgba(46,230,197,0.45); border-radius: 999px;
+    font-family: var(--mono); font-size: 0.66rem; font-weight: 600; letter-spacing: 0.08em; line-height: 1.6;
+    color: var(--teal-pale); white-space: nowrap;
+  }
+  .ver.exp { border-color: rgba(255,72,173,0.6); color: var(--pink-soft); }
+  .ver.next { border-color: rgba(232,196,104,0.62); color: var(--gold); }
+  @media (max-width: 780px) {
+    .ver { white-space: normal; max-width: 100%; overflow-wrap: anywhere; }
+    .draft { padding-inline: 0.8rem; }
+  }
+  .draft {
+    margin: 1.5rem 0; padding: 0.3rem 1.1rem 0.9rem; max-width: 72ch;
+    border: 1px solid rgba(46,230,197,0.38); border-radius: 12px; background: rgba(46,230,197,0.035);
+  }
+  .draft > .draft-label {
+    margin: 0.6rem 0 0; font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.16em;
+    color: var(--gold); text-transform: uppercase;
+  }
+  .draft h3:first-of-type { margin-top: 0.9rem; }
   .download {
     display: inline-block; margin: 0.25rem 0 1rem; padding: 0.32rem 0.75rem;
     border: 1px solid rgba(46,230,197,0.35); border-radius: 999px;
@@ -621,10 +667,11 @@
     <span class="eyebrow">Field Manual</span>
     <h1>FINALLY</h1>
     <p class="tag"><b>offline · local · yours</b> — the VR video player that respects your library, your network, and your controls.</p>
-    <p class="hero-meta">1.0.32 reference · quest code 123 · galaxy code 10123 · updated september 8, 2026</p>
+    <p class="hero-meta">covers v1.0.43 · quest code 135 · galaxy code 10135 · november 15, 2026</p>
     <div class="hero-actions">
       <a class="support-top-cta" href="#support">SUPPORT FINALLY</a>
-      <a class="store-cta" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Get Finally on the Meta Horizon Store →</a>
+      <a class="store-cta" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Meta Quest Store →</a>
+      <a class="store-cta" href="https://play.google.com/store/apps/details?id=com.coldbricks.finallyplayer">Galaxy XR · Google Play →</a>
     </div>
   </div>
 </header>
@@ -633,12 +680,17 @@
 <nav class="rail" aria-label="Manual sections">
   <p class="rail-title">Daily use</p>
   <a href="#start">Start here</a>
+  <a href="#new">What's new</a>
   <a href="#tutorial">Guided tutorial</a>
   <a href="#faq">Daily-use FAQ</a>
   <a href="#controls">Controls</a>
   <a href="#club">The Lobby</a>
   <a href="#cockpit">The Cockpit</a>
   <a href="#haptics">ChloeVibes haptics</a>
+  <a href="#music">Music</a>
+  <a href="#vibes">Music vibes</a>
+  <a href="#lights">Club lights</a>
+  <a href="#ai">AI tools (experimental)</a>
   <a href="#lenses">Lenses &amp; projection</a>
   <a href="#tags">Filename tags</a>
   <a href="#sources">Sources &amp; NAS</a>
@@ -652,6 +704,7 @@
   <a href="#specs">Tests &amp; metrics</a>
   <a href="#fixit">Fix it</a>
   <a href="#diagnostics">Bug reports</a>
+  <a href="#next">1.0.40 – 1.0.43 deep dive</a>
   <div class="rail-gap"></div>
   <p class="rail-title">Optional appendices</p>
   <a href="#themes">Themes</a>
@@ -665,29 +718,24 @@
 
 <main id="main-content">
 
-<section id="start"><div class="note"><p><strong>Installing Finally?</strong> Use the <a href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Meta Quest listing</a> or the <a href="https://play.google.com/store/apps/details?id=com.coldbricks.finallyplayer">Google Play listing for Galaxy XR</a>. Start with the <a href="/galaxy-xr/">Galaxy XR setup guide</a> or <a href="/photos/">SBS photo guide</a>. The reference below contains historical version notes; check the version installed in your Lobby.</p></div>
+<section id="start">
+  <div class="note"><p><strong>Installing Finally?</strong> Use the <a href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Meta Horizon Store listing</a> or the <a href="https://play.google.com/store/apps/details?id=com.coldbricks.finallyplayer">Google Play listing for Samsung Galaxy XR</a>. Step-by-step setup guides: <a href="/connect/">Mac, Windows, NAS &amp; DLNA</a> · <a href="/galaxy-xr/">Galaxy XR</a> · <a href="/photos/">3D SBS Photos</a>.</p></div>
   <p class="kicker">01 · basics</p>
   <h2>Start here</h2>
   <p class="lede">Point the laser. Pull the trigger. That's most of Finally.</p>
-  <div class="note warn"><p><strong>Read the installed version in the Lobby.</strong> This is the <strong>1.0.32 reference — Quest code 123 / Galaxy code 10123</strong>. It describes the prepared release and does not announce store availability. Check the store and the version inside your headset. Version 1.0.28 shows <strong>SRC</strong> where newer builds show <strong>SOURCES</strong>; illustrated Lobby Help arrived in 1.0.30. Older version-specific measurements in <a href="#specs">Engineering Receipts</a> remain historical.</p></div>
+  <div class="note warn"><p><strong>Read the installed version in the Lobby.</strong> This manual covers <strong>Finally 1.0.43 &mdash; Quest code 135 / Galaxy XR code 10135</strong>. Store rollouts can reach devices at different times; the version shown inside your headset Lobby remains the authority.</p></div>
   <div class="tbl-wrap"><table>
     <thead><tr><th scope="col">Reference identity</th><th scope="col">How this manual applies</th></tr></thead>
     <tbody>
-      <tr><td>Quest · 1.0.32 · code 123</td><td>Saved playlists, offline downloads, file tools, improved USB access, custom cockpit palettes, MVC curve/bow, a fresh 1× speed on each video open, and photo/Help control fixes. Follow the controls in your installed build; this reference is separate from store delivery.</td></tr>
-      <tr><td>Galaxy XR · 1.0.32 · code 10123</td><td>The shared player is distributed through Google Play. Check the version and device compatibility shown for your headset; a Quest screenshot or playback result is not a Galaxy guarantee.</td></tr>
-      <tr><td>1.0.28 · Quest 119 / Galaxy 10119</td><td>Uses the earlier SRC layout. The simplified Sources illustrations show the 1.0.29 update; connection choices may be arranged differently in 1.0.28.</td></tr>
-      <tr><td>Earlier builds</td><td>Use only controls present in that installed build. Older manuals and Engineering Receipts retain their original version identities.</td></tr>
-      <tr><td>Any other version</td><td>Use this as orientation, then follow that build's in-headset HELP and release notes. A control described here may be absent or changed.</td></tr>
+      <tr><td>Quest · 1.0.43 · code 135</td><td>Instant SMB &amp; USB-C SSD seeking and chapter jumps, zero-config DLNA Direct Play for Universal Media Server &amp; Windows 11 Media Streaming, SMB/WebDAV/FTP photo thumbnails, <code>PHOTO STICK</code> modes for 3D photos, A/B pause-hold fix, VIBES preamp + <code>EXPAND</code> headroom + quick-strip <code>VIBE</code> dial, Club Lights + <code>GLOW</code>, 2D → 3D studio, saved playlists, file tools, custom cockpit palettes, and zero location permissions.</td></tr>
+      <tr><td>Galaxy XR · 1.0.43 · code 10135</td><td>Shared Android XR core built from the same codebase (<code>10000 + 135</code>), distributed on Google Play.</td></tr>
+      <tr><td>Older builds</td><td>Use the controls present in your installed build. Version badges (<span class="ver">1.0.38</span> – <span class="ver">1.0.43</span>) mark newer additions, and historical measurements in <a href="#specs">Engineering Receipts</a> remain tied to the exact build tested.</td></tr>
     </tbody>
   </table></div>
-  <div class="note"><p><strong>Startup film.</strong> Introduced in 1.0.1 and retained in this reference, the mastered 1920&times;1080 startup intro uses a cleaned black field, restrained aviation layer, and final audio hold. The 244-frame / 24-fps film remains <strong>ON</strong> by default on cold start; <span class="chip">HIDE</span> is an explicit Global Settings choice after the first watch.</p></div>
+  <div class="note"><p><strong>Startup film.</strong> Introduced in 1.0.1 and retained in 1.0.8, the mastered 1920&times;1080 startup intro uses a cleaned black field, restrained aviation layer, and final audio hold. The 244-frame / 24-fps film remains <strong>ON</strong> by default on cold start; <span class="chip">HIDE</span> is an explicit Global Settings choice after the first watch.</p></div>
   <div class="note love"><p><strong>What this release carries:</strong> the Lobby/theme board uses continuous stick and laser-drag scrolling with hard clipping and explicit page affordances. During a drag or flick, the list keeps a bounded compositor scroll window, remaps hit testing analytically, and avoids re-baking the full panel for every laser crossing. The list/cover well is hard-clipped on every frame; Settings and theme panels use a lower redraw/supersample budget, with hover chrome kept separate from full bitmap work. On VR180 / VR360 / fisheye / alpha passthru, stick forward/back remains the same <strong>Distance</strong> value as the cockpit slider and per-title save; stick-click homes Distance + Zoom to <code>D1.00 / Z1.00</code> and recenters. These are the current implementation contracts; the headset remains the authority for feel under a particular library, network, and thermal condition.</p></div>
-  <h3>Recent updates and the controls they build on</h3>
-  <p><strong>1.0.32</strong> adds <a href="#library-tools">saved playlists, downloads and file tools</a> under <span class="chip">MORE</span>. The library and player share the full skin picker, with miniature cockpit previews and a named <a href="#custom-skins">custom color editor</a>. USB access starts when you choose a drive; SCAN hides disconnected USB shelves while retaining their saved records. Curve and bow now shape an MVC cinema screen, and each video open starts at 1×. Photo Help returns to Play reliably, pointed Lobby Help controls stay steady during animation, and gallery-lock controls remain clear of the footer.</p>
-  <p><strong>1.0.31</strong> added optional timed hiding of idle controllers while keeping their inputs active, and a current-frame color comparison. Earlier updates remain documented below.</p>
-  <p><strong>1.0.30</strong> brings the illustrated manual into Lobby <strong>HELP</strong>: all 13 topics remain visible beside a larger, scrollable article with controller artwork for your headset. Page buttons and the stick scroll the article without changing the selected topic. Reopening Help in the same Lobby session restores your reading position. Menu occlusion follows controller depth, so controller parts held in front of the panel remain visible.</p>
-  <p><strong>1.0.29</strong> puts <strong>SOURCES</strong> in plain sight, with large <strong>ON THIS HEADSET</strong> and <strong>CONNECT COMPUTER</strong> choices. SMB setup begins with the address, username and password; optional paths, domain and port sit under Advanced. Back from the source desk returns to the Lobby. The update also improves failed-connection recovery, canceled scans, audio-language fallback and delayed subtitles. App and input resets restore fresh-start defaults, pending view-reset timers cancel when the app pauses, and leaving the browser cancels delayed automatic playback handoffs.</p>
-  <p><strong>1.0.28</strong> improves local thumbnails and one-eye stereo-photo previews, keeps the list visible while sorting, adds <strong>Gentle / Normal / Fast</strong> stick response (the earlier release defaulted to Gentle; 1.0.32 defaults to Normal), fits BASIC controls more comfortably, improves high-frame-rate and MPEG-2 playback, and keeps the selected room or passthrough visible while another photo loads. The following earlier improvements remain part of the reference:</p>
+  <h3>What 1.0.8 changes</h3>
+  <p>1.0.8 tightens the paths people touch every day while preserving the advanced tools in PRO:</p>
   <ul>
     <li><strong>Modern SMB setup</strong> — test server sign-in, choose a shared-folder card, drill through folder rows, test the exact selection, and save only when you press <strong>Add &amp; browse</strong>. Empty or mixed folders are valid; there is no media-percentage rule.</li>
     <li><strong>Calmer controls</strong> — SIMPLE is now PLAY · VIEW · PICTURE · HELP · PRO, with larger transport and placement targets, CLOSER/FARTHER/ZOOM controls, and individual reset help. Advanced placement, subtitle, loop, keying, and setup tools remain in PRO.</li>
@@ -709,6 +757,27 @@
   </table></div>
   <div class="note love"><p><strong>One-controller law.</strong> Everything critical in Finally works with one tracked controller. Left-controller buttons are conveniences, never requirements.</p></div>
   <div class="note warn"><p><strong>First-run missing-file check:</strong> a whole-word <code>mono</code> filename tag intentionally hides that title from the vault and 2D library; the footer reports <em>N MONO hidden</em>. <em>Kimono</em> and <em>Monolith</em> do not match, and a title with saved settings is never auto-hidden. Rename the file to show it again.</p></div>
+</section>
+
+<section id="new">
+  <p class="kicker">01A · what's new</p>
+  <h2>What's new through 1.0.43</h2>
+  <p class="lede">Instant NAS &amp; SSD skips, zero-config DLNA for Windows 11 &amp; Universal Media Server, SMB photo thumbnails, 3D photo stick modes, a built-in music player with Club Lights &amp; ChloeVibes, and on-device AI tools.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th scope="col">What</th><th scope="col">Where</th><th scope="col">Since</th></tr></thead>
+    <tbody>
+      <tr><td><a href="#loops">Instant SMB/SSD seeking &amp; chapter jumps</a></td><td>Shared SMB seek reservoir · 0.5 s post-seek start · clean MKV keyframe cues · 512 KB USB-C SSD reader</td><td><span class="ver">1.0.43</span></td></tr>
+      <tr><td><a href="#sources">Zero-config DLNA Direct Play (UMS + Win 11)</a></td><td><span class="chip">SOURCES</span> → DLNA · 50 GB+ 8K VR Direct Play out of the box</td><td><span class="ver">1.0.43</span></td></tr>
+      <tr><td><a href="#photos">SMB/WebDAV/FTP photo thumbnails + PHOTO STICK</a></td><td>Vault cover/list art · Photo <span class="chip">PLAY</span> → <span class="chip">Stick: Next/Prev · Move Only · L Skip / R Move</span></td><td><span class="ver">1.0.43</span></td></tr>
+      <tr><td><a href="#vibes">VIBES preamp, EXPAND headroom &amp; quick VIBE dial</a></td><td><span class="chip">MUSIC</span> → <span class="chip">VIBES</span> · dB graph · full ADSR · trigger quick strip</td><td><span class="ver">1.0.42</span></td></tr>
+      <tr><td><a href="#next">LIGHTS 20–240 Hz graph, LIGHT SYNC &amp; GLOW page</a></td><td><span class="chip">MUSIC</span> → <span class="chip">LIGHTS</span> → <span class="chip">GLOW</span></td><td><span class="ver">1.0.40</span></td></tr>
+      <tr><td><a href="#music">Music player + EQ</a></td><td>Cockpit <span class="chip">MUSIC</span> tab · LIBRARY · QUEUE · NOW · EQ</td><td><span class="ver">1.0.39</span></td></tr>
+      <tr><td><a href="#vibes">Music vibes (ChloeVibes)</a></td><td><span class="chip">MUSIC</span> → <span class="chip">VIBES</span> · Lobby <span class="chip">CFG</span> → ChloeVibes · SET UP</td><td><span class="ver">1.0.39</span>–<span class="ver">1.0.42</span></td></tr>
+      <tr><td><a href="#photos">Beat slideshows, photo 2D → 3D, 360 panoramas</a></td><td>Photo cockpit</td><td><span class="ver">1.0.39</span></td></tr>
+      <tr><td><a href="#club">DETAILS view (with folder sort), RESUME, playlists &amp; file tools</a></td><td>Lobby · <span class="chip">MORE</span> → Saved playlists · Download to headset · Manage files</td><td><span class="ver">1.0.32</span>–<span class="ver">1.0.42</span></td></tr>
+      <tr><td><a href="#ai">2D → 3D studio, CLARITY (FSR 1), AI BACKGROUND</a></td><td>Cockpit picture pages</td><td><span class="ver">1.0.38</span> <span class="ver exp">EXPERIMENTAL</span></td></tr>
+    </tbody>
+  </table></div>
 </section>
 
 <section id="tutorial">
@@ -739,14 +808,14 @@
       <tr><td>Can I choose another audio track?</td><td>Yes for ordinary ExoPlayer-backed containers. Tap <span class="chip">AUDIO</span> for the multi-track list (language chips, remembered preference) and the <strong>AUDIO studio</strong> — SIMPLE Night soft, or PRO EQ / dynamics / stereo width. The shared path is disabled for prepared ISO/SSIF playback. Finally does not invent a missing dub or ask Plex to transcode one.</td></tr>
       <tr><td>Can I load an external subtitle file?</td><td>Yes. Start an ordinary video, open the quick strip or PLAY page, and choose <span class="chip">LOAD SUBTITLE</span>. Pick an SRT, VTT, ASS, or SSA file up to 4 MiB. Local/SMB (and WebDAV same-folder) sidecars can auto-pick. <span class="chip">MOVE SUBS</span> free-drags the caption on the picture; <span class="key">B</span> saves. Stills and the special ISO/MVC path are excluded.</td></tr>
       <tr><td>Does Finally support ChloeVibes or <code>.funscript</code> files?</td><td>Yes. ChloeVibes is integrated into Finally, so no second app is required. Open <span class="chip">GLOBAL SETTINGS</span> &rarr; <span class="chip">CHLOEVIBES</span>, connect and explicitly ARM a compatible Bluetooth accessory, then use a readable sidecar with the same complete basename as the video. Stroke length/speed caps tame wild scripts. <strong>The Handy</strong> can use a HandyFeeling connection key (Wi‑Fi) from the same panel family; review and accept the in-app network disclosure before its first cloud request. See <a href="#haptics">ChloeVibes haptics</a>.</td></tr>
-      <tr><td>Stick moves the picture closer but nothing resets?</td><td>In the 1.0.28 controls, stick ↕ is Distance (the slider moves). Stick-click homes Distance + Zoom and recenters. Point at an individual slider and click the stick to reset only that control.</td></tr>
+      <tr><td>Stick moves the picture closer but nothing resets?</td><td>On the current 1.0.8 candidate, stick ↕ is Distance (the slider moves). Stick-click homes Distance + Zoom and recenters. Point at an individual slider and click the stick to reset only that control.</td></tr>
       <tr><td>What happens to surround audio?</td><td>Finally keeps up to eight-channel tracks eligible, uses headset hardware when available, and falls back to its bundled FFmpeg audio path for AC-3, E-AC-3, and DTS when needed. Android's audio system performs the headset downmix.</td></tr>
       <tr><td>Are chapters supported?</td><td>Yes when the container exposes them: Blu-ray playlist marks and Media3 multi-period chapter marks show CHAPTER chips (including in SIMPLE). The code-28 resume-plus-authored-seek route remains a historical Quest receipt; DVD menu navigation is still not claimed.</td></tr>
       <tr><td>Does HDR work?</td><td>A focused 1080p60 AV1 Main 10 HDR10 file reached the hardware decoder and recovered after seek on Quest 3 and Galaxy XR. That is decode-path proof, not a blanket HDR tone-map, output-accuracy, 4K/8K, or every-profile guarantee.</td></tr>
       <tr><td>Can Finally cast the movie?</td><td>Finally has no in-app Chromecast, host relay, or cloud-casting service. Headset-system casting or recording, when the OS offers it, is outside Finally's media path. Watch Together synchronizes two local copies; it is not casting.</td></tr>
       <tr><td>How much battery does it use?</td><td>There is no honest hours estimate: codec, resolution, bitrate, Wi-Fi, display mode, and headset firmware dominate. Bench runs were externally powered, so no controlled drain series is claimed. Check the headset battery for long or high-bitrate sessions.</td></tr>
       <tr><td>Will progress survive a move or rename?</td><td>Readable, seekable local media with a known size of at least 64 KiB can rematch the same bytes by content hash, and <code>*.finally.json</code> sidecars can travel with a title. A move between source types or servers can become a new identity, so keep the sidecar with the title when the transfer matters.</td></tr>
-      <tr><td>Can I use removable storage?</td><td>Yes. Choose the drive in Sources and grant access when prompted. Android-mounted volumes use a folder grant; direct USB access also reads supported exFAT volumes, including files larger than 4 GiB. Direct USB reading does not grant write access. See <a href="#usb-storage">USB storage</a>; optical DVD is a separate path.</td></tr>
+      <tr><td>Can I use removable storage?</td><td>Use <strong>Add videos folder</strong> or <strong>Add files</strong> and grant the volume through Android's picker when the OS exposes it. A removed/re-mounted volume can need a fresh grant. USB optical DVD is a separate, narrower Quest path.</td></tr>
     </tbody>
   </table></div>
 </section>
@@ -807,7 +876,11 @@
     <thead><tr><th>Chip</th><th>What it does</th></tr></thead>
     <tbody>
       <tr><td><span class="chip">SELECT</span></td><td>Enter selection mode — tap row boxes, then <span class="chip">FAV</span> / <span class="chip">DEL</span> / <span class="chip">HIDE</span> / <span class="chip">COLOR</span> act on the whole set. A <span class="chip">HIDDEN</span> chip appears when hidden rows exist so you can show or re-filter them</td></tr>
-      <tr><td><span class="chip">LIST</span> / <span class="chip">COVER</span></td><td>Flip the vault between the list layout and the cover-art shelf</td></tr>
+      <tr><td><span class="chip">LIST</span> / <span class="chip">COVER</span> / <span class="chip">DETAILS</span></td><td>Cycle the vault between the list layout, the cover-art shelf and, since 1.0.39, the sortable <a href="#details-view">DETAILS</a> columns</td></tr>
+      <tr><td><span class="chip">♪ MUSIC</span></td><td>Open the music library (1.0.39; see <a href="#music">Music</a>). Lit while a song plays</td></tr>
+      <tr><td><span class="chip">RESUME</span></td><td>One tap back into the last video you played (1.0.39). The wide teal chip mid-row</td></tr>
+      <tr><td><span class="chip">PLAY MUSIC</span> / <span class="chip">PAUSE MUSIC</span></td><td>Shown while a song is loaded. Plays or pauses the music only</td></tr>
+      <tr><td><span class="chip">TOY STOP</span></td><td>Red, leads the row while a toy is live. Motors to zero and disarm, one press (see <a href="#vibes">Music vibes</a>)</td></tr>
       <tr><td><span class="chip">↻ SCAN</span></td><td>Rescan your sources for new files — <strong>including your saved NAS share</strong>, so server-side additions land without leaving VR</td></tr>
       <tr><td><span class="chip">SORT</span></td><td>Cycle the eight saved folder orders: A-Z, Z-A, NEW, OLD, BIG, SMALL, LONG, SHORT</td></tr>
       <tr><td><span class="chip">FAV</span></td><td>Pin the selected title to favorites</td></tr>
@@ -819,6 +892,26 @@
     </tbody>
   </table></div>
   <p>The wide band under the list carries the four destinations: <span class="chip">SRC</span> (sources), <span class="chip">CFG</span> (GLOBAL SETTINGS), <span class="chip">HELP</span>, and <span class="chip">EXIT</span>. <strong>GROUP WATCH</strong> — private-LAN Host / Join pairing (see <a href="#watch">Watch Together</a>) — lives under <span class="chip">CFG</span>, and <strong>Room dim</strong> is a CFG preference too.</p>
+  <h3 id="details-view">DETAILS view <span class="ver">1.0.39</span></h3>
+  <p>Press the layout chip until it reads <span class="chip">DETAILS</span> for an Explorer-style list: 13 rows a page with columns <strong>NAME · LENGTH · SIZE · DATE · TYPE</strong>. Aim at a column title to sort by it; press it again to flip the order. A new column starts A-Z, longest, largest or newest. TYPE shows VR180 / 360 / FISHEYE, the stereo packing (HSBS, FSBS, HOU, FOU or 3D) or 2D, and FOLDER / NAS for folders; it doesn't sort. The poster pane hides to make room; the A–Z rail shows while the list is sorted by NAME A–Z. The sort is the same saved folder order the <span class="chip">SORT</span> chip uses, with favorites still pinned.</p>
+  <figure class="screen">
+    <img src="assets/screens/vault-details.jpg" alt="Lobby vault in DETAILS view with NAME, LENGTH, SIZE, DATE and TYPE columns, sorted by LENGTH, longest first" width="1600" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('pending')">
+    <figcaption>Lobby · DETAILS · sorted by LENGTH</figcaption>
+  </figure>
+
+  <h3>GLOBAL SETTINGS on one page <span class="ver">1.0.39</span></h3>
+  <p>Lobby <span class="chip">CFG</span> now lays every setting out at once on four plates across: <strong>VIEW · PLAY · INPUT + NET · APP</strong>. With <em>NAS expert</em> open the plates regroup, and still nothing is hidden. If a future row could not fit, the page falls back to a scrolling list with a <em>SCROLL FOR N MORE</em> cue instead of dropping it. New rows in 1.0.39:</p>
+  <ul>
+    <li><strong>ChloeVibes · SET UP</strong>: the first row of APP. Opens the guided toy panel (see <a href="#vibes">Music vibes</a>).</li>
+    <li><strong>Toy safety lock</strong>: right below it, default ON.</li>
+    <li><strong>Controller haptics</strong> (INPUT): OFF · 25 · 50 · 75 · 100% for menu hover and click pulses, with a sample pulse when you change it. It never drives the toy.</li>
+  </ul>
+  <figure class="screen">
+    <img src="assets/screens/settings-hub.jpg" alt="Lobby GLOBAL SETTINGS with four plates across, VIEW, PLAY, INPUT plus NET, and APP, with ChloeVibes SET UP as the first APP row and Toy safety lock below it" width="1600" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('pending')">
+    <figcaption>Lobby · CFG · four plates · ChloeVibes · SET UP</figcaption>
+  </figure>
+  <p><strong>Smoother stick scrolling</strong> (1.0.39): Lobby lists, the vault, HELP, music lists and overflowing cockpit pages glide with the stick instead of jumping a page. The Lobby footer shows a <em>CLICK STICK = RECENTER</em> hint; it pulses on your first three Lobby visits, then stays quiet.</p>
+
   <h3>Search a large vault</h3>
   <p>Choose <span class="chip">FIND</span>, type with the controller-first keyboard, and apply the query. Search is case-insensitive, every word must appear somewhere in the displayed title, and the resulting rows keep the active sort order. Untitled Stash scenes are searchable by their filename fallback. Press Menu / Back—<span class="key">B</span> by default or <span class="key">Y</span> after the optional swap—to close the editor or clear an applied search before the normal folder-back action continues.</p>
   <h3>Grab the list</h3>
@@ -850,15 +943,6 @@
   </table></div>
   <p>“Date added” means when the item entered the Finally vault, not necessarily its filesystem modification date.</p>
 
-  <h3 id="library-tools">Playlists, downloads and file tools</h3>
-  <p>Focus a file, or use <span class="chip">SELECT</span> to check several, then open <span class="chip">MORE</span>. The same tools can resolve a browsed DLNA, Stash or XBVR title without playing it first.</p>
-  <ol class="steps">
-    <li><strong>Add to playlist:</strong> choose an existing list or <strong>New playlist</strong>, then name it with the VR keyboard. <strong>Saved playlists</strong> lets you rename a list, move entries up or down, remove entries, play from an entry, shuffle, or repeat the list. A list can mix headset, USB and network videos. Removing an entry or list does not delete media.</li>
-    <li><strong>Download to headset:</strong> copy a supported USB or network video into local storage. Open <strong>Downloads</strong> for progress, cancel, retry, or <strong>Play offline copy</strong>. The completed copy retains the title's picture settings and gets its own library entry; the original remains in place.</li>
-    <li><strong>Manage files:</strong> choose <strong>Create folder</strong>, <strong>Rename</strong>, <strong>Copy to…</strong> or <strong>Move to…</strong>. Browse to a writable destination, then choose <strong>Copy here</strong>, <strong>Move here</strong> or <strong>Create folder here</strong>. These are real filesystem changes. Existing names cause a collision error instead of being overwritten.</li>
-  </ol>
-  <p>Playlists retain unavailable entries so a disconnected drive or server does not erase your list. If a title cannot be opened, playlist playback stops with a notice; it does not silently skip an unknown source error. Opening another title manually ends the active playlist sequence.</p>
-  <p>File tools support writable headset folders, Android-granted storage folders and SMB shares when the server permits the operation. Read-only sources can offer copy-out; rename and move require the corresponding write permissions. A folder grant returns you to the tools and does not start an operation automatically. Copies are verified before a move removes its original. A failed batch can leave already completed files at the destination, so check its result before retrying.</p>
   <h3>Delete one local video</h3>
   <ol class="steps">
     <li>Focus one local video and choose <span class="chip">DEL</span>.</li>
@@ -867,7 +951,7 @@
   </ol>
   <p>Finally reloads the vault row and root before deletion so a stale selection cannot redirect the action. It fails closed for SMB, FTP, WebDAV, Plex, Stash, folders, DVD, ISO, cloud/server rows, traversal paths, missing roots, or a target that no longer matches the selection. A successful delete is permanent. <strong>Clear vault</strong> only removes Finally's records and never deletes the media.</p>
   <h3>Setup from the Lobby</h3>
-  <p><span class="chip">SOURCES</span> (<span class="chip">SRC</span> in 1.0.28) opens the in-room source panel and starts a bounded nearby-network scan. Choose a discovered media server to add DLNA in VR, or choose an SMB server to open its sign-in and shared-folder picker. The <a href="/connect/">visual connection tutorial</a> shows the simplified 1.0.29 Sources layout; version 1.0.28 uses SRC. Choose <strong>CONNECT COMPUTER</strong> to discover nearby devices, or <strong>ADD CONNECTION</strong> then <strong>Add manually</strong> for an address you already know. Choose <strong>EDIT WITH KEYBOARD</strong> when you need the flat Library setup screen, Android pickers, or server forms; <strong>Quick-start tutorial</strong> replays the guided tour. Lobby <span class="chip">CFG</span> (GLOBAL SETTINGS) holds menu level, resume, skip intro, tilt follow, stick direction, seek step, <em>Seek landing</em> (FAST ⇄ EXACT, see <a href="#loops">Seeking</a>), <em>NAS buffer</em> (LEAN · DEFAULT · BIG · MAX, see <a href="#sources">Sources &amp; NAS</a>), <em>Room dim</em>, cockpit <em>Menu style</em> (SIMPLE ⇄ PRO), <strong>GROUP WATCH</strong>, and the dedicated <span class="chip">CHLOEVIBES</span> control entry. During playback, switch to PRO for the GLOBAL SETTINGS page and <span class="chip">HAPTIC CONTROL PANEL</span>. <span class="chip">HELP</span> opens help in-headset with no title required.</p>
+  <p><span class="chip">SRC</span> opens the in-room source status and rescan panel. Choose <strong>EDIT WITH KEYBOARD</strong> when you need the flat Library setup screen, Android pickers, or server forms; <strong>Quick-start tutorial</strong> replays the guided tour. Lobby <span class="chip">CFG</span> (GLOBAL SETTINGS) holds menu level, resume, skip intro, tilt follow, stick direction, seek step, <em>Seek landing</em> (FAST ⇄ EXACT, see <a href="#loops">Seeking</a>), <em>NAS buffer</em> (LEAN · DEFAULT · BIG · MAX, see <a href="#sources">Sources &amp; NAS</a>), <em>Room dim</em>, cockpit <em>Menu style</em> (SIMPLE ⇄ PRO), <strong>GROUP WATCH</strong>, and the dedicated <span class="chip">CHLOEVIBES</span> control entry. During playback, switch to PRO for the GLOBAL SETTINGS page and <span class="chip">HAPTIC CONTROL PANEL</span>. <span class="chip">HELP</span> opens help in-headset with no title required.</p>
   <p>Android's flat or system UI appears only for tasks that need it: source management and folder/document pickers, the external-subtitle picker, local-file delete confirmation, and Watch Together setup. Return to the Lobby when that task finishes.</p>
   <p><span class="chip">EXIT</span> leaves to your headset home — labeled <span class="chip">EXIT → QUEST</span> on Quest and <span class="chip">EXIT → HOME</span> on Galaxy XR. The exit path is single-flight with a harder OpenXR teardown so Meta home / Loft can reclaim the headset. Lobby worlds reload after stop; a failed 8K environment load falls back to VOID instead of leaving a broken room. On the empty first run, open <span class="chip">SRC</span>, or drop files in <span class="path">Movies/Finally</span> and use <span class="chip">↻ SCAN</span>.</p>
 </section>
@@ -878,26 +962,25 @@
   <p class="lede">Press Menu / Back—<span class="key">B</span> by default or <span class="key">Y</span> after the optional swap—during playback: quick strip first, full cockpit second, gone third.</p>
 
   <h3>The Menu / Back cycle</h3>
-  <p>While a video plays, the Menu / Back button—<span class="key">B</span> by default, <span class="key">Y</span> after the optional swap—walks a three-step cycle: <strong>nothing open → quick strip → full cockpit → hidden</strong>. The strip spawns low, below your eyeline — a glance down, not a wall of controls in your face. A second press grows it into the full cockpit <em>in place</em>; a third puts everything away. A bare <span class="key">Trigger</span> pull summons the strip too, so the common moves are always one squeeze away.</p>
+  <p>While a video plays, the Menu / Back button—<span class="key">B</span> by default, <span class="key">Y</span> after the optional swap—walks a three-step cycle: <strong>nothing open → quick strip → full cockpit → hidden</strong>. The strip spawns low, below your eyeline — a glance down, not a wall of controls in your face. A second press grows it into the full cockpit <em>in place</em>; a third puts everything away. Since 1.0.39, when something is open inside the cockpit (a list, a card, an editor, a music folder), Menu / Back closes that first, one level per press, before it hides the cockpit. A bare <span class="key">Trigger</span> pull summons the strip too, so the common moves are always one squeeze away.</p>
   <p>Photos skip the strip — Menu / Back opens the full cockpit directly, because transport means nothing to a still. In the lobby, the same button backs out through panels and folders before hiding the root vault.</p>
 
   <h3>The quick strip</h3>
   <p>The strip carries the moves you actually make mid-video: the timeline scrubber (full drag-seek; local/SAF titles can show <strong>storyboard tiles</strong> while scrubbing), <span class="chip">-30s</span> / <span class="chip">-5s</span> / <span class="chip">PLAY</span> / <span class="chip">+5s</span> / <span class="chip">+30s</span> (the small step is adjustable in GLOBAL SETTINGS), <span class="chip">■ STOP</span>, speed, volume, mute, <span class="chip">PREV</span> / <span class="chip">◆ LOBBY</span> / <span class="chip">NEXT</span>, <span class="chip">SHUF</span>, <span class="chip">◀ CLOSER</span> / <span class="chip">FARTHER ▶</span>, and the <span class="chip">DARK</span> / <span class="chip">ROOM</span> toggle. In SIMPLE mode, point and trigger the always-visible <span class="chip">PRO CONTROLS</span> target to promote the strip into the full cockpit. In PRO mode the strip adds A·B·C·D loop chips and <span class="chip">STATS</span>. If a network stream stalls, it raises itself with a <strong>REBUFFERING</strong> banner that shows buffer seconds · fill % · MB/s · network class, then stands back down when the flow recovers — details in <a href="#sources">Sources &amp; NAS</a>.</p>
 
-  <h3>BASIC (SIMPLE) and PRO</h3>
-  <p><strong>BASIC</strong> is the button that returns from PRO to the everyday cockpit. <strong>Menu style</strong> in GLOBAL SETTINGS still calls that same mode <strong>SIMPLE</strong>; the AUDIO studio also retains its SIMPLE / PRO labels.</p>
-  <p>The full cockpit ships in <strong>SIMPLE</strong> mode with five stable tabs: <span class="chip">PLAY</span> · <span class="chip">VIEW</span> · <span class="chip">PICTURE</span> · <span class="chip">HELP</span> · <span class="chip">PRO</span>. PLAY keeps the common transport plus large PREV, NEXT, RESET, SUBS, and AUDIO targets. VIEW puts large <span class="chip">CLOSER</span>, <span class="chip">FARTHER</span>, <span class="chip">ZOOM−</span>, <span class="chip">ZOOM+</span>, <span class="chip">RESET PLACE + EYES</span>, and <span class="chip">RESET VIEW</span> controls ahead of fine placement. PICTURE keeps the everyday picture grade, reset, room dim, and a path into chroma key.</p>
-  <p>Tap <span class="chip">PRO</span> for detailed PLAY, PLACE/EYES, COLOR/KEY, GLOBAL SETTINGS, and HELP pages; <span class="chip">BASIC</span> returns to SIMPLE. Your choice is saved and can also be changed from Lobby <span class="chip">GLOBAL SETTINGS</span> &rarr; <em>Menu style</em>. PRO contains the detailed chapter/shuffle, external/movable/delayed subtitle, loop, specialist-lens, placement and setup controls. BASIC keeps direct routes to MORE LENSES, PICTURE and the common stereo-layout controls, so you can open the deeper page when needed.</p>
+  <h3>SIMPLE and PRO</h3>
+  <p>The full cockpit ships in <strong>SIMPLE</strong> mode with five stable tabs: <span class="chip">PLAY</span> · <span class="chip">VIEW</span> · <span class="chip">PICTURE</span> · <span class="chip">HELP</span> · <span class="chip">PRO</span>. Since 1.0.39 a sixth, <span class="chip">MUSIC</span>, sits before HELP in both modes (see <a href="#music">Music</a>). PLAY keeps the common transport plus large PREV, NEXT, RESET, SUBS, and AUDIO targets. VIEW puts large <span class="chip">CLOSER</span>, <span class="chip">FARTHER</span>, <span class="chip">ZOOM−</span>, <span class="chip">ZOOM+</span>, <span class="chip">RESET PLACE + EYES</span>, and <span class="chip">RESET VIEW</span> controls ahead of fine placement. PICTURE keeps the everyday picture grade, reset, room dim, and a path into chroma key.</p>
+  <p>Tap <span class="chip">PRO</span> for detailed PLAY, PLACE/EYES, COLOR/KEY, GLOBAL SETTINGS, and HELP pages; <span class="chip">BASIC</span> returns to SIMPLE. Your choice is saved and can also be changed from Lobby <span class="chip">GLOBAL SETTINGS</span> &rarr; <em>Menu style</em>. SIMPLE intentionally buries chapter/shuffle extras, external/movable/delayed subtitle tools, loops, specialist lens profiles, fine placement, and detailed setup while keeping them available in PRO.</p>
   <div class="tbl-wrap"><table>
     <thead><tr><th scope="col">Area</th><th scope="col">SIMPLE</th><th scope="col">PRO</th></tr></thead>
     <tbody>
-      <tr><td>Tabs</td><td>PLAY · VIEW · PICTURE · HELP · PRO</td><td>PLAY · PLACE/EYES · COLOR/KEY · GLOBAL SETTINGS · HELP · BASIC</td></tr>
+      <tr><td>Tabs</td><td>PLAY · VIEW · PICTURE · MUSIC · HELP · PRO</td><td>PLAY · PLACE/EYES · COLOR/KEY · GLOBAL SETTINGS · MUSIC · HELP · BASIC</td></tr>
       <tr><td>Everyday playback</td><td>Common transport with large PREV · NEXT · RESET · SUBS · AUDIO targets</td><td>Detailed tracks, chapters, shuffle, external/movable subtitle tools, and loops</td></tr>
       <tr><td>Placement</td><td>Large CLOSER · FARTHER · ZOOM− · ZOOM+ and whole-view reset targets</td><td>Full placement, eyes, curve, tilt, roll, convergence, lens, and per-slider control</td></tr>
       <tr><td>Picture</td><td>Brightness · contrast · gamma · RESET PICTURE · ROOM DIM, plus CHROMA KEY subpage</td><td>Full six-slider grade, four-color chroma key, packed alpha, and room controls</td></tr>
       <tr><td>Loops and live stats</td><td>Hidden</td><td>A–B–C–D loop controls and Stats HUD</td></tr>
       <tr><td>Audio</td><td>AUDIO list + SIMPLE Night soft studio</td><td>Full AUDIO studio: EQ, dynamics, stereo width</td></tr>
-      <tr><td>Color and keying</td><td>PICTURE exposes brightness, contrast, gamma and reset; CHROMA KEY opens the PRO workbench</td><td>Full color grade, four-color chroma key, and packed alpha</td></tr>
+      <tr><td>Color and keying</td><td>Hidden</td><td>Color grade, four-color chroma key, and packed alpha</td></tr>
       <tr><td>Switch modes</td><td colspan="2"><span class="chip">PRO</span>/<span class="chip">BASIC</span> in the tab row, or lobby <span class="chip">CFG</span> → <em>Menu style</em>; the choice is saved</td></tr>
     </tbody>
   </table></div>
@@ -913,10 +996,10 @@
   <p>Tap <span class="chip">AUDIO</span> during ordinary playback. <strong>SIMPLE</strong> keeps Night soft, volume, mute, and the multi-track list (preferred language is remembered). Tap <span class="chip">PRO</span> inside the studio for Bass / Mid / Treble EQ, Dynamics (Off / Soft / Night / Punch), stereo width, and Reset FX. Effects fail closed if the Android audio chain cannot attach. ISO/SSIF prepared routes keep the shared AUDIO path disabled.</p>
 
   <h3>PLACE / EYES</h3>
-  <p>Where the scene sits and how your eyes meet it. Sliders for <strong>scene height</strong>, <strong>move scene</strong> (left/right), <strong>distance</strong> (about 0.22–8.0 for cinema seats), <strong>zoom</strong> (up to 6× where exposed), <strong>depth position</strong> (stereo convergence), <strong>eye height align</strong>, <strong>scene tilt</strong>, <strong>scene roll</strong>, and <strong>CURVATURE TRIM</strong> (horizontal wrap, 0 to about 100°) and <strong>BOW TRIM</strong> (vertical arc, 0 to about 70°). Both apply to flat-screen video, including active MVC playback in 1.0.32, and are saved per title. Set both to zero for a flat screen. Corner warp remains unavailable on MVC. Plus flip left/right, flip up/down, <span class="chip">Reset place + eyes</span>, and the full manual lens row — see <a href="#lenses">Lenses</a>.</p>
+  <p>Where the scene sits and how your eyes meet it. Sliders for <strong>scene height</strong>, <strong>move scene</strong> (left/right), <strong>distance</strong> (about 0.22–8.0 for cinema seats), <strong>zoom</strong> (up to 6× where exposed), <strong>depth position</strong> (stereo convergence), <strong>eye height align</strong>, <strong>scene tilt</strong>, <strong>scene roll</strong>, and <strong>screen curve</strong> (flat titles only — 0 to ~100° of cylindrical wrap, saved per title). Plus flip left/right, flip up/down, <span class="chip">Reset place + eyes</span>, and the full manual lens row — see <a href="#lenses">Lenses</a>.</p>
+  <p><strong>LATERAL DEVIATION</strong> <span class="ver">1.0.39</span> slides a flat screen up to 2 m left or right (readout in meters; spherical and fisheye scenes ±0.35 m). <span class="chip">QUICK PLACE</span> uses the same limit: hold grip to move, stick to adjust, trigger for fine, stick-click to reset, <span class="key">B</span> when done.</p>
   <p>These sliders are <strong>live</strong> twice over: every cockpit slider repaints while your trigger drags it, and tilt, roll, and <strong>Distance</strong> also follow grip and stick gestures in real time — push the stick and the Distance readout moves with you. Stick-click homes Distance + Zoom. Roll the dome with your wrist and SCENE ROLL moves with you, instead of showing a stale value that later snaps the scene back. During continuous playback, zoom and distance also carry forward onto untuned titles — see <a href="#loops">view carry</a>.</p>
 
-  <p><strong>Reset one slider:</strong> while playing, point at it and click the right stick. The slider returns to its default. With no resettable slider pointed at, stick-click performs the normal placement reset. The custom color editor uses its own Save/Cancel controls.</p>
   <h3>COLOR / KEY</h3>
   <p>A full color grade: <strong>brightness</strong>, <strong>contrast</strong>, <strong>gamma</strong>, <strong>saturation</strong>, <strong>hue</strong>, and <strong>warmth</strong> — six proper sliders with a one-tap <span class="chip">RESET PICTURE</span>. The grade touches the video only (the menu panel stays neutral) and is saved with a title when it has a stable library identity; RESET PICTURE clears that title's grade. Below it sits the passthrough keying suite: master passthrough toggle, packed-alpha matte, and four-color chroma key with per-color edge controls. Detailed in <a href="#room">Your room</a>.</p>
 
@@ -944,8 +1027,7 @@
   <p>Automatic frame-rate matching sends Android a seamless display-rate hint based on normalized source cadence and playback speed. Common mappings include 24→72, 30→90, 40→80, 60→120 when advertised, and <strong>25 / 50 / 100 → 100 Hz</strong> when the headset advertises 100. Optional <strong>MAX</strong> forces the highest advertised rate instead of cadence matching. The headset still chooses the final display mode. <strong>AFR is not frame interpolation</strong>: it never invents motion or converts a low-frame-rate file to 60 or 90 fps. Verify the live rate in Stats HUD.</p>
 
   <h3>HELP</h3>
-  <p>In the Lobby, <span class="chip">HELP</span> opens the illustrated manual without starting a title. All 13 topics stay on the left; select one to read its article on the right. Use stick ↕ or <span class="chip">PAGE UP</span> / <span class="chip">PAGE DOWN</span> to read the whole article. Scrolling keeps the selected topic, and <strong>END OF TOPIC</strong> marks the bottom. The back bar returns to the Lobby library; reopen Help in the same session to continue at your previous topic and position.</p>
-  <p>During playback, HELP uses the same illustrated articles and also includes two extra chapters — <em>THEORY</em> (teal) and <em>DEEPER</em> (green). Both are reproduced below in full: start with <a href="#theory">Theory of Operation</a>, then enter <a href="#deeper">Deeper</a>.</p>
+  <p>The in-headset version of this manual: subjects on the left, article on the right, stick ↕ scrolls. It also includes two extra chapters — <em>THEORY</em> (teal) and <em>DEEPER</em> (green). Both are reproduced below in full: start with <a href="#theory">Theory of Operation</a>, then enter <a href="#deeper">Deeper</a>.</p>
 
   <h3>Stats for nerds</h3>
   <p>PRO only. Tap <span class="chip">STATS</span> on the quick strip's header (or PRO → GLOBAL SETTINGS → <span class="chip">Stats HUD</span>) and the strip's lower half becomes a live readout: source class, video codec with resolution @ fps, decoder and dropped frames, audio codec, color info, buffer seconds against target, NAS fill % with live MB/s, position / speed / state, active lens + stereo, current Android display mode, source cadence, target refresh, and cadence multiple. It refreshes once a second while open, the scrubber and transport stay live above it, and it never appears on photos.</p>
@@ -985,6 +1067,7 @@
     <li>Choose <span class="chip">ARM</span> only when you are ready for accessory output.</li>
     <li>Play a video with a readable sidecar that shares its complete basename: <code>Movie.mp4</code> matches <code>Movie.funscript</code>.</li>
   </ol>
+  <div class="note love"><p><strong>Since 1.0.39:</strong> the row reads <strong>ChloeVibes · SET UP</strong> (first row of the APP plate) and opens a guided panel that walks <em>SCAN → CONNECT → ARM → PLAY</em>. The cockpit's <span class="chip">HAPTIC CONTROL PANEL</span> chip now opens <span class="chip">MUSIC</span> → <span class="chip">VIBES</span>, and a toy can follow your music as well as a <code>.funscript</code>. See <a href="#vibes">Music vibes</a>.</p></div>
   <p>During playback, open <span class="chip">GLOBAL SETTINGS</span> &rarr; <span class="chip">HAPTIC CONTROL PANEL</span> for connection/script status, <span class="chip">STOP</span>, ARM / DISARM, TEST, and strength. <strong>TOY STRENGTH</strong> controls the accessory; controller <strong>HAPTIC STRENGTH</strong> remains a separate setting for menu hover/click pulses. Max stroke length and max stroke speed caps tame wild funscripts so a single authored peak cannot pin the motor.</p>
 
   <h3>The Handy (Wi‑Fi key path)</h3>
@@ -998,6 +1081,289 @@
   <h3>Private by design</h3>
   <p>Bluetooth scan results, accessory identifiers, connection state, and <code>.funscript</code> timing stay on the headset. Finally does not send that information to Coldbricks and uses no ChloeVibes cloud backend.</p>
   <p>The separate The Handy path uses Ohdoki's HandyFeeling service as disclosed immediately before <strong>CONNECT</strong>. <strong>Forget Handy key</strong> removes the local key; it is not a request to delete Ohdoki server records.</p>
+</section>
+
+<section id="music">
+  <p class="kicker">05B · your music, in the headset</p>
+  <h2>Music <span class="ver">1.0.39</span></h2>
+  <p class="lede">Play your own music library inside VR: on its own, under a video, or over a photo slideshow.</p>
+
+  <h3>Get your songs in</h3>
+  <ol class="steps">
+    <li>In the Lobby, press the <span class="chip">♪ MUSIC</span> chip in the vault's top row.</li>
+    <li>Choose <strong>SCAN HEADSET MUSIC</strong>. The first time, Android asks once for music access. That is the only place Finally asks for it. If access is blocked, the row opens Android settings instead.</li>
+    <li>Or choose <strong>ADD MUSIC FOLDER…</strong> and pick any folder in the system picker. That path needs no music permission.</li>
+  </ol>
+  <p>The music list opens on <strong>SONGS</strong>, <strong>ALBUMS</strong>, <strong>ARTISTS</strong> and <strong>FOLDERS</strong>, plus <strong>NOW PLAYING</strong> while a song is loaded (trigger = play / pause, its <span class="chip">NEXT</span> chip = next song) and the <a href="#lights">CLUB LIGHTS</a> row. Trigger a song to play from there; the queue becomes that list. <span class="chip">+ NEXT</span> plays a song right after the current one, <span class="chip">+ QUEUE</span> adds a whole group to the end, and <span class="chip">SHUFFLE</span> plays every song (or the open group). Finally lists common audio files: MP3, M4A/AAC, FLAC, OGG/Opus, WAV and more.</p>
+  <figure class="screen">
+    <img src="assets/screens/music-lobby-root.jpg" alt="Lobby music list: NOW PLAYING, SONGS, ALBUMS, ARTISTS, FOLDERS, SCAN HEADSET MUSIC and ADD MUSIC FOLDER rows, with PLAY MUSIC in the chip row" width="1280" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('pending')">
+    <figcaption>Lobby · ♪ MUSIC</figcaption>
+  </figure>
+
+  <h3>The MUSIC page</h3>
+  <p>While a video or photo is open, the cockpit has a <span class="chip">MUSIC</span> tab in both modes: SIMPLE <em>PLAY · VIEW · PICTURE · MUSIC · HELP · PRO</em>, PRO <em>PLAY · PLACE/EYES · COLOR/KEY · GLOBAL SETTINGS · MUSIC · HELP · BASIC</em>. Under the tabs, the rack selector switches between <span class="chip">NOW</span> · <span class="chip">LIBRARY</span> · <span class="chip">QUEUE</span> · <span class="chip">EQ</span> · <span class="chip">VIBES</span> · <span class="chip">LIGHTS</span>. EQ, VIBES and LIGHTS carry a status light. The EQ and VIBES racks live only in the cockpit; the Lobby has the library.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th scope="col">On NOW</th><th scope="col">What it does</th></tr></thead>
+    <tbody>
+      <tr><td><strong>TIMELINE</strong></td><td>Drag to preview; the seek lands when you let go. A-B marks show on it</td></tr>
+      <tr><td>Transport</td><td>PREV (restarts the song if you're more than 3 s in, otherwise goes back a song) · −10 s · PLAY / PAUSE · +10 s · NEXT</td></tr>
+      <tr><td><span class="chip">A-B</span></td><td>Press once to mark A, again to mark B and loop, a third time to clear. The marks must be at least half a second apart. A full loop is remembered per song and keeps looping with the cockpit closed</td></tr>
+      <tr><td><span class="chip">LINK</span></td><td>Default OFF. ON: pausing the video pauses the music, and playing the video again resumes only music that LINK paused. It never fires on buffering, app switches or a title change</td></tr>
+      <tr><td><span class="chip">SHUFFLE</span> · <span class="chip">REPEAT</span></td><td>SHUFFLE off by default. REPEAT cycles OFF → ALL → ONE</td></tr>
+      <tr><td><strong>VOLUME</strong></td><td>0–100%, default 100%. Music volume only</td></tr>
+      <tr><td><strong>MIX</strong></td><td><em>MOVIE x% · MUSIC y%</em> while music plays over a movie. It starts all music, so <strong>the movie is silent while a song plays until you move MIX</strong>. Over photos MIX is off and the music plays at full. Pausing the music gives the movie its own volume back</td></tr>
+      <tr><td><span class="chip">AUTO</span></td><td>Reads the song ahead: tempo, beats, bars, builds, breakdowns and drops. The <a href="#lights">lights</a>, <a href="#photos">beat slideshows</a> and <a href="#vibes">vibes</a> follow the song's shape. The status reads <em>mapping the song…</em>, then <em>128 BPM · 2 drops</em> or <em>live beats · no song map</em>. AUTO never turns LIGHTS on or arms a toy by itself</td></tr>
+    </tbody>
+  </table></div>
+  <p>Stick-click on VOLUME resets it to 100%; on MIX it resets to the middle, movie and music both full.</p>
+  <figure class="screen">
+    <img src="assets/screens/music-now.jpg" alt="SIMPLE cockpit MUSIC page, NOW rack: cover art, title, TIMELINE with A-B marks, round transport, A-B and LINK, the PLAY MODE · SOUND row, and PAUSE MUSIC in the header" width="1280" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('pending')">
+    <figcaption>MUSIC › NOW · A-B loop · LINK ON</figcaption>
+  </figure>
+
+  <h3>PLAY / PAUSE wherever you are</h3>
+  <p>Whenever a song is loaded, a music PLAY / PAUSE is never far away. These control the music only, never the video.</p>
+  <ul>
+    <li><strong>Cockpit header:</strong> <span class="chip">PLAY MUSIC</span> / <span class="chip">PAUSE MUSIC</span>, top right, on every page.</li>
+    <li><strong>NOW rack:</strong> the big round PLAY / PAUSE. With nothing queued it opens LIBRARY.</li>
+    <li><strong>Quick strip:</strong> with a title open and a song queued, the first <span class="key">B</span> shows a music row under the strip: the song title (opens MUSIC), previous, PLAY / PAUSE MUSIC, next, and LINK. The down arrow tucks it into a small pill; the tuck is remembered.</li>
+    <li><strong>Lobby:</strong> a <span class="chip">PLAY MUSIC</span> / <span class="chip">PAUSE MUSIC</span> chip in the vault and music chip rows.</li>
+  </ul>
+
+  <h3>LIBRARY and QUEUE</h3>
+  <p>LIBRARY browses <strong>SONGS</strong>, <strong>ALBUMS</strong>, <strong>ARTISTS</strong> and <strong>FOLDERS</strong>, with <span class="chip">PLAY ALL</span>, <span class="chip">SHUFFLE ALL</span> and <span class="chip">BACK</span> (up one level). Tap a song to play from there, or its + NEXT button to play it next. Lists scroll like the vault: grab and drag with the trigger and let it coast, or use the gutter arrows and the stick. The playing song is highlighted and tagged <em>PLAYING</em> or <em>PAUSED</em>.</p>
+  <p>QUEUE pins the current song at the top; tap any row to jump to it. PRO adds per-row ▲ ▼ ✕ and <span class="chip">CLEAR QUEUE</span>, which takes two taps.</p>
+
+  <h3>Music EQ</h3>
+  <p>The <span class="chip">EQ</span> rack shapes the music player only. Movies keep their own <a href="#cockpit">AUDIO studio</a>. EQ starts ON at Flat; turn it OFF and the track passes untouched (<em>BYPASSED</em>).</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th scope="col">Control</th><th scope="col">Range</th><th scope="col">Notes</th></tr></thead>
+    <tbody>
+      <tr><td><span class="chip">PRESET ▾</span></td><td>Flat · Bass · Bass Extreme · Bass &amp; Treble · Punchy Bass · Loudness · Vocal · Club · Soft Treble</td><td>Applies at once. An edited setting reads <em>Custom</em>. <span class="chip">FLAT</span> zeroes every band</td></tr>
+      <tr><td><span class="chip">AUTO HEADROOM</span></td><td>on / off</td><td>Lowers the preamp so boosts never clip; a CLIP light shows when they would</td></tr>
+      <tr><td><strong>Graphic</strong> (SIMPLE + PRO)</td><td>10 bands, 31 Hz–16 kHz, ±12 dB · PREAMP −12 to +6 dB</td><td>PRO offers 5 / 10 / 15 / 31 bands. FINE TUNE steps ◂ BAND / BAND ▸ and −0.5 / +0.5 dB</td></tr>
+      <tr><td><span class="chip">PARAMETRIC</span> (PRO)</td><td>Up to 8 bands · FREQUENCY 20 Hz–20 kHz · GAIN ±12 dB · Q 0.1–12</td><td>Types PEAK, LOW SHELF, HIGH SHELF, LOW PASS, HIGH PASS, BAND PASS. <span class="chip">LOCK</span> keeps a band through presets and FLAT</td></tr>
+      <tr><td><span class="chip">TONE · STEREO</span> (PRO)</td><td>BASS / TREBLE ±12 dB · BASS FREQ 30–600 Hz · TREBLE FREQ 1.5–16 kHz · STEREO EXPAND 0–200%</td><td>Plus BALANCE, MONO, LIMITER, and TRANSPORT FADE (OFF or 30–80 ms, default 40 ms) to soften play / pause / seek</td></tr>
+      <tr><td><span class="chip">SAVE AS</span> · <span class="chip">DELETE</span> (PRO)</td><td>Up to 64 presets of your own</td><td>SAVE AS names it <em>My EQ n</em>. DELETE works on your own presets and takes two taps</td></tr>
+    </tbody>
+  </table></div>
+  <p><a href="#vibes">VIBES</a> hears the music after the EQ, so a bass boost reaches the toy too. Music VOLUME and MIX do not change what VIBES hears.</p>
+  <figure class="screen">
+    <img src="assets/screens/music-eq-graphic.jpg" alt="PRO cockpit MUSIC page, EQ rack in GRAPHIC mode with 10 bands, the Bass Extreme preset applied, PREAMP and AUTO HEADROOM" width="1280" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('pending')">
+    <figcaption>MUSIC › EQ · GRAPHIC · Bass Extreme</figcaption>
+  </figure>
+
+  <h3>Back, pause and headphones</h3>
+  <ul>
+    <li><span class="key">B</span> inside MUSIC steps back one level: it closes the preset list, steps LIBRARY up a folder, cancels the STROBE card. At a rack's top level it hides the cockpit. It never jumps between racks.</li>
+    <li>Music plays alongside a movie's sound; it doesn't take the audio over from the video. Unplugging headphones pauses it.</li>
+    <li>Taking the headset off or leaving the app pauses the music and ends a vibes session. Nothing restarts by itself when you come back.</li>
+  </ul>
+</section>
+
+<section id="vibes">
+  <p class="kicker">05C · optional accessory · music vibes</p>
+  <h2>Music vibes (ChloeVibes) <span class="ver">1.0.39 – 1.0.42</span></h2>
+  <p class="lede">A connected Bluetooth toy can follow the music you play in Finally, not just a video's <code>.funscript</code> — with an input preamp, dynamic EXPAND headroom, a dB THRESHOLD trigger, full ADSR envelope, and a quick-strip VIBE dial.</p>
+
+  <h3>Connect a toy</h3>
+  <ol class="steps">
+    <li>In the Lobby, open <span class="chip">CFG</span> (GLOBAL SETTINGS) and choose <strong>ChloeVibes · SET UP</strong>, the first row of the APP plate. From the cockpit, <span class="chip">MUSIC</span> → <span class="chip">VIBES</span> carries the same SCAN / CONNECT / DISCONNECT buttons.</li>
+    <li>The guided panel's <em>NEXT STEP</em> walks <em>1 SCAN · 2 CONNECT · 3 ARM · 4 PLAY</em>. Turn the toy on and press <span class="chip">SCAN FOR TOYS</span>. Android asks for Bluetooth permission only now, the first time.</li>
+    <li>Press <span class="chip">CONNECT &lt;name&gt;</span>. Toys show their real model name where the toy reports one. Device buttons only ever connect; <span class="chip">DISCONNECT</span> stops the motors first. Green means connected.</li>
+    <li>Press <span class="chip">ARM &lt;name&gt;</span>. ARM is the safety step: nothing moves until you press it. Set <strong>TOY STRENGTH</strong> (10–100%, default 50%).</li>
+    <li>The panel reads <em>READY · PLAY A VIDEO</em>. Play a video with a <code>.funscript</code>, or open <span class="chip">MUSIC</span> → <span class="chip">VIBES</span>.</li>
+  </ol>
+  <p>During playback, the cockpit's <span class="chip">HAPTIC CONTROL PANEL</span> chip opens <span class="chip">MUSIC</span> → <span class="chip">VIBES</span>.</p>
+  <figure class="screen pink">
+    <img src="assets/screens/vibes-setup-panel.jpg" alt="Guided ChloeVibes panel, toy connected: the 1 SCAN, 2 CONNECT, 3 ARM, 4 PLAY step strip with NEXT STEP on ARM, the connected toy shown green, and STOP + DISARM" width="1600" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('pending')">
+    <figcaption>CFG › ChloeVibes · SET UP · CONNECTED, NEXT STEP = ARM</figcaption>
+  </figure>
+
+  <h3>Start and stop</h3>
+  <ul>
+    <li>The biggest control on the VIBES rack starts it: <span class="chip">VIBE TO MUSIC</span>, <span class="chip">ARM MUSIC VIBES</span> or <span class="chip">START VIBES</span>, depending on where you are in setup. One tap arms, if needed, and starts. While running it reads <span class="chip">VIBES ON</span>; tap it to stop the vibes, and the toy stays armed.</li>
+    <li><span class="chip">STOP TOY</span> sits on the bottom rail of every MUSIC rack, with a <span class="chip">TOY</span> / <span class="chip">STOP</span> chip on every cockpit page and <span class="chip">TOY STOP</span> in the Lobby while a toy is live. One press sets the motors to zero and disarms. It is always one press.</li>
+    <li>One owner at a time: music vibes or a video's <code>.funscript</code>, never both. Switching <strong>SOURCE: MUSIC</strong> / <strong>SOURCE: SCRIPT</strong> stops the toy.</li>
+  </ul>
+
+  <div class="draft">
+    <p class="draft-label">THRESHOLD trigger · EXPAND headroom · Full ADSR (1.0.40 – 1.0.42)</p>
+    <h3>How a hit fires: the THRESHOLD line</h3>
+    <p>The music (after the <a href="#music">music EQ</a> and <strong>INPUT SIGNAL VOLUME</strong> preamp) is measured in dB against a <strong>THRESHOLD</strong> line: <em>at or over the line = a hit · lower = more</em>. On loud, heavily limited masters, turn <strong>INPUT SIGNAL VOLUME</strong> down to pull the song off the ceiling, or raise <strong>EXPAND</strong> (1.0.42, TEMPO off) to spread the top few dB across the graph so kicks stand clear of the bed. Pull the trigger during playback to adjust the <strong>VIBE</strong> master dial right on the quick strip.</p>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th scope="col">TRIGGER (PRO)</th><th scope="col">What the toy does on a hit</th></tr></thead>
+      <tbody>
+        <tr><td><span class="chip">DYNAMIC</span></td><td>Follows the music's level over the line. The louder the hit, the stronger the toy</td></tr>
+        <tr><td><span class="chip">BINARY</span></td><td>A square on / off pulse at BINARY LEVEL, the same every time</td></tr>
+        <tr><td><span class="chip">HYBRID</span> (default)</td><td>A blend of the two, set by HYBRID BLEND</td></tr>
+      </tbody>
+    </table></div>
+    <ul>
+      <li><span class="chip">LOCKOUT · ON</span> (default, BINARY and HYBRID): <em>no new hit until it fully fades</em>, so a busy bass line can't stack hits. <span class="chip">LOCKOUT · OFF</span>: <em>every crossing re-fires</em>.</li>
+      <li>Since 1.0.42, every hit with TEMPO off gets the full <strong>ATTACK / DECAY / SUSTAIN / RELEASE</strong> envelope (SUSTAIN holds while the music stays over the line).</li>
+      <li><span class="chip">TEMPO · OFF</span> is the default: <em>the THRESHOLD line fires the toy</em>. <span class="chip">TEMPO · ON</span> uses ChloeVibes' beat detector with prediction and <span class="chip">TAP TEMPO</span>, and shows the RHYTHM row and CLIMAX.</li>
+    </ul>
+    <figure class="screen gold">
+      <img src="assets/screens/vibes-threshold-engine.jpg" alt="MUSIC VIBES rack in PRO: the THRESHOLD section with the meter and line, TRIGGER set to HYBRID and LOCKOUT ON" width="1280" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('pending')">
+      <figcaption>MUSIC › VIBES · THRESHOLD · HYBRID · LOCKOUT ON · TEMPO OFF</figcaption>
+    </figure>
+  </div>
+
+  <h3>Shape the feel</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th scope="col">Control</th><th scope="col">Range</th><th scope="col">What it does</th></tr></thead>
+    <tbody>
+      <tr><td><strong>INPUT SIGNAL VOLUME</strong></td><td>0–10, default 1.90</td><td>Hit strength. It is not the music volume</td></tr>
+      <tr><td><strong>CEILING</strong> · <span class="chip">50%</span> <span class="chip">75%</span> <span class="chip">100%</span></td><td>0–100%, default 100%</td><td>The most the vibes engine will ask for</td></tr>
+      <tr><td><strong>TOY LIMIT</strong></td><td>read-only</td><td>Follows TOY STRENGTH from setup. Never raised here</td></tr>
+      <tr><td>Presets</td><td><span class="chip">INIT</span> <span class="chip">DRUMS</span> <span class="chip">MUSICAL</span> <span class="chip">BASS</span> <span class="chip">FX</span></td><td>Default Bass Drum. 1.0.39 adds Snap Punch, Swell Rise, Long Wave, Tease Tail and Breath, each with its own attack and release</td></tr>
+      <tr><td><strong>ENVELOPE</strong></td><td>ATTACK / DECAY / RELEASE 0.5 ms–5 s · SUSTAIN 0–100%</td><td>Drag the plot's handles, or use the PRO sliders. PRO adds A / D / R CURVE (below 1 snaps in, above 1 eases in). <span class="chip">FIT VIEW</span> rescales the plot</td></tr>
+      <tr><td><span class="chip">FIND BOOM</span></td><td>while vibes run</td><td>Listens and auto-tunes the band, gate and decay; <span class="chip">KEEP</span> or <span class="chip">REVERT</span></td></tr>
+      <tr><td>RHYTHM: <strong>8TH NOTES</strong> · <strong>SYNCOPATION</strong></td><td>0–100%, default 0</td><td>Offbeat bumps and displaced accents (active when TEMPO is on). 0 leaves the feel unchanged</td></tr>
+      <tr><td><span class="chip">AUTO</span> (on NOW)</td><td>off / on</td><td>Shapes the toy to the song map's builds and drops, always inside CEILING. Never arms or stops the toy</td></tr>
+    </tbody>
+  </table></div>
+  <figure class="screen pink">
+    <img src="assets/screens/vibes-rack-simple.jpg" alt="SIMPLE cockpit MUSIC page, VIBES rack with a toy connected: the start control, INIT presets with Bass Drum, the ENVELOPE plot, INPUT SIGNAL VOLUME, CEILING, THRESHOLD and TOY LIMIT, and STOP TOY on the bottom rail" width="1280" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('pending')">
+    <figcaption>MUSIC › VIBES · SIMPLE · Bass Drum</figcaption>
+  </figure>
+
+  <h3>VIBES SYNC and CALI</h3>
+  <p><strong>VIBES SYNC</strong> lines the toy up with what you hear: −240 to +240 ms in 10 ms steps, where <em>+</em> moves the toy earlier. It is remembered separately for the headset speakers and Bluetooth audio (<em>VIBES SYNC · SPEAKERS</em> / <em>· BLUETOOTH</em>). STOP never waits for the delay.</p>
+  <p><span class="chip">CALI</span> plays a 120 BPM boop through the music player. Nudge <span class="chip">− 10 ms</span> / <span class="chip">+ 10 ms</span> until the pulse lands on the boop. CALI ends when you press it again, press <span class="key">B</span> or STOP TOY, pick another track, or the track runs out.</p>
+
+  <h3>Safety</h3>
+  <ul>
+    <li><strong>Toy safety lock</strong> (Lobby <span class="chip">CFG</span> → APP, default <strong>ON</strong>): an ARM press is needed before the toy moves. OFF: a connected toy arms itself on connect, on TEST, or when a <code>.funscript</code> is found. STOP is still one press, and the toy never arms itself over a fault or a failed STOP.</li>
+    <li><strong>Music pause:</strong> the toy goes quiet and stays armed. In 1.0.39, press ENGAGE to put it back on the music.</li>
+    <li><strong>Headset off or leaving the app:</strong> the toy stops at once, and nothing restarts by itself.</li>
+    <li>Bluetooth control is direct and local. See <a href="#haptics">ChloeVibes haptics</a> for STOP, TEST and privacy.</li>
+  </ul>
+</section>
+
+<section id="lights">
+  <p class="kicker">05D · light the room</p>
+  <h2>Club lights <span class="ver">1.0.39</span></h2>
+  <p class="lede">The room light follows the music. The photo you're viewing can glow with it.</p>
+  <p>Club lights light the room around you: the environment, or your real room in passthrough, plus the photo on screen. In 1.0.39 they never touch video or the menus. Turn them on from the Lobby's music list (<strong>CLUB LIGHTS</strong> row, trigger toggles) or from the cockpit: <span class="chip">MUSIC</span> → <span class="chip">LIGHTS</span> → <span class="chip">LIGHTS ON</span>. LIGHTS starts off each time Finally launches, and it never switches itself on, not even from <a href="#music">AUTO</a>.</p>
+
+  <h3>Fixtures</h3>
+  <p>Each fixture is a real lighting-rig timing. Picking one sets its rise and fall; moving a slider afterward marks the fixture <em>· custom</em>.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th scope="col">Fixture</th><th scope="col">Character</th></tr></thead>
+    <tbody>
+      <tr><td><span class="chip">LEELA</span> (default)</td><td>Violet, one pulse a beat</td></tr>
+      <tr><td><span class="chip">TUNGSTEN</span></td><td>PAR64: 65 ms up, slow fade</td></tr>
+      <tr><td><span class="chip">LED PAR</span></td><td>One DMX frame: 23 ms snap</td></tr>
+      <tr><td><span class="chip">WASH</span></td><td>Soft console fade</td></tr>
+      <tr><td><span class="chip">BEAM</span></td><td>Shutter bump on each pulse</td></tr>
+      <tr><td><span class="chip">STROBE</span></td><td>20 ms flash. Opt-in: asks first (below)</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>The LIGHTS rack</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th scope="col">Control</th><th scope="col">Range</th><th scope="col">What it does</th></tr></thead>
+    <tbody>
+      <tr><td><strong>LEAD IN</strong> / <strong>LEAD OUT</strong></td><td>0–500 ms / 30 ms–2 s</td><td>How fast the light rises on a pulse and fades after it</td></tr>
+      <tr><td><strong>HUE</strong> · <strong>SATURATION</strong></td><td>0–359° · 0–100%</td><td>The light's color</td></tr>
+      <tr><td><span class="chip">COLOR CYCLE</span></td><td>off / on</td><td>Steps the hue on the beat</td></tr>
+      <tr><td><strong>BRIGHTNESS</strong></td><td>0–100%</td><td>Peak of each pulse</td></tr>
+      <tr><td><strong>ROOM DARKNESS</strong></td><td>0–100%</td><td>How dark the room sits between pulses; 100% = black</td></tr>
+      <tr><td><strong>ON PHOTO</strong></td><td>0–100%, default 60%</td><td>The same light glows on the photo you're viewing. 0% leaves the photo untouched</td></tr>
+      <tr><td><span class="chip">RADIANT EDGES</span></td><td>off / on</td><td>Photo edges glow too</td></tr>
+    </tbody>
+  </table></div>
+  <p>The photo glow is built once per photo, not every frame. With the light off, the photo is unchanged.</p>
+  <figure class="screen green">
+    <img src="assets/screens/next-lights-threshold.jpg" alt="Cockpit MUSIC page, LIGHTS rack: LIGHTS ON, SOURCE THRESHOLD, the 20-240 Hz graph, fixture chips, HUE, SATURATION, COLOR CYCLE, FLOOR, CEILING, ROOM DARKNESS, ON PHOTO and GLOW" width="1280" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('pending')">
+    <figcaption>MUSIC › LIGHTS · 20–240 Hz THRESHOLD rack</figcaption>
+  </figure>
+
+  <h3>STROBE asks first</h3>
+  <p>Picking <span class="chip">STROBE</span> opens a card: <em>TURN ON STROBE?</em> It warns that the strobe flashes up to 8 times a second across the whole room and <em>can trigger seizures in people with photosensitive epilepsy</em>. <span class="chip">CANCEL</span> is the default and <span class="key">B</span> cancels; <span class="chip">ENABLE STROBE</span> opts in. The opt-in lasts for this session only: next launch, a saved STROBE comes back as BEAM.</p>
+  <div class="note warn"><p><strong>Comfort limits are built in.</strong> The calm fixtures flash at most 2.5 times a second. The photo light is held to the same 2.5-per-second limit even with STROBE on. Only an opted-in STROBE goes faster, and only in the room.</p></div>
+  <p>Since 1.0.40, the LIGHTS rack runs on a 20–240 Hz bass graph with a THRESHOLD line, ATTACK / RELEASE / FLOOR / CEILING controls, LIGHT SYNC, and a GLOW target/shape page. See <a href="#next">1.0.40 – 1.0.43 deep dive</a>.</p>
+</section>
+
+<section id="ai">
+  <p class="kicker">05E · experimental · on the headset</p>
+  <h2>AI tools &amp; CLARITY <span class="ver exp">EXPERIMENTAL</span></h2>
+  <p class="lede">2D → 3D, AI BACKGROUND, and CLARITY run on the headset. Your video never leaves it.</p>
+  <div class="note warn"><p><strong>Experimental means results vary.</strong> 2D → 3D estimates depth from a flat picture; it cannot recover parts of a scene the camera never saw. AI BACKGROUND is a person model, not a studio key. CLARITY is the headset's own filter or FSR 1 upscaling, not a neural model. AI on Galaxy XR has not been checked on a headset.</p></div>
+
+  <h3>Where the AI row lives</h3>
+  <p>During a video, open SIMPLE <span class="chip">PICTURE</span> or PRO <span class="chip">COLOR/KEY</span>. The row headed <em>EXPERIMENTAL AI · VIDEO</em> carries <span class="chip">AI BACKGROUND</span> · <span class="chip">2D → 3D</span> · <span class="chip">3D STUDIO ▸</span>. On COLOR/KEY it sits just below <em>PASSTHRU COMPOSITING</em>. <span class="chip">CLARITY</span> is on the first row of both pages.</p>
+  <p>AI BACKGROUND and 2D → 3D run one at a time: switching one on switches the other off. Tap the lit option to turn it off, or to cancel a model download in progress.</p>
+  <figure class="screen pink">
+    <img src="assets/screens/ai-picture-row.jpg" alt="SIMPLE PICTURE page during a flat video: CLARITY on the first row, and the EXPERIMENTAL AI · VIDEO row with AI BACKGROUND, 2D → 3D and 3D STUDIO" width="1280" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('pending')">
+    <figcaption>PICTURE · CLARITY + the EXPERIMENTAL AI · VIDEO row</figcaption>
+  </figure>
+
+  <h3>2D → 3D for video <span class="ver">1.0.38</span></h3>
+  <ol class="steps">
+    <li>Play a flat, single-picture (mono) video whose color format Finally confirms as SDR.</li>
+    <li>Open <span class="chip">PICTURE</span> (or PRO <span class="chip">COLOR/KEY</span>) and tap <span class="chip">2D → 3D</span>. The first time, the depth model downloads once: the cell reads <em>Downloading NN% · tap to cancel</em>.</li>
+    <li>When it reads <em>Experimental · ON · tap for Off</em>, the picture has depth. Tune it in <span class="chip">3D STUDIO ▸</span>.</li>
+  </ol>
+  <p>When 2D → 3D can't run, the cell says why instead of failing silently:</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th scope="col">The cell says</th><th scope="col">What to do</th></tr></thead>
+    <tbody>
+      <tr><td><em>Flat mono SDR video only</em></td><td>VR180/360, side-by-side or over-under stereo, and other non-flat formats are excluded. Use a flat 2D title.</td></tr>
+      <tr><td><em>HDR video not supported</em> · <em>Dolby Vision not supported</em></td><td>HDR and Dolby Vision sources are excluded for now.</td></tr>
+      <tr><td><em>Color format unconfirmed</em> · <em>Checking video format</em></td><td>Finally only runs it once the decoder confirms SDR. Wait a moment, or try another file.</td></tr>
+      <tr><td><em>Turn off key / alpha</em></td><td>Switch off chroma key or packed alpha first.</td></tr>
+      <tr><td><em>Needs Quest 3 / 3S or Galaxy XR</em></td><td>Older headset GPUs keep the option off.</td></tr>
+    </tbody>
+  </table></div>
+  <p>Since 1.0.39, legacy AVI video (MPEG-4 Part 2, MPEG-2, H.263) counts as SDR, so 2D → 3D works on those files too.</p>
+
+  <h3>The 3D STUDIO <span class="ver">1.0.39</span></h3>
+  <p><span class="chip">3D STUDIO ▸</span> opens <em>2D → 3D STUDIO · AMOUNT · POP-OUT · MODEL</em>. Changes apply live and are saved for the whole app. <span class="chip">DONE</span> or <span class="key">B</span> returns to the picture page.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th scope="col">Control</th><th scope="col">What it does</th></tr></thead>
+    <tbody>
+      <tr><td><span class="chip">FAST MODEL</span></td><td>MiDaS small, the lightest model and the default. About a 62 MB download.</td></tr>
+      <tr><td><span class="chip">BEST MODEL</span></td><td>Depth Anything V2, sharper edges. Downloads 98 MB once, on first use.</td></tr>
+      <tr><td><strong>3D AMOUNT</strong></td><td>How strong the depth is: 0–300% of the original effect, default 100% (FLAT ↔ DEEP).</td></tr>
+      <tr><td><strong>POP-OUT</strong></td><td>How much of the scene sits in front of the screen: 0–100%, default 50% (BEHIND ↔ OUT).</td></tr>
+      <tr><td><strong>STABILITY</strong></td><td>LIVE ↔ STEADY. Steadier depth shimmers less but lags fast motion.</td></tr>
+      <tr><td><span class="chip">FULL RANGE</span></td><td>Default OFF. ON takes depth from the picture only and ignores letterbox black bars. Flip it to compare.</td></tr>
+      <tr><td><span class="chip">KEEP ON</span></td><td>Default OFF. ON switches 2D → 3D back on for each eligible video, and for photos. Turning 2D → 3D off by hand stops it for the current title only.</td></tr>
+      <tr><td><span class="chip">RESET 3D</span></td><td>Resets AMOUNT, POP-OUT and STABILITY. Keeps the model, FULL RANGE and KEEP ON.</td></tr>
+    </tbody>
+  </table></div>
+  <figure class="screen pink">
+    <img src="assets/screens/ai-3d-studio.jpg" alt="2D → 3D STUDIO with BEST MODEL selected, 3D AMOUNT, POP-OUT and STABILITY sliders, FULL RANGE OFF and KEEP ON ON" width="1280" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('pending')">
+    <figcaption>3D STUDIO · BEST MODEL · KEEP ON</figcaption>
+  </figure>
+
+  <h3>2D → 3D for photos <span class="ver">1.0.39</span></h3>
+  <p>The same <span class="chip">2D → 3D</span> cell works while a flat mono photo is on screen. Each photo gets one depth pass. It stays on as you step through NEXT / PREV and through slideshows, for the rest of the session. It uses the studio's model, 3D AMOUNT and POP-OUT, and a chroma key can stay on. With <span class="chip">KEEP ON</span>, it switches on at the first eligible photo of a session. A stereo or panoramic still shows <em>Flat mono photos only</em>.</p>
+
+  <h3>CLARITY <span class="ver">1.0.38</span></h3>
+  <p>Tap <span class="chip">CLARITY</span> to cycle <em>Off</em> → <em>Sharpen</em> → <em>Super resolution</em> → <em>FSR 1 · Ultra quality</em>. Finally skips modes the headset runtime doesn't offer. It starts Off and is saved for all videos, separately from a title's picture grade.</p>
+  <ul>
+    <li><strong>Sharpen</strong> and <strong>Super resolution</strong> ask the headset's compositor filter to process the frame, and the runtime may decline. Finally draws the movie, the room and the cockpit in one shared layer, so the filter affects all three.</li>
+    <li><strong>FSR 1 · Ultra quality</strong> renders the scene at lower resolution, then upscales it before the menus are drawn at full resolution. It needs flat mono SDR video, with passthrough, chroma/alpha and AI all off. It adds no source detail and generates no frames.</li>
+    <li>If a saved mode can't apply to the current title, the cell reads <em>Unavailable</em> or <em>Saved · unavailable</em>. Tap <span class="chip">CLARITY</span> to cycle back to Off.</li>
+  </ul>
+
+  <h3>AI BACKGROUND <span class="ver">1.0.38</span></h3>
+  <p><span class="chip">AI BACKGROUND</span> keeps the people in a video and shows your real room behind them, frame by frame on the headset GPU.</p>
+  <ul>
+    <li><strong>Works with</strong> flat 2D video, flat 3D (side-by-side and over-under), and VR180, 360 and fisheye video whose color format is confirmed as SDR. HDR and Dolby Vision are not supported.</li>
+    <li><strong>Before you start:</strong> turn off chroma key and packed alpha. AI BACKGROUND can turn passthrough on by itself. Turning it off restores the room only if AI made that change; your own room choice takes priority.</li>
+    <li><strong>Built-in model:</strong> PaddleSeg PP-HumanSegV2-Lite (Apache-2.0; see the in-app notices). Nothing downloads.</li>
+    <li><strong>Stereo:</strong> one silhouette is carried to the other eye using the video's own disparity, so both eyes agree on the edge.</li>
+    <li><strong>Session-only:</strong> it turns off when you change titles or leave playback.</li>
+  </ul>
+  <div class="note"><p><strong>Known limits.</strong> Hair and fine detail are soft. Far-away or very small people can be missed. Very fast motion can trail slightly. VR180/360 cutouts are 3DoF, so people drift against the real room when you move your head; that is inherent to the footage.</p></div>
+
+  <h3>Downloads and privacy</h3>
+  <p>AI BACKGROUND's model ships inside the app. 2D → 3D downloads its model once, the first time you select it: FAST from Qualcomm's model host, BEST from Finally's own GitHub release. Each file has a pinned size and SHA-256 checked before use, and lives in Finally's private app storage. The downloader never sends video, images, media locations or account credentials. Frames are processed on the headset and never uploaded.</p>
 </section>
 
 <section id="lenses">
@@ -1099,7 +1465,6 @@
 <section id="sources">
   <p class="kicker">08 · your library</p>
   <h2>Sources &amp; NAS</h2>
-<figure style="margin:28px 0;max-width:860px"><a href="/connect/"><img src="/connect/assets/02-connect-computer.webp" srcset="/connect/assets/02-connect-computer-640.webp 640w, /connect/assets/02-connect-computer-1280.webp 1280w, /connect/assets/02-connect-computer.webp 2560w" sizes="(max-width:800px) calc(100vw - 40px), 860px" width="2560" height="2000" loading="lazy" decoding="async" style="display:block;width:100%;height:auto;border:1px solid #493251;border-radius:14px" alt="Preview of simplified Sources with fictional nearby Mac and NAS servers"></a><figcaption style="font-size:14px;color:#c9b8cc;padding-top:12px">Simplified Sources preview · Example devices only. Version 1.0.28 uses SRC. <a href="/connect/">Follow the illustrated connection tutorial →</a></figcaption></figure>
   <p class="lede">Local folders and SMB are first-class. The current release also has nearby SMB/DLNA discovery plus bounded FTP, WebDAV, Plex, Stash, DLNA, and direct-link paths.</p>
 
   <h3>The zero-setup path</h3>
@@ -1108,11 +1473,8 @@
   <h3>Folders and files</h3>
   <p>The 2D library (reached via <span class="chip">FOLDERS</span>) adds any folder with <span class="chip">＋ Add videos folder</span> — and it chains: Android's picker grants one folder per round, so after each scan lands Finally asks <em>"add another?"</em> and relaunches the picker until you're done. Two taps per extra folder, not a hunt for the pill. <span class="chip">＋ Add files</span> is <strong>multi-select</strong> — long-press or tap several in the system picker and they land together, each checked for compatibility, with one summary at the end. Sidecar import/export lives here too. <span class="chip">Clear vault</span> removes library rows only — it never deletes files on disk or NAS.</p>
 
-  <h3 id="usb-storage">USB storage</h3>
-  <p>Open <span class="chip">SOURCES</span> and choose the connected drive. Finally requests access from that action. If Android mounts the volume, use its folder picker and select the intended folder; the app retains the grant. The direct USB reader also supports exFAT, large files above 4 GiB, and Unicode names. Direct USB access is read-only; writing requires an Android folder grant that actually includes write access.</p>
-  <p>After unplugging a USB drive, <span class="chip">SCAN</span> removes its shelf and contents from the visible library while keeping saved source records, grants and media history for reconnect. A verified device serial can retain direct-USB identity across reconnection; devices that expose no serial may need access again. Saved network sources keep their existing scan behavior.</p>
   <h3>Find nearby sources</h3>
-  <p>For the immersive route, open <span class="chip">SRC</span> (Sources); nearby computers and media servers appear in that panel. Use <strong>Scan this network</strong> to search again. For the separate 2D route, choose <span class="chip">🔎 FIND NEARBY SOURCES</span>. Finally runs a bounded Wi-Fi search and labels results honestly as <strong>SMB SERVER</strong> or <strong>MEDIA SERVER</strong>. A discovered DLNA/UPnP server can prefill its setup and browse path. A discovered SMB host prefills the address; you still sign in and choose a visible SMB2/3 share when the server permits enumeration, or type the share name manually. Results stay in first-seen order so a row cannot jump away from a controller press. Manual SMB and DLNA entry always remain available when a router, firewall, VPN, or server blocks discovery.</p>
+  <p>In the 2D source-setup panel, choose <span class="chip">🔎 FIND NEARBY SOURCES</span>. Finally runs a bounded Wi-Fi search and labels results honestly as <strong>SMB SERVER</strong> or <strong>MEDIA SERVER</strong>. A discovered DLNA/UPnP server can prefill its setup and browse path. A discovered SMB host prefills the address; you still sign in and choose a visible SMB2/3 share when the server permits enumeration, or type the share name manually. Results stay in first-seen order so a row cannot jump away from a controller press. Manual SMB and DLNA entry always remain available when a router, firewall, VPN, or server blocks discovery.</p>
 
   <h3>NAS / PC share (SMB)</h3>
   <p>Finally treats SMB2/3 as a first-class library source — stream straight off your PC or NAS over Wi-Fi, no copying.</p>
@@ -1125,7 +1487,7 @@
   </ol>
   <h4>Add it in Finally</h4>
   <ol class="steps">
-    <li>Open the 2D library and choose <span class="chip">＋ Add NAS share</span>. Enter the NAS/IP and sign-in. Leave <strong>Username</strong> blank only when the server explicitly permits guest access; an Everyone folder permission does not itself enable guest sign-in; port 445 is normal.</li>
+    <li>Open the 2D library and choose <span class="chip">＋ Add NAS share</span>. Enter the NAS/IP and sign-in. Leave <strong>Username</strong> blank for a guest / Everyone share; port 445 is normal.</li>
     <li>Leave <strong>Shared folder</strong> blank and choose <strong>Test server sign-in</strong> to check only the server and sign-in. It saves nothing and does not test any folder.</li>
     <li>Choose <strong>Browse shared folders</strong>. Pick a full-width share card, then open child-folder rows to drill down. <strong>Back</strong> moves to the parent folder, then the share list, then the form. The shared-folder root itself can be selected.</li>
     <li>Choose <strong>Select this folder</strong>. This fills the form only; nothing has been saved. Optionally choose <strong>Test connection</strong> to open and list that exact share/folder. The test also saves nothing.</li>
@@ -1164,19 +1526,19 @@
       <tr><td>Plex</td><td>Direct Play the original Part from a user-supplied local server and token; no transcoding request, cloud login, or hosted relay. Large libraries retain all eight safe sort modes. Token can be updated in place; Remove is visible again</td></tr>
       <tr><td>Stash</td><td>Page scenes and open native stream identities from a server/API key you supply. Display order is nonblank scene title → sanitized filename → opaque scene-ID fallback; Finally supplies no catalog</td></tr>
       <tr><td>XBVR</td><td>First-class Lobby SRC entry: add a local XBVR server, browse multi-title catalog sessions, and optionally pull matching funscripts for ChloeVibes when the server exposes them. Empty/HTML diagnostics stay honest when the endpoint is wrong</td></tr>
-      <tr><td>DLNA / UPnP</td><td>Discover or manually add a trusted-LAN MediaServer, browse its ContentDirectory, and range-read compatible media. Folders remain visible with Videos, Photos or Videos + photos selected. The immersive browser cycles one filter chip; the 2D chooser lists three choices. A discovered server, a browsable folder and a playable title are separate checks; an empty list does not prove a decoder failure. Server behavior varies; no Internet discovery, transcoding, or universal DLNA claim</td></tr>
+      <tr><td>DLNA / UPnP</td><td>Discover or manually add a trusted-LAN MediaServer, browse its ContentDirectory, and range-read compatible media. Server behavior varies; no Internet discovery, transcoding, or universal DLNA claim</td></tr>
       <tr><td>Play link</td><td>Compatible direct HLS, DASH, SmoothStreaming, or RTSP media; not a general browser and does not bypass login, DRM, cookies, or blob-only page logic</td></tr>
     </tbody>
   </table></div>
   <h3>Seven short setup recipes</h3>
   <ol class="steps">
-    <li><strong>Nearby:</strong> Open Lobby <span class="chip">SRC</span> (Sources) and let the nearby scan finish, or choose <strong>Find nearby sources</strong> in the 2D setup panel. A discovered DLNA media server can be added and browsed in VR. A discovered SMB computer fills its address into the sign-in form; choose the account or guest mode and the shared folder. Manual entry remains available if nothing answers.</li>
+    <li><strong>Nearby:</strong> Sources → <strong>Find nearby sources</strong>. Select an SMB server or DLNA media server to prefill the appropriate setup form; use manual entry if nothing answers.</li>
     <li><strong>FTP:</strong> Sources → <strong>Add FTP server</strong>. Enter a name, host/IP, port (normally 21), server folder, username, and optional password; choose <strong>Connect &amp; scan</strong>. Use only passive plain FTP on a private LAN.</li>
     <li><strong>WebDAV:</strong> Sources → <strong>Add WebDAV</strong>. Enter the collection URL plus username/password, then <strong>Connect &amp; scan</strong>. Prefer HTTPS; acknowledged HTTP is limited to a trusted private address.</li>
     <li><strong>Plex:</strong> Sources → <strong>Add Plex</strong>. Enter the local Plex Media Server URL and its <code>X-Plex-Token</code>, then <strong>Connect &amp; scan</strong>. Finally Direct Plays the original Part and does not request transcoding.</li>
     <li><strong>Stash:</strong> Sources → <strong>Add Stash</strong>. Enter the Stash base URL and API key, then <strong>Connect &amp; scan</strong>. Finally reads bounded GraphQL scene pages; rescan to replace blank-title scene numbers with filename fallbacks.</li>
     <li><strong>XBVR:</strong> Sources → <strong>Add XBVR</strong>. Enter the local XBVR base URL (and credentials if required), then connect. Browse titles from Lobby SRC; funscript download is optional when the server offers it.</li>
-    <li><strong>DLNA:</strong> Sources → <strong>Add DLNA server</strong>. Use a discovered device or enter the trusted-LAN description URL, validate it, then browse or index its ContentDirectory.</li>
+    <li><strong>DLNA:</strong> Sources → <strong>DLNA</strong> auto-scans your Wi‑Fi via SSDP, or enter a trusted-LAN description URL manually. Since <strong>1.0.43</strong>, <strong>Universal Media Server (UMS)</strong> and <strong>Windows 11 Media Streaming</strong> (<code>WMPNetworkSvc</code> / <code>upnphost</code>) stream 50 GB+ 8K VR files via Direct Play byte-range reads out of the box with zero custom renderer config.</li>
   </ol>
   <p><strong>WebDAV compatibility boundary:</strong> Connect &amp; scan uses collection <code>PROPFIND</code> and can follow safe HTTPS redirects to the final collection. After listing succeeds, ranged media GETs can follow at most five HTTPS handoffs. Finally accepts exact or server-proven end-of-file <code>206 Content-Range</code> replies, including chunked partial bodies. It keeps authorization only on the original origin and rejects HTTP downgrade, URL credentials, loops, excessive hops, malformed ranges, or a full <code>200</code> reply that ignored <code>Range</code>. A server that cannot meet that contract is reported as incompatible instead of feeding wrong bytes to the decoder.</p>
   <p>WebDAV, Plex, Stash, and XBVR default to HTTPS when you supply an https URL. Using acknowledged HTTP or plain FTP exposes credentials and media to the local network, so keep those modes on a private LAN you control. Removing a source deletes Finally's record and vault rows, never the server's files.</p>
@@ -1190,21 +1552,20 @@
 <section id="iso">
   <p class="kicker">09 · discs</p>
   <h2>Blu-ray ISO, MVC &amp; physical DVD</h2>
-  <p class="lede">The 1.0.32 reference carries decrypted H.264/MVC routes at 1.0×. MVC presents separate decoded eye views on a cinema screen; the screen can now curve horizontally and bow vertically. Older disc and network receipts below retain their original versions.</p>
+  <p class="lede">The current 1.0.8 signed candidate (Quest c99 / Galaxy c10099) carries a narrow, explicit set of decrypted H.264/MVC routes at 1.0×. Quest retains production-route receipts from code 28 and earlier; those are historical device evidence. c99/c10099 has not received a complete MVC, SMB, or WebDAV device matrix, so route contract and measured acceptance remain separate.</p>
 
   <h3>Supported today / not today</h3>
   <div class="tbl-wrap"><table>
-    <thead><tr><th scope="col">Supported by the current route contract</th><th scope="col">Compatibility and evidence boundaries</th></tr></thead>
+    <thead><tr><th scope="col">Supported by the current route contract</th><th scope="col">Not claimed for c99/c10099</th></tr></thead>
     <tbody>
       <tr><td>Quest local, complete decrypted 3D Blu-ray MVC/SSIF ISO: zero start, nonzero resume, and authored chapter/indexed seek through the production MVC/OpenXR route</td><td>AACS or other protected-disc decryption; BD-J menus; every authored disc or playlist</td></tr>
       <tr><td>Quest local standalone <code>.ssif</code> through <code>PlayerFactory</code>, Chloe MVC Engine 1, and separate per-eye OpenXR presentation</td><td>Standalone SSIF resume/seek breadth, network SSIF, or feature-length endurance</td></tr>
       <tr><td>Quest local genuine combined-track MVC <code>.mkv</code>/<code>.mk3d</code> through the same production route</td><td>Every file merely named MKV/MK3D; a genuine MVC dependent view is required</td></tr>
-      <tr><td>Eligible decrypted MVC ISO over configured SMB or a compatible WebDAV collection remains a source/build product path</td><td>No new 1.0.32 SMB/WebDAV ISO physical matrix is claimed. Retained Quest network receipts are historical and do not establish current Galaxy acceptance</td></tr>
-      <tr><td>Galaxy shares the production MVC route and screen-shape controls</td><td>No new 1.0.32 Galaxy ISO/SSIF/MKV physical matrix is claimed. Retained local-ISO results stay tied to their tested artifacts</td></tr>
+      <tr><td>Eligible decrypted MVC ISO over configured SMB or a compatible WebDAV collection remains a source/build product path</td><td>No fresh c99 SMB fixture was physically rerun; WebDAV ISO is source/host validated without a live-server or on-head receipt; the Quest code-27 SMB receipt is historical, and neither route is a current Galaxy physical claim</td></tr>
+      <tr><td>Galaxy c10099 carries the shared routes through the current source/build/artifact contract</td><td>No c10099 Galaxy ISO/SSIF/MKV physical route matrix is claimed; retained code-10027 local-ISO results remain historical and are not promoted by the new artifact</td></tr>
     </tbody>
   </table></div>
-  <div class="note warn"><p><strong>Keep MVC at 1.0×.</strong> Speed changes remain outside the MVC contract. Each new video open now starts at 1×. In PRO → PLACE / EYES, adjust curve, bow or both; returning each slider to zero restores a flat screen. The two eye views share the same screen shape. An older compensating <strong>SWAP L/R EYES</strong> choice remains saved; if an affected movie now looks reversed, set it back to normal once.</p></div>
-  <p><strong>September 8 physical check:</strong> the Quest development build containing these changes presented the large MVC test movie with curve alone, bow alone and both together. The viewer confirmed smooth 3D and correct shape through seek, pause and resume. This is evidence for that file and development artifact, not a claim of signed-store or Galaxy runtime acceptance.</p>
+  <div class="note warn"><p><strong>Keep MVC at 1.0×.</strong> Speed changes are outside the MVC contract. The exact Quest ISO physically passed resume at 12 seconds and an authored/indexed seek to 40 seconds. The standalone SSIF and direct MVC MKV proofs are clean start-to-completion production-route gates; their resume/seek breadth is not inferred.</p></div>
 
   <h3>Decrypted Blu-ray ISO</h3>
   <p>Drop a decrypted BDMV ISO into a local folder, SMB share, or compatible WebDAV collection and it appears in the vault like any other title. Finally walks UDF, resolves a playlist, and presents compatible base video/audio through the normal player. Remote ISOs stream in place; the image is not copied to the headset. The WebDAV random-access route is source/host validated but has no current live-server or on-head acceptance receipt. FTP, Plex, Stash, and DLNA ISO are refused. An incomplete image is refused with a plain-language card.</p>
@@ -1216,7 +1577,7 @@
     <li>On Quest, open a complete decrypted MVC Blu-ray ISO, standalone <code>.ssif</code>, or genuine MVC <code>.mkv</code>/<code>.mk3d</code> from a granted local source. An eligible decrypted ISO can also come from configured SMB or a compatible WebDAV collection, with the current source/host and device boundaries above.</li>
     <li>Keep speed at <code>1.0×</code>.</li>
     <li>For an authored ISO, use Resume and <span class="chip">◀ CHAPTER</span> / <span class="chip">CHAPTER ▶</span> when marks are present. Quest retains exact code-28 proof for nonzero resume and a later indexed restart; code 33 does not silently inherit that device result.</li>
-    <li>For direct MVC MKV/MK3D, normal seeking is available; the September 8 Quest check above includes seek recovery. Compatibility still depends on the file and its index. Standalone SSIF retains its separately documented test scope.</li>
+    <li>For standalone SSIF or MVC MKV/MK3D, begin at the start unless you are deliberately testing beyond the proven boundary.</li>
   </ol>
   <p>An incomplete MVC layout, non-1.0× speed, unsupported target, or runtime health failure stops MVC promotion instead of displaying stale or unpaired eyes. Where a valid AVC base view exists, Finally can continue in 2D; otherwise it reports the unsupported path. ISO subtitle rendering remains disabled.</p>
   <p>In code 32 and later, stopping MVC or leaving the app requests shutdown immediately. Decoder joins, blocked remote reads, and source closure finish on a serialized background cleanup lane, so the UI thread does not wait for the old session. A generation guard prevents stale cleanup from stopping a newer movie.</p>
@@ -1301,19 +1662,49 @@
   <p class="kicker">13 · stills</p>
   <h2>Photos</h2>
   <p class="lede">Same vault, same lenses, same dome — full resolution.</p>
-  <p>Stills live in the library beside videos and project through the identical lens system: a VR180 photo wraps the half-dome, a flat photo is a panel you can place and curve. On a photo, Menu / Back opens the full cockpit directly — the quick strip is transport, and a still doesn't need one. Photos are decoded within an 8192-pixel edge and 8192×4096 total-pixel budget; larger originals are sampled to fit, so full sensor resolution is not guaranteed. For a side-by-side photo, choose Flat plus the matching FULL / HALF SBS layout and check eye order. Version 1.0.28 gives supported stereo-photo thumbnails a one-eye preview in the Lobby.</p>
-  <p>Stills navigate by stick: <span class="key">Stick ← →</span> steps to the <strong>previous / next file</strong> — a photo has no timeline, so the seek stick pages the album instead. The hint under the title says so: <em>stick ◀ PREV · NEXT ▶</em>. Video seeking is unchanged.</p>
+  <p>Stills live in the library beside videos and project through the identical lens system: a VR180 photo wraps the half-dome, a flat photo is a panel you can place and curve. On a photo, Menu / Back opens the full cockpit directly — the quick strip is transport, and a still doesn't need one. Camera originals render at full sensor resolution on the dome — up to 8192px wide.</p>
+  <p>Stills navigate by stick: <span class="key">Stick ← →</span> steps to the <strong>previous / next file</strong> within a strict horizontal cone so pushing forward/back for distance on 3D photos never skips files by accident. On the photo <span class="chip">PLAY</span> page (1.0.43), the <strong>PHOTO STICK</strong> chip cycles <span class="chip">Stick: Next/Prev</span> (default), <span class="chip">Stick: Move Only</span> (freezes stick skips completely while positioning 3D stills; on-panel NEXT/PREV buttons still step), and <span class="chip">Stick: L Skip · R Move</span> (left thumbstick skips photos, right thumbstick adjusts distance). With <em>Show remote posters</em> enabled in <span class="chip">CFG</span>, SMB, WebDAV, and FTP photo folders also decode sampled thumbnails (cropped to a single eye on 3D SBS/OU photos) directly in the Vault.</p>
   <h3>Slideshow</h3>
   <p>On a photo, the PLAY chip runs the show: <span class="chip">START SLIDESHOW</span> begins it, <span class="chip">PAUSE SLIDESHOW</span> holds it, and the chip reports the current dwell — <em>N seconds per photo</em>.</p>
   <ul>
-    <li><strong>PHOTO TIME</strong> sits where Speed sits for video and sets the dwell — <strong>3, 5, 10, 15, 30 or 60 seconds</strong> per photo, with 10 seconds as the default. Lobby GLOBAL SETTINGS also provides <strong>Photo slideshow time</strong>. The clock arms only after a photo has actually reached your eyes, so decode or SMB transfer time never eats the dwell.</li>
-    <li><strong>TRANSITION</strong> picks <em>hard cut</em> (default) or <em>fade</em>. The fade dips only the photo to black for a beat — the room stays lit — and the next photo decodes behind the current one first, so there is no long black hold between slides.</li>
-    <li><strong>Your view holds when POSE LOCK is on.</strong> This photo control defaults ON and carries the gallery placement across NEXT, PREV and slideshow changes. Recenter, RESET VIEW and stick-click deliberately move that locked placement. Turn POSE LOCK OFF to restore each photo's saved placement and zoom; the photo rules take precedence over the generic untuned-title <a href="#loops">view carry</a> rule.</li>
-    <li><strong>ZOOM LOCK freezes stick resizing.</strong> It is the same setting as DIST LOCK, not a separate per-photo zoom memory. The placement buttons and sliders still work; use POSE LOCK OFF when each photo should keep its own saved view.</li>
+    <li><strong>PHOTO TIME</strong> sits where Speed sits for video and sets the dwell. Since 1.0.39 it runs from 100 ms to 60 s per photo (earlier builds: 3 to 60 seconds), and adds the BEAT choices below. The clock arms only after a photo has actually reached your eyes, so decode or SMB transfer time never eats the dwell.</li>
+    <li><strong>TRANSITION</strong> picks <em>hard cut</em> (default) or <em>fade</em>. The fade dips only the photo to black for a beat — the room stays lit — and the next photo decodes behind the current one first, so there is no long black hold between slides. Below 1 s every change is a hard cut; fade returns at 1 s and up.</li>
+    <li><strong>Your view holds.</strong> Slides keep your view anchor — no recenter between photos, and (per <a href="#loops">view carry</a>) your zoom and distance ride onto untuned photos.</li>
     <li><strong>Manual wins.</strong> <span class="key">Stick ← →</span> NEXT / PREV stays an instant hard cut even while a show runs — user-initiated jumps should feel instant.</li>
     <li><strong>Never use slideshows?</strong> A <em>Slideshow</em> ticker in <span class="chip">GLOBAL SETTINGS</span> (default ON) gates the whole feature — flip it OFF and every slideshow control on stills goes dark.</li>
   </ul>
   <p>And a still that can't be decoded gets a plain amber card — <em>"Couldn't decode this image — it may be corrupt or not really a photo"</em> — never a raw codec string.</p>
+
+  <h3>PHOTO TIME choices <span class="ver">1.0.39</span></h3>
+  <p>Each press of <strong>PHOTO TIME</strong> steps to the next choice; Lobby <span class="chip">CFG</span> → PLAY → <em>Photo slideshow time</em> offers the same list as a picker.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th scope="col">Kind</th><th scope="col">Choices</th></tr></thead>
+    <tbody>
+      <tr><td>Timed</td><td>100 ms · 250 ms · 500 ms · 1 s · 2 s · 3 s · 5 s · <strong>10 s</strong> (default) · 15 s · 30 s · 60 s</td></tr>
+      <tr><td>On the beat</td><td><strong>1 BEAT</strong> · <strong>2 BEATS</strong> · <strong>1 BAR</strong> (4 beats) · <strong>8 BEATS</strong>, timed to the song playing in Finally's <a href="#music">music player</a>. The next photo decodes early and waits for its beat</td></tr>
+      <tr><td>AUTO</td><td>Follows the song: builds, drops and breakdowns. On a drop, a favorite from the current view comes up first when there is one</td></tr>
+    </tbody>
+  </table></div>
+  <p>With no music to follow, a BEAT or AUTO show reads <em>BEAT · waiting for music</em> and falls back to a tempo estimate, or to your last timed choice.</p>
+
+  <h3>Which photos play <span class="ver">1.0.39</span></h3>
+  <p>On a photo, the PLAY page's <strong>PLAYS</strong> control picks the deck: <em>THIS VIEW</em> (default) plays the folder, FAVORITES or search you started from; <em>ALL PHOTOS</em> plays every photo. The choice is remembered.</p>
+  <figure class="screen">
+    <img src="assets/screens/photo-beat-slideshow.jpg" alt="Photo cockpit PLAY page during a slideshow on the 1 BAR beat choice: PAUSE SLIDESHOW, PHOTO TIME, TRANSITION and PLAYS: THIS VIEW" width="1280" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('pending')">
+    <figcaption>Photo · PLAY · PHOTO TIME 1 BAR · PLAYS: THIS VIEW</figcaption>
+  </figure>
+
+  <h3>360 panoramas <span class="ver">1.0.39</span></h3>
+  <p>On a 360 still, the status line reads <em>PANORAMA · stick ←→ turns · grip + stick ↕ next / prev photo</em>. There's nothing to switch on.</p>
+  <ul>
+    <li><span class="key">Stick ← →</span> turns the dome instead of paging; the farther you push, the faster it turns.</li>
+    <li>The grip + trigger grab turns the dome around you without tilting it, so the horizon stays level.</li>
+    <li>Stick-click faces the front again, and each new photo opens facing front.</li>
+    <li><span class="key">Grip</span> + <span class="key">Stick ↕</span> steps to the next or previous photo.</li>
+  </ul>
+
+  <h3>2D → 3D for photos <span class="ver">1.0.39</span> <span class="ver exp">EXPERIMENTAL</span></h3>
+  <p>Flat photos can get depth on the headset: <span class="chip">PICTURE</span> → <span class="chip">2D → 3D</span> while the photo is up. It stays on as you browse and through slideshows. See <a href="#ai">AI tools</a>.</p>
 </section>
 
 <section id="loops">
@@ -1329,11 +1720,11 @@
   <h3>A–B loops, and then some</h3>
   <p>Set <span class="chip">A</span>, then <span class="chip">B</span> — hard loop. Add <span class="chip">C</span> and <span class="chip">D</span> — <strong>cascade</strong>: A→B jumps to C, C→D jumps back to A, forever. Marks are remembered per title (content hash, then path, then library identity), survive title changes and a Lobby visit, and <span class="chip">Clear</span> forgets only the current title. A Watch Together follower cannot set or trigger local loop marks.</p>
   <p>Loop chips are a PRO tool — they live on the PRO cockpit and the PRO quick strip. If you don't see them, tap <span class="chip">PRO</span> in the tab row (see <a href="#cockpit">The Cockpit</a>).</p>
-  <h3>Seeking</h3>
-  <p>Seeks land <strong>FAST</strong> by default: on the nearest keyframe, so the picture is there the instant you let go — an exact seek into a long 8K GOP silently decodes seconds of video before showing you anything. FAST also makes A–B loop jumps and resume instant. Need frame-perfect landings? Flip the lobby setting: <span class="chip">CFG</span> → <em>Seek landing</em> → EXACT.</p>
-  <p>Loading is quieter after a seek, too: the brief catch-up buffer after a jump gets several seconds of grace before the REBUFFERING strip would appear. Genuine stalls still raise it immediately.</p>
+  <h3>Seeking &amp; chapters (1.0.43 upgrade)</h3>
+  <p>Seeks land <strong>FAST</strong> by default: on the nearest keyframe, so the picture is there the instant you let go — an exact seek into a long 8K GOP silently decodes seconds of video before showing you anything. In <strong>1.0.43</strong>, SMB playback keeps its warm 64–512 MiB byte reservoir alive across seeks and Matroska <code>Cues</code> tail probes instead of re-seeding from scratch, user seeks resume after just <strong>0.5 s</strong> of buffered media (0.15 s on local/USB-C SSDs) while preserving the full 10 s cold-open cushion, Matroska <code>Cues</code> strip mid-GOP subtitle entries so FAST seeks never stall on 8K HEVC pre-roll, and USB-C FAT32/exFAT drives stream through a direct 512 KiB buffered reader. Need frame-perfect landings? Flip the lobby setting: <span class="chip">CFG</span> → <em>Seek landing</em> → EXACT.</p>
+  <p>Pausing inside an A–B loop also holds your exact paused position across resume (1.0.42–1.0.43), and brief catch-up buffers after a jump get several seconds of grace before the REBUFFERING strip appears.</p>
   <h3>Speed</h3>
-  <p>Ordinary videos offer 0.25× to 3×, pitch-corrected, from the PLAY page or quick strip. Each new video open or reopen starts at <strong>1×</strong>; changing speed affects the current video and survives pause or menu use. MVC remains at 1×.</p>
+  <p>0.25× to 3×, pitch-corrected, from the PLAY page or the quick strip.</p>
   <h3>Sound</h3>
   <p>Volume rides the quick strip and the PLAY page; <span class="key">Grip</span>+<span class="key">A</span> mutes. Multichannel tracks that the headset can't decode in hardware (AC-3, E-AC-3, DTS) fall back to software so they play anyway. Silent MKV is a bug, not a feature.</p>
 </section>
@@ -1345,7 +1736,7 @@
   <div class="tbl-wrap"><table>
     <thead><tr><th scope="col">Capability</th><th scope="col">Meta Quest</th><th scope="col">Samsung Galaxy XR</th></tr></thead>
     <tbody>
-      <tr><td>Current manual reference</td><td><code>1.0.32</code>, version code 123; check Meta and the installed build</td><td><code>1.0.32</code>, version code 10123; check Google Play and the installed build</td></tr>
+      <tr><td>Current manual identity</td><td><code>1.0.43</code>, version code 135</td><td><code>1.0.43</code>, version code 10135</td></tr>
       <tr><td>Distribution</td><td>Meta Horizon Store is the public path; store rollout can lag this page, so the in-headset version remains the authority</td><td>Google Play is the Galaxy XR path; store rollout can lag this page, so the in-headset version remains the authority</td></tr>
       <tr><td>Launch</td><td>Straight into the Lobby (when your vault has titles)</td><td>Library first — tap <span class="chip">ENTER THE LOBBY</span></td></tr>
       <tr><td>Passthrough</td><td>Meta passthrough layer</td><td>System blend-through — same controls, same keying</td></tr>
@@ -1371,7 +1762,7 @@
     <tbody>
       <tr><td>Warped shape</td><td>PLAY → <span class="chip">AUTO</span> to re-detect — or audition the lens row (a "slightly zoomed" fisheye is usually 180 vs 190)</td></tr>
       <tr><td>Double vision</td><td>PLAY → <span class="chip">Eyes</span> · or <span class="chip">AUTO</span></td></tr>
-      <tr><td>Scene too close / stuck after stick</td><td>Stick-click for full reset (D1.00 / Z1.00 + recenter), or use VIEW → <span class="chip">CLOSER</span>/<span class="chip">FARTHER</span>/<span class="chip">RESET PLACE + EYES</span>. In the 1.0.28 controls, Distance moves with stick ↕. Point at one slider and click the stick to reset only that control</td></tr>
+      <tr><td>Scene too close / stuck after stick</td><td>Stick-click for full reset (D1.00 / Z1.00 + recenter), or use VIEW → <span class="chip">CLOSER</span>/<span class="chip">FARTHER</span>/<span class="chip">RESET PLACE + EYES</span>. On the current 1.0.8 candidate, Distance moves with stick ↕. Point at one slider and click the stick to reset only that control</td></tr>
       <tr><td>Eye strain</td><td>PLACE / EYES → depth position and eye height · <span class="chip">Reset place + eyes</span></td></tr>
       <tr><td>Ends instantly</td><td>Resume was at the last frame — the next open starts clean</td></tr>
       <tr><td>Silent MKV</td><td>Check mute, volume, and the selected audio track. AC-3, E-AC-3, and DTS can use Finally's FFmpeg fallback, but the exact codec, profile, and file still matter; compare a known-good local file and report the result</td></tr>
@@ -1436,6 +1827,102 @@
   </ul>
 </section>
 
+<section id="next">
+  <p class="kicker">18 · 1.0.40 – 1.0.43 deep dive</p>
+  <h2>LIGHTS graph, GLOW, scroll speed &amp; tracking fallback <span class="ver">1.0.40 – 1.0.43</span></h2>
+  <p class="lede">Detailed reference for the 20–240 Hz LIGHTS threshold graph, LIGHT SYNC calibration, the GLOW target/shape studio, variable list scroll speed, resilient NAS saves, and 3DoF tracking fallback.</p>
+
+  <h3>LIGHTS: a THRESHOLD line over a 20–240 Hz graph <span class="ver">1.0.40</span></h3>
+  <p>The LIGHTS rack gains a live bass graph: 20 bars from 20 Hz to 240 Hz on a −60 to 0 dB scale, with a horizontal <strong>THRESHOLD</strong> line across it. A bar inside your band that crosses the line takes the light's color, and the <strong>HIT</strong> LED lights while a hit is open. That is when the room fires.</p>
+  <ul>
+    <li><span class="chip">SOURCE</span> picks what drives the lights: <em>THRESHOLD · bass over the line</em> (default) or <em>TOY PULSE · follows the toy pulse</em>.</li>
+    <li><strong>THRESHOLD</strong>: drag the line on the graph with the laser, or use the THRESHOLD fader; both move the same value. The default line sits at −24 dB.</li>
+    <li><strong>LOW Hz</strong> / <strong>HIGH Hz</strong>: the band the line listens to, anywhere from 20 to 240 Hz (defaults 20 and 240). The two faders never cross.</li>
+    <li><strong>What counts as a hit:</strong> the loudest bar in the band reaches the line after rising at least 4 dB. The hit ends when the band drops 3 dB under the line, falls 5 dB from its peak, sinks back to where it rose from, or after 1 second. A held bass note can't keep the room lit forever.</li>
+    <li><strong>FOLLOW</strong> fixtures (TUNGSTEN, LED PAR, WASH) hold CEILING while a hit is open and fall to FLOOR when it closes. <strong>BUMP</strong> fixtures (LEELA, BEAM, STROBE) fire one shaped flash per hit.</li>
+    <li>While <a href="#music">AUTO</a> is driving, the plate reads <em>on · AUTO drives the lights (song map) · line idle</em> and the HIT LED stays dark.</li>
+  </ul>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th scope="col">1.0.39 name</th><th scope="col">Next update</th><th scope="col">Range</th></tr></thead>
+    <tbody>
+      <tr><td>LEAD IN</td><td><strong>ATTACK</strong></td><td>0–500 ms, finest at the fast end</td></tr>
+      <tr><td>LEAD OUT</td><td><strong>RELEASE</strong></td><td>30 ms–2 s</td></tr>
+      <tr><td>BRIGHTNESS</td><td><strong>CEILING</strong></td><td>0–100%</td></tr>
+      <tr><td>(new)</td><td><strong>FLOOR</strong></td><td>0–100%, never above CEILING: the level the light rests at between hits</td></tr>
+      <tr><td>(new)</td><td><strong>LIGHT %</strong> box</td><td>The live light level, with FLOOR (violet) and CEILING (amber) ticks</td></tr>
+    </tbody>
+  </table></div>
+  <figure class="screen gold">
+    <img src="assets/screens/next-lights-threshold.jpg" alt="LIGHTS rack: SOURCE THRESHOLD, the 20-240 Hz bar graph with the THRESHOLD line at -24 dB, LOW Hz and HIGH Hz faders, the HIT LED lit, and the LIGHT % box" width="1280" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('pending')">
+    <figcaption>MUSIC › LIGHTS · THRESHOLD over 20–240 Hz</figcaption>
+  </figure>
+
+  <h3>LIGHT SYNC and LIGHTS CALI <span class="ver">1.0.40</span></h3>
+  <p>The <span class="chip">LIGHT SYNC</span> chip opens a sync page that lines the flash up with what you hear.</p>
+  <ul>
+    <li><strong>LIGHT SYNC</strong> runs −240 to +240 ms in 10 ms steps. <em>+</em> fires the lights earlier, <em>−</em> later, and 0 is as heard. It's remembered separately for the headset speakers and for Bluetooth audio.</li>
+    <li><span class="chip">CALI</span> plays a 120 BPM boop with a soft kick through the music player. No toy is needed. Nudge <span class="chip">− 10 ms</span> / <span class="chip">+ 10 ms</span> until the flash lands on the boop. CALI borrows a calibration look for the run and saves only LIGHT SYNC.</li>
+    <li>The first <span class="key">B</span> stops CALI; the next closes the page. <span class="chip">DONE</span> also returns to the rack.</li>
+    <li>How far the lights can lead is limited by how much audio is buffered. LIGHT SYNC never moves the toy's timing.</li>
+  </ul>
+  <figure class="screen gold">
+    <img src="assets/screens/next-light-sync.jpg" alt="LIGHT SYNC page with CALI running: route note, minus 10 ms, CALI, plus 10 ms, the beat lamp lit, and the LIGHT SYNC slider at plus 30 ms" width="1280" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('pending')">
+    <figcaption>LIGHTS › LIGHT SYNC · CALI running</figcaption>
+  </figure>
+
+  <h3>GLOW page and light targets <span class="ver">1.0.40</span></h3>
+  <p>The <span class="chip">GLOW</span> chip on the LIGHTS rack opens a page that decides what the light touches and how the glow looks. <span class="chip">DONE</span> or <span class="key">B</span> returns to the rack; <span class="chip">RESET PAGE</span> restores today's look with video untouched.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th scope="col">Target</th><th scope="col">Default</th><th scope="col">What it does</th></tr></thead>
+    <tbody>
+      <tr><td><span class="chip">ROOM</span></td><td>LIT</td><td>Cycles LIT (dark between hits, flashes) → DARK ONLY (dark, no flashes) → OFF (room untouched)</td></tr>
+      <tr><td><strong>ON PHOTO</strong></td><td>60%</td><td>The photo follows the light: it glows on hits and can now darken between them, down to black with FLOOR 0 and ROOM DARKNESS 100%</td></tr>
+      <tr><td><strong>ON VIDEO</strong></td><td>0% (video as is)</td><td>Lets the light reach video. The light flashes video at most 2.5 times a second; the clip's own flashes are not limited</td></tr>
+      <tr><td><span class="chip">VIDEO BLOOM</span></td><td>on</td><td>Glow on video, when ON VIDEO is above 0. Stands down by itself near the GPU limit (<em>GPU limit · toggle</em>)</td></tr>
+      <tr><td><span class="chip">FAST STROBE ON PHOTO</span> · <span class="chip">FAST STROBE ON VIDEO</span></td><td>off</td><td>Separate amber opt-ins that let an opted-in STROBE flash the photo or video faster than the comfort limit, each with its own seizure warning</td></tr>
+    </tbody>
+  </table></div>
+  <p>Glow parameters (each default reproduces the 1.0.39 look):</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th scope="col">Parameter</th><th scope="col">Range</th><th scope="col">Default</th></tr></thead>
+    <tbody>
+      <tr><td>THRESHOLD · SOFTNESS</td><td>0–90% · 2–60%</td><td>38% · 20%</td></tr>
+      <tr><td>LENGTH · RGB SPREAD</td><td>10–150 px · 0–40%</td><td>44 px · 20%</td></tr>
+      <tr><td>INTENSITY · HAZE</td><td>0–300% · 0–400%</td><td>100% · 100%</td></tr>
+      <tr><td>DESATURATION · EDGE STRENGTH</td><td>0–100% · 0–200%</td><td>100% · 100%</td></tr>
+      <tr><td>PRINT LIGHT</td><td>0–200%</td><td>100%</td></tr>
+    </tbody>
+  </table></div>
+  <p>Presets: <span class="chip">DEFAULT</span> (today's glow), <span class="chip">SOFT</span>, <span class="chip">AURA</span>, <span class="chip">NEON</span>, <span class="chip">WARM</span>, styled after classic film-glow looks. The glow's THRESHOLD is the glow's own brightness cutoff, separate from the LIGHTS line.</p>
+  <figure class="screen gold">
+    <img src="assets/screens/next-glow-page.jpg" alt="GLOW page: ROOM, ON PHOTO, ON VIDEO and VIDEO BLOOM targets, the five presets with SOFT selected, and the glow parameter sliders" width="1280" height="1000" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('pending')">
+    <figcaption>LIGHTS › GLOW · SOFT preset</figcaption>
+  </figure>
+
+  <h3>Music vibes: pause/resume, LINK &amp; lobby stop <span class="ver">1.0.40 – 1.0.43</span></h3>
+  <p>The toy fires when the music crosses its THRESHOLD line, with DYNAMIC / BINARY / HYBRID hits, LOCKOUT, full ADSR, preamp + EXPAND headroom, and a TEMPO switch that is off by default (see <a href="#vibes">Music vibes</a>). Additional safeguards:</p>
+  <ul>
+    <li><strong>PLAY resumes the toy; LINK and focus loss quiet it.</strong> Pausing music (directly, via video <strong>LINK</strong>, or on system audio-focus loss) quiets the toy immediately while keeping it armed. Pressing PLAY puts the toy back on the music only if the same toy is still connected and armed and no safety stop, disconnect, or source switch occurred in between.</li>
+    <li><strong>Leaving video stops music by default (1.0.42).</strong> Returning to the Lobby stops the music and toy together unless you turn off <span class="chip">CFG</span> → APP → <em>Stop music on LOBBY</em>.</li>
+    <li><strong>A TEST you can feel.</strong> <span class="chip">TEST PULSE</span> runs 450 ms at full TOY STRENGTH, then automatic STOP + DISARM. On The Handy it stays inside the stroke caps.</li>
+    <li><strong>.funscript after music.</strong> Opening a title with a <code>.funscript</code> while the toy is still armed on music hands the toy back to the script: <em>♡ .funscript found · music vibes ended · ARM to follow the script</em>.</li>
+  </ul>
+
+  <h3>Scroll speed and stick glide <span class="ver">1.0.40 – 1.0.41</span></h3>
+  <ul>
+    <li>Lobby <span class="chip">CFG</span> → VIEW → <strong>Scroll speed</strong>: SLOW · NORMAL (default) · FAST (1.6×) · TURBO (2.5×), with smooth stick glide under the laser and hold-to-accelerate up to 4×.</li>
+    <li><strong>Stick ← →</strong> in Lobby lists and the vault pages by a screenful (minus one line) and repeats while held.</li>
+  </ul>
+
+  <h3>NAS sources always save <span class="ver">1.0.40</span></h3>
+  <ul>
+    <li>The SMB sign-in form includes a <strong>Remember password</strong> checkbox (on by default), saves sources gracefully even if Android Keystore is temporarily unavailable, and accepts any hostname that resolves to a private LAN IP.</li>
+  </ul>
+
+  <h3>Headset tracking off <span class="ver">1.0.40</span></h3>
+  <p>If headset position tracking is turned off or lost, Finally keeps drawing in 3DoF orientation mode instead of going blank, holding your last position and placing controllers cleanly in reach.</p>
+</section>
+
 <hr class="sep">
 
 <section id="specs" class="appendix">
@@ -1443,7 +1930,7 @@
   <h2>Testing &amp; technical specifications</h2>
   <p class="lede">Optional measured receipts, real parameters, and explicit limits—the sheet packed with a serious lens or microphone. For ordinary help, jump to <a href="#fixit">Fix it</a> or <a href="#diagnostics">Bug reports</a>.</p>
   <div class="note"><p><strong>Evidence language.</strong> <em>Device</em> means the named physical headset executed the path. <em>Device + observer</em> adds a human inspection of that exact run. <em>Host</em> means deterministic workstation/JVM/native coverage. One fixture proves that fixture and path; it does not silently become universal codec, NAS, disc, thermal, or comfort support.</p></div>
-  <div class="note warn"><p><strong>Check your installed version.</strong> This manual is the <strong>1.0.32 reference / Quest 123 / Galaxy 10123</strong>; this label does not establish store availability, and the stores may offer different versions at different times. Historical measurements below name the version and headset tested. Use them to understand the measured conditions, then check your own file, headset and network rather than treating an older result as a guarantee.</p></div>
+  <div class="note warn"><p><strong>Check your installed version.</strong> Current manual reference is <strong>1.0.43 (Quest c135 / Galaxy XR c10135)</strong>; stores may roll out versions at different times. Historical measurements below name the exact build and headset tested and are not relabeled as blanket guarantees.</p></div>
   <div class="note"><p><strong>Measurement-card notation.</strong> The benchmark cards identify the test article, operating condition, measured characteristic, and reference gate. Solid traces are recorded samples or run points; dashed lines are reference gates or limits. A line joining discrete points preserves test order only—it is not an interpolated performance claim. Workstation capacity is test-cell context; headset plots remain headset measurements.</p></div>
 
   <h3>Recorded lab</h3>
@@ -1932,9 +2419,9 @@
 <section id="themes">
   <p class="kicker">optional appendix · type buttons</p>
   <h2>Themes</h2>
-  <p class="lede">The full cockpit skin catalog is available from both COLOR / KEY → theme and CFG → Cockpit skin. Each card shows its real palette in a miniature cockpit, with a clear icon and color swatches. Choose a section, scroll, then trigger to apply.</p>
-  <h3 id="custom-skins">Create a custom skin</h3>
-  <p>Choose <strong>CREATE / EDIT MY SKIN</strong> from either picker. Start with the current palette, name your skin, select Background, Main, Highlight, Unlit, Text, Muted text or Border, then use the color wheel and brightness rail. The cockpit preview follows the chosen colors. <strong>SAVE SKIN</strong> stores the named palette locally and applies it to both pickers; <strong>CANCEL</strong> restores the palette from before the edit. An unsuccessful save keeps the editor open with a notice.</p>
+  <p class="lede">318 cockpit skins plus a custom skin builder. COLOR / KEY → theme, or CFG → Cockpit skin. TYPE on the left · trigger to apply · hover or tap any name below to preview its live palette on this page.</p>
+  <h3 id="custom-skins">Create a custom skin <span class="ver">1.0.32</span></h3>
+  <p>Choose <strong>CREATE / EDIT MY SKIN</strong> from either picker. Start with the current palette, name your skin, select Background, Main, Highlight, Unlit, Text, Muted text, or Border, then use the color wheel and brightness rail. <strong>SAVE SKIN</strong> stores your named palette locally; <strong>CANCEL</strong> restores the previous skin.</p>
   <p>Sections: HOUSE · DAYLIGHT · AIRLINES · PLACES · CINEMA · MUSIC · DISCO · CRATE · STAGE · TV · GOLDEN · MARITIME · OPS · SIGNAL · MISC · HIGH CONTRAST. DAYLIGHT dual-lists light skins. HIGH CONTRAST is two or three colors only.</p>
   <h3>HOUSE <span class="muted">· 8</span></h3>
   <div class="tbl-wrap"><table>
@@ -1950,11 +2437,12 @@
       <tr><td><button class="theme-name" type="button" aria-label="N90 TRACON: preview theme" aria-pressed="false" data-theme-id="N90" data-theme-bg="#050C09" data-theme-card="#0B1912" data-theme-accent="#23E162" data-theme-text="#DCF5E4" style="--theme-swatch: linear-gradient(90deg,#050C09,#23E162,#DCF5E4)">N90 TRACON</button></td><td><em>Welcome to my sky.</em></td></tr>
     </tbody>
   </table></div>
-  <h3>DAYLIGHT <span class="muted">· 18 dual-list</span></h3>
+  <h3>DAYLIGHT <span class="muted">· 19 dual-list</span></h3>
   <div class="tbl-wrap"><table>
     <thead><tr><th>Theme</th><th>Line</th></tr></thead>
     <tbody>
       <tr><td><button class="theme-name" type="button" aria-label="Twin Globes StarStream: preview theme" aria-pressed="false" data-theme-id="TWIN_GLOBES" data-theme-bg="#FFFFFF" data-theme-card="#F7F7F7" data-theme-accent="#C8102E" data-theme-text="#141414" style="--theme-swatch: linear-gradient(90deg,#FFFFFF,#C8102E,#FFFFFF,#C8102E)">Twin Globes StarStream</button></td><td><em>Thrust With Attitude: Soft hands. Heavy airplane. Butter landing. No notes from the cabin.</em></td></tr>
+      <tr><td><button class="theme-name" type="button" aria-label="Candy Stripes: preview theme" aria-pressed="false" data-theme-id="CANDY_STRIPES" data-theme-bg="#FAF8F5" data-theme-card="#FFFFFF" data-theme-accent="#990000" data-theme-text="#180808" style="--theme-swatch: linear-gradient(90deg,#990000,#FFFFFF,#990000,#FFFFFF)">Candy Stripes</button></td><td><em>Crimson and cream. Five on the floor, no names on the warmups.</em></td></tr>
       <tr><td><button class="theme-name" type="button" aria-label="Day VFR: preview theme" aria-pressed="false" data-theme-id="DAY_VFR" data-theme-bg="#E8F4FC" data-theme-card="#D0E8F8" data-theme-accent="#003087" data-theme-text="#0A1628" style="--theme-swatch: linear-gradient(90deg,#87CEEB,#FFFFFF,#003087)">Day VFR</button></td><td><em>Sky blue glass and navy type. See and be seen.</em></td></tr>
       <tr><td><button class="theme-name" type="button" aria-label="NOTAM: preview theme" aria-pressed="false" data-theme-id="NOTAM" data-theme-bg="#FFF8DC" data-theme-card="#F5E6B8" data-theme-accent="#C8102E" data-theme-text="#1A1A1A" style="--theme-swatch: linear-gradient(90deg,#FFD100,#1A1A1A,#C8102E)">NOTAM</button></td><td><em>Yellow pad, black type, red priority. Read before you fly.</em></td></tr>
       <tr><td><button class="theme-name" type="button" aria-label="Macrodata Refinement: preview theme" aria-pressed="false" data-theme-id="SEVERANCE" data-theme-bg="#E8E4DC" data-theme-card="#D8D4CC" data-theme-accent="#2B4C7E" data-theme-text="#1A1A1A" style="--theme-swatch: linear-gradient(90deg,#E8E4DC,#2B4C7E,#6B8F71,#1A1A1A)">Macrodata Refinement</button></td><td><em>Your outie already picked a better theme.</em></td></tr>
@@ -1992,7 +2480,7 @@
       <tr><td><button class="theme-name" type="button" aria-label="Bare Metal Project: preview theme" aria-pressed="false" data-theme-id="BARE_METAL" data-theme-bg="#1A1A1C" data-theme-card="#2A2A2E" data-theme-accent="#A8A9AD" data-theme-text="#F0F0F2" style="--theme-swatch: linear-gradient(90deg,#A8A9AD,#C0C0C0,#C8102E)">Bare Metal Project</button></td><td><em>When airlines saved fuel by not painting the plane.</em></td></tr>
     </tbody>
   </table></div>
-  <h3>PLACES <span class="muted">· 12</span></h3>
+  <h3>PLACES <span class="muted">· 14</span></h3>
   <div class="tbl-wrap"><table>
     <thead><tr><th>Theme</th><th>Line</th></tr></thead>
     <tbody>
@@ -2003,6 +2491,8 @@
       <tr><td><button class="theme-name" type="button" aria-label="Willets Point: preview theme" aria-pressed="false" data-theme-id="WILLETS_POINT" data-theme-bg="#0A1228" data-theme-card="#142040" data-theme-accent="#FF5910" data-theme-text="#FFFFFF" style="--theme-swatch: linear-gradient(90deg,#002D72,#FF5910,#FFFFFF)">Willets Point</button></td><td><em>Blue and orange at the end of the 7. You know the stop.</em></td></tr>
       <tr><td><button class="theme-name" type="button" aria-label="Hometown Hero: preview theme" aria-pressed="false" data-theme-id="SHAKER" data-theme-bg="#060A16" data-theme-card="#0D1830" data-theme-accent="#3D6BFF" data-theme-text="#FFFFFF" style="--theme-swatch: linear-gradient(90deg,#060A16,#3D6BFF,#FFFFFF)">Hometown Hero</button></td><td><em>Varsity royal on night glass. Local legend energy.</em></td></tr>
       <tr><td><button class="theme-name" type="button" aria-label="Boiler Up: preview theme" aria-pressed="false" data-theme-id="BOILER" data-theme-bg="#090806" data-theme-card="#181511" data-theme-accent="#CFB991" data-theme-text="#F7F3EA" style="--theme-swatch: linear-gradient(90deg,#090806,#CFB991,#F7F3EA)">Boiler Up</button></td><td><em>Boilermaker gold on locomotive black. Hammer down.</em></td></tr>
+      <tr><td><button class="theme-name" type="button" aria-label="Candy Stripes: preview theme" aria-pressed="false" data-theme-id="CANDY_STRIPES" data-theme-bg="#FAF8F5" data-theme-card="#FFFFFF" data-theme-accent="#990000" data-theme-text="#180808" style="--theme-swatch: linear-gradient(90deg,#990000,#FFFFFF,#990000,#FFFFFF)">Candy Stripes</button></td><td><em>Crimson and cream. Five on the floor, no names on the warmups.</em></td></tr>
+      <tr><td><button class="theme-name" type="button" aria-label="Assembly Crimson: preview theme" aria-pressed="false" data-theme-id="ASSEMBLY_CRIMSON" data-theme-bg="#100406" data-theme-card="#1E080C" data-theme-accent="#CC0000" data-theme-text="#FAF8F5" style="--theme-swatch: linear-gradient(90deg,#990000,#FAF8F5,#100406)">Assembly Crimson</button></td><td><em>Banners in the rafters. Crimson glass, clean white net.</em></td></tr>
       <tr><td><button class="theme-name" type="button" aria-label="Caution Tape: preview theme" aria-pressed="false" data-theme-id="CAUTION_TAPE" data-theme-bg="#0A0A0A" data-theme-card="#1A1A0A" data-theme-accent="#F5D000" data-theme-text="#FFF8E0" style="--theme-swatch: linear-gradient(90deg,#F5D000,#000000,#FFFFFF)">Caution Tape</button></td><td><em>Hazard yellow on pure black. Do not cross. Or do.</em></td></tr>
       <tr><td><button class="theme-name" type="button" aria-label="Wasp: preview theme" aria-pressed="false" data-theme-id="WASP" data-theme-bg="#0A0A0A" data-theme-card="#1A1808" data-theme-accent="#FFD100" data-theme-text="#FFFFFF" style="--theme-swatch: linear-gradient(90deg,#FFD100,#0A0A0A,#FFFFFF)">Wasp</button></td><td><em>Yellow, black, and a thin white sting.</em></td></tr>
       <tr><td><button class="theme-name" type="button" aria-label="Afterburner: preview theme" aria-pressed="false" data-theme-id="AFTERBURNER" data-theme-bg="#0A0A0A" data-theme-card="#181010" data-theme-accent="#FF4500" data-theme-text="#FFF0E8" style="--theme-swatch: linear-gradient(90deg,#0A0A0A,#FF4500,#FF1744)">Afterburner</button></td><td><em>Black hull. Hot edge. Don't look directly at the nozzle.</em></td></tr>
