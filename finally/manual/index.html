@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Finally VR Video Player Field Manual — Quest, Galaxy XR, NAS/SMB, DLNA, Music &amp; Photos</title>
-<meta name="description" content="Field manual for Finally VR Video Player 1.0.44 on Meta Quest and Samsung Galaxy XR: local files, NAS/SMB, Jellyfin &amp; Emby, zero-config DLNA, VR180/360, music + club lights, ChloeVibes, 2D-to-3D AI, and stereo photos.">
+<meta name="description" content="Field manual for Finally VR Video Player 1.0.45 on Meta Quest and Samsung Galaxy XR: local files, NAS/SMB, Jellyfin &amp; Emby, zero-config DLNA folder playback &amp; multi-select playlists, VR180/360, music + club lights, ChloeVibes, 2D-to-3D AI, and stereo photos.">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://finallyvr.com/finally/manual/">
 <style>
@@ -667,7 +667,7 @@
     <span class="eyebrow">Field Manual</span>
     <h1>FINALLY</h1>
     <p class="tag"><b>offline · local · yours</b> — the VR video player that respects your library, your network, and your controls.</p>
-    <p class="hero-meta">covers v1.0.44 · quest code 136 · galaxy code 10136 · november 17, 2026</p>
+    <p class="hero-meta">covers v1.0.45 · quest code 137 · galaxy code 10137 · november 24, 2026</p>
     <div class="hero-actions">
       <a class="support-top-cta" href="#support">SUPPORT FINALLY</a>
       <a class="store-cta" href="https://www.meta.com/experiences/finally-vr-video-player/1150511758154268/">Meta Quest Store →</a>
@@ -723,13 +723,13 @@
   <p class="kicker">01 · basics</p>
   <h2>Start here</h2>
   <p class="lede">Point the laser. Pull the trigger. That's most of Finally.</p>
-  <div class="note warn"><p><strong>Read the installed version in the Lobby.</strong> This manual covers <strong>Finally 1.0.44 &mdash; Quest code 136 / Galaxy XR code 10136</strong>. Store rollouts can reach devices at different times; the version shown inside your headset Lobby remains the authority.</p></div>
+  <div class="note warn"><p><strong>Read the installed version in the Lobby.</strong> This manual covers <strong>Finally 1.0.45 &mdash; Quest code 137 / Galaxy XR code 10137</strong>. Store rollouts can reach devices at different times; the version shown inside your headset Lobby remains the authority.</p></div>
   <div class="tbl-wrap"><table>
     <thead><tr><th scope="col">Reference identity</th><th scope="col">How this manual applies</th></tr></thead>
     <tbody>
-      <tr><td>Quest · 1.0.44 · code 136</td><td>Jellyfin &amp; Emby Direct Play libraries and range streaming, instant network close cancellation, transactional library/rename indexing, 200-char rename drafts, 2D player Retry/Back overlay, Handy reconnect/HDSP error hardening, OpenXR surface/depth hardening, plus 1.0.43's instant SMB &amp; USB-C SSD seeking, zero-config DLNA Direct Play, remote photo thumbnails, <code>PHOTO STICK</code> modes, Music/Lights/Vibes, 2D → 3D studio, and zero location permissions.</td></tr>
-      <tr><td>Galaxy XR · 1.0.44 · code 10136</td><td>Shared Android XR core built from the same codebase (<code>10000 + 136</code>), distributed on Google Play.</td></tr>
-      <tr><td>Older builds</td><td>Use the controls present in your installed build. Version badges (<span class="ver">1.0.38</span> – <span class="ver">1.0.44</span>) mark newer additions, and historical measurements in <a href="#specs">Engineering Receipts</a> remain tied to the exact build tested.</td></tr>
+      <tr><td>Quest · 1.0.45 · code 137</td><td>DLNA, WebDAV &amp; Stash shared-folder <code>PLAY ALL</code>, <code>Shuffle folder</code>, and continuous Next/Previous queues across paginated folders, cross-page <code>SELECT</code> + <code>ALL</code> multi-select into Saved Playlists, 2D/VR playlist parity, non-SMB folder shuffle/navigation, plus 1.0.44 Jellyfin &amp; Emby Direct Play and 1.0.43 instant SMB &amp; USB-C SSD seeking, zero-config DLNA Direct Play, remote photo thumbnails, <code>PHOTO STICK</code> modes, Music/Lights/Vibes, 2D → 3D studio, and zero location permissions.</td></tr>
+      <tr><td>Galaxy XR · 1.0.45 · code 10137</td><td>Shared Android XR core built from the same codebase (<code>10000 + 137</code>) with all 7 in-app UI locales preserved in the Google Play AAB.</td></tr>
+      <tr><td>Older builds</td><td>Use the controls present in your installed build. Version badges (<span class="ver">1.0.38</span> – <span class="ver">1.0.45</span>) mark newer additions, and historical measurements in <a href="#specs">Engineering Receipts</a> remain tied to the exact build tested.</td></tr>
     </tbody>
   </table></div>
   <div class="note"><p><strong>Startup film.</strong> Introduced in 1.0.1 and retained in 1.0.8, the mastered 1920&times;1080 startup intro uses a cleaned black field, restrained aviation layer, and final audio hold. The 244-frame / 24-fps film remains <strong>ON</strong> by default on cold start; <span class="chip">HIDE</span> is an explicit Global Settings choice after the first watch.</p></div>
@@ -761,11 +761,13 @@
 
 <section id="new">
   <p class="kicker">01A · what's new</p>
-  <h2>What's new through 1.0.44</h2>
-  <p class="lede">Jellyfin &amp; Emby Direct Play, instant network stream cancellation, instant NAS &amp; SSD skips, zero-config DLNA for Windows 11 &amp; Universal Media Server, SMB photo thumbnails, 3D photo stick modes, a built-in music player with Club Lights &amp; ChloeVibes, and on-device AI tools.</p>
+  <h2>What's new through 1.0.45</h2>
+  <p class="lede">DLNA, WebDAV &amp; Stash shared-folder playback and multi-select playlists, Jellyfin &amp; Emby Direct Play, instant NAS &amp; SSD skips, zero-config DLNA for Windows 11 &amp; Universal Media Server, SMB photo thumbnails, 3D photo stick modes, a built-in music player with Club Lights &amp; ChloeVibes, and on-device AI tools.</p>
   <div class="tbl-wrap"><table>
     <thead><tr><th scope="col">What</th><th scope="col">Where</th><th scope="col">Since</th></tr></thead>
     <tbody>
+      <tr><td><a href="#sources">DLNA, WebDAV &amp; Stash folder playback + Next/Prev</a></td><td><span class="chip">PLAY ALL</span> · <span class="chip">MORE</span> → Shuffle folder · automatic paginated sibling queues</td><td><span class="ver">1.0.45</span></td></tr>
+      <tr><td><a href="#club">Cross-page multi-select, SELECT ALL &amp; 2D/VR playlists</a></td><td><span class="chip">SELECT</span> + <span class="chip">ALL</span> in remote browsers &amp; Vault · 2D <span class="chip">Playlists</span> manager</td><td><span class="ver">1.0.45</span></td></tr>
       <tr><td><a href="#sources">Jellyfin &amp; Emby Direct Play</a></td><td><span class="chip">SOURCES</span> → Jellyfin / Emby · Direct Play range streaming + projection tags</td><td><span class="ver">1.0.44</span></td></tr>
       <tr><td><a href="#loops">Stream cancel, 200-char renames &amp; async tracks</a></td><td>Buffered network open abort · transactional folder renames · pending track sync</td><td><span class="ver">1.0.44</span></td></tr>
       <tr><td><a href="#loops">Instant SMB/SSD seeking &amp; chapter jumps</a></td><td>Shared SMB seek reservoir · 0.5 s post-seek start · clean MKV keyframe cues · 512 KB USB-C SSD reader</td><td><span class="ver">1.0.43</span></td></tr>
@@ -1542,7 +1544,7 @@
     <li><strong>Jellyfin / Emby:</strong> Sources → <strong>Add Jellyfin / Emby</strong>. Enter your server URL plus username/password, then <strong>Connect &amp; scan</strong>. Finally scans accessible video views, keeps server filename projection hints (SBS/OU/VR180), and streams original files via Direct Play byte-range reads.</li>
     <li><strong>Stash:</strong> Sources → <strong>Add Stash</strong>. Enter the Stash base URL and API key, then <strong>Connect &amp; scan</strong>. Finally reads bounded GraphQL scene pages; rescan to replace blank-title scene numbers with filename fallbacks.</li>
     <li><strong>XBVR:</strong> Sources → <strong>Add XBVR</strong>. Enter the local XBVR base URL (and credentials if required), then connect. Browse titles from Lobby SRC; funscript download is optional when the server offers it.</li>
-    <li><strong>DLNA:</strong> Sources → <strong>DLNA</strong> auto-scans your Wi‑Fi via SSDP, or enter a trusted-LAN description URL manually. Since <strong>1.0.43</strong>, <strong>Universal Media Server (UMS)</strong> and <strong>Windows 11 Media Streaming</strong> (<code>WMPNetworkSvc</code> / <code>upnphost</code>) stream 50 GB+ 8K VR files via Direct Play byte-range reads out of the box with zero custom renderer config.</li>
+    <li><strong>DLNA:</strong> Sources → <strong>DLNA</strong> auto-scans your Wi‑Fi via SSDP, or enter a trusted-LAN description URL manually. Since <strong>1.0.43</strong>, <strong>Universal Media Server (UMS)</strong> and <strong>Windows 11 Media Streaming</strong> (<code>WMPNetworkSvc</code> / <code>upnphost</code>) stream 50 GB+ 8K VR files via Direct Play byte-range reads out of the box with zero custom renderer config; since <strong>1.0.45</strong>, opening any video binds the folder's playable siblings for Next/Previous, <strong>PLAY ALL</strong> and <strong>Shuffle folder</strong> stream whole paginated folders continuously, and <strong>SELECT</strong> + <strong>ALL</strong> adds multiple DLNA files or entire folders to Saved Playlists.</li>
   </ol>
   <p><strong>WebDAV compatibility boundary:</strong> Connect &amp; scan uses collection <code>PROPFIND</code> and can follow safe HTTPS redirects to the final collection. After listing succeeds, ranged media GETs can follow at most five HTTPS handoffs. Finally accepts exact or server-proven end-of-file <code>206 Content-Range</code> replies, including chunked partial bodies. It keeps authorization only on the original origin and rejects HTTP downgrade, URL credentials, loops, excessive hops, malformed ranges, or a full <code>200</code> reply that ignored <code>Range</code>. A server that cannot meet that contract is reported as incompatible instead of feeding wrong bytes to the decoder.</p>
   <p>WebDAV, Plex, Stash, and XBVR default to HTTPS when you supply an https URL. Using acknowledged HTTP or plain FTP exposes credentials and media to the local network, so keep those modes on a private LAN you control. Removing a source deletes Finally's record and vault rows, never the server's files.</p>
@@ -1740,7 +1742,7 @@
   <div class="tbl-wrap"><table>
     <thead><tr><th scope="col">Capability</th><th scope="col">Meta Quest</th><th scope="col">Samsung Galaxy XR</th></tr></thead>
     <tbody>
-      <tr><td>Current manual identity</td><td><code>1.0.44</code>, version code 136</td><td><code>1.0.44</code>, version code 10136</td></tr>
+      <tr><td>Current manual identity</td><td><code>1.0.45</code>, version code 137</td><td><code>1.0.45</code>, version code 10137</td></tr>
       <tr><td>Distribution</td><td>Meta Horizon Store is the public path; store rollout can lag this page, so the in-headset version remains the authority</td><td>Google Play is the Galaxy XR path; store rollout can lag this page, so the in-headset version remains the authority</td></tr>
       <tr><td>Launch</td><td>Straight into the Lobby (when your vault has titles)</td><td>Library first — tap <span class="chip">ENTER THE LOBBY</span></td></tr>
       <tr><td>Passthrough</td><td>Meta passthrough layer</td><td>System blend-through — same controls, same keying</td></tr>
@@ -1934,7 +1936,7 @@
   <h2>Testing &amp; technical specifications</h2>
   <p class="lede">Optional measured receipts, real parameters, and explicit limits—the sheet packed with a serious lens or microphone. For ordinary help, jump to <a href="#fixit">Fix it</a> or <a href="#diagnostics">Bug reports</a>.</p>
   <div class="note"><p><strong>Evidence language.</strong> <em>Device</em> means the named physical headset executed the path. <em>Device + observer</em> adds a human inspection of that exact run. <em>Host</em> means deterministic workstation/JVM/native coverage. One fixture proves that fixture and path; it does not silently become universal codec, NAS, disc, thermal, or comfort support.</p></div>
-  <div class="note warn"><p><strong>Check your installed version.</strong> Current manual reference is <strong>1.0.44 (Quest c136 / Galaxy XR c10136)</strong>; stores may roll out versions at different times. Historical measurements below name the exact build and headset tested and are not relabeled as blanket guarantees.</p></div>
+  <div class="note warn"><p><strong>Check your installed version.</strong> Current manual reference is <strong>1.0.45 (Quest c137 / Galaxy XR c10137)</strong>; stores may roll out versions at different times. Historical measurements below name the exact build and headset tested and are not relabeled as blanket guarantees.</p></div>
   <div class="note"><p><strong>Measurement-card notation.</strong> The benchmark cards identify the test article, operating condition, measured characteristic, and reference gate. Solid traces are recorded samples or run points; dashed lines are reference gates or limits. A line joining discrete points preserves test order only—it is not an interpolated performance claim. Workstation capacity is test-cell context; headset plots remain headset measurements.</p></div>
 
   <h3>Recorded lab</h3>
